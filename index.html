@@ -80,6 +80,34 @@
     .footer-brand{color:var(--gold);font-weight:900;letter-spacing:2px}
     @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.login-form{grid-template-columns:1fr 1fr}.login-form button{grid-column:1/-1}}
     @media(max-width:560px){.nav{padding:10px 13px}.headphone{width:41px;height:41px}.brand-sub{letter-spacing:1.5px;font-size:9px}.navlinks a{display:none}.navlinks button{padding:8px 10px}.hero{border-radius:20px}.hero h1{letter-spacing:-1px}.grid{grid-template-columns:1fr}.thumb{height:190px}.login-form,.upload-form{grid-template-columns:1fr}.upload-form .wide{grid-column:auto}.section-head{align-items:start}}
+
+    /* FULL CLUB RGB THEME */
+    :root{--bg:#030208;--panel:#090914;--panel2:#101020;--white:#fbfaff;--muted:#b5b2ca;--gold:#ffe600;--blue:#00eaff;--line:#30204b;--rainbow:linear-gradient(110deg,#ff1744,#ff9100,#fff000,#00ff78,#00eaff,#2855ff,#d500f9,#ff1744)}
+    body{background:radial-gradient(ellipse at 50% -10%,#35105c 0,transparent 42%),radial-gradient(circle at 0% 35%,#001e50 0,transparent 30%),radial-gradient(circle at 100% 45%,#430025 0,transparent 28%),#030208}
+    header{background:#030208e8;border-bottom:1px solid #ff26d966;box-shadow:0 5px 35px #ff00d522}
+    .headphone{border:1px solid #00eaff;background:linear-gradient(145deg,#24103b,#050510);box-shadow:0 0 20px #00eaff55,0 0 35px #ff00b744}
+    .headphone svg{stroke:#00eaff}
+    .navlinks a,.navlinks button{background:#10091d;border-color:#64216c}
+    .navlinks a:hover,.navlinks button:hover{border-color:#00eaff;box-shadow:0 0 16px #00eaff55}
+    .hero{border:1px solid transparent;border-radius:24px;background:linear-gradient(125deg,#080611ee,#140922e8 55%,#07152aee) padding-box, var(--rainbow) border-box;box-shadow:0 0 28px #ff00b51c,0 18px 65px #000b;isolation:isolate}
+    .hero:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.6;background:repeating-linear-gradient(120deg,transparent 0 38px,#00eaff0c 39px 41px,transparent 42px 80px),radial-gradient(ellipse at 85% 30%,#ff00c533,transparent 35%),radial-gradient(ellipse at 25% 90%,#004dff44,transparent 45%)}
+    .hero:after{border-color:#ff00e755;box-shadow:0 0 0 25px #00eaff0d,0 0 0 55px #ff00d20c,0 0 80px #00eaff22}
+    .eyebrow{border-color:#ff26d9aa;color:#fff;background:#ff00d515;box-shadow:0 0 18px #ff00d522}
+    .hero h1{font-weight:1000;text-shadow:0 0 24px #00eaff20}
+    .btn{color:#05020b;background:var(--rainbow);background-size:250% 100%;box-shadow:0 0 20px #ff00d522;transition:filter .2s,transform .2s}
+    .btn:hover{filter:brightness(1.2);transform:translateY(-1px)}
+    .btn.blue{background:linear-gradient(100deg,#00eaff,#5478ff,#ff3dd5);color:#05020b}
+    .section-head h2{background:var(--rainbow);background-size:250%;-webkit-background-clip:text;background-clip:text;color:transparent}
+    .card{border:1px solid #62246b;background:linear-gradient(160deg,#130b22,#070711);box-shadow:0 0 22px #ff00d510,0 12px 30px #0007;position:relative}
+    .card:hover{border-color:#00eaff;box-shadow:0 0 22px #00eaff24,0 12px 35px #0008}
+    .thumb{background:radial-gradient(circle at 50% 35%,#28104a,#070711 70%)}
+    .thumb .big-headphone{filter:drop-shadow(0 0 12px #ff00d5) drop-shadow(0 0 24px #00eaff)}
+    .panel{border-color:#59245e;background:linear-gradient(145deg,#110a1c,#070711);box-shadow:0 0 25px #00eaff0b}
+    input,select{background:#080711;border-color:#46204f}
+    input:focus,select:focus{border-color:#00eaff;box-shadow:0 0 0 3px #00eaff18}
+    footer{border-top:1px solid #ff26d955;background:#030208}
+    .footer-brand{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+
   </style>
 </head>
 <body>
@@ -88,7 +116,7 @@
     <nav class="nav">
       <a class="brand" href="#" aria-label="CROSSS D JAY home">
         <span class="headphone" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 17v-3a11 11 0 0 1 22 0v3"/><rect x="4" y="16" width="6" height="10" rx="2"/><rect x="22" y="16" width="6" height="10" rx="2"/><path d="M26 26c-1 3-4 4-8 4"/></svg></span>
-        <span><div class="brand-title"><span>CROSSS D JAY</span></div><div class="brand-sub">MUSIC • MIX • VIBES</div></span>
+        <span><div class="brand-title"><span>CROSSS D JAY</span></div><div class="brand-sub">MUSIC CONNECTS US</div></span>
       </a>
       <div class="navlinks">
         <a href="#library">Music & Videos</a>
@@ -100,16 +128,16 @@
 
   <main>
     <section class="hero">
-      <div class="eyebrow">🎧 &nbsp; DJ MUSIC STATION &nbsp; • &nbsp; RGB MODE</div>
-      <h1>FEEL THE BEAT.<br><span>OWN THE VIBE.</span></h1>
-      <p>Welcome to CROSSS D JAY — your music and video corner with black, white, golden and electric-blue style, finished with rainbow RGB glow.</p>
+      <div class="eyebrow">⚡ DJ CLUB EXPERIENCE &nbsp; • &nbsp; FULL RGB MODE</div>
+      <h1>CROSSS D JAY<br><span>BEATS • MIXES • VIBES</span></h1>
+      <p>WELCOME TO THE CLUB. Turn up the energy with DJ mixes, promo videos, electric lights and nonstop rainbow RGB vibes.</p>
       <button class="btn" type="button" onclick="document.querySelector('#library').scrollIntoView({behavior:'smooth'})">▶ Explore Library</button>
       <button class="btn blue" type="button" onclick="document.querySelector('#admin').scrollIntoView({behavior:'smooth'})">♛ Admin Login</button>
     </section>
 
     <section id="library">
       <div class="section-head">
-        <div><h2>🎧 Music & Video Library</h2><p>Search a track, filter by type, then press Play.</p></div>
+        <div><h2>🔥 Latest Club Videos & Mixes</h2><p>Search a track, filter by type, then press Play.</p></div>
         <span class="status"><span class="dot"></span><span id="libraryStatus">Loading library…</span></span>
       </div>
       <div class="controls">
@@ -134,6 +162,7 @@
       </div>
       <div id="adminArea" hidden>
         <div class="admin-bar">
+          <div class="status" id="adminStats">Loading view stats…</div>
           <span class="status"><span class="dot"></span>Logged in as Admin</span>
           <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
         </div>
@@ -176,6 +205,9 @@
     const notice = document.getElementById('notice');
     let allMedia = [];
     let currentUser = null;
+    let likesByMedia = {};
+    let visitorId = localStorage.getItem('crosss_d_jay_visitor_id');
+    if (!visitorId) { visitorId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()); localStorage.setItem('crosss_d_jay_visitor_id', visitorId); }
 
     function showNotice(message, type='ok') {
       notice.textContent = message;
@@ -199,14 +231,18 @@
           .select('id,file_name,title,category,thumbnail_url,media_type,views,created_at')
           .order('created_at', { ascending: false });
         if (error) throw error;
+        // Video/audio files are hosted in the GitHub Pages repository root.
+        // The filenames in media_items.file_name must exactly match the uploaded files.
         const items = data || [];
-        const signedItems = await Promise.all(items.map(async item => {
+        allMedia = items.map(item => {
           if (item.source_url) return item;
-          const { data: signed, error: signError } = await supabaseClient.storage.from(BUCKET).createSignedUrl(item.file_name, 3600);
-          return { ...item, signed_url: signError ? '' : signed?.signedUrl || '' };
-        }));
-        allMedia = signedItems;
+          const filename = String(item.file_name || '').split('/').pop();
+          const githubFileUrl = './' + encodeURIComponent(filename).replace(/%2F/gi, '/');
+          return { ...item, signed_url: githubFileUrl };
+        });
+        await fetchLikes();
         populateCategories();
+        updateAdminStats();
         renderMedia();
         document.getElementById('libraryStatus').textContent = `${allMedia.length} item(s)`;
       } catch (error) {
@@ -233,68 +269,4 @@
         const matchesTerm = `${item.title || ''} ${item.file_name || ''} ${item.category || ''}`.toLowerCase().includes(term);
         const matchesType = type === 'all' || (type === 'video' ? isVideo(item) : !isVideo(item));
         const matchesCategory = category === 'all' || item.category === category;
-        return matchesTerm && matchesType && matchesCategory;
-      });
-      if (!visible.length) {
-        grid.innerHTML = `<div class="empty"><div class="symbol">🎧</div><strong>No media found yet.</strong><br><span class="muted">Admin login করে media upload করো, অথবা search/filter change করো.</span></div>`;
-        return;
-      }
-      grid.innerHTML = visible.map(item => {
-        const video = isVideo(item);
-        const thumb = item.thumbnail_url ? `<img src="${safeText(item.thumbnail_url)}" alt="">` : `<span class="big-headphone">${video ? '🎬' : '🎧'}</span>`;
-        const url = getDisplayUrl(item);
-        const playControl = url
-          ? (video
-            ? `<video controls preload="none" playsinline src="${safeText(url)}" style="width:100%;max-height:230px;background:#000" data-view-id="${safeText(item.id)}"></video>`
-            : `<audio controls preload="none" src="${safeText(url)}" style="width:100%" data-view-id="${safeText(item.id)}"></audio>`)
-          : `<p class="muted">Can't create playback link. Check Storage SELECT policy.</p>`;
-        const adminButtons = currentUser && currentUser.id === ADMIN_UID
-          ? `<button class="btn ghost" data-edit="${safeText(item.id)}" type="button">✎ Edit</button><button class="btn danger" data-delete="${safeText(item.id)}" type="button">Delete</button>` : '';
-        return `<article class="card">
-          <div class="thumb">${thumb}<span class="type-pill">${video ? 'VIDEO' : 'AUDIO'}</span></div>
-          <div class="card-body">
-            <h3>${safeText(item.title || item.file_name)}</h3>
-            <div class="meta"><span>▣ ${safeText(item.category || 'Uncategorized')}</span><span>◉ ${Number(item.views || 0)} views</span></div>
-            ${playControl}
-            <div class="card-actions" style="margin-top:12px">${adminButtons}</div>
-          </div>
-        </article>`;
-      }).join('');
-      grid.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteMedia(btn.dataset.delete)));
-      grid.querySelectorAll('[data-edit]').forEach(btn => btn.addEventListener('click', () => editMedia(btn.dataset.edit)));
-      grid.querySelectorAll('[data-view-id]').forEach(player => {
-        player.addEventListener('play', () => incrementView(player.dataset.viewId), { once: true });
-      });
-    }
-
-    async function incrementView(id) {
-      try {
-        const { error } = await supabaseClient.rpc('increment_media_view', { media_item_id: id });
-        if (!error) {
-          const item = allMedia.find(m => m.id === id);
-          if (item) item.views = Number(item.views || 0) + 1;
-          // Update only view text on next render would reset playback, so leave current player running.
-        }
-      } catch (_) {}
-    }
-
-    async function syncAuth() {
-      const { data } = await supabaseClient.auth.getSession();
-      currentUser = data?.session?.user || null;
-      updateAdminUI();
-      await fetchMedia();
-    }
-    function updateAdminUI() {
-      const isAdmin = !!currentUser && currentUser.id === ADMIN_UID;
-      document.getElementById('loginArea').hidden = isAdmin;
-      document.getElementById('adminArea').hidden = !isAdmin;
-      if (currentUser && !isAdmin) {
-        showNotice('এই account Admin UID নয়। Admin account দিয়ে login করো.', 'err');
-      }
-    }
-
-    document.getElementById('loginForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      hideNotice();
-      const btn = document.getElementById('loginBtn');
-   
+        return mat
