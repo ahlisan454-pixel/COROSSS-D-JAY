@@ -2,117 +2,218 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>COROSSS D JAY | MY MUSIC ZONE</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;background:#070711;color:white;
- font-family:Arial,sans-serif;text-align:center;
+* {
+  box-sizing: border-box;
 }
-header{
- padding:40px 15px;
- background:linear-gradient(135deg,#170b32,#071c35,#250b2e);
- border-bottom:2px solid #00f7ff;
+
+html {
+  scroll-behavior: smooth;
 }
-h1{
- color:#00f7ff;font-size:clamp(27px,7vw,48px);
- text-shadow:0 0 10px #00f7ff,0 0 25px #a000ff;
+
+body {
+  margin: 0;
+  background: #070711;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
-.tag{color:#ff45dd;letter-spacing:5px}
-nav{
- padding:17px;background:#11111e;
- position:sticky;top:0;
+
+header {
+  padding: 35px 15px;
+  background: linear-gradient(135deg, #170b32, #071c35, #250b2e);
+  border-bottom: 2px solid #00f7ff;
 }
-nav a{color:#00f7ff;text-decoration:none;margin:10px;font-weight:bold}
-.hero{padding:35px 15px}
-.hero h2{font-size:28px;color:#ff45dd}
-.card{
- margin:22px auto;padding:24px;
- width:90%;max-width:650px;
- background:linear-gradient(145deg,#151526,#0b1020);
- border:1px solid #00f7ff;border-radius:18px;
- box-shadow:0 0 15px #073c49;
+
+h1 {
+  color: #00f7ff;
+  font-size: clamp(27px, 7vw, 48px);
+  text-shadow: 0 0 10px #00f7ff, 0 0 25px #a000ff;
 }
-.card h2{color:#00f7ff}
-button{
- background:#00f7ff;color:#070711;
- border:0;border-radius:9px;padding:12px 20px;
- font-weight:bold;cursor:pointer;
+
+.tag {
+  color: #ff45dd;
+  letter-spacing: 5px;
 }
-input{max-width:100%;margin:15px}
-audio,video{width:100%;margin-top:15px}
-.note{color:#bcbcd0;font-size:14px;line-height:1.6}
-footer{padding:25px;color:#aaa;border-top:1px solid #25253a}
+
+nav {
+  padding: 16px 5px;
+  background: #11111e;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav a {
+  display: inline-block;
+  color: #00f7ff;
+  text-decoration: none;
+  margin: 7px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ff45dd;
+}
+
+.hero {
+  padding: 35px 15px;
+}
+
+.hero h2 {
+  color: #ff45dd;
+  font-size: 28px;
+}
+
+.card {
+  margin: 22px auto;
+  padding: 24px 18px;
+  width: 92%;
+  max-width: 650px;
+  background: linear-gradient(145deg, #151526, #0b1020);
+  border: 1px solid #00f7ff;
+  border-radius: 18px;
+  box-shadow: 0 0 15px #073c49;
+}
+
+.card h2 {
+  color: #00f7ff;
+}
+
+button {
+  background: #00f7ff;
+  color: #070711;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 20px;
+  margin: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input {
+  display: block;
+  max-width: 100%;
+  margin: 15px auto;
+}
+
+audio,
+video {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.note {
+  color: #bcbcd0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+footer {
+  padding: 25px;
+  color: #aaa;
+  border-top: 1px solid #25253a;
+}
 </style>
 </head>
-<body>
- <div class="card">
-  <h2>🎬 DJ MARWEN MIX PROMO (PT1)</h2>
 
-  <video controls playsinline preload="metadata"
-         style="width:100%;max-width:600px;">
-    <source src="DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
-            type="video/mp4">
-    তোমার ব্রাউজার ভিডিওটি চালাতে পারছে না।
-  </video>
- </div>
+<body>
 
 <header>
-<h1>🎧 COROSSS D JAY 🎧</h1>
-<p class="tag">MY MUSIC ZONE</p>
-<p>⚡ FEEL THE BEAT • LIVE THE MUSIC ⚡</p>
+  <h1>🎧 COROSSS D JAY 🎧</h1>
+  <p class="tag">MY MUSIC ZONE</p>
+  <p>⚡ FEEL THE BEAT • LIVE THE MUSIC ⚡</p>
 </header>
 
 <nav>
-<a href="#home">HOME</a>
-<a href="#music">MUSIC</a>
-<a href="#video">VIDEO</a>
+  <a href="#home">HOME</a>
+  <a href="#music">MUSIC</a>
+  <a href="#video">VIDEO</a>
+  <a href="#about">ABOUT</a>
 </nav>
 
 <section class="hero" id="home">
-<h2>WELCOME TO MY WORLD 🔥</h2>
-<p>Your music. Your vibe. Your zone.</p>
+  <h2>WELCOME TO MY WORLD 🔥</h2>
+  <p>Your music. Your vibe. Your zone.</p>
 </section>
 
+<!-- MUSIC PLAYER -->
 <section class="card" id="music">
-<h2>🎵 MUSIC PLAYER</h2>
-<p>Select a song from your phone to play.</p>
-<input type="file" id="audioFile" accept="audio/*">
-<audio id="audioPlayer" controls></audio>
-<p class="note">This plays a song selected on your device.</p>
+  <h2>🎵 MY MUSIC PLAYER</h2>
+
+  <p>DJ MARWEN MIX PROMO (PT1)</p>
+
+  <audio controls preload="metadata">
+    <source
+      src="DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
+      type="video/mp4">
+    Your browser does not support this audio format.
+  </audio>
+
+  <p class="note">
+    If this file is a video with sound, use the video player below.
+  </p>
+
+  <p>Or select a music file from your phone:</p>
+  <input type="file" id="audioFile" accept="audio/*">
+
+  <audio id="audioPlayer" controls></audio>
 </section>
 
+<!-- VIDEO PLAYER -->
 <section class="card" id="video">
-<h2>🎬 VIDEO ZONE</h2>
-<p>Select a video from your phone to play.</p>
-<input type="file" id="videoFile" accept="video/*">
-<video id="videoPlayer" controls></video>
-<p class="note">This plays a video selected on your device.</p>
+  <h2>🎬 DJ VIDEO ZONE</h2>
+
+  <h3>DJ MARWEN MIX PROMO (PT1)</h3>
+
+  <video controls playsinline preload="metadata">
+    <source
+      src="DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
+      type="video/mp4">
+    Your browser does not support video playback.
+  </video>
+
+  <p>Select another video from your phone:</p>
+  <input type="file" id="videoFile" accept="video/*">
+
+  <video id="videoPlayer" controls playsinline></video>
 </section>
 
-<section class="card">
-<h2>💜 ABOUT MY ZONE</h2>
-<p>Welcome to COROSSS D JAY — MY MUSIC ZONE!</p>
-<p class="note">Music • DJ Beats • Good Vibes</p>
+<!-- ABOUT -->
+<section class="card" id="about">
+  <h2>💜 ABOUT MY ZONE</h2>
+  <p>Welcome to COROSSS D JAY — MY MUSIC ZONE!</p>
+  <p class="note">Music • DJ Beats • Good Vibes</p>
 </section>
 
 <footer>
-<p>© 2026 COROSSS D JAY</p>
-<p>MADE WITH 🎵 AND PASSION</p>
+  <p>© 2026 COROSSS D JAY</p>
+  <p>MADE WITH 🎵 AND PASSION</p>
 </footer>
 
 <script>
-document.getElementById('audioFile').addEventListener('change',function(){
- if(this.files[0]){
-  document.getElementById('audioPlayer').src=URL.createObjectURL(this.files[0]);
- }
+document.getElementById("audioFile").addEventListener("change", function() {
+  if (this.files && this.files[0]) {
+    const player = document.getElementById("audioPlayer");
+    player.src = URL.createObjectURL(this.files[0]);
+    player.load();
+  }
 });
-document.getElementById('videoFile').addEventListener('change',function(){
- if(this.files[0]){
-  document.getElementById('videoPlayer').src=URL.createObjectURL(this.files[0]);
- }
+
+document.getElementById("videoFile").addEventListener("change", function() {
+  if (this.files && this.files[0]) {
+    const player = document.getElementById("videoPlayer");
+    player.src = URL.createObjectURL(this.files[0]);
+    player.load();
+  }
 });
 </script>
+
 </body>
 </html>
