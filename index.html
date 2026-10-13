@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COROSSS D JAY - MY MUSIC ZONE</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #080810;
+  color: white;
+  text-align: center;
+}
+header {
+  padding: 30px 10px;
+  background: linear-gradient(135deg, #101020, #251044);
+  border-bottom: 2px solid #00f7ff;
+}
+h1 {
+  color: #00f7ff;
+  font-size: 34px;
+  text-shadow: 0 0 15px #00f7ff;
+}
+header p {
+  color: #ff36d7;
+  letter-spacing: 4px;
+}
+nav {
+  padding: 15px;
+  background: #11111d;
+}
+nav a {
+  color: #00f7ff;
+  text-decoration: none;
+  margin: 10px;
+}
+main {
+  padding: 20px;
+}
+.card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 22px;
+  background: #151522;
+  border: 1px solid #00f7ff;
+  border-radius: 15px;
+  box-shadow: 0 0 12px #073c49;
+}
+h2 {
+  color: #ff36d7;
+}
+button {
+  background: #00f7ff;
+  color: #080810;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+input {
+  max-width: 100%;
+  margin: 12px;
+}
+audio, video {
+  width: 100%;
+  margin-top: 15px;
+}
+footer {
+  padding: 25px;
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>🎧 COROSSS D JAY 🎧</h1>
+  <p>MY MUSIC ZONE</p>
+  <div>🔥 FEEL THE BEAT 🔥</div>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#music">Music</a>
+  <a href="#videos">Videos</a>
+</nav>
+
+<main id="home">
+  <div class="card">
+    <h2>WELCOME TO MY MUSIC ZONE</h2>
+    <p>Welcome to the official music space of COROSSS D JAY!</p>
+    <p>🎵 Music • Beats • DJ Vibes 🎵</p>
+  </div>
+
+  <div class="card" id="music">
+    <h2>🎵 MY MUSIC PLAYER</h2>
+    <p>Choose an audio file from your phone to play it here.</p>
+    <input type="file" id="audioFile" accept="audio/*">
+    <audio id="audioPlayer" controls></audio>
+  </div>
+
+  <div class="card" id="videos">
+    <h2>🎬 MY VIDEO PLAYER</h2>
+    <p>Choose a video file from your phone to play it here.</p>
+    <input type="file" id="videoFile" accept="video/*">
+    <video id="videoPlayer" controls></video>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 COROSSS D JAY</p>
+  <p>MY MUSIC ZONE — ALL BEATS, ONE PLACE</p>
+</footer>
+
+<script>
+document.getElementById("audioFile").addEventListener("change", function() {
+  if (this.files[0]) {
+    document.getElementById("audioPlayer").src =
+      URL.createObjectURL(this.files[0]);
+  }
+});
+
+document.getElementById("videoFile").addEventListener("change", function() {
+  if (this.files[0]) {
+    document.getElementById("videoPlayer").src =
+      URL.createObjectURL(this.files[0]);
+  }
+});
+</script>
+</body>
+</html>
