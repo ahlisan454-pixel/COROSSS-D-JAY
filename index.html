@@ -6,113 +6,466 @@
 
 <title>COROSSS D JAY | MY MUSIC ZONE</title>
 
+<meta name="theme-color" content="#070711">
+
 <style>
+:root {
+  --cyan: #00f7ff;
+  --pink: #ff00d4;
+  --purple: #a100ff;
+  --green: #00ff95;
+  --bg: #05050b;
+  --panel: rgba(15, 15, 35, 0.88);
+}
+
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 85px;
 }
 
 body {
-  margin: 0;
-  background: #070711;
-  color: white;
+  min-height: 100vh;
+  background: var(--bg);
+  color: #fff;
   font-family: Arial, sans-serif;
-  text-align: center;
+  overflow-x: hidden;
 }
+
+/* CYBERPUNK BACKGROUND */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 15% 20%,
+      rgba(0,247,255,.16), transparent 40%),
+    radial-gradient(ellipse at 85% 35%,
+      rgba(255,0,212,.14), transparent 40%),
+    radial-gradient(ellipse at 50% 90%,
+      rgba(0,255,149,.09), transparent 45%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,247,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,247,255,.045) 1px, transparent 1px);
+  background-size: 35px 35px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+/* HEADER */
 
 header {
-  padding: 35px 15px;
-  background: linear-gradient(135deg, #170b32, #071c35, #250b2e);
-  border-bottom: 2px solid #00f7ff;
+  position: relative;
+  text-align: center;
+  padding: 65px 18px 45px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--cyan);
+  box-shadow: 0 5px 30px rgba(0,247,255,.15);
 }
 
-h1 {
-  color: #00f7ff;
-  font-size: clamp(27px, 7vw, 48px);
-  text-shadow: 0 0 10px #00f7ff, 0 0 25px #a000ff;
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(0,247,255,.08),
+    rgba(161,0,255,.12),
+    rgba(255,0,212,.08)
+  );
+  animation: colorShift 7s linear infinite alternate;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  font-size: clamp(30px, 7vw, 62px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow:
+    0 0 8px var(--cyan),
+    0 0 22px var(--cyan),
+    0 0 45px var(--purple);
+  animation: neonPulse 3s ease-in-out infinite alternate;
 }
 
 .tag {
-  color: #ff45dd;
-  letter-spacing: 5px;
+  margin-top: 12px;
+  font-size: clamp(13px, 3vw, 19px);
+  color: var(--pink);
+  letter-spacing: 6px;
+  text-shadow: 0 0 15px var(--pink);
 }
 
+.subtitle {
+  margin-top: 20px;
+  color: #d7d7e9;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* NAVIGATION */
+
 nav {
-  padding: 16px 5px;
-  background: #11111e;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 13px 8px;
+  background: rgba(5,5,15,.93);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0,247,255,.4);
 }
 
 nav a {
-  display: inline-block;
-  color: #00f7ff;
+  color: var(--cyan);
   text-decoration: none;
-  margin: 7px;
+  font-size: 12px;
   font-weight: bold;
+  letter-spacing: 1px;
+  padding: 11px 15px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: .3s;
 }
 
 nav a:hover {
-  color: #ff45dd;
+  color: #fff;
+  border-color: var(--pink);
+  background: rgba(255,0,212,.12);
+  box-shadow: 0 0 16px rgba(255,0,212,.4);
 }
 
+/* HERO */
+
 .hero {
-  padding: 35px 15px;
+  min-height: 360px;
+  padding: 85px 20px 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.status {
+  display: inline-block;
+  padding: 8px 15px;
+  margin-bottom: 22px;
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  box-shadow: 0 0 14px rgba(0,255,149,.15);
 }
 
 .hero h2 {
-  color: #ff45dd;
-  font-size: 28px;
+  font-size: clamp(28px, 6vw, 48px);
+  line-height: 1.2;
+  margin-bottom: 18px;
+  background: linear-gradient(
+    90deg,
+    var(--cyan),
+    #fff,
+    var(--pink),
+    var(--cyan)
+  );
+  background-size: 250%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 6s linear infinite;
 }
 
-.card {
-  margin: 22px auto;
-  padding: 24px 18px;
-  width: 92%;
-  max-width: 650px;
-  background: linear-gradient(145deg, #151526, #0b1020);
-  border: 1px solid #00f7ff;
-  border-radius: 18px;
-  box-shadow: 0 0 15px #073c49;
+.hero p {
+  color: #c4c4d8;
+  line-height: 1.8;
+  max-width: 550px;
 }
 
-.card h2 {
-  color: #00f7ff;
+.hero-button {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 25px;
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 0 16px rgba(0,247,255,.15);
+  transition: .3s;
 }
 
-video,
-audio {
+.hero-button:hover {
+  color: #05050b;
+  background: var(--cyan);
+  box-shadow: 0 0 30px var(--cyan);
+  transform: translateY(-3px);
+}
+
+/* EQUALIZER */
+
+.equalizer {
+  height: 45px;
+  margin-top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.equalizer span {
   display: block;
-  width: 100%;
-  margin-top: 15px;
-  border-radius: 10px;
+  width: 5px;
+  height: 12px;
+  border-radius: 5px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+  animation: equalize .7s ease-in-out infinite alternate;
+}
+
+.equalizer span:nth-child(3n) {
+  background: var(--pink);
+  box-shadow: 0 0 10px var(--pink);
+}
+
+.equalizer span:nth-child(2n) {
+  animation-delay: .25s;
+}
+
+.equalizer span:nth-child(3n) {
+  animation-delay: .4s;
+}
+
+/* SECTIONS */
+
+.section {
+  width: min(92%, 900px);
+  margin: 25px auto;
+  padding: 30px 22px;
+  background: var(--panel);
+  border: 1px solid rgba(0,247,255,.45);
+  border-radius: 16px;
+  box-shadow:
+    0 0 18px rgba(0,247,255,.08),
+    inset 0 0 20px rgba(161,0,255,.035);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+  background: linear-gradient(
+    90deg, transparent, var(--pink), var(--cyan), transparent
+  );
+}
+
+.section-title {
+  margin-bottom: 15px;
+  font-size: clamp(22px, 4vw, 30px);
+  color: var(--cyan);
+  text-shadow: 0 0 14px rgba(0,247,255,.45);
+}
+
+.section-description {
+  color: #bdbdd0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* MUSIC CARD */
+
+.music-card {
+  margin-top: 24px;
+  padding: 22px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,0,212,.5);
+  background: linear-gradient(
+    135deg,
+    rgba(161,0,255,.09),
+    rgba(0,247,255,.04)
+  );
+}
+
+.music-card h3 {
+  color: var(--pink);
+  margin-bottom: 10px;
+}
+
+/* VIDEO CARDS */
+
+.video-card {
+  margin-top: 28px;
+  padding: 20px;
+  border: 1px solid rgba(161,0,255,.65);
+  border-radius: 12px;
+  background: rgba(5,5,15,.7);
+  transition: .3s;
+}
+
+.video-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 22px rgba(0,247,255,.14);
+  transform: translateY(-3px);
+}
+
+.video-card h3 {
+  color: var(--pink);
+  font-size: clamp(16px, 3vw, 21px);
+  margin-bottom: 12px;
 }
 
 video {
-  background: #000;
+  display: block;
+  width: 100%;
   max-height: 65vh;
+  margin-top: 15px;
+  border-radius: 9px;
+  background: #000;
+  border: 1px solid rgba(0,247,255,.35);
 }
 
 .note {
-  color: #bcbcd0;
-  font-size: 14px;
-  line-height: 1.6;
+  margin-top: 13px;
+  color: #aaaac2;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
-hr {
-  border: 0;
-  border-top: 1px solid #34344a;
-  margin: 28px 0;
+/* ABOUT */
+
+.about-highlight {
+  margin-top: 20px;
+  padding: 15px;
+  border-left: 3px solid var(--green);
+  background: rgba(0,255,149,.045);
+  color: #d5d5e5;
+  line-height: 1.8;
 }
+
+/* FOOTER */
 
 footer {
-  padding: 25px;
-  color: #aaa;
-  border-top: 1px solid #25253a;
+  margin-top: 55px;
+  padding: 30px 15px;
+  text-align: center;
+  background: rgba(5,5,15,.8);
+  border-top: 1px solid rgba(255,0,212,.45);
+}
+
+footer p {
+  margin: 8px 0;
+  color: #aaaac2;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.footer-brand {
+  color: var(--cyan);
+  font-weight: bold;
+}
+
+/* ANIMATIONS */
+
+@keyframes neonPulse {
+  from {
+    text-shadow: 0 0 8px var(--cyan), 0 0 20px var(--purple);
+  }
+  to {
+    text-shadow:
+      0 0 14px var(--cyan),
+      0 0 35px var(--pink),
+      0 0 55px var(--purple);
+  }
+}
+
+@keyframes colorShift {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(80deg); }
+}
+
+@keyframes gradientMove {
+  from { background-position: 0%; }
+  to { background-position: 250%; }
+}
+
+@keyframes equalize {
+  from { height: 8px; }
+  to { height: 38px; }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  header {
+    padding: 45px 12px 35px;
+  }
+
+  .tag {
+    letter-spacing: 4px;
+  }
+
+  nav {
+    gap: 2px;
+    padding: 8px 4px;
+  }
+
+  nav a {
+    padding: 10px 9px;
+    font-size: 10px;
+  }
+
+  .hero {
+    min-height: 320px;
+    padding: 65px 16px;
+  }
+
+  .section {
+    padding: 24px 14px;
+  }
+
+  .video-card {
+    padding: 13px;
+  }
+}
+
+/* REDUCE MOTION IF REQUESTED BY DEVICE */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
@@ -120,75 +473,120 @@ footer {
 <body>
 
 <header>
-  <h1>🎧 COROSSS D JAY 🎧</h1>
-  <p class="tag">MY MUSIC ZONE</p>
-  <p>⚡ FEEL THE BEAT • LIVE THE MUSIC ⚡</p>
+  <div class="header-content">
+    <h1 class="logo">🎧 COROSSS D JAY 🎧</h1>
+    <p class="tag">MY MUSIC ZONE</p>
+    <p class="subtitle">⚡ FEEL THE BEAT • LIVE THE MUSIC ⚡</p>
+  </div>
 </header>
 
 <nav>
-  <a href="#home">HOME</a>
-  <a href="#music">MUSIC</a>
-  <a href="#video">VIDEO</a>
-  <a href="#about">ABOUT</a>
+  <a href="#home">⌂ HOME</a>
+  <a href="#music">♫ MUSIC</a>
+  <a href="#video">▶ VIDEOS</a>
+  <a href="#about">✦ ABOUT</a>
 </nav>
 
 <section class="hero" id="home">
-  <h2>WELCOME TO MY WORLD 🔥</h2>
-  <p>Your music. Your vibe. Your zone.</p>
-</section>
+  <span class="status">● WELCOME TO MY MUSIC ZONE</span>
 
-<!-- MUSIC SECTION -->
-<section class="card" id="music">
-  <h2>🎵 MY MUSIC ZONE</h2>
-  <p>Enjoy the latest DJ mixes!</p>
-  <p class="note">
-    Select a video below and press play to enjoy the music.
+  <h2>ENTER THE CYBER WORLD</h2>
+
+  <p>
+    Your music. Your vibe. Your zone.<br>
+    Feel every beat with COROSSS D JAY.
   </p>
+
+  <a class="hero-button" href="#video">
+    ▶ EXPLORE MY VIDEOS
+  </a>
+
+  <div class="equalizer" aria-label="Animated equalizer">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
 </section>
 
-<!-- VIDEO SECTION -->
-<section class="card" id="video">
+<section class="section" id="music">
+  <h2 class="section-title">♫ MY MUSIC ZONE</h2>
 
-  <h2>🎬 DJ VIDEO ZONE</h2>
+  <p class="section-description">
+    Welcome to my music universe!
+    Enjoy my DJ mixes and feel the beat.
+  </p>
 
-  <!-- VIDEO 1 -->
-  <h3>🔥 DJ MARWEN MIX PROMO (PT1)</h3>
+  <div class="music-card">
+    <h3>🎧 MUSIC & DJ MIXES</h3>
 
-  <video controls playsinline preload="metadata">
-    <source
-      src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
-      type="video/mp4">
-    Your browser does not support video playback.
-  </video>
-
-  <p class="note">🎧 DJ MARWEN MIX PROMO — PART 1</p>
-
-  <hr>
-
-  <!-- VIDEO 2 -->
-  <h3>🔥 DJ MARWEN MIX PROMO (PT2)</h3>
-
-  <video controls playsinline preload="metadata">
-    <source
-      src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
-      type="video/mp4">
-    Your browser does not support video playback.
-  </video>
-
-  <p class="note">🎧 DJ MARWEN MIX PROMO — PART 2</p>
-
+    <p class="section-description">
+      Watch the DJ videos below to enjoy the music.
+      More music can be added here in the future.
+    </p>
+  </div>
 </section>
 
-<!-- ABOUT SECTION -->
-<section class="card" id="about">
-  <h2>💜 ABOUT MY ZONE</h2>
-  <p>Welcome to COROSSS D JAY — MY MUSIC ZONE!</p>
-  <p class="note">Music • DJ Beats • Good Vibes</p>
+<section class="section" id="video">
+  <h2 class="section-title">▶ DJ VIDEO ZONE</h2>
+
+  <p class="section-description">
+    Enter the mix. Feel the energy. Enjoy the beat.
+  </p>
+
+  <div class="video-card">
+    <h3>⚡ DJ MARWEN MIX PROMO (PT1)</h3>
+
+    <video controls playsinline preload="metadata">
+      <source
+        src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
+        type="video/mp4">
+
+      Your browser does not support video playback.
+    </video>
+
+    <p class="note">
+      🎧 DJ MARWEN MIX PROMO — PART 1
+    </p>
+  </div>
+
+  <div class="video-card">
+    <h3>⚡ DJ MARWEN MIX PROMO (PT2)</h3>
+
+    <video controls playsinline preload="metadata">
+      <source
+        src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
+        type="video/mp4">
+
+      Your browser does not support video playback.
+    </video>
+
+    <p class="note">
+      🎧 DJ MARWEN MIX PROMO — PART 2
+    </p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2 class="section-title">✦ ABOUT MY ZONE</h2>
+
+  <p class="section-description">
+    Welcome to COROSSS D JAY — MY MUSIC ZONE!
+  </p>
+
+  <div class="about-highlight">
+    🌈 CYBERPUNK STYLE<br>
+    🎵 MUSIC • DJ BEATS • GOOD VIBES<br>
+    ⚡ FEEL THE BEAT • LIVE THE MUSIC
+  </div>
 </section>
 
 <footer>
+  <p class="footer-brand">🎧 COROSSS D JAY</p>
+  <p>MY MUSIC ZONE • CYBERPUNK RGB EDITION</p>
   <p>© 2026 COROSSS D JAY</p>
-  <p>MADE WITH 🎵 AND PASSION</p>
+  <p>MADE WITH ♡ AND MUSIC</p>
 </footer>
 
 </body>
