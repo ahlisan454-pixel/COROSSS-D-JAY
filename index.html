@@ -84,25 +84,8 @@ nav a:hover {
   color: #00f7ff;
 }
 
-button {
-  background: #00f7ff;
-  color: #070711;
-  border: none;
-  border-radius: 9px;
-  padding: 12px 20px;
-  margin: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-input {
-  display: block;
-  max-width: 100%;
-  margin: 15px auto;
-}
-
-audio,
-video {
+video,
+audio {
   display: block;
   width: 100%;
   margin-top: 15px;
@@ -118,6 +101,12 @@ video {
   color: #bcbcd0;
   font-size: 14px;
   line-height: 1.6;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #34344a;
+  margin: 28px 0;
 }
 
 footer {
@@ -148,34 +137,36 @@ footer {
   <p>Your music. Your vibe. Your zone.</p>
 </section>
 
-<!-- MUSIC PLAYER -->
+<!-- MUSIC SECTION -->
 <section class="card" id="music">
-  <h2>🎵 MY MUSIC PLAYER</h2>
-
-  <p>DJ MARWEN MIX PROMO (PT2)</p>
-
-  <video controls playsinline preload="metadata">
-    <source
-      src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
-      type="video/mp4">
-    Your browser does not support video playback.
-  </video>
-
+  <h2>🎵 MY MUSIC ZONE</h2>
+  <p>Enjoy the latest DJ mixes!</p>
   <p class="note">
-    Play your latest DJ mix here!
+    Select a video below and press play to enjoy the music.
   </p>
-
-  <p>Select another music file from your phone:</p>
-  <input type="file" id="audioFile" accept="audio/*">
-
-  <audio id="audioPlayer" controls></audio>
 </section>
 
-<!-- VIDEO PLAYER -->
+<!-- VIDEO SECTION -->
 <section class="card" id="video">
+
   <h2>🎬 DJ VIDEO ZONE</h2>
 
-  <h3>DJ MARWEN MIX PROMO (PT2)</h3>
+  <!-- VIDEO 1 -->
+  <h3>🔥 DJ MARWEN MIX PROMO (PT1)</h3>
+
+  <video controls playsinline preload="metadata">
+    <source
+      src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
+      type="video/mp4">
+    Your browser does not support video playback.
+  </video>
+
+  <p class="note">🎧 DJ MARWEN MIX PROMO — PART 1</p>
+
+  <hr>
+
+  <!-- VIDEO 2 -->
+  <h3>🔥 DJ MARWEN MIX PROMO (PT2)</h3>
 
   <video controls playsinline preload="metadata">
     <source
@@ -184,13 +175,11 @@ footer {
     Your browser does not support video playback.
   </video>
 
-  <p>Select another video from your phone:</p>
-  <input type="file" id="videoFile" accept="video/*">
+  <p class="note">🎧 DJ MARWEN MIX PROMO — PART 2</p>
 
-  <video id="videoPlayer" controls playsinline></video>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT SECTION -->
 <section class="card" id="about">
   <h2>💜 ABOUT MY ZONE</h2>
   <p>Welcome to COROSSS D JAY — MY MUSIC ZONE!</p>
@@ -201,24 +190,6 @@ footer {
   <p>© 2026 COROSSS D JAY</p>
   <p>MADE WITH 🎵 AND PASSION</p>
 </footer>
-
-<script>
-document.getElementById("audioFile").addEventListener("change", function() {
-  if (this.files && this.files[0]) {
-    const player = document.getElementById("audioPlayer");
-    player.src = URL.createObjectURL(this.files[0]);
-    player.load();
-  }
-});
-
-document.getElementById("videoFile").addEventListener("change", function() {
-  if (this.files && this.files[0]) {
-    const player = document.getElementById("videoPlayer");
-    player.src = URL.createObjectURL(this.files[0]);
-    player.load();
-  }
-});
-</script>
 
 </body>
 </html>
