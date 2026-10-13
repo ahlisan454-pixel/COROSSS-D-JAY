@@ -1,219 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>COROSSS D JAY | MY MUSIC ZONE</title>
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COROSSS D JAY | My Music Zone</title>
 <style>
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: #070711;
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-
-header {
-  padding: 35px 15px;
-  background: linear-gradient(135deg, #170b32, #071c35, #250b2e);
-  border-bottom: 2px solid #00f7ff;
-}
-
-h1 {
-  color: #00f7ff;
-  font-size: clamp(27px, 7vw, 48px);
-  text-shadow: 0 0 10px #00f7ff, 0 0 25px #a000ff;
-}
-
-.tag {
-  color: #ff45dd;
-  letter-spacing: 5px;
-}
-
-nav {
-  padding: 16px 5px;
-  background: #11111e;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-nav a {
-  display: inline-block;
-  color: #00f7ff;
-  text-decoration: none;
-  margin: 7px;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #ff45dd;
-}
-
-.hero {
-  padding: 35px 15px;
-}
-
-.hero h2 {
-  color: #ff45dd;
-  font-size: 28px;
-}
-
-.card {
-  margin: 22px auto;
-  padding: 24px 18px;
-  width: 92%;
-  max-width: 650px;
-  background: linear-gradient(145deg, #151526, #0b1020);
-  border: 1px solid #00f7ff;
-  border-radius: 18px;
-  box-shadow: 0 0 15px #073c49;
-}
-
-.card h2 {
-  color: #00f7ff;
-}
-
-button {
-  background: #00f7ff;
-  color: #070711;
-  border: none;
-  border-radius: 9px;
-  padding: 12px 20px;
-  margin: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-input {
-  display: block;
-  max-width: 100%;
-  margin: 15px auto;
-}
-
-audio,
-video {
-  display: block;
-  width: 100%;
-  margin-top: 15px;
-  border-radius: 10px;
-}
-
-.note {
-  color: #bcbcd0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-footer {
-  padding: 25px;
-  color: #aaa;
-  border-top: 1px solid #25253a;
-}
+:root{--cyan:#00e5ff;--blue:#087cff;--pink:#d000ff;--bg:#030711;--panel:#071326;--line:#103d62;--text:#eaf6ff;--muted:#9bb5d2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#101044 0,transparent 40%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:22px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#030711dd;position:sticky;top:0;z-index:2}
+.logo{font-size:clamp(19px,4vw,30px);font-weight:900;letter-spacing:1px;color:var(--cyan);text-shadow:0 0 16px #00d9ff88}.logo small{display:block;font-size:11px;letter-spacing:5px;color:#d7b2ff}
+.badge{color:#00ffc3;font-size:12px;border:1px solid #00ffc355;border-radius:30px;padding:8px 12px}
+main{max-width:1150px;margin:auto;padding:22px 16px 60px}.hero{border:1px solid #075b8e;border-radius:22px;padding:clamp(25px,6vw,65px) 24px;background:linear-gradient(110deg,#06152aee,#09051cee),radial-gradient(circle at 80% 40%,#d000ff44,transparent 40%);box-shadow:0 0 35px #006eff16}
+.hero h1{font-size:clamp(30px,7vw,64px);line-height:1.05;margin:0;color:white;text-shadow:0 0 20px #00bfff88}.hero h1 span{color:var(--cyan)}.hero p{color:#b8d7f5;letter-spacing:2px}.hero .tag{color:#dc8dff}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}button,.upload-label{border:1px solid #12669b;color:var(--text);background:#07182d;border-radius:12px;padding:11px 15px;font-size:14px;cursor:pointer}button:hover,.upload-label:hover{border-color:var(--cyan);box-shadow:0 0 15px #00d9ff33}input[type=file]{display:none}
+h2{font-size:23px;margin:28px 0 13px}h2 span{color:var(--cyan)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px}.card{background:linear-gradient(145deg,#08182d,#040a16);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.cover{height:105px;border-radius:10px;background:linear-gradient(135deg,#003b70,#4d087b,#03101c);display:grid;place-items:center;font-size:35px;margin-bottom:12px;text-shadow:0 0 16px var(--cyan)}.title{font-weight:650;overflow-wrap:anywhere}.sub{font-size:12px;color:var(--muted);margin:5px 0 10px;overflow-wrap:anywhere}audio,video{width:100%;margin-top:8px}video{max-height:220px}.empty{color:var(--muted);padding:18px;border:1px dashed #17415d;border-radius:12px}.notice{font-size:13px;color:#b4cbe3;line-height:1.6;border-left:3px solid var(--pink);padding:10px 14px;background:#120c20;margin-top:26px;border-radius:0 10px 10px 0}footer{text-align:center;color:#7898b8;border-top:1px solid var(--line);padding:22px;font-size:12px}
 </style>
 </head>
-
 <body>
-
-<header>
-  <h1>🎧 COROSSS D JAY 🎧</h1>
-  <p class="tag">MY MUSIC ZONE</p>
-  <p>⚡ FEEL THE BEAT • LIVE THE MUSIC ⚡</p>
-</header>
-
-<nav>
-  <a href="#home">HOME</a>
-  <a href="#music">MUSIC</a>
-  <a href="#video">VIDEO</a>
-  <a href="#about">ABOUT</a>
-</nav>
-
-<section class="hero" id="home">
-  <h2>WELCOME TO MY WORLD 🔥</h2>
-  <p>Your music. Your vibe. Your zone.</p>
-</section>
-
-<!-- MUSIC PLAYER -->
-<section class="card" id="music">
-  <h2>🎵 MY MUSIC PLAYER</h2>
-
-  <p>DJ MARWEN MIX PROMO (PT1)</p>
-
-  <audio controls preload="metadata">
-    <source
-      src="DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
-      type="video/mp4">
-    Your browser does not support this audio format.
-  </audio>
-
-  <p class="note">
-    If this file is a video with sound, use the video player below.
-  </p>
-
-  <p>Or select a music file from your phone:</p>
-  <input type="file" id="audioFile" accept="audio/*">
-
-  <audio id="audioPlayer" controls></audio>
-</section>
-
-<!-- VIDEO PLAYER -->
-<section class="card" id="video">
-  <h2>🎬 DJ VIDEO ZONE</h2>
-
-  <h3>DJ MARWEN MIX PROMO (PT1)</h3>
-
-  <video controls playsinline preload="metadata">
-    <source
-      src="DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
-      type="video/mp4">
-    Your browser does not support video playback.
-  </video>
-
-  <p>Select another video from your phone:</p>
-  <input type="file" id="videoFile" accept="video/*">
-
-  <video id="videoPlayer" controls playsinline></video>
-</section>
-
-<!-- ABOUT -->
-<section class="card" id="about">
-  <h2>💜 ABOUT MY ZONE</h2>
-  <p>Welcome to COROSSS D JAY — MY MUSIC ZONE!</p>
-  <p class="note">Music • DJ Beats • Good Vibes</p>
-</section>
-
-<footer>
-  <p>© 2026 COROSSS D JAY</p>
-  <p>MADE WITH 🎵 AND PASSION</p>
-</footer>
-
+<header><div class="logo">♫ COROSSS D JAY <small>MY MUSIC ZONE</small></div><div class="badge">✦ YOUR SPACE • YOUR VIBE</div></header>
+<main>
+<section class="hero"><p class="tag">WELCOME TO YOUR PRIVATE ZONE</p><h1><span>COROSSS D JAY</span><br>MY MUSIC ZONE</h1><p>YOUR SONGS / YOUR VIDEOS / YOUR SPACE</p></section>
+<div class="toolbar">
+<label class="upload-label" for="songs">＋ Add Songs</label><input id="songs" type="file" accept="audio/*" multiple>
+<label class="upload-label" for="videos">＋ Add Videos</label><input id="videos" type="file" accept="video/*" multiple>
+<button id="clear">Clear this session</button>
+</div>
+<h2>♫ <span>My Songs</span></h2><div id="songGrid" class="grid"><div class="empty">Choose “Add Songs” to play audio files from this device.</div></div>
+<h2>▣ <span>My Videos</span></h2><div id="videoGrid" class="grid"><div class="empty">Choose “Add Videos” to watch video files from this device.</div></div>
+<div class="notice"><b>Privacy & storage:</b> This starter page plays files selected on your device only. Files are not uploaded to a server, and clearing the page or closing the tab may remove the session. Do not add private files to a public GitHub repository. Online private uploads need a properly configured private storage service and access controls.</div>
+</main><footer>© COROSSS D JAY • MY MUSIC ZONE • GOOD MUSIC × GOOD VIBES</footer>
 <script>
-document.getElementById("audioFile").addEventListener("change", function() {
-  if (this.files && this.files[0]) {
-    const player = document.getElementById("audioPlayer");
-    player.src = URL.createObjectURL(this.files[0]);
-    player.load();
-  }
-});
-
-document.getElementById("videoFile").addEventListener("change", function() {
-  if (this.files && this.files[0]) {
-    const player = document.getElementById("videoPlayer");
-    player.src = URL.createObjectURL(this.files[0]);
-    player.load();
-  }
-});
-</script>
-
-</body>
-</html>
+const songInput=document.getElementById('songs'),videoInput=document.getElementById('videos');
+function addFiles(input,grid,type){const files=[...input.files];if(!files.length)return;grid.innerHTML='';files.forEach(file=>{const url=URL.createObjectURL(file),card=document.createElement('article');card.className='card';const cover=document.createElement('div');cover.className='cover';cover.textContent=type==='audio'?'♫':'▶';const title=document.createElement('div');title.className='title';title.textContent=file.name;const sub=document.createElement('div');sub.className='sub';sub.textContent=(file.size/1024/1024).toFixed(1)+' MB';const media=document.createElement(type);media.controls=true;media.src=url;card.append(cover,title,sub,media);grid.append(card)});input.value=''}
+songInput.addEventListener('change',()=>addFiles(songInput,document.getElementById('songGrid'),'audio'));
+videoInput.addEventListener('change',()=>addFiles(videoInput,document.getElementById('videoGrid'),'video'));
+document.getElementById('clear').addEventListener('click',()=>{document.getElementById('songGrid').innerHTML='<div class="empty">Choose “Add Songs” to play audio files from this device.</div>';document.getElementById('videoGrid').innerHTML='<div class="empty">Choose “Add Videos” to watch video files from this device.</div>';});
+</script></body></html>
