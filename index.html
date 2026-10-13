@@ -1,272 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05070d">
-  <title>CROSSS D JAY | Music & Video</title>
-  <style>
-    :root {
-      --bg:#05070d; --panel:#0c111d; --panel2:#101827; --white:#f5f7ff;
-      --muted:#aeb8cc; --gold:#f5c451; --blue:#37a8ff; --line:#263349;
-      --rainbow:linear-gradient(110deg,#ff3b6b,#ff9d38,#ffe45c,#42f58d,#31c8ff,#8a65ff,#ff4fd8);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:radial-gradient(ellipse at top,#12203a 0,#05070d 45%,#020308 100%);color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 15% 15%,#1677ff12,transparent 28%),radial-gradient(circle at 85% 25%,#ffbf3f0c,transparent 28%)}
-    a{color:inherit}
-    .rgb-line{height:4px;background:var(--rainbow);background-size:300% 100%;animation:rainbow 6s linear infinite;box-shadow:0 0 18px #38bfff66}
-    @keyframes rainbow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
-    @keyframes glow{0%,100%{filter:drop-shadow(0 0 5px #36b7ff55)}50%{filter:drop-shadow(0 0 12px #ffce5b88)}}
-    header{position:sticky;top:0;z-index:20;background:#05070de8;backdrop-filter:blur(16px);border-bottom:1px solid #253047}
-    .nav{max-width:1180px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
-    .headphone{width:48px;height:48px;flex:0 0 auto;display:grid;place-items:center;border-radius:15px;border:1px solid #f5c45188;background:linear-gradient(145deg,#17243b,#070a12);box-shadow:0 0 20px #228dff25;animation:glow 4s ease-in-out infinite}
-    .headphone svg{width:31px;height:31px;stroke:var(--gold);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-    .brand-title{font-weight:1000;letter-spacing:1.3px;font-size:clamp(17px,3vw,24px);line-height:1}
-    .brand-title span{background:var(--rainbow);background-size:300%;animation:rainbow 6s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
-    .brand-sub{font-size:10px;color:#aeb8cc;letter-spacing:3px;margin-top:6px}
-    .navlinks{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .navlinks a,.navlinks button{font:inherit;font-size:13px;text-decoration:none;color:#dce7fa;background:#111a2a;border:1px solid #293950;border-radius:10px;padding:9px 12px;cursor:pointer}
-    .navlinks a:hover,.navlinks button:hover{border-color:var(--blue);box-shadow:0 0 14px #228dff25}
-    main{max-width:1180px;margin:auto;padding:24px 20px 70px}
-    .hero{position:relative;overflow:hidden;border:1px solid #2d405b;border-radius:26px;padding:clamp(25px,6vw,62px);background:linear-gradient(120deg,#0b1424f2,#0b0f1af2 60%,#17213a);box-shadow:0 18px 60px #0008}
-    .hero:after{content:"";position:absolute;width:280px;height:280px;right:-50px;top:-85px;border-radius:50%;border:1px solid #37a8ff44;box-shadow:0 0 0 25px #37a8ff08,0 0 0 55px #f5c45108}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #f5c45166;color:var(--gold);background:#f5c4510c;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:2px}
-    .hero h1{font-size:clamp(36px,7vw,76px);line-height:.98;letter-spacing:-2px;margin:20px 0 14px;max-width:780px}
-    .hero h1 span{background:var(--rainbow);background-size:300%;animation:rainbow 6s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{color:#b6c2d8;max-width:610px;line-height:1.7;margin:0 0 23px}
-    .btn{border:0;border-radius:12px;padding:12px 17px;font-weight:850;cursor:pointer;color:#06101c;background:linear-gradient(120deg,var(--gold),#fff0ad);box-shadow:0 5px 20px #f5c45120}
-    .btn.blue{background:linear-gradient(120deg,#37a8ff,#a3dcff);color:#04101c}
-    .btn.ghost{background:#111a2a;color:#edf4ff;border:1px solid #33435b;box-shadow:none}
-    .btn.danger{background:#391522;color:#ffc4d1;border:1px solid #6d293e;box-shadow:none}
-    .btn:disabled{opacity:.5;cursor:not-allowed}
-    .section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:34px 0 16px;flex-wrap:wrap}
-    .section-head h2{font-size:24px;margin:0;letter-spacing:-.5px}
-    .section-head p{color:var(--muted);font-size:13px;margin:6px 0 0}
-    .controls{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
-    input,select{font:inherit;color:var(--white);background:#0b1220;border:1px solid #2c3a51;border-radius:11px;padding:12px 13px;outline:none;min-width:0}
-    input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #37a8ff16}
-    .controls input{flex:1;min-width:190px}
-    .controls select{min-width:145px}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
-    .card{min-width:0;border:1px solid #27364c;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#111a29,#090d16);box-shadow:0 12px 30px #0004;transition:transform .2s,border-color .2s}
-    .card:hover{transform:translateY(-3px);border-color:#378fce}
-    .thumb{height:170px;background:radial-gradient(circle at 50% 35%,#16375d,#090d16 70%);display:grid;place-items:center;position:relative;overflow:hidden}
-    .thumb img{width:100%;height:100%;object-fit:cover}
-    .thumb .big-headphone{font-size:48px;filter:drop-shadow(0 0 15px #37a8ff66)}
-    .type-pill{position:absolute;top:11px;left:11px;border:1px solid #ffffff24;background:#05070dc9;border-radius:8px;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:1px}
-    .card-body{padding:15px}
-    .card h3{margin:0 0 8px;font-size:17px;overflow-wrap:anywhere}
-    .meta{font-size:12px;color:#9eacc3;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:13px}
-    .card-actions{display:flex;gap:8px;flex-wrap:wrap}
-    .card-actions .btn{padding:9px 12px;font-size:12px}
-    .empty{grid-column:1/-1;border:1px dashed #34445c;border-radius:18px;padding:36px 18px;text-align:center;color:#aeb8cc;background:#0b111c}
-    .empty .symbol{font-size:32px;margin-bottom:9px}
-    .panel{margin-top:28px;border:1px solid #2b3b53;background:linear-gradient(160deg,#101827,#080c14);border-radius:20px;padding:22px}
-    .panel h2{margin:0 0 8px;font-size:21px}
-    .muted{color:var(--muted);font-size:13px;line-height:1.6}
-    .login-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:15px}
-    .admin-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}
-    .upload-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-top:14px}
-    .upload-form label{display:grid;gap:7px;color:#c5d0e2;font-size:12px}
-    .upload-form .wide{grid-column:1/-1}
-    .file-input{padding:9px}
-    .notice{display:none;margin-top:12px;border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.5}
-    .notice.show{display:block}.notice.ok{color:#b7ffd5;background:#0d2a20;border:1px solid #1b694b}.notice.err{color:#ffd0d9;background:#2c111b;border:1px solid #713046}
-    .status{display:inline-flex;align-items:center;gap:7px;color:#9cebc1;font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:#4ce49a;box-shadow:0 0 10px #4ce49a}
-    footer{border-top:1px solid #202c40;padding:24px 20px;color:#8594ad;text-align:center;font-size:12px}
-    .footer-brand{color:var(--gold);font-weight:900;letter-spacing:2px}
-    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.login-form{grid-template-columns:1fr 1fr}.login-form button{grid-column:1/-1}}
-    @media(max-width:560px){.nav{padding:10px 13px}.headphone{width:41px;height:41px}.brand-sub{letter-spacing:1.5px;font-size:9px}.navlinks a{display:none}.navlinks button{padding:8px 10px}.hero{border-radius:20px}.hero h1{letter-spacing:-1px}.grid{grid-template-columns:1fr}.thumb{height:190px}.login-form,.upload-form{grid-template-columns:1fr}.upload-form .wide{grid-column:auto}.section-head{align-items:start}}
-
-    /* FULL CLUB RGB THEME */
-    :root{--bg:#030208;--panel:#090914;--panel2:#101020;--white:#fbfaff;--muted:#b5b2ca;--gold:#ffe600;--blue:#00eaff;--line:#30204b;--rainbow:linear-gradient(110deg,#ff1744,#ff9100,#fff000,#00ff78,#00eaff,#2855ff,#d500f9,#ff1744)}
-    body{background:radial-gradient(ellipse at 50% -10%,#35105c 0,transparent 42%),radial-gradient(circle at 0% 35%,#001e50 0,transparent 30%),radial-gradient(circle at 100% 45%,#430025 0,transparent 28%),#030208}
-    header{background:#030208e8;border-bottom:1px solid #ff26d966;box-shadow:0 5px 35px #ff00d522}
-    .headphone{border:1px solid #00eaff;background:linear-gradient(145deg,#24103b,#050510);box-shadow:0 0 20px #00eaff55,0 0 35px #ff00b744}
-    .headphone svg{stroke:#00eaff}
-    .navlinks a,.navlinks button{background:#10091d;border-color:#64216c}
-    .navlinks a:hover,.navlinks button:hover{border-color:#00eaff;box-shadow:0 0 16px #00eaff55}
-    .hero{border:1px solid transparent;border-radius:24px;background:linear-gradient(125deg,#080611ee,#140922e8 55%,#07152aee) padding-box, var(--rainbow) border-box;box-shadow:0 0 28px #ff00b51c,0 18px 65px #000b;isolation:isolate}
-    .hero:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.6;background:repeating-linear-gradient(120deg,transparent 0 38px,#00eaff0c 39px 41px,transparent 42px 80px),radial-gradient(ellipse at 85% 30%,#ff00c533,transparent 35%),radial-gradient(ellipse at 25% 90%,#004dff44,transparent 45%)}
-    .hero:after{border-color:#ff00e755;box-shadow:0 0 0 25px #00eaff0d,0 0 0 55px #ff00d20c,0 0 80px #00eaff22}
-    .eyebrow{border-color:#ff26d9aa;color:#fff;background:#ff00d515;box-shadow:0 0 18px #ff00d522}
-    .hero h1{font-weight:1000;text-shadow:0 0 24px #00eaff20}
-    .btn{color:#05020b;background:var(--rainbow);background-size:250% 100%;box-shadow:0 0 20px #ff00d522;transition:filter .2s,transform .2s}
-    .btn:hover{filter:brightness(1.2);transform:translateY(-1px)}
-    .btn.blue{background:linear-gradient(100deg,#00eaff,#5478ff,#ff3dd5);color:#05020b}
-    .section-head h2{background:var(--rainbow);background-size:250%;-webkit-background-clip:text;background-clip:text;color:transparent}
-    .card{border:1px solid #62246b;background:linear-gradient(160deg,#130b22,#070711);box-shadow:0 0 22px #ff00d510,0 12px 30px #0007;position:relative}
-    .card:hover{border-color:#00eaff;box-shadow:0 0 22px #00eaff24,0 12px 35px #0008}
-    .thumb{background:radial-gradient(circle at 50% 35%,#28104a,#070711 70%)}
-    .thumb .big-headphone{filter:drop-shadow(0 0 12px #ff00d5) drop-shadow(0 0 24px #00eaff)}
-    .panel{border-color:#59245e;background:linear-gradient(145deg,#110a1c,#070711);box-shadow:0 0 25px #00eaff0b}
-    input,select{background:#080711;border-color:#46204f}
-    input:focus,select:focus{border-color:#00eaff;box-shadow:0 0 0 3px #00eaff18}
-    footer{border-top:1px solid #ff26d955;background:#030208}
-    .footer-brand{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05060b"><title>CROSS DJ | Music Connects Us</title>
+<style>
+:root{--bg:#05060b;--panel:#0a0d17;--line:#17283a;--cyan:#00f5ff;--pink:#ff28d7;--purple:#8a2bff;--green:#5bff70;--text:#f7f9ff;--muted:#aab4c8}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:82px}body{margin:0;background:radial-gradient(ellipse at 50% 0,#15102c 0,#070912 42%,#030408 100%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.22;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px,transparent 5px);mask-image:linear-gradient(#000,transparent 80%)}a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer;color:white}.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:12px clamp(14px,3vw,40px);background:#05060bed;backdrop-filter:blur(18px);border-bottom:1px solid #00eaff66;box-shadow:0 4px 30px #00eaff16}.brand{display:flex;align-items:center;gap:10px;min-width:max-content}.logo{width:45px;height:45px;border:2px solid var(--cyan);border-radius:50%;display:grid;place-items:center;color:var(--cyan);font-size:24px;font-weight:900;text-shadow:0 0 14px var(--cyan);box-shadow:0 0 18px #00eaff55,inset 0 0 14px #00eaff33}.brand strong{font-size:clamp(17px,2vw,25px);letter-spacing:1px}.brand strong span{color:var(--pink);text-shadow:0 0 12px var(--pink)}.brand small{display:block;color:#9caac4;letter-spacing:4px;font-size:8px}.nav{display:flex;gap:18px;align-items:center;margin:auto}.nav a{font-size:13px;color:#dce5f5;transition:.2s}.nav a:hover{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}.search{max-width:250px;flex:1;min-width:120px;background:#0b101b;border:1px solid #27364d;border-radius:22px;padding:10px 14px;color:white;outline:none}.btn{border:1px solid #00eaff99;border-radius:12px;background:linear-gradient(110deg,#091a2a,#17102a);padding:10px 17px;font-weight:750;box-shadow:0 0 15px #00eaff1f;transition:.2s}.btn:hover{box-shadow:0 0 22px #00eaff88;transform:translateY(-1px)}.btn.hot{background:linear-gradient(100deg,var(--cyan),#2a77ff,var(--pink));border:0;color:#05060b;text-shadow:none}.layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:18px;padding:18px clamp(12px,2vw,28px);max-width:1700px;margin:auto}.sidebar{border:1px solid #14293d;border-radius:18px;padding:16px;background:#070a12e8;align-self:start;position:sticky;top:85px;box-shadow:0 0 25px #00eaff0c}.section-label{font-size:10px;color:#7f91ae;letter-spacing:2px;margin:5px 8px 12px}.side-link{display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:10px;color:#d7e0ef;font-size:13px;margin:4px 0}.side-link:hover,.side-link.active{background:linear-gradient(100deg,#142b4b,#291039);color:var(--cyan);box-shadow:inset 2px 0 var(--pink)}.online{margin-top:25px;border-top:1px solid #19253a;padding-top:14px;font-size:12px;color:var(--muted)}.online b{color:var(--green)}.main{min-width:0}.hero{min-height:370px;position:relative;overflow:hidden;border-radius:22px;border:1px solid #00eaff8a;background:linear-gradient(90deg,#05060be8 0%,#05060b55 43%,#05060bb8 100%),radial-gradient(ellipse at 50% 100%,#f500ff77,transparent 45%),radial-gradient(ellipse at 20% 30%,#00eaff55,transparent 35%),radial-gradient(ellipse at 80% 20%,#a4ff0055,transparent 30%),linear-gradient(135deg,#111b35,#05060b 60%,#1b082b);box-shadow:0 0 30px #00eaff22,inset 0 0 60px #ff00d522;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:clamp(22px,4vw,55px);isolation:isolate}.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(115deg,transparent 0 50px,#00eaff26 52px,transparent 55px),repeating-linear-gradient(65deg,transparent 0 80px,#ff28d729 82px,transparent 85px);animation:lights 8s linear infinite}.hero:after{content:"";position:absolute;bottom:-100px;left:10%;right:10%;height:180px;border-radius:50%;background:#ff00e51b;filter:blur(35px);z-index:-1}.hero-copy .eyebrow{color:var(--cyan);font-weight:800;letter-spacing:4px;font-size:11px}.hero h1{font-size:clamp(35px,5.2vw,72px);line-height:.98;letter-spacing:-2px;margin:14px 0;text-shadow:0 0 22px #00eaff55}.hero h1 span{background:linear-gradient(90deg,#fff,var(--cyan),var(--pink),#a5ff00);background-clip:text;color:transparent}.hero p{color:#d4d9e9;max-width:470px;line-height:1.65}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.chip{font-size:10px;letter-spacing:1px;padding:5px 9px;border:1px solid var(--cyan);border-radius:7px;box-shadow:0 0 10px #00eaff25}.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.play-big{border-radius:25px;padding:14px 25px;background:linear-gradient(100deg,#00f5ff,#16ff8b,#ff28d7);color:#03050a;border:0;font-weight:900;letter-spacing:1px;box-shadow:0 0 24px #00eaff66}.hero-art{height:280px;display:grid;place-items:center;position:relative}.dj-disc{width:min(250px,70%);aspect-ratio:1;border-radius:50%;border:8px solid #202b40;background:repeating-radial-gradient(circle,#0a0d16 0 5px,#252c40 6px 7px,#090b11 8px 12px);box-shadow:0 0 25px var(--cyan),0 0 60px #ff28d777;animation:spin 14s linear infinite;display:grid;place-items:center;position:relative}.dj-disc:before{content:"";position:absolute;inset:24%;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#090b15 45%,var(--pink));box-shadow:0 0 30px #ff28d7}.disc-logo{position:relative;z-index:1;font-weight:1000;font-size:42px;color:white;text-shadow:0 0 15px var(--cyan)}.headphones{position:absolute;right:8%;bottom:4px;font-size:74px;filter:drop-shadow(0 0 12px var(--pink));transform:rotate(-13deg)}.eq{height:38px;display:flex;gap:4px;align-items:center;justify-content:center;margin-top:16px}.eq i{display:block;width:5px;border-radius:8px;background:linear-gradient(var(--cyan),var(--pink));height:var(--h);box-shadow:0 0 9px #00eaff;animation:eq .75s ease-in-out infinite alternate;animation-delay:var(--d)}.feature-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 22px}.feature{background:#080d17;border:1px solid #17364b;border-radius:12px;padding:13px;display:flex;align-items:center;gap:10px}.feature .ico{font-size:22px;color:var(--cyan)}.feature b{display:block;font-size:12px}.feature small{color:var(--muted);font-size:10px}.content-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px}.panel{background:linear-gradient(145deg,#0b101a,#06080f);border:1px solid #193247;border-radius:16px;padding:16px;min-width:0;box-shadow:0 8px 24px #0006}.panel h2{font-size:15px;margin:0 0 14px;display:flex;align-items:center;justify-content:space-between}.panel h2 span{color:var(--cyan);font-size:11px}.mix{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #172234}.cover{width:49px;height:49px;flex-shrink:0;border-radius:10px;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#ff28d7,#311e71 45%,#07101a);border:1px solid #c04cff77;font-size:22px;box-shadow:0 0 12px #ff28d722}.mix-info{min-width:0;flex:1}.mix-info b{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mix-info small{font-size:10px;color:var(--muted)}.round{width:31px;height:31px;border-radius:50%;border:1px solid #00eaff88;background:#07131f;color:var(--cyan);flex-shrink:0}.featured-player{padding:0;overflow:hidden;border-color:#9d2dff}.player-art{min-height:185px;padding:24px;background:radial-gradient(ellipse at 50% 60%,#f0f5ff33,transparent 30%),linear-gradient(135deg,#0d2846,#2a0840 60%,#07101b);position:relative;display:grid;place-items:center;text-align:center}.player-art:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(120deg,transparent 0 35px,#00eaff20 36px,transparent 38px)}.player-art>*{position:relative}.player-art .disc-logo{font-size:36px}.player-art h3{margin:7px 0 3px;font-size:22px}.player-art p{margin:0;color:#c3cfe0;font-size:11px}.player-controls{padding:15px}.progress{width:100%;accent-color:var(--cyan)}.control-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.control-row button{background:none;border:0;font-size:19px;color:var(--cyan)}.playlist-card{display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid #172234}.playlist-art{width:53px;height:59px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(140deg,#ff28d7,#3520a0,#00d9ff);font-size:24px}.playlist-card b{font-size:12px;display:block}.playlist-card small{font-size:10px;color:var(--muted)}.section-title{margin:24px 0 12px;display:flex;align-items:center;justify-content:space-between}.section-title h2{font-size:19px;margin:0}.section-title a{font-size:12px;color:var(--cyan)}.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.video-panel video{width:100%;max-height:420px;display:block;background:#000;border-radius:12px;border:1px solid #28364d}.video-panel h3{font-size:14px}.video-panel p{font-size:11px;color:var(--muted);line-height:1.5}.member-panel{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.auth-form{display:grid;gap:10px}.auth-form input{background:#050811;border:1px solid #26344b;color:white;border-radius:9px;padding:12px;min-width:0}.auth-form button{padding:12px}.auth-note{font-size:11px;color:var(--muted);line-height:1.5}.status{font-size:12px;color:var(--green);min-height:18px}.footer{margin-top:28px;padding:24px;text-align:center;border-top:1px solid #183043;color:#91a0b9;font-size:11px;letter-spacing:2px}.footer strong{color:white}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#07121e;border:1px solid var(--cyan);padding:12px 18px;border-radius:12px;box-shadow:0 0 20px #00eaff55;z-index:50;display:none}.hide{display:none!important}@keyframes spin{to{transform:rotate(360deg)}}@keyframes lights{to{background-position:200px 0,-200px 0}}@keyframes eq{to{transform:scaleY(.35)}}
+@media(max-width:1100px){.layout{grid-template-columns:150px minmax(0,1fr)}.nav{gap:10px}.nav a{font-size:11px}.search{display:none}.content-grid{grid-template-columns:1fr 1fr}.content-grid .featured-player{grid-column:span 2;grid-row:1}.feature-row{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.topbar{gap:10px;flex-wrap:wrap}.nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start;padding:5px 0}.nav a{white-space:nowrap}.brand{margin-right:auto}.layout{display:block;padding:10px}.sidebar{display:none}.hero{grid-template-columns:1fr;padding:25px;min-height:unset}.hero-art{height:190px;grid-row:1}.dj-disc{width:155px}.headphones{font-size:48px}.hero h1{font-size:44px}.content-grid{grid-template-columns:1fr}.content-grid .featured-player{grid-column:auto;grid-row:auto}.feature-row{gap:7px}.feature{padding:10px}.feature small{display:none}.video-grid,.member-panel{grid-template-columns:1fr}.panel{padding:13px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
 <body>
-  <div class="rgb-line"></div>
-  <header>
-    <nav class="nav">
-      <a class="brand" href="#" aria-label="CROSSS D JAY home">
-        <span class="headphone" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 17v-3a11 11 0 0 1 22 0v3"/><rect x="4" y="16" width="6" height="10" rx="2"/><rect x="22" y="16" width="6" height="10" rx="2"/><path d="M26 26c-1 3-4 4-8 4"/></svg></span>
-        <span><div class="brand-title"><span>CROSSS D JAY</span></div><div class="brand-sub">MUSIC CONNECTS US</div></span>
-      </a>
-      <div class="navlinks">
-        <a href="#library">Music & Videos</a>
-        <a href="#admin">Admin</a>
-        <button type="button" id="refreshBtn">↻ Refresh</button>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="eyebrow">⚡ DJ CLUB EXPERIENCE &nbsp; • &nbsp; FULL RGB MODE</div>
-      <h1>CROSSS D JAY<br><span>BEATS • MIXES • VIBES</span></h1>
-      <p>WELCOME TO THE CLUB. Turn up the energy with DJ mixes, promo videos, electric lights and nonstop rainbow RGB vibes.</p>
-      <button class="btn" type="button" onclick="document.querySelector('#library').scrollIntoView({behavior:'smooth'})">▶ Explore Library</button>
-      <button class="btn blue" type="button" onclick="document.querySelector('#admin').scrollIntoView({behavior:'smooth'})">♛ Admin Login</button>
-    </section>
-
-    <section id="library">
-      <div class="section-head">
-        <div><h2>🔥 Latest Club Videos & Mixes</h2><p>Search a track, filter by type, then press Play.</p></div>
-        <span class="status"><span class="dot"></span><span id="libraryStatus">Loading library…</span></span>
-      </div>
-      <div class="controls">
-        <input id="searchInput" type="search" placeholder="🔎 Search title or file name…" aria-label="Search media">
-        <select id="typeFilter" aria-label="Filter by type"><option value="all">All media</option><option value="video">Videos</option><option value="audio">Music / Audio</option></select>
-        <select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option></select>
-      </div>
-      <div class="grid" id="mediaGrid">
-        <div class="empty"><div class="symbol">🎧</div>Loading media…</div>
-      </div>
-    </section>
-
-    <section class="panel" id="admin">
-      <h2>♛ Admin Control Room</h2>
-      <p class="muted">Admin login দিয়ে media upload, title/category edit, delete এবং view count manage করা যাবে। Visitor-রা শুধু media play করতে পারবে।</p>
-      <div id="loginArea">
-        <form id="loginForm" class="login-form">
-          <input id="adminEmail" type="email" placeholder="Admin email" autocomplete="username" required>
-          <input id="adminPassword" type="password" placeholder="Password" autocomplete="current-password" required>
-          <button class="btn" id="loginBtn" type="submit">Login</button>
-        </form>
-      </div>
-      <div id="adminArea" hidden>
-        <div class="admin-bar">
-          <div class="status" id="adminStats">Loading view stats…</div>
-          <span class="status"><span class="dot"></span>Logged in as Admin</span>
-          <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
-        </div>
-        <form id="uploadForm" class="upload-form">
-          <label>Media file (MP3, WAV, MP4, WEBM)
-            <input class="file-input" id="mediaFile" type="file" accept="audio/*,video/mp4,video/webm,video/ogg" required>
-          </label>
-          <label>Display title
-            <input id="mediaTitle" type="text" maxlength="120" placeholder="Track title" required>
-          </label>
-          <label>Category
-            <input id="mediaCategory" type="text" maxlength="50" placeholder="e.g. DJ Mix, Remix, Promo" value="DJ Mix" required>
-          </label>
-          <label>Thumbnail image (optional)
-            <input class="file-input" id="thumbnailFile" type="file" accept="image/*">
-          </label>
-          <label class="wide">Or thumbnail image URL (optional)
-            <input id="thumbnailUrl" type="url" placeholder="https://…">
-          </label>
-          <button class="btn blue wide" id="uploadBtn" type="submit">⬆ Upload Media</button>
-        </form>
-      </div>
-      <div id="notice" class="notice" role="status"></div>
-    </section>
-  </main>
-
-  <footer><div class="footer-brand">🎧 CROSSS D JAY 🎧</div><p>BLACK • WHITE • GOLD • BLUE • RGB RAINBOW</p><span>Made for music lovers.</span></footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    // Supabase project configuration. A publishable/anon key is safe for browser use
-    // only when Row Level Security and Storage policies are configured correctly.
-    const SUPABASE_URL = 'https://odwyrnncykhjlqgkwnjk.supabase.co';
-    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ';
-    const ADMIN_UID = '61187c1a-8f1b-48b0-893c-77136be5422a';
-    const BUCKET = 'media';
-
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-    const grid = document.getElementById('mediaGrid');
-    const notice = document.getElementById('notice');
-    let allMedia = [];
-    let currentUser = null;
-    let likesByMedia = {};
-    let visitorId = localStorage.getItem('crosss_d_jay_visitor_id');
-    if (!visitorId) { visitorId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()); localStorage.setItem('crosss_d_jay_visitor_id', visitorId); }
-
-    function showNotice(message, type='ok') {
-      notice.textContent = message;
-      notice.className = 'notice show ' + type;
-    }
-    function hideNotice() { notice.className = 'notice'; notice.textContent = ''; }
-    function safeText(value) {
-      return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-    function isVideo(item) {
-      const text = `${item.media_type || ''} ${item.file_name || ''} ${item.title || ''}`.toLowerCase();
-      return item.media_type === 'video' || /\.(mp4|webm|ogg|mov|m4v)(\?|$)/i.test(text);
-    }
-    function mediaIcon(item) { return isVideo(item) ? '▶' : '♫'; }
-    function getDisplayUrl(item) { return item.signed_url || item.source_url || ''; }
-
-    async function fetchMedia() {
-      document.getElementById('libraryStatus').textContent = 'Loading library…';
-      try {
-        const { data, error } = await supabaseClient.from('media_items')
-          .select('id,file_name,title,category,thumbnail_url,media_type,views,created_at')
-          .order('created_at', { ascending: false });
-        if (error) throw error;
-        // Video/audio files are hosted in the GitHub Pages repository root.
-        // The filenames in media_items.file_name must exactly match the uploaded files.
-        const items = data || [];
-        allMedia = items.map(item => {
-          if (item.source_url) return item;
-          const filename = String(item.file_name || '').split('/').pop();
-          const githubFileUrl = './' + encodeURIComponent(filename).replace(/%2F/gi, '/');
-          return { ...item, signed_url: githubFileUrl };
-        });
-        await fetchLikes();
-        populateCategories();
-        updateAdminStats();
-        renderMedia();
-        document.getElementById('libraryStatus').textContent = `${allMedia.length} item(s)`;
-      } catch (error) {
-        allMedia = [];
-        renderMedia();
-        document.getElementById('libraryStatus').textContent = 'Could not load';
-        showNotice('Library load error: ' + (error.message || 'Check Supabase table and policies.'), 'err');
-      }
-    }
-
-    function populateCategories() {
-      const select = document.getElementById('categoryFilter');
-      const selected = select.value;
-      const categories = [...new Set(allMedia.map(m => m.category).filter(Boolean))].sort();
-      select.innerHTML = '<option value="all">All categories</option>' + categories.map(c => `<option value="${safeText(c)}">${safeText(c)}</option>`).join('');
-      if (categories.includes(selected)) select.value = selected;
-    }
-
-    function renderMedia() {
-      const term = document.getElementById('searchInput').value.trim().toLowerCase();
-      const type = document.getElementById('typeFilter').value;
-      const category = document.getElementById('categoryFilter').value;
-      const visible = allMedia.filter(item => {
-        const matchesTerm = `${item.title || ''} ${item.file_name || ''} ${item.category || ''}`.toLowerCase().includes(term);
-        const matchesType = type === 'all' || (type === 'video' ? isVideo(item) : !isVideo(item));
-        const matchesCategory = category === 'all' || item.category === category;
-        return mat
+<header class="topbar">
+ <a class="brand" href="#home"><div class="logo" aria-label="CROSS DJ logo">C♪</div><div><strong>CROSS <span>DJ</span></strong><small>MUSIC CONNECTS US</small></div></a>
+ <nav class="nav"><a href="#home">⌂ Home</a><a href="#mixes">♫ DJ Mixes</a><a href="#videos">▣ Videos</a><a href="#playlists">▤ Playlists</a><a href="#members">♙ Members</a><a href="#about">ⓘ About</a></nav>
+ <button class="btn" id="loginTop" onclick="document.querySelector('#members').scrollIntoView({behavior:'smooth'})">Login</button><button class="btn hot" onclick="showAuth('signup')">Sign Up</button>
+</header>
+<div class="layout">
+<aside class="sidebar"><div class="section-label">MAIN MENU</div><a class="side-link active" href="#home">⌂ Home</a><a class="side-link" href="#mixes">🎧 DJ Mixes</a><a class="side-link" href="#videos">▣ Videos</a><a class="side-link" href="#playlists">♫ Playlists</a><a class="side-link" href="#members">♡ My Favorites</a><a class="side-link" href="#members">♙ My Profile</a><div class="online"><div class="section-label">CLUB STATUS</div><p>● <b>RGB lights online</b></p><p>♫ Music connects us</p><p>🎧 Stay in the vibe</p></div></aside>
+<main class="main">
+<section class="hero" id="home"><div class="hero-copy"><div class="eyebrow">✦ THE SOUND OF YOUR NIGHT ✦</div><h1>MUSIC IS NOT<br>JUST <span>SOUND.</span></h1><p>It's a vibe. Feel the bass, live the moment. Welcome to the CROSS DJ zone — your home for mixes, videos and club energy.</p><div class="chips"><span class="chip">EDM</span><span class="chip">CLUB MIX</span><span class="chip">BOLLYWOOD</span><span class="chip">HINDI</span><span class="chip">PUNJABI</span><span class="chip">BASS</span><span class="chip">REMIX</span></div><div class="hero-actions"><a class="play-big" href="#mixes">▶ PLAY THE VIBE</a><a class="btn" href="#videos">Watch Videos ↗</a></div></div><div class="hero-art"><div class="dj-disc"><div class="disc-logo">C♪</div></div><div class="headphones">🎧</div></div></section>
+<div class="feature-row"><div class="feature"><div class="ico">🎧</div><div><b>HD Quality</b><small>Crystal clear sound</small></div></div><div class="feature"><div class="ico">ϟ</div><div><b>Club Energy</b><small>Feel every beat</small></div></div><div class="feature"><div class="ico">▦</div><div><b>Multiple Genres</b><small>For every mood</small></div></div><div class="feature"><div class="ico">♙</div><div><b>Member Zone</b><small>Sign in to your account</small></div></div></div>
+<div class="content-grid" id="mixes">
+<section class="panel"><h2>DJ MIXES <span>FEATURED</span></h2><div class="mix"><div class="cover">🎛️</div><div class="mix-info"><b>Club Night Mix</b><small>EDM • Club Vibes</small></div><button class="round" onclick="playDemo()">▶</button></div><div class="mix"><div class="cover">⚡</div><div class="mix-info"><b>Bollywood Remix</b><small>Bollywood • Remix</small></div><button class="round" onclick="playDemo()">▶</button></div><div class="mix"><div class="cover">🎚️</div><div class="mix-info"><b>Punjabi Bass Mix</b><small>Punjabi • Bass</small></div><button class="round" onclick="playDemo()">▶</button></div><div class="mix"><div class="cover">💿</div><div class="mix-info"><b>Hindi Party Mix</b><small>Hindi • Party</small></div><button class="round" onclick="playDemo()">▶</button></div><p class="auth-note">Use the video players below for your uploaded mixes.</p></section>
+<section class="panel featured-player"><div class="player-art"><div><div class="disc-logo">C♪</div><h3>CROSS DJ</h3><p>CLUB MIX • RGB SESSION</p><div class="eq" aria-label="Animated equalizer"><i style="--h:12px;--d:.1s"></i><i style="--h:25px;--d:.3s"></i><i style="--h:18px;--d:.2s"></i><i style="--h:34px;--d:.4s"></i><i style="--h:15px;--d:.15s"></i><i style="--h:29px;--d:.5s"></i><i style="--h:21px;--d:.25s"></i><i style="--h:37px;--d:.35s"></i><i style="--h:17px;--d:.1s"></i><i style="--h:28px;--d:.45s"></i><i style="--h:14px;--d:.2s"></i><i style="--h:31px;--d:.3s"></i></div></div></div><div class="player-controls"><div class="control-row"><span style="font-size:12px">🎧 <b>Now feel the beat</b></span><button id="demoPlay" onclick="playDemo()" aria-label="Toggle demo animation">▶</button><button onclick="toast('Choose one of the video players below to play your mix.')" aria-label="Next">⏭</button></div><input class="progress" type="range" min="0" max="100" value="42" aria-label="Decorative player progress" oninput="toast('For actual playback, use the video controls below.')"><div class="control-row"><small style="color:var(--muted)">RGB • CLUB • BASS</small><button onclick="toggleFavorite()" id="favBtn" aria-label="Favorite">♡</button></div></div></section>
+<section class="panel" id="playlists"><h2>FEATURED PLAYLISTS <span>✦</span></h2><div class="playlist-card"><div class="playlist-art">🌈</div><div><b>Club Mix Collection</b><small>EDM • Club energy</small></div></div><div class="playlist-card"><div class="playlist-art">💜</div><div><b>EDM Vibes</b><small>Electronic • Night drive</small></div></div><div class="playlist-card"><div class="playlist-art">🔥</div><div><b>Bollywood Remix</b><small>Desi • Dance</small></div></div><div class="playlist-card"><div class="playlist-art">🔊</div><div><b>Bass Boosted</b><small>Bass • Party</small></div></div></section>
+</div>
+<div class="section-title" id="videos"><h2>🎬 DJ VIDEO ZONE</h2><a href="#members">Member access →</a></div>
+<div class="video-grid"><section class="panel video-panel"><h3>🔥 DJ MARWEN MIX PROMO — PART 1</h3><video controls playsinline preload="metadata"><source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4" type="video/mp4">Your browser does not support video playback.</video><p>Play Part 1 using the video controls, or use the button below to open/download it.</p><a class="btn hot" style="display:inline-block;margin-top:8px" href="https://github.com/ahlisan454-pixel/COROSSS-D-JAY/raw/refs/heads/main/DJ%20MARWEN%20MIX%20PROMO-(PT1).mp4" target="_blank" rel="noopener">⬇ DOWNLOAD PART 1</a></section><section class="panel video-panel"><h3>🔥 DJ MARWEN MIX PROMO — PART 2</h3><video controls playsinline preload="metadata"><source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4" type="video/mp4">Your browser does not support video playback.</video><p>Play Part 2 using the video controls, or use the button below to open/download it.</p><a class="btn hot" style="display:inline-block;margin-top:8px" href="https://github.com/ahlisan454-pixel/COROSSS-D-JAY/raw/refs/heads/main/DJ%20MARWEN%20MIX%20PROMO-(PT2).mp4" target="_blank" rel="noopener">⬇ DOWNLOAD PART 2</a></section></div>
+<section class="member-panel" id="members"><div class="panel"><h2>♙ CROSS DJ MEMBERS <span>SECURE LOGIN</span></h2><p class="auth-note">Create an account or log in to the member area. Email confirmation may be required. Your password is handled by Supabase Authentication.</p><div class="auth-form"><input id="authEmail" type="email" placeholder="Email address" autocomplete="email"><input id="authPassword" type="password" placeholder="Password (6+ characters)" autocomplete="current-password"><input id="authUsername" class="hide" type="text" placeholder="Choose a username" maxlength="24" autocomplete="nickname"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn hot" id="authSubmit" onclick="submitAuth()">Login</button><button class="btn" onclick="showAuth('signup')">Create account</button><button class="btn" onclick="resetPassword()">Forgot password?</button></div><div class="status" id="authStatus" role="status"></div></div></div><div class="panel"><h2>MY MEMBER SPACE <span>♡</span></h2><div id="memberState"><p class="auth-note">You're browsing as a guest. Log in to view your account status.</p><p>🎵 Mixes & videos<br>💜 Favorites<br>🎧 Member profile</p></div><button class="btn hide" id="logoutBtn" onclick="logout()">Log out</button><p class="auth-note">Please keep your password private and use an email account you can access.</p></div></section>
+<section class="panel" id="about" style="margin-top:16px"><h2>ABOUT CROSS DJ <span>MUSIC CONNECTS US</span></h2><p class="auth-note">CROSS DJ is a neon club-inspired music zone for DJ mixes, videos and good vibes. This website is built with a black-and-white club base, vivid RGB lighting, glowing controls and a headphone-inspired CROSS DJ mark.</p></section>
+</main></div>
+<footer class="footer"><strong>CROSS DJ</strong> &nbsp; • &nbsp; MUSIC CONNECTS US &nbsp; • &nbsp; DREAM · MIX · FEEL · REPEAT<br><br>© 2026 CROSS DJ · Made for the music</footer><div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Supabase browser publishable key only. Never put a service_role/secret key in p
