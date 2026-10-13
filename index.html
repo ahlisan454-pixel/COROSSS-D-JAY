@@ -1,659 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050510">
+  <title>COROSSS D JAY | Official DJ Music</title>
 
-<title>RGB Video Studio</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --blue: #00c8ff;
+      --gold: #ffd700;
+      --bg: #050510;
+      --card: #111124;
+      --text: #ffffff;
+    }
 
-<style>
-:root {
-    --blue: #00aaff;
-    --gold: #ffd700;
-    --black: #070910;
-    --white: #ffffff;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at top, #14214a 0%, #050510 55%);
+      min-height: 100vh;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    background: var(--black);
-    color: var(--white);
-    min-height: 100vh;
-}
-
-.rgb-bar {
-    height: 4px;
-    background: linear-gradient(
-        90deg,
-        red, orange, yellow, lime,
-        cyan, blue, violet, red
-    );
-    background-size: 300% 100%;
-    animation: rgb 5s linear infinite;
-}
-
-@keyframes rgb {
-    from { background-position: 0 0; }
-    to { background-position: 300% 0; }
-}
-
-header {
-    padding: 22px 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #17344c;
-    background: #090d17;
-}
-
-.logo {
-    font-size: 23px;
-    font-weight: bold;
-    color: var(--gold);
-    text-shadow: 0 0 14px #ffd70066;
-}
-
-.logo span {
-    color: var(--blue);
-}
-
-button {
-    padding: 12px 18px;
-    border: 0;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .25s;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 18px #00aaff66;
-}
-
-.primary {
-    background: var(--blue);
-    color: white;
-}
-
-.gold {
-    background: var(--gold);
-    color: #111;
-}
-
-.danger {
-    background: #ff3d59;
-    color: white;
-}
-
-main {
-    width: 90%;
-    max-width: 1100px;
-    margin: 45px auto;
-}
-
-.hero {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.hero h1 {
-    font-size: clamp(30px, 5vw, 48px);
-    margin-bottom: 12px;
-}
-
-.hero h1 span {
-    color: var(--blue);
-    text-shadow: 0 0 25px #00aaff66;
-}
-
-.hero p {
-    color: #aebbd0;
-    line-height: 1.7;
-}
-
-.panel {
-    background: #0d1320;
-    border: 1px solid #173c58;
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 25px #007bff12;
-}
-
-.panel h2 {
-    margin-bottom: 20px;
-    color: var(--gold);
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    margin: 8px 0 15px;
-    border: 1px solid #24435d;
-    border-radius: 8px;
-    background: #080d17;
-    color: white;
-    outline: none;
-}
-
-input:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 10px #00aaff33;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 25px;
-}
-
-.stat {
-    background: #101b2b;
-    padding: 23px;
-    border: 1px solid #214766;
-    border-radius: 13px;
-}
-
-.stat p {
-    color: #aebbd0;
-    margin-bottom: 12px;
-}
-
-.stat h3 {
-    font-size: 28px;
-    color: var(--blue);
-}
-
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-}
-
-.video-card {
-    background: #0b111c;
-    border: 1px solid #263d52;
-    border-radius: 14px;
-    padding: 14px;
-    overflow: hidden;
-}
-
-video {
-    width: 100%;
-    background: #000;
-    border-radius: 9px;
-    max-height: 360px;
-}
-
-.video-card h3 {
-    margin: 14px 0;
-    overflow-wrap: anywhere;
-}
-
-.video-info {
-    color: #b8c5d6;
-    font-size: 14px;
-    margin-bottom: 14px;
-}
-
-.actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-#status {
-    color: var(--gold);
-    margin-top: 12px;
-    overflow-wrap: anywhere;
-}
-
-.hidden {
-    display: none !important;
-}
-
-footer {
-    text-align: center;
-    padding: 30px 15px;
-    color: #8c9bad;
-    border-top: 1px solid #17344c;
-}
-
-@media (max-width: 650px) {
     header {
-        padding: 18px 5%;
+      padding: 25px 15px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      background: rgba(0,0,0,.65);
     }
 
-    main {
-        width: 92%;
-        margin: 28px auto;
+    .logo {
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-shadow: 0 0 12px #ffb700, 0 0 30px #ff8800;
     }
 
-    .stats,
+    .subtitle {
+      color: var(--blue);
+      margin-top: 10px;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+
+    .rainbow {
+      height: 3px;
+      background: linear-gradient(
+        90deg, red, orange, yellow, lime, cyan, blue, violet, red
+      );
+      background-size: 300% 100%;
+      animation: rgb 5s linear infinite;
+    }
+
+    @keyframes rgb {
+      to { background-position: 300% 0; }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 45px 15px 30px;
+    }
+
+    .hero h1 {
+      font-size: clamp(27px, 5vw, 43px);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+      text-shadow: 0 0 20px var(--blue);
+    }
+
+    .hero p {
+      color: #bbb;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+      padding-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 25px;
+      color: var(--gold);
+      margin: 25px 0 20px;
+    }
+
     .video-grid {
-        grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: 22px;
     }
 
-    .panel {
-        padding: 18px;
+    .video-card {
+      background: var(--card);
+      border: 1px solid #333650;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 18px #001b3a;
     }
-}
-</style>
+
+    .video-card video {
+      display: block;
+      width: 100%;
+      background: #000;
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-info {
+      padding: 17px;
+    }
+
+    .video-info h3 {
+      color: var(--gold);
+      margin-bottom: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .views {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    button, .button {
+      display: inline-block;
+      border: 0;
+      padding: 11px 17px;
+      border-radius: 7px;
+      background: var(--blue);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover, .button:hover {
+      filter: brightness(1.15);
+    }
+
+    .delete-btn {
+      background: #ff4057;
+      color: white;
+      margin-left: 5px;
+    }
+
+    .admin {
+      margin-top: 45px;
+      padding: 23px;
+      border: 1px solid #4b4b65;
+      border-radius: 14px;
+      background: rgba(12,12,30,.9);
+    }
+
+    .admin h2 {
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 13px;
+      border-radius: 7px;
+      border: 1px solid #555;
+      background: #080817;
+      color: white;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .notice {
+      color: #bbb;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    #status {
+      color: var(--blue);
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      border-top: 1px solid #333;
+      text-align: center;
+      padding: 25px 12px;
+      color: #999;
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="rgb-bar"></div>
-
 <header>
-    <div class="logo">RGB <span>VIDEO STUDIO</span></div>
-    <button id="logoutBtn" class="danger hidden">
-        Logout
-    </button>
+  <div class="logo">🎧 COROSSS D JAY</div>
+  <div class="subtitle">OFFICIAL DJ MUSIC ZONE</div>
 </header>
 
-<main>
+<div class="rainbow"></div>
 
-    <section class="hero">
-        <h1>Welcome to <span>RGB Video Studio</span></h1>
-        <p>Premium Neon Design • Video Library • Admin Dashboard</p>
-    </section>
+<section class="hero">
+  <h1>WELCOME TO <span>COROSSS D JAY</span></h1>
+  <p>Feel The Beat • Feel The Bass • Live The Music 🔥</p>
+</section>
 
-    <!-- Login -->
-    <section id="loginPanel" class="panel">
-        <h2>🔐 Admin Login</h2>
+<main class="container">
+  <h2 class="section-title">🎬 Latest DJ Mixes</h2>
 
-        <form id="loginForm">
-            <label for="email">Email Address</label>
-            <input id="email" type="email"
-                   placeholder="Admin email"
-                   autocomplete="username" required>
+  <div id="videoGrid" class="video-grid">
+    <p>Loading videos...</p>
+  </div>
 
-            <label for="password">Password</label>
-            <input id="password" type="password"
-                   placeholder="Admin password"
-                   autocomplete="current-password" required>
+  <section class="admin">
+    <h2>🔐 Admin Panel</h2>
 
-            <button class="primary" type="submit">
-                Login to Dashboard
-            </button>
-        </form>
+    <div id="loginPanel">
+      <p>Admin login</p>
+      <form id="loginForm">
+        <input
+          type="email"
+          id="email"
+          placeholder="Admin email"
+          autocomplete="username"
+          required
+        >
 
-        <p id="loginStatus" role="status"></p>
-    </section>
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          required
+        >
 
-    <!-- Admin Dashboard -->
-    <section id="dashboard" class="hidden">
+        <button type="submit">Login</button>
+      </form>
 
-        <div class="stats">
-            <div class="stat">
-                <p>Total Videos</p>
-                <h3 id="totalVideos">0</h3>
-            </div>
+      <p class="notice">
+        Admin access must be configured in Supabase Authentication.
+        Public sign-up is not provided on this page.
+      </p>
+    </div>
 
-            <div class="stat">
-                <p>Total Views</p>
-                <h3 id="totalViews">0</h3>
-            </div>
+    <div id="adminPanel" class="hidden">
+      <p>Admin is logged in.</p>
 
-            <div class="stat">
-                <p>Account</p>
-                <h3 style="font-size:18px">Admin</h3>
-            </div>
-        </div>
+      <form id="uploadForm">
+        <input
+          type="text"
+          id="videoTitle"
+          placeholder="Video title"
+          maxlength="150"
+          required
+        >
 
-        <section class="panel">
-            <h2>📤 Upload New Video</h2>
+        <input
+          type="file"
+          id="videoFile"
+          accept="video/mp4,video/webm,video/quicktime"
+          required
+        >
 
-            <form id="uploadForm">
-                <label for="videoTitle">Video Title</label>
-                <input id="videoTitle"
-                       type="text"
-                       maxlength="150"
-                       placeholder="Enter video title"
-                       required>
+        <button type="submit">📤 Upload Video</button>
+      </form>
 
-                <label for="videoFile">Choose Video</label>
-                <input id="videoFile"
-                       type="file"
-                       accept="video/mp4,video/webm,video/ogg"
-                       required>
+      <button id="logoutBtn" type="button">Logout</button>
 
-                <button class="gold" type="submit">
-                    Upload Video
-                </button>
-            </form>
+      <p class="notice">
+        Upload and delete require a private admin role and correctly
+        configured Supabase Storage and database policies.
+      </p>
+    </div>
 
-            <p id="status" role="status"></p>
-        </section>
-
-        <section class="panel">
-            <h2>🎬 Manage Your Videos</h2>
-
-            <div id="videoGrid" class="video-grid"></div>
-        </section>
-
-    </section>
-
+    <div id="status" role="status" aria-live="polite"></div>
+  </section>
 </main>
 
 <footer>
-    <div class="rgb-bar" style="margin-bottom:20px"></div>
-    RGB Video Studio © 2026
+  © <span id="year"></span> COROSSS D JAY • All Rights Reserved 🎧
 </footer>
 
 <script>
-/*
-  Supabase Project Settings থেকে URL ও Publishable Key বসাও।
-  Secret/service_role key কখনো HTML-এ বসাবে না।
-*/
-const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+  // ==========================================
+  // SUPABASE CONFIGURATION
+  // ==========================================
 
-const configured =
-    !SUPABASE_URL.startsWith("YOUR_") &&
-    !SUPABASE_KEY.startsWith("YOUR_");
+  const SUPABASE_URL = "https://odwyrnncykhjlqgkwnjk.supabase.co";
 
-let db = null;
-let currentVideos = [];
+  // Replace this with your Supabase Publishable Key.
+  // Never put a service_role or secret key here.
+  const SUPABASE_ANON_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
 
-const $ = id => document.getElementById(id);
+  const supabaseConfigured =
+    SUPABASE_ANON_KEY !== "PASTE_YOUR_PUBLISHABLE_KEY_HERE" &&
+    SUPABASE_ANON_KEY.trim().length > 0;
 
-function message(text) {
-    $("status").textContent = text;
-}
+  let db = null;
+  let currentUser = null;
+  let isAdmin = false;
 
-function loginMessage(text) {
-    $("loginStatus").textContent = text;
-}
+  if (supabaseConfigured) {
+    const { createClient } = window.supabase;
+    db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
 
-function escapeHTML(value) {
+  const grid = document.getElementById("videoGrid");
+  const statusBox = document.getElementById("status");
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  function setStatus(message) {
+    statusBox.textContent = message;
+  }
+
+  function escapeHTML(value) {
     return String(value).replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
     })[char]);
-}
+  }
 
-function showLoggedIn(loggedIn) {
-    $("loginPanel").classList.toggle("hidden", loggedIn);
-    $("dashboard").classList.toggle("hidden", !loggedIn);
-    $("logoutBtn").classList.toggle("hidden", !loggedIn);
-}
+  function showAdminState(user, admin) {
+    currentUser = user;
+    isAdmin = Boolean(admin);
 
-async function checkAdmin() {
-    const { data: { user }, error } =
-        await db.auth.getUser();
-
-    if (error || !user) {
-        showLoggedIn(false);
-        return false;
-    }
-
-    const { data, error: adminError } = await db
-        .from("admins")
-        .select("user_id")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-    if (adminError || !data) {
-        showLoggedIn(false);
-        loginMessage("এই Account Admin হিসেবে অনুমোদিত নয়।");
-        return false;
-    }
-
-    showLoggedIn(true);
-    return true;
-}
-
-async function loadVideos() {
-    const { data, error } = await db
-        .from("videos")
-        .select("id,title,storage_path,views,created_at")
-        .order("created_at", { ascending: false });
-
-    if (error) {
-        message("Video load failed: " + error.message);
-        return;
-    }
-
-    currentVideos = data || [];
-
-    $("totalVideos").textContent =
-        currentVideos.length;
-
-    $("totalViews").textContent =
-        currentVideos.reduce(
-            (sum, video) => sum + Number(video.views || 0), 0
-        ).toLocaleString();
-
-    const grid = $("videoGrid");
-    grid.replaceChildren();
-
-    if (currentVideos.length === 0) {
-        grid.textContent = "এখনও কোনো ভিডিও যোগ করা হয়নি।";
-        return;
-    }
-
-    for (const item of currentVideos) {
-        const card = document.createElement("article");
-        card.className = "video-card";
-
-        const title = document.createElement("h3");
-        title.textContent = item.title;
-
-        const info = document.createElement("p");
-        info.className = "video-info";
-        info.textContent =
-            `Views: ${Number(item.views || 0).toLocaleString()}`;
-
-        const player = document.createElement("video");
-        player.controls = true;
-        player.preload = "metadata";
-        player.playsInline = true;
-
-        const { data: signed, error: signedError } =
-            await db.storage
-                .from("videos")
-                .createSignedUrl(item.storage_path, 3600);
-
-        if (!signedError && signed?.signedUrl) {
-            player.src = signed.signedUrl;
-        } else {
-            player.poster = "";
-            info.textContent += " • Video URL unavailable";
-        }
-
-        const actions = document.createElement("div");
-        actions.className = "actions";
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "danger";
-        deleteBtn.textContent = "Delete Video";
-        deleteBtn.addEventListener("click", () => deleteVideo(item));
-
-        actions.appendChild(deleteBtn);
-
-        card.append(player, title, info, actions);
-        grid.appendChild(card);
-    }
-}
-
-$("loginForm").addEventListener("submit", async event => {
-    event.preventDefault();
-
-    if (!db) {
-        loginMessage("আগে Supabase Project URL ও Publishable Key বসাও।");
-        return;
-    }
-
-    loginMessage("Logging in...");
-
-    const { error } = await db.auth.signInWithPassword({
-        email: $("email").value.trim(),
-        password: $("password").value
-    });
-
-    if (error) {
-        loginMessage("Login failed: " + error.message);
-        return;
-    }
-
-    if (await checkAdmin()) {
-        loginMessage("");
-        await loadVideos();
-    }
-});
-
-$("logoutBtn").addEventListener("click", async () => {
-    await db.auth.signOut();
-    showLoggedIn(false);
-    loginMessage("You have logged out.");
-});
-
-$("uploadForm").addEventListener("submit", async event => {
-    event.preventDefault();
-
-    if (!(await checkAdmin())) return;
-
-    const file = $("videoFile").files[0];
-    const title = $("videoTitle").value.trim();
-
-    if (!file || !title) return;
-
-    // Storage ও bandwidth সীমা অনুযায়ী নিজের limit নির্ধারণ করো।
-    if (file.size > 100 * 1024 * 1024) {
-        message("এই Demo-তে সর্বোচ্চ 100 MB ফাইল নেওয়া হচ্ছে।");
-        return;
-    }
-
-    const allowedTypes = [
-        "video/mp4",
-        "video/webm",
-        "video/ogg"
-    ];
-
-    if (!allowedTypes.includes(file.type)) {
-        message("MP4, WebM অথবা OGG ভিডিও নির্বাচন করো।");
-        return;
-    }
-
-    message("Uploading video...");
-
-    const path = crypto.randomUUID() + "-" +
-        file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-
-    const { error: uploadError } = await db.storage
-        .from("videos")
-        .upload(path, file, {
-            contentType: file.type,
-            upsert: false
-        });
-
-    if (uploadError) {
-        message("Upload failed: " + uploadError.message);
-        return;
-    }
-
-    const { error: insertError } = await db
-        .from("videos")
-        .insert({
-            title,
-            storage_path: path,
-            views: 0
-        });
-
-    if (insertError) {
-        // Database insert ব্যর্থ হলে orphaned file পরিষ্কার করার চেষ্টা।
-        await db.storage.from("videos").remove([path]);
-        message("Database error: " + insertError.message);
-        return;
-    }
-
-    $("uploadForm").reset();
-    message("Video uploaded successfully!");
-    await loadVideos();
-});
-
-async function deleteVideo(item) {
-    if (!(await checkAdmin())) return;
-
-    if (!confirm(`"${item.title}" ভিডিওটি Delete করবে?`)) {
-        return;
-    }
-
-    message("Deleting video...");
-
-    const { error: storageError } = await db.storage
-        .from("videos")
-        .remove([item.storage_path]);
-
-    if (storageError) {
-        message("Storage delete failed: " + storageError.message);
-        return;
-    }
-
-    const { error: dbError } = await db
-        .from("videos")
-        .delete()
-        .eq("id", item.id);
-
-    if (dbError) {
-        message("Database delete failed: " + dbError.message);
-        return;
-    }
-
-    message("Video deleted.");
-    await loadVideos();
-}
-
-async function startApp() {
-    if (!configured) {
-        showLoggedIn(false);
-        loginMessage(
-            "Supabase URL ও Publishable Key বসানোর পর Login চালু হবে।"
-        );
-        return;
-    }
-
-    db = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
+    document.getElementById("loginPanel").classList.toggle(
+      "hidden", Boolean(user)
     );
 
-    db.auth.onAuthStateChange((event, session) => {
-        // Auth callback-এর ভিতরে সরাসরি Supabase query না চালিয়ে
-        // callback শেষ হওয়ার পর আলাদা task-এ কাজ করি।
-        setTimeout(async () => {
-            if (!session) {
-                showLoggedIn(false);
-                return;
-            }
+    document.getElementById("adminPanel").classList.toggle(
+      "hidden", !user
+    );
+  }
 
-            if (await checkAdmin()) {
-                await loadVideos();
-            }
-        }, 0);
+  // Initial demo cards use the videos already committed to the repo.
+  // Update these paths if your files are inside another folder.
+  const githubVideos = [
+    {
+      title: "DJ MARWEN MIX PROMO (PT1)",
+      url: "DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4",
+      views: 0
+    },
+    {
+      title: "DJ MARWEN MIX PROMO (PT2)",
+      url: "DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4",
+      views: 0
+    }
+  ];
+
+  function renderVideos(videos) {
+    grid.replaceChildren();
+
+    if (!videos.length) {
+      grid.textContent = "No videos available yet.";
+      return;
+    }
+
+    videos.forEach(video => {
+      const card = document.createElement("article");
+      card.className = "video-card";
+
+      const player = document.createElement("video");
+      player.controls = true;
+      player.preload = "metadata";
+      player.playsInline = true;
+      player.src = video.url;
+      player.setAttribute("aria-label", video.title);
+
+      const info = document.createElement("div");
+      info.className = "video-info";
+
+      const title = document.createElement("h3");
+      title.textContent = video.title;
+
+      const views = document.createElement("p");
+      views.className = "views";
+      views.textContent = `👁️ ${Number(video.views || 0)} views`;
+
+      info.append(title, views);
+
+      if (isAdmin && video.id) {
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "delete-btn";
+        deleteButton.textContent = "🗑️ Delete";
+        deleteButton.addEventListener("click", () => deleteVideo(video));
+        info.appendChild(deleteButton);
+      }
+
+      card.append(player, info);
+      grid.appendChild(card);
+
+      // This is a playback-start event, not a guaranteed unique view.
+      // Persistent, abuse-resistant counting requires a protected RPC.
+      player.addEventListener("play", () => {
+        if (!video.id || video.countedThisPage) return;
+
+        video.countedThisPage = true;
+        recordView(video.id);
+      });
+    });
+  }
+
+  async function loadVideos() {
+    if (!db) {
+      renderVideos(githubVideos);
+      setStatus(
+        "Add your Supabase Publishable Key to enable database features."
+      );
+      return;
+    }
+
+    const { data, error } = await db
+      .from("videos")
+      .select("id,title,storage_path,views")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error(error);
+      renderVideos(githubVideos);
+      setStatus(
+        "Database video list is unavailable. Showing GitHub videos instead."
+      );
+      return;
+    }
+
+    const videos = (data || []).map(row => {
+      const { data: publicURL } = db.storage
+        .from("dj-videos")
+        .getPublicUrl(row.storage_path);
+
+      return {
+        ...row,
+        url: publicURL.publicUrl
+      };
     });
 
-    if (await checkAdmin()) {
-        await loadVideos();
-    }
-}
+    renderVideos(videos);
+  }
 
-startApp();
+  async function recordView(videoId) {
+    if (!db) return;
+
+    // This RPC must be created in the database and protected against abuse.
+    const { error } = await db.rpc("increment_video_views", {
+      video_id: videoId
+    });
+
+    if (error) {
+      console.warn("View count was not updated:", error.message);
+    }
+  }
+
+  async function verifyAdmin(user) {
+    if (!user || !db) return false;
+
+    // Create an admin_users table and grant SELECT only to authenticated
+    // users; RLS must restrict each row to its matching auth.uid().
+    const { data, error } = await db
+      .from("admin_users")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Admin verification failed:", error.message);
+      return false;
+    }
+
+    return Boolean(data);
+  }
+
+  async function refreshSession() {
+    if (!db) {
+      showAdminState(null, false);
+      return;
+    }
+
+    const { data } = await db.auth.getSession();
+    const user = data.session?.user || null;
+    const admin = await verifyAdmin(user);
+
+    showAdminState(user, admin);
+
+    if (user && !admin) {
+      setStatus("Your account is not authorized as an admin.");
+    }
+  }
+
+  document.getElementById("loginForm").addEventListener(
+    "submit", async event => {
+      event.preventDefault();
+
+      if (!db) {
+        setStatus("First add your Supabase Publishable Key.");
+        return;
+      }
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      const { data, error } = await db.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        setStatus("Login failed: " + error.message);
+        return;
+      }
+
+      const admin = await verifyAdmin(data.user);
+
+      showAdminState(data.user, admin);
+
+      if (!admin) {
+        await db.auth.signOut();
+        showAdminState(null, false);
+        setStatus("Login succeeded, but this account is not an admin.");
+        return;
+      }
+
+      setStatus("Admin login successful.");
+      await loadVideos();
+    }
+  );
+
+  document.getElementById("logoutBtn").addEventListener(
+    "click", async () => {
+      if (!db) return;
+
+      await db.auth.signOut();
+      showAdminState(null, false);
+      setStatus("Logged out.");
+      await loadVideos();
+    }
+  );
+
+  document.getElementById("uploadForm").addEventListener(
+    "submit", async event => {
+      event.preventDefault();
+
+      if (!db || !currentUser || !isAdmin) {
+        setStatus("Admin login required.");
+        return;
+      }
+
+      const title = document.getElementById("videoTitle").value.trim();
+      const file = document.getElementById("videoFile").files[0];
+
+      if (!title || !file) {
+        setStatus("Enter a title and select a video.");
+        return;
+      }
+
+      // A sample client-side limit. Set matching limits in Storage too.
+      const MAX_SIZE = 100 * 1024 * 1024;
+
+      if (file.size > MAX_SIZE) {
+        setStatus("This example allows videos up to 100 MB.");
+        return;
+      }
+
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const storagePath =
+        `${currentUser.id}/${crypto.randomUUID()}-${safeName}`;
+
+      setStatus("Uploading video...");
+
+      const { error: uploadError } = await db.storage
+        .from("dj-videos")
+        .upload(storagePath, file, {
+          contentType: file.type,
+          upsert: false
+        });
+
+      if (uploadError) {
+        setStatus("Upload failed: " + uploadError.message);
+        return;
+      }
+
+      const { error: insertError } = await db.from("videos").insert({
+        title,
+        storage_path: storagePath,
+        views: 0
+      });
+
+      if (insertError) {
+        // Best-effort cleanup if the metadata insert fails.
+        await db.storage.from("dj-videos").remove([storagePath]);
+        setStatus("Video record failed: " + insertError.message);
+        return;
+      }
+
+      document.getElementById("uploadForm").reset();
+      setStatus("Video uploaded successfully!");
+      await loadVideos();
+    }
+  );
+
+  async function deleteVideo(video) {
+    if (!db || !currentUser || !isAdmin || !video.id) return;
+
+    if (!confirm(`Delete "${video.title}"?`)) return;
+
+    const { error: deleteRecordError } = await db
+      .from("videos")
+      .delete()
+      .eq("id", video.id);
+
+    if (deleteRecordError) {
+      setStatus("Delete failed: " + deleteRecordError.message);
+      return;
+    }
+
+    const { error: storageError } = await db.storage
+      .from("dj-videos")
+      .remove([video.storage_path]);
+
+    if (storageError) {
+      setStatus(
+        "Video record deleted, but storage cleanup failed: " +
+        storageError.message
+      );
+      return;
+    }
+
+    setStatus("Video deleted.");
+    await loadVideos();
+  }
+
+  async function start() {
+    if (!db) {
+      renderVideos(githubVideos);
+      showAdminState(null, false);
+      setStatus("Add your Supabase Publishable Key to connect Supabase.");
+      return;
+    }
+
+    await refreshSession();
+    await loadVideos();
+
+    db.auth.onAuthStateChange(() => {
+      // Avoid making additional Supabase calls inside the auth callback.
+      setTimeout(refreshSession, 0);
+    });
+  }
+
+  start();
 </script>
 
 </body>
