@@ -1,593 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>COROSSS D JAY | MY MUSIC ZONE</title>
-
-<meta name="theme-color" content="#070711">
-
-<style>
-:root {
-  --cyan: #00f7ff;
-  --pink: #ff00d4;
-  --purple: #a100ff;
-  --green: #00ff95;
-  --bg: #05050b;
-  --panel: rgba(15, 15, 35, 0.88);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 85px;
-}
-
-body {
-  min-height: 100vh;
-  background: var(--bg);
-  color: #fff;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
-}
-
-/* CYBERPUNK BACKGROUND */
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background:
-    radial-gradient(ellipse at 15% 20%,
-      rgba(0,247,255,.16), transparent 40%),
-    radial-gradient(ellipse at 85% 35%,
-      rgba(255,0,212,.14), transparent 40%),
-    radial-gradient(ellipse at 50% 90%,
-      rgba(0,255,149,.09), transparent 45%);
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(0,247,255,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,247,255,.045) 1px, transparent 1px);
-  background-size: 35px 35px;
-  mask-image: linear-gradient(to bottom, black, transparent 90%);
-}
-
-/* HEADER */
-
-header {
-  position: relative;
-  text-align: center;
-  padding: 65px 18px 45px;
-  overflow: hidden;
-  border-bottom: 1px solid var(--cyan);
-  box-shadow: 0 5px 30px rgba(0,247,255,.15);
-}
-
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(0,247,255,.08),
-    rgba(161,0,255,.12),
-    rgba(255,0,212,.08)
-  );
-  animation: colorShift 7s linear infinite alternate;
-}
-
-.header-content {
-  position: relative;
-  z-index: 1;
-}
-
-.logo {
-  font-size: clamp(30px, 7vw, 62px);
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: white;
-  text-shadow:
-    0 0 8px var(--cyan),
-    0 0 22px var(--cyan),
-    0 0 45px var(--purple);
-  animation: neonPulse 3s ease-in-out infinite alternate;
-}
-
-.tag {
-  margin-top: 12px;
-  font-size: clamp(13px, 3vw, 19px);
-  color: var(--pink);
-  letter-spacing: 6px;
-  text-shadow: 0 0 15px var(--pink);
-}
-
-.subtitle {
-  margin-top: 20px;
-  color: #d7d7e9;
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-/* NAVIGATION */
-
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 13px 8px;
-  background: rgba(5,5,15,.93);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(0,247,255,.4);
-}
-
-nav a {
-  color: var(--cyan);
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  padding: 11px 15px;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  transition: .3s;
-}
-
-nav a:hover {
-  color: #fff;
-  border-color: var(--pink);
-  background: rgba(255,0,212,.12);
-  box-shadow: 0 0 16px rgba(255,0,212,.4);
-}
-
-/* HERO */
-
-.hero {
-  min-height: 360px;
-  padding: 85px 20px 65px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.status {
-  display: inline-block;
-  padding: 8px 15px;
-  margin-bottom: 22px;
-  color: var(--green);
-  border: 1px solid var(--green);
-  border-radius: 30px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  box-shadow: 0 0 14px rgba(0,255,149,.15);
-}
-
-.hero h2 {
-  font-size: clamp(28px, 6vw, 48px);
-  line-height: 1.2;
-  margin-bottom: 18px;
-  background: linear-gradient(
-    90deg,
-    var(--cyan),
-    #fff,
-    var(--pink),
-    var(--cyan)
-  );
-  background-size: 250%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradientMove 6s linear infinite;
-}
-
-.hero p {
-  color: #c4c4d8;
-  line-height: 1.8;
-  max-width: 550px;
-}
-
-.hero-button {
-  display: inline-block;
-  margin-top: 28px;
-  padding: 14px 25px;
-  border: 1px solid var(--cyan);
-  border-radius: 8px;
-  color: var(--cyan);
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: 0 0 16px rgba(0,247,255,.15);
-  transition: .3s;
-}
-
-.hero-button:hover {
-  color: #05050b;
-  background: var(--cyan);
-  box-shadow: 0 0 30px var(--cyan);
-  transform: translateY(-3px);
-}
-
-/* EQUALIZER */
-
-.equalizer {
-  height: 45px;
-  margin-top: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-.equalizer span {
-  display: block;
-  width: 5px;
-  height: 12px;
-  border-radius: 5px;
-  background: var(--cyan);
-  box-shadow: 0 0 10px var(--cyan);
-  animation: equalize .7s ease-in-out infinite alternate;
-}
-
-.equalizer span:nth-child(3n) {
-  background: var(--pink);
-  box-shadow: 0 0 10px var(--pink);
-}
-
-.equalizer span:nth-child(2n) {
-  animation-delay: .25s;
-}
-
-.equalizer span:nth-child(3n) {
-  animation-delay: .4s;
-}
-
-/* SECTIONS */
-
-.section {
-  width: min(92%, 900px);
-  margin: 25px auto;
-  padding: 30px 22px;
-  background: var(--panel);
-  border: 1px solid rgba(0,247,255,.45);
-  border-radius: 16px;
-  box-shadow:
-    0 0 18px rgba(0,247,255,.08),
-    inset 0 0 20px rgba(161,0,255,.035);
-  position: relative;
-  overflow: hidden;
-}
-
-.section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 12%;
-  width: 76%;
-  height: 1px;
-  background: linear-gradient(
-    90deg, transparent, var(--pink), var(--cyan), transparent
-  );
-}
-
-.section-title {
-  margin-bottom: 15px;
-  font-size: clamp(22px, 4vw, 30px);
-  color: var(--cyan);
-  text-shadow: 0 0 14px rgba(0,247,255,.45);
-}
-
-.section-description {
-  color: #bdbdd0;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-/* MUSIC CARD */
-
-.music-card {
-  margin-top: 24px;
-  padding: 22px 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,0,212,.5);
-  background: linear-gradient(
-    135deg,
-    rgba(161,0,255,.09),
-    rgba(0,247,255,.04)
-  );
-}
-
-.music-card h3 {
-  color: var(--pink);
-  margin-bottom: 10px;
-}
-
-/* VIDEO CARDS */
-
-.video-card {
-  margin-top: 28px;
-  padding: 20px;
-  border: 1px solid rgba(161,0,255,.65);
-  border-radius: 12px;
-  background: rgba(5,5,15,.7);
-  transition: .3s;
-}
-
-.video-card:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 0 22px rgba(0,247,255,.14);
-  transform: translateY(-3px);
-}
-
-.video-card h3 {
-  color: var(--pink);
-  font-size: clamp(16px, 3vw, 21px);
-  margin-bottom: 12px;
-}
-
-video {
-  display: block;
-  width: 100%;
-  max-height: 65vh;
-  margin-top: 15px;
-  border-radius: 9px;
-  background: #000;
-  border: 1px solid rgba(0,247,255,.35);
-}
-
-.note {
-  margin-top: 13px;
-  color: #aaaac2;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-/* ABOUT */
-
-.about-highlight {
-  margin-top: 20px;
-  padding: 15px;
-  border-left: 3px solid var(--green);
-  background: rgba(0,255,149,.045);
-  color: #d5d5e5;
-  line-height: 1.8;
-}
-
-/* FOOTER */
-
-footer {
-  margin-top: 55px;
-  padding: 30px 15px;
-  text-align: center;
-  background: rgba(5,5,15,.8);
-  border-top: 1px solid rgba(255,0,212,.45);
-}
-
-footer p {
-  margin: 8px 0;
-  color: #aaaac2;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
-
-.footer-brand {
-  color: var(--cyan);
-  font-weight: bold;
-}
-
-/* ANIMATIONS */
-
-@keyframes neonPulse {
-  from {
-    text-shadow: 0 0 8px var(--cyan), 0 0 20px var(--purple);
-  }
-  to {
-    text-shadow:
-      0 0 14px var(--cyan),
-      0 0 35px var(--pink),
-      0 0 55px var(--purple);
-  }
-}
-
-@keyframes colorShift {
-  from { filter: hue-rotate(0deg); }
-  to { filter: hue-rotate(80deg); }
-}
-
-@keyframes gradientMove {
-  from { background-position: 0%; }
-  to { background-position: 250%; }
-}
-
-@keyframes equalize {
-  from { height: 8px; }
-  to { height: 38px; }
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-  header {
-    padding: 45px 12px 35px;
-  }
-
-  .tag {
-    letter-spacing: 4px;
-  }
-
-  nav {
-    gap: 2px;
-    padding: 8px 4px;
-  }
-
-  nav a {
-    padding: 10px 9px;
-    font-size: 10px;
-  }
-
-  .hero {
-    min-height: 320px;
-    padding: 65px 16px;
-  }
-
-  .section {
-    padding: 24px 14px;
-  }
-
-  .video-card {
-    padding: 13px;
-  }
-}
-
-/* REDUCE MOTION IF REQUESTED BY DEVICE */
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>COROSSS D JAY | MY MUSIC ZONE</title>
+  <meta name="theme-color" content="#080812">
+  <meta name="description" content="COROSSS D JAY - Cyberpunk Music and Video Zone">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --bg: #080812;
+      --panel: #121225;
+      --pink: #ff00d4;
+      --blue: #00eaff;
+      --purple: #9b5cff;
+      --text: #f8f5ff;
+      --muted: #bcb9d0;
+      --border: #00eaff55;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at top, #241044 0%, transparent 55%),
+        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 35px 16px;
+      text-align: center;
+      border-bottom: 1px solid #ff00d455;
+      box-shadow: 0 0 25px #ff00d422;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(28px, 6vw, 48px);
+      text-shadow: 0 0 16px #00eaff88;
+      overflow-wrap: anywhere;
+    }
+
+    header p {
+      margin-top: 12px;
+      color: var(--pink);
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #080812ee;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #00eaff22;
+    }
+
+    nav a,
+    button {
+      display: inline-block;
+      padding: 11px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      color: var(--blue);
+      background: #111124;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    nav a:hover,
+    button:hover {
+      color: #080812;
+      background: var(--blue);
+      box-shadow: 0 0 16px #00eaff66;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: wait;
+    }
+
+    main {
+      width: min(1050px, 92%);
+      margin: 24px auto 55px;
+    }
+
+    .hero {
+      padding: 35px 15px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      color: var(--pink);
+      font-size: clamp(26px, 5vw, 42px);
+      text-shadow: 0 0 15px #ff00d455;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .panel {
+      margin: 24px 0;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #121225ed;
+      box-shadow: 0 0 20px #00eaff12;
+      scroll-margin-top: 90px;
+    }
+
+    .panel h2 {
+      color: var(--blue);
+      margin-top: 0;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .media-card {
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid #ff00d455;
+      border-radius: 12px;
+      background: #090916;
+      overflow-wrap: anywhere;
+    }
+
+    .media-card h3 {
+      color: var(--pink);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    audio,
+    video {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+
+    video {
+      background: #000;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin: 12px 0;
+      padding: 13px;
+      color: var(--text);
+      background: #080812;
+      border: 1px solid #555577;
+      border-radius: 8px;
+    }
+
+    input[type="file"] {
+      border: 1px dashed var(--pink);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    #status {
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 8px;
+      background: #080812;
+      color: var(--blue);
+      overflow-wrap: anywhere;
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .danger {
+      color: #ff8298;
+      border-color: #ff526f;
+    }
+
+    .danger:hover {
+      color: #fff;
+      background: #d92348;
+    }
+
+    footer {
+      padding: 25px 15px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid #ff00d433;
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      .panel {
+        padding: 16px;
+      }
+
+      nav a {
+        padding: 10px 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="header-content">
-    <h1 class="logo">🎧 COROSSS D JAY 🎧</h1>
-    <p class="tag">MY MUSIC ZONE</p>
-    <p class="subtitle">⚡ FEEL THE BEAT • LIVE THE MUSIC ⚡</p>
-  </div>
-</header>
+  <header>
+    <h1>COROSSS D JAY</h1>
+    <p>MY MUSIC ZONE • CYBERPUNK RGB</p>
+  </header>
 
-<nav>
-  <a href="#home">⌂ HOME</a>
-  <a href="#music">♫ MUSIC</a>
-  <a href="#video">▶ VIDEOS</a>
-  <a href="#about">✦ ABOUT</a>
-</nav>
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#music">MUSIC</a>
+    <a href="#videos">VIDEOS</a>
+    <a href="#admin">ADMIN</a>
+  </nav>
 
-<section class="hero" id="home">
-  <span class="status">● WELCOME TO MY MUSIC ZONE</span>
+  <main>
 
-  <h2>ENTER THE CYBER WORLD</h2>
+    <section class="hero" id="home">
+      <h2>WELCOME TO MY MUSIC ZONE ⚡</h2>
+      <p>Feel the Beat • Live the Music • COROSSS D JAY</p>
+    </section>
 
-  <p>
-    Your music. Your vibe. Your zone.<br>
-    Feel every beat with COROSSS D JAY.
-  </p>
+    <section class="panel" id="music">
+      <h2>🎵 MUSIC LIBRARY</h2>
+      <p class="subtitle">
+        Enjoy the music uploaded to COROSSS D JAY.
+      </p>
 
-  <a class="hero-button" href="#video">
-    ▶ EXPLORE MY VIDEOS
-  </a>
+      <div id="musicGallery" class="gallery">
+        <p class="hint">Loading music...</p>
+      </div>
+    </section>
 
-  <div class="equalizer" aria-label="Animated equalizer">
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-  </div>
-</section>
+    <section class="panel" id="videos">
+      <h2>🎬 VIDEO GALLERY</h2>
+      <p class="subtitle">
+        Watch the latest DJ videos.
+      </p>
 
-<section class="section" id="music">
-  <h2 class="section-title">♫ MY MUSIC ZONE</h2>
+      <div id="videoGallery" class="gallery">
 
-  <p class="section-description">
-    Welcome to my music universe!
-    Enjoy my DJ mixes and feel the beat.
-  </p>
+        <!-- Existing GitHub video 1 -->
+        <article class="media-card">
+          <h3>DJ MARWEN MIX PROMO (PT1)</h3>
+          <video controls preload="metadata" playsinline>
+            <source
+              src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
+              type="video/mp4">
+            Your browser does not support this video.
+          </video>
+        </article>
 
-  <div class="music-card">
-    <h3>🎧 MUSIC & DJ MIXES</h3>
+        <!-- Existing GitHub video 2 -->
+        <article class="media-card">
+          <h3>DJ MARWEN MIX PROMO (PT2)</h3>
+          <video controls preload="metadata" playsinline>
+            <source
+              src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
+              type="video/mp4">
+            Your browser does not support this video.
+          </video>
+        </article>
 
-    <p class="section-description">
-      Watch the DJ videos below to enjoy the music.
-      More music can be added here in the future.
-    </p>
-  </div>
-</section>
+      </div>
+    </section>
 
-<section class="section" id="video">
-  <h2 class="section-title">▶ DJ VIDEO ZONE</h2>
+    <section class="panel" id="admin">
+      <h2>🔐 ADMIN CONTROL PANEL</h2>
 
-  <p class="section-description">
-    Enter the mix. Feel the energy. Enjoy the beat.
-  </p>
+      <p class="subtitle">
+        Admin login is required to upload music and videos.
+      </p>
 
-  <div class="video-card">
-    <h3>⚡ DJ MARWEN MIX PROMO (PT1)</h3>
+      <div id="loginBox">
+        <form id="loginForm">
+          <label for="email">Admin Email</label>
+          <input
+            id="email"
+            type="email"
+            autocomplete="username"
+            placeholder="Enter your admin email"
+            required>
 
-    <video controls playsinline preload="metadata">
-      <source
-        src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
-        type="video/mp4">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            required>
 
-      Your browser does not support video playback.
-    </video>
+          <button id="loginButton" type="submit">
+            LOGIN
+          </button>
+        </form>
+      </div>
 
-    <p class="note">
-      🎧 DJ MARWEN MIX PROMO — PART 1
-    </p>
-  </div>
+      <div id="uploadBox" class="hidden">
+        <h3>🎧 Upload New Media</h3>
 
-  <div class="video-card">
-    <h3>⚡ DJ MARWEN MIX PROMO (PT2)</h3>
+        <p class="hint">
+          Choose an audio or video file. The storage policy will decide
+          whether your account is authorized to upload.
+        </p>
 
-    <video controls playsinline preload="metadata">
-      <source
-        src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
-        type="video/mp4">
+        <form id="uploadForm">
+          <input
+            id="mediaFile"
+            type="file"
+            accept=".mp3,.m4a,.aac,.wav,.ogg,.flac,.opus,.mp4,.webm,audio/mpeg,audio/mp4,audio/aac,audio/wav,audio/ogg,video/mp4,video/webm"
+            required>
 
-      Your browser does not support video playback.
-    </video>
+          <button id="uploadButton" type="submit">
+            UPLOAD MEDIA
+          </button>
+        </form>
 
-    <p class="note">
-      🎧 DJ MARWEN MIX PROMO — PART 2
-    </p>
-  </div>
-</section>
+        <button id="logoutButton" class="danger" type="button">
+          LOGOUT
+        </button>
+      </div>
 
-<section class="section" id="about">
-  <h2 class="section-title">✦ ABOUT MY ZONE</h2>
+      <p id="status" role="status" aria-live="polite">
+        Connecting to Supabase...
+      </p>
+    </section>
 
-  <p class="section-description">
-    Welcome to COROSSS D JAY — MY MUSIC ZONE!
-  </p>
+  </main>
 
-  <div class="about-highlight">
-    🌈 CYBERPUNK STYLE<br>
-    🎵 MUSIC • DJ BEATS • GOOD VIBES<br>
-    ⚡ FEEL THE BEAT • LIVE THE MUSIC
-  </div>
-</section>
+  <footer>
+    © COROSSS D JAY | MY MUSIC ZONE
+  </footer>
 
-<footer>
-  <p class="footer-brand">🎧 COROSSS D JAY</p>
-  <p>MY MUSIC ZONE • CYBERPUNK RGB EDITION</p>
-  <p>© 2026 COROSSS D JAY</p>
-  <p>MADE WITH ♡ AND MUSIC</p>
-</footer>
+  <script>
+    "use strict";
+
+    // Supabase connection
+    const SUPABASE_URL =
+      "https://odwyrnncykhjlqgkwnjk.supabase.co";
+
+    // This is a frontend publishable key, not a secret/service_role key.
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ";
+
+    const BUCKET = "dj-media";
+    const MAX_FILE_SIZE = 100 * 1024 * 1024;
+
+    const musicGallery = document.getElementById("musicGallery");
+    const videoGallery = document.getElementById("videoGallery");
+    const loginBox = document.getElementById("loginBox");
+    const uploadBox = document.getElementById("uploadBox");
+    const statusBox = document.getElementById("status");
+    const loginButton = document.getElementById("loginButton");
+    const uploadButton = document.getElementById("uploadButton");
+
+    let client = null;
+
+    function setStatus(message) {
+      statusBox.textContent = message;
+    }
+
+    function showLoginState(isLoggedIn) {
+      loginBox.classList.toggle("hidden", isLoggedIn);
+      uploadBox.classList.toggle("hidden", !isLoggedIn);
+    }
+
+    function isAudio(name) {
+      return /\.(mp3|m4a|aac|wav|ogg|opus|flac)$/i.test(name);
+    }
+
+    function isVideo(name) {
+      return /\.(mp4|webm)$/i.test(name);
+    }
+
+    function createMediaCard(name, url, type) {
+      const card = document.createElement("article");
+      card.className = "media-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = name;
+      card.appendChild(heading);
+
+      const player = document.createElement(type);
+
+      player.controls = true;
+      player.preload = "metadata";
+      player.src = url;
+
+      if (type === "video") {
+        player.playsInline = true;
+      }
+
+      card.appendChild(player);
+      return card;
+    }
+
+    async function checkSession() {
+      const { data, error } = await client.auth.getSession();
+
+      if (error) {
+        setStatus("Could not check your login session.");
+        return;
+      }
+
+      showLoginState(Boolean(data.session));
+    }
+
+    async function loadMedia() {
+      if (!client) return;
+
+      musicGallery.replaceChildren();
+      videoGallery.replaceChildren();
+
+      const { data: files, error } = await client
+        .storage
+        .from(BUCKET)
+        .list("", {
+          limit: 100,
+          sortBy: { column: "name", order: "asc" }
+        });
+
+      if (error) {
+        setStatus(
+          "Could not load uploaded media. Check your Storage SELECT policy."
+        );
+        return;
+      }
+
+      const validFiles = (files || []).filter(file =>
+        file.name &&
+        file.name !== ".emptyFolderPlaceholder" &&
+        (isAudio(file.name) || isVideo(file.name))
+      );
+
+      let musicCount = 0;
+      let videoCount = 0;
+
+      for (const file of validFiles) {
+        const { data, error: signedUrlError } = await client
+          .storage
+          .from(BUCKET)
+          .createSignedUrl(file.name, 3600);
+
+        if (signedUrlError || !data || !data.signedUrl) {
+          continue;
+        }
+
+        if (isAudio(file.name)) {
+          musicGallery.appendChild(
+            createMediaCard(file.name, data.signedUrl, "audio")
+          );
+          musicCount++;
+        } else if (isVideo(file.name)) {
+          videoGallery.appendChild(
+            createMediaCard(file.name, data.signedUrl, "video")
+          );
+          videoCount++;
+        }
+      }
+
+      if (musicCount === 0) {
+        const emptyMusic = document.createElement("p");
+        emptyMusic.className = "hint";
+        emptyMusic.textContent = "No uploaded music found yet.";
+        musicGallery.appendChild(emptyMusic);
+      }
+
+      if (videoCount === 0) {
+        const emptyVideos = document.createElement("p");
+        emptyVideos.className = "hint";
+        emptyVideos.textContent =
+          "No uploaded videos found yet. Existing videos are shown above only if their files exist in GitHub.";
+        videoGallery.appendChild(emptyVideos);
+      }
+    }
+
+    async function initialize() {
+      if (!window.supabase) {
+        setStatus("Supabase library failed to load. Check your internet connection.");
+        return;
+      }
+
+      client = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+      client.auth.onAuthStateChange((event, session) => {
+        showLoginState(Boolean(session));
+      });
+
+      await checkSession();
+      await loadMedia();
+
+      if (statusBox.textContent === "Connecting to Supabase...") {
+        setStatus("Connected. You can browse available media.");
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener(
+      "submit",
+      async function(event) {
+        event.preventDefault();
+
+        if (!client) {
+          setStatus("Supabase is not connected.");
+          return;
+        }
+
+        loginButton.disabled = true;
+        setStatus("Logging in...");
+
+        try {
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+
+          const { data, error } = await client.auth.signInWithPassword({
+            email,
+            password
+          });
+
+          document.getElementById("password").value = "";
+
+          if (error) {
+            setStatus("Login failed. Check your email and password.");
+            return;
+          }
+
+          showLoginState(Boolean(data.session));
+          setStatus(
+            "Logged in. Upload permission is still controlled by Storage policies."
+          );
+        } catch (error) {
+          setStatus("Login failed because of a connection problem.");
+        } finally {
+          loginButton.disabled = false;
+        }
+      }
+    );
+
+    document.getElementById("logoutButton").addEventListener(
+      "click",
+      async function() {
+        if (!client) return;
+
+        const { error } = await client.auth.signOut();
+
+        if (error) {
+          setStatus("Could not log out. Please try again.");
+          return;
+        }
+
+        showLoginState(false);
+        setStatus("You are logged out.");
+      }
+    );
+
+    document.getElementById("uploadForm").addEventListener(
+      "submit",
+      async function(event) {
+        event.preventDefault();
+
+        if (!client) {
+          setStatus("Supabase is not connected.");
+          return;
+        }
+
+        uploadButton.disabled = true;
+
+        try {
+          const { data: sessionData, error: sessionError } =
+            await client.auth.getSession();
+
+          if (sessionError || !sessionData.session) {
+            showLoginState(false);
+            setStatus("Please log in before uploading.");
+            return;
+          }
+
+          const fileInput = document.getElementById("mediaFile");
+          const file = fileInput.files[0];
+
+          if (!file) {
+            setStatus("Please choose a file.");
+            return;
+          }
+
+          if (file.size > MAX_FILE_SIZE) {
+            setStatus("This file is larger than the 100 MB limit.");
+            return;
+          }
+
+          if (!isAudio(file.name) && !isVideo(file.name)) {
+            setStatus("Unsupported file type.");
+            return;
+          }
+
+          const safeName = file.name
+            .normalize("NFKC")
+            .replace(/[^a-zA-Z0-9._() -]/g, "_")
+            .replace(/\s+/g, "_");
+
+          const uniqueName = Date.now() + "_" + safeName;
+
+          setStatus("Uploading file. Please wait...");
+
+          const { error } = await client
+            .storage
+            .from(BUCKET)
+            .upload(uniqueName, file, {
+              contentType: file.type || "application/octet-stream",
+              upsert: false
+            });
+
+          if (error) {
+            setStatus(
+              "Upload failed. Check the Storage policy, file type restrictions, and file size limit."
+            );
+            return;
+          }
+
+          fileInput.value = "";
+          setStatus("Upload successful! Refreshing media gallery...");
+
+          await loadMedia();
+          setStatus("Upload successful!");
+        } catch (error) {
+          setStatus("Upload failed because of a connection problem.");
+        } finally {
+          uploadButton.disabled = false;
+        }
+      }
+    );
+
+    initialize();
+  </script>
 
 </body>
 </html>
