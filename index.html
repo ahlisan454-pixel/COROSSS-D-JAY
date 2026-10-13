@@ -109,6 +109,11 @@ video {
   border-radius: 10px;
 }
 
+video {
+  background: #000;
+  max-height: 65vh;
+}
+
 .note {
   color: #bcbcd0;
   font-size: 14px;
@@ -147,20 +152,20 @@ footer {
 <section class="card" id="music">
   <h2>🎵 MY MUSIC PLAYER</h2>
 
-  <p>DJ MARWEN MIX PROMO (PT1)</p>
+  <p>DJ MARWEN MIX PROMO (PT2)</p>
 
-  <audio controls preload="metadata">
+  <video controls playsinline preload="metadata">
     <source
-      src="DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
+      src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
       type="video/mp4">
-    Your browser does not support this audio format.
-  </audio>
+    Your browser does not support video playback.
+  </video>
 
   <p class="note">
-    If this file is a video with sound, use the video player below.
+    Play your latest DJ mix here!
   </p>
 
-  <p>Or select a music file from your phone:</p>
+  <p>Select another music file from your phone:</p>
   <input type="file" id="audioFile" accept="audio/*">
 
   <audio id="audioPlayer" controls></audio>
@@ -170,11 +175,11 @@ footer {
 <section class="card" id="video">
   <h2>🎬 DJ VIDEO ZONE</h2>
 
-  <h3>DJ MARWEN MIX PROMO (PT1)</h3>
+  <h3>DJ MARWEN MIX PROMO (PT2)</h3>
 
   <video controls playsinline preload="metadata">
     <source
-      src="DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
+      src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
       type="video/mp4">
     Your browser does not support video playback.
   </video>
