@@ -1,60 +1,660 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#05060b"><title>COROSSS D JAY | Club Mix Zone</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RGB Video Studio</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-:root{--bg:#050505;--panel:#0a0a0a;--line:#4b3911;--cyan:#ffd45a;--pink:#ff27d7;--purple:#8a2bff;--green:#38ffbb;--text:#f7f5ef;--muted:#b7b2a6}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px;overflow-y:auto}body{touch-action:pan-y;margin:0;background:radial-gradient(ellipse at 50% 0,#15102c 0,#070912 42%,#030408 100%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;overflow-x:clip;overflow-y:auto;min-height:100%;}body:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:.10;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px,transparent 5px);mask-image:linear-gradient(#000,transparent 80%)}a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer;color:white}.topbar{position:relative;z-index:20;display:flex;align-items:center;gap:22px;padding:12px clamp(14px,3vw,40px);background:#05060bed;border-bottom:1px solid #00eaff66;box-shadow:0 4px 30px #00eaff16}.brand{display:flex;align-items:center;gap:10px;min-width:max-content}.logo{width:45px;height:45px;border:2px solid var(--cyan);border-radius:50%;display:grid;place-items:center;color:var(--cyan);font-size:24px;font-weight:900;text-shadow:0 0 14px var(--cyan);box-shadow:0 0 18px #00eaff55,inset 0 0 14px #00eaff33}.brand strong{font-size:clamp(17px,2vw,25px);letter-spacing:1px}.brand strong span{color:var(--pink);text-shadow:0 0 12px var(--pink)}.brand small{display:block;color:#9caac4;letter-spacing:4px;font-size:8px}.nav{display:flex;gap:18px;align-items:center;margin:auto}.nav a{font-size:13px;color:#dce5f5;transition:.2s}.nav a:hover{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}.search{max-width:250px;flex:1;min-width:120px;background:#0b101b;border:1px solid #27364d;border-radius:22px;padding:10px 14px;color:white;outline:none}.btn{border:1px solid #00eaff99;border-radius:12px;background:linear-gradient(110deg,#091a2a,#17102a);padding:10px 17px;font-weight:750;box-shadow:0 0 15px #00eaff1f;transition:.2s}.btn:hover{box-shadow:0 0 22px #00eaff88;transform:translateY(-1px)}.btn.hot{background:linear-gradient(100deg,var(--cyan),#2a77ff,var(--pink));border:0;color:#05060b;text-shadow:none}.layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:18px;padding:18px clamp(12px,2vw,28px);max-width:1700px;margin:auto}.sidebar{border:1px solid #14293d;border-radius:18px;padding:16px;background:#070a12e8;align-self:start;position:relative;top:auto;box-shadow:0 0 25px #00eaff0c}.section-label{font-size:10px;color:#7f91ae;letter-spacing:2px;margin:5px 8px 12px}.side-link{display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:10px;color:#d7e0ef;font-size:13px;margin:4px 0}.side-link:hover,.side-link.active{background:linear-gradient(100deg,#142b4b,#291039);color:var(--cyan);box-shadow:inset 2px 0 var(--pink)}.online{margin-top:25px;border-top:1px solid #19253a;padding-top:14px;font-size:12px;color:var(--muted)}.online b{color:var(--green)}.main{min-width:0}.hero{min-height:370px;position:relative;overflow:hidden;border-radius:22px;border:1px solid #00eaff8a;background:linear-gradient(90deg,#05060be8 0%,#05060b55 43%,#05060bb8 100%),radial-gradient(ellipse at 50% 100%,#f500ff77,transparent 45%),radial-gradient(ellipse at 20% 30%,#00eaff55,transparent 35%),radial-gradient(ellipse at 80% 20%,#a4ff0055,transparent 30%),linear-gradient(135deg,#111b35,#05060b 60%,#1b082b);box-shadow:0 0 30px #00eaff22,inset 0 0 60px #ff00d522;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:clamp(22px,4vw,55px);isolation:isolate}.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(115deg,transparent 0 50px,#00eaff26 52px,transparent 55px),repeating-linear-gradient(65deg,transparent 0 80px,#ff28d729 82px,transparent 85px);animation:lights 18s linear infinite}.hero:after{content:"";position:absolute;bottom:-100px;left:10%;right:10%;height:180px;border-radius:50%;background:#ff00e51b;filter:blur(35px);z-index:-1}.hero-copy .eyebrow{color:var(--cyan);font-weight:800;letter-spacing:4px;font-size:11px}.hero h1{font-size:clamp(35px,5.2vw,72px);line-height:.98;letter-spacing:-2px;margin:14px 0;text-shadow:0 0 22px #00eaff55}.hero h1 span{background:linear-gradient(90deg,#fff,var(--cyan),var(--pink),#a5ff00);background-clip:text;color:transparent}.hero p{color:#d4d9e9;max-width:470px;line-height:1.65}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.chip{font-size:10px;letter-spacing:1px;padding:5px 9px;border:1px solid var(--cyan);border-radius:7px;box-shadow:0 0 10px #00eaff25}.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.play-big{border-radius:25px;padding:14px 25px;background:linear-gradient(100deg,#00f5ff,#16ff8b,#ff28d7);color:#03050a;border:0;font-weight:900;letter-spacing:1px;box-shadow:0 0 24px #00eaff66}.hero-art{height:280px;display:grid;place-items:center;position:relative}.dj-disc{width:min(250px,70%);aspect-ratio:1;border-radius:50%;border:8px solid #202b40;background:repeating-radial-gradient(circle,#0a0d16 0 5px,#252c40 6px 7px,#090b11 8px 12px);box-shadow:0 0 25px var(--cyan),0 0 60px #ff28d777;animation:spin 24s linear infinite;display:grid;place-items:center;position:relative}.dj-disc:before{content:"";position:absolute;inset:24%;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#090b15 45%,var(--pink));box-shadow:0 0 30px #ff28d7}.disc-logo{position:relative;z-index:1;font-weight:1000;font-size:42px;color:white;text-shadow:0 0 15px var(--cyan)}.headphones{position:absolute;right:8%;bottom:4px;font-size:74px;filter:drop-shadow(0 0 12px var(--pink));transform:rotate(-13deg)}.eq{height:38px;display:flex;gap:4px;align-items:center;justify-content:center;margin-top:16px}.eq i{display:block;width:5px;border-radius:8px;background:linear-gradient(var(--cyan),var(--pink));height:var(--h);box-shadow:0 0 9px #00eaff;animation:eq 1.2s ease-in-out infinite alternate;animation-delay:var(--d)}.feature-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 22px}.feature{background:#080d17;border:1px solid #17364b;border-radius:12px;padding:13px;display:flex;align-items:center;gap:10px}.feature .ico{font-size:22px;color:var(--cyan)}.feature b{display:block;font-size:12px}.feature small{color:var(--muted);font-size:10px}.content-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px}.panel{background:linear-gradient(145deg,#0b101a,#06080f);border:1px solid #193247;border-radius:16px;padding:16px;min-width:0;box-shadow:0 8px 24px #0006}.panel h2{font-size:15px;margin:0 0 14px;display:flex;align-items:center;justify-content:space-between}.panel h2 span{color:var(--cyan);font-size:11px}.mix{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #172234}.cover{width:49px;height:49px;flex-shrink:0;border-radius:10px;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#ff28d7,#311e71 45%,#07101a);border:1px solid #c04cff77;font-size:22px;box-shadow:0 0 12px #ff28d722}.mix-info{min-width:0;flex:1}.mix-info b{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mix-info small{font-size:10px;color:var(--muted)}.round{width:31px;height:31px;border-radius:50%;border:1px solid #00eaff88;background:#07131f;color:var(--cyan);flex-shrink:0}.featured-player{padding:0;overflow:hidden;border-color:#9d2dff}.player-art{min-height:185px;padding:24px;background:radial-gradient(ellipse at 50% 60%,#f0f5ff33,transparent 30%),linear-gradient(135deg,#0d2846,#2a0840 60%,#07101b);position:relative;display:grid;place-items:center;text-align:center}.player-art:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(120deg,transparent 0 35px,#00eaff20 36px,transparent 38px)}.player-art>*{position:relative}.player-art .disc-logo{font-size:36px}.player-art h3{margin:7px 0 3px;font-size:22px}.player-art p{margin:0;color:#c3cfe0;font-size:11px}.player-controls{padding:15px}.progress{width:100%;accent-color:var(--cyan)}.control-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.control-row button{background:none;border:0;font-size:19px;color:var(--cyan)}.playlist-card{display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid #172234}.playlist-art{width:53px;height:59px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(140deg,#ff28d7,#3520a0,#00d9ff);font-size:24px}.playlist-card b{font-size:12px;display:block}.playlist-card small{font-size:10px;color:var(--muted)}.section-title{margin:14px 0 10px;display:flex;align-items:center;justify-content:space-between}.section-title h2{font-size:19px;margin:0}.section-title a{font-size:12px;color:var(--cyan)}.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:16px}.video-panel video{width:100%;max-height:420px;display:block;background:#000;border-radius:12px;border:1px solid #28364d}.video-panel h3{font-size:14px}.video-panel p{font-size:11px;color:var(--muted);line-height:1.5}.member-panel{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.auth-form{display:grid;gap:10px}.auth-form input{background:#050811;border:1px solid #26344b;color:white;border-radius:9px;padding:12px;min-width:0}.auth-form button{padding:12px}.auth-note{font-size:11px;color:var(--muted);line-height:1.5}.status{font-size:12px;color:var(--green);min-height:18px}.footer{margin-top:28px;padding:24px;text-align:center;border-top:1px solid #183043;color:#91a0b9;font-size:11px;letter-spacing:2px}.footer strong{color:white}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#07121e;border:1px solid var(--cyan);padding:12px 18px;border-radius:12px;box-shadow:0 0 20px #00eaff55;z-index:50;display:none}.hide{display:none!important}@keyframes spin{to{transform:rotate(360deg)}}@keyframes lights{to{background-position:200px 0,-200px 0}}@keyframes eq{to{transform:scaleY(.35)}}
-@media(max-width:1100px){.layout{grid-template-columns:150px minmax(0,1fr)}.nav{gap:10px}.nav a{font-size:11px}.search{display:none}.content-grid{grid-template-columns:1fr 1fr}.content-grid .featured-player{grid-column:span 2;grid-row:1}.feature-row{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.topbar{gap:10px;flex-wrap:wrap}.nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start;padding:5px 0}.nav a{white-space:nowrap}.brand{margin-right:auto}.layout{display:block;padding:10px}.sidebar{display:none}.hero{grid-template-columns:1fr;padding:25px;min-height:unset}.hero-art{height:190px;grid-row:1}.dj-disc{width:155px}.headphones{font-size:48px}.hero h1{font-size:44px}.content-grid{grid-template-columns:1fr}.content-grid .featured-player{grid-column:auto;grid-row:auto}.feature-row{gap:7px}.feature{padding:10px}.feature small{display:none}.video-grid,.member-panel{grid-template-columns:1fr}.panel{padding:13px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+:root {
+    --blue: #00aaff;
+    --gold: #ffd700;
+    --black: #070910;
+    --white: #ffffff;
+}
 
-/* CROSS DJ RGB CLUB THEME UPGRADE */
-body{background-color:#030303;background-image:radial-gradient(ellipse at 12% 8%,#00f5ff24,transparent 30%),radial-gradient(ellipse at 88% 18%,#ff28d724,transparent 28%),radial-gradient(ellipse at 50% 72%,#a5ff0010,transparent 36%),linear-gradient(180deg,#050505,#0a0a0d 52%,#020203)}
-body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.14;background:repeating-linear-gradient(90deg,transparent 0 9%,#fff 9.1%,transparent 9.2% 18%),linear-gradient(115deg,transparent 20%,#00f5ff22 48%,transparent 55%,#ff28d722 72%,transparent 80%)}
-.panel,.sidebar,.feature{backdrop-filter:blur(12px);border-color:#ffffff27;box-shadow:0 0 0 1px #ffffff06,0 12px 36px #000a,0 0 18px #00f5ff0b}
-.panel:hover,.feature:hover{border-color:#ff28d788;box-shadow:0 0 24px #00f5ff16,0 0 28px #ff28d714;transition:border-color .25s,box-shadow .25s}
-.hero{border-color:#fff9;background-image:linear-gradient(90deg,#030303f2 0%,#05050570 48%,#030303d9 100%),radial-gradient(ellipse at 50% 100%,#ff28d766,transparent 45%),radial-gradient(ellipse at 20% 30%,#00f5ff66,transparent 35%),radial-gradient(ellipse at 80% 20%,#fff3,transparent 30%),linear-gradient(135deg,#191919,#030303 60%,#171019);box-shadow:0 0 22px #fff2,0 0 40px #00f5ff22,inset 0 0 60px #ff00d522}
-.logo{border-color:#fff;color:#fff;box-shadow:0 0 12px #fff7,0 0 26px #00f5ff66,inset 0 0 14px #ff28d733}
-.btn,.round,.chip{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.btn:hover,.round:hover{transform:translateY(-2px);box-shadow:0 0 22px #00f5ff88,0 0 28px #ff28d744}
-.play-big{animation:neonPulse 3s ease-in-out infinite alternate}
-.dj-disc{box-shadow:0 0 22px #fff7,0 0 42px var(--cyan),0 0 72px #ff28d766}
-.video-panel video{box-shadow:0 0 18px #00f5ff13}
-@keyframes neonPulse{from{filter:drop-shadow(0 0 4px #00f5ff55)}to{filter:drop-shadow(0 0 13px #ff28d799)}}
-@media(prefers-reduced-motion:reduce){.play-big{animation:none}}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    min-height: 100vh;
+}
 
-/* COROSSS D JAY: black & gold club mix with live RGB motion */
-:root{--gold:#ffc928;--gold2:#fff0a6;--cyan:#ffd24a;--pink:#ff28cf;--purple:#8e44ff;--green:#25ffd0}
-body{background:#050505;color:#f8f6f0;background-image:radial-gradient(ellipse at 50% 10%,#35250d 0,transparent 38%),radial-gradient(ellipse at 8% 45%,#10202d 0,transparent 28%),radial-gradient(ellipse at 90% 55%,#280b2a 0,transparent 30%)}
-body:before{opacity:.13;background:repeating-linear-gradient(0deg,transparent 0 4px,#fff 5px,transparent 6px)}
-.topbar{border-bottom:1px solid transparent;border-image:linear-gradient(90deg,#ffc928,#ff25d2,#00eaff,#44ff8d,#ffc928) 1;box-shadow:0 5px 30px #ffc92820;background:#050505ed}
-.logo{border-color:var(--gold);color:var(--gold);font-size:26px;box-shadow:0 0 18px #ffc92855,inset 0 0 14px #ffc92822}.brand strong{font-weight:950;letter-spacing:1.2px}.brand strong span{color:var(--gold);text-shadow:0 0 14px #ffc92888}
-.nav a:hover{color:var(--gold)}.btn{border-color:#ffc92899;background:linear-gradient(120deg,#15110a,#111);box-shadow:0 0 14px #ffc92820}.btn.hot,.play-big{background:linear-gradient(100deg,#ffc928,#fff0a6,#ffb300);color:#100c02;box-shadow:0 0 22px #ffc92855}.layout.single-layout{display:block;max-width:1600px;padding:16px clamp(12px,3vw,40px)}
-.hero{min-height:330px;border-color:#ffc92888;border-radius:18px;background:linear-gradient(90deg,#030303e8,#03030355 52%,#030303d8),radial-gradient(ellipse at 50% 100%,#ff27d755,transparent 35%),radial-gradient(ellipse at 15% 30%,#00d9ff33,transparent 30%),radial-gradient(ellipse at 85% 20%,#ffc92844,transparent 35%),linear-gradient(135deg,#17120a,#030303 55%,#150818);box-shadow:0 0 30px #ffc9281b,inset 0 0 60px #ff27d514}
-.hero:before{background:repeating-linear-gradient(115deg,transparent 0 45px,#00eaff40 47px,transparent 50px),repeating-linear-gradient(65deg,transparent 0 70px,#ff28d740 72px,transparent 75px),repeating-linear-gradient(90deg,transparent 0 110px,#ffc92826 112px,transparent 115px);animation:lights 4s linear infinite}
-.hero h1{text-shadow:0 0 22px #ffc92844}.hero h1 span{background:linear-gradient(90deg,#fff,#ffc928,#fff0a6,#ff28cf,#00eaff,#ffc928);background-size:250% auto;animation:goldRainbow 5s linear infinite;background-clip:text;color:transparent}.eyebrow{color:var(--gold)!important}.chip{border-color:#ffc928;box-shadow:0 0 10px #ffc92820}.hero-art{height:250px;display:flex;flex-direction:column;gap:10px;justify-content:center}.headphone-mark{font-size:clamp(80px,11vw,150px);filter:drop-shadow(0 0 12px #ffc928) drop-shadow(0 0 28px #ff28cf);animation:floatHeadphones 3s ease-in-out infinite}.hero-tag{font-size:11px;letter-spacing:4px;color:#fff0a6;text-align:center}.live-eq{margin:0;height:80px;gap:5px}.live-eq i{width:6px;background:linear-gradient(to top,#ffc928,#ff28cf,#00eaff,#35ff9a);box-shadow:0 0 12px #ff28cf;animation-duration:.55s}
-.panel,.feature{background:linear-gradient(145deg,#101010,#060606);border-color:#59451a;box-shadow:0 8px 24px #0008}.panel h2 span,.section-title a{color:var(--gold)}.section-title h2{letter-spacing:.5px}.video-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:18px}.video-panel{border:1px solid transparent;background:linear-gradient(#080808,#080808) padding-box,linear-gradient(130deg,#ffc928,#ff28cf,#00eaff,#45ff9c,#ffc928) border-box;box-shadow:0 0 18px #ff28cf14}.video-panel video{border-color:#ffc92844}.member-panel{grid-template-columns:repeat(2,minmax(0,1fr))}.auth-form input{border-color:#59451a}.footer{border-image:linear-gradient(90deg,#ffc928,#ff28cf,#00eaff,#42ff9b,#ffc928) 1;color:#aaa18e}.eq i{background:linear-gradient(var(--gold),var(--pink),#00eaff);box-shadow:0 0 9px #ff28cf}
-@keyframes goldRainbow{to{background-position:250% center}}@keyframes floatHeadphones{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
-@media(max-width:900px){.nav{gap:10px}.hero{grid-template-columns:1fr}.hero-art{height:150px}.headphone-mark{font-size:76px}.live-eq{height:45px}.video-grid{grid-template-columns:1fr}.member-panel{grid-template-columns:1fr}.hero-copy{text-align:center}.hero-copy .chips,.hero-actions{justify-content:center}}
-@media(max-width:560px){.topbar{flex-wrap:wrap;gap:10px}.nav{order:3;width:100%;justify-content:center}.nav a{font-size:12px}.brand{flex:1}.layout.single-layout{padding:10px}.hero{padding:22px 15px}.hero h1{font-size:44px}.hero p{font-size:14px}.hero-art{height:125px}.headphone-mark{font-size:68px}.section-title h2{font-size:17px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+.rgb-bar {
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        red, orange, yellow, lime,
+        cyan, blue, violet, red
+    );
+    background-size: 300% 100%;
+    animation: rgb 5s linear infinite;
+}
 
+@keyframes rgb {
+    from { background-position: 0 0; }
+    to { background-position: 300% 0; }
+}
 
-/* COROSSS D JAY — cleaner club-mix visual refresh */
-:root{--bg:#080808;--panel:#11100d;--line:#4c3a1a;--cyan:#f2c66d;--pink:#ff4cba;--purple:#9c72ff;--green:#58e6bd;--text:#f7f4ed;--muted:#b8b2a7}
-html{scroll-behavior:smooth;scroll-padding-top:86px;overflow-y:auto}
-body{background:radial-gradient(ellipse at 50% -10%,#33240f 0, #11100e 32%,#080808 72%);overflow-x:hidden;overflow-y:auto}
-body:before{position:absolute;inset:0;opacity:.035;background:repeating-linear-gradient(0deg,transparent 0 5px,#fff 6px,transparent 7px);pointer-events:none}
-.topbar{flex-wrap:wrap;gap:14px;background:rgba(8,8,8,.96);border-bottom:1px solid #d4a84d55;box-shadow:0 5px 24px #0008}
-.logo{border:1px solid #e4bd66;color:#f2c66d;box-shadow:0 0 12px #e8b74b33,inset 0 0 8px #e8b74b22}
-.brand strong span{color:#f2c66d;text-shadow:none}
-.brand small{color:#b8a77f;letter-spacing:2px}
-.nav{flex-wrap:wrap;gap:14px}.nav a{color:#e4dfd4}.nav a:hover{color:#f2c66d;text-shadow:none}
-.search,.auth-form input{background:#0d0d0d;border-color:#4b402d}
-.btn{background:#17140f;border-color:#9d793c66;box-shadow:none}.btn:hover{box-shadow:0 0 12px #d7a84c33;transform:translateY(-1px)}
-.btn.hot{background:linear-gradient(110deg,#f4d58c,#c18a32);color:#171109;box-shadow:0 4px 16px #c18a3226}
-.layout{display:block;max-width:1450px;padding:18px clamp(12px,3vw,36px)}
-.hero{min-height:330px;border:1px solid #a9823c77;background:linear-gradient(110deg,rgba(8,8,8,.97),rgba(17,14,10,.84)),radial-gradient(ellipse at 80% 20%,#c99b4a22,transparent 40%);box-shadow:0 12px 35px #0007,inset 0 0 45px #d5a44308}
-.hero:before{background:repeating-linear-gradient(115deg,transparent 0 72px,#f2c66d12 73px,transparent 75px),repeating-linear-gradient(65deg,transparent 0 110px,#ff4cba0b 111px,transparent 113px);animation:lights 28s linear infinite}
-.hero:after{background:linear-gradient(90deg,#f2c66d12,#ff4cba0c,#7d7aff0c);filter:blur(30px)}
-.hero h1{ text-shadow:0 0 18px #d5a44322}.hero h1 span{background:linear-gradient(90deg,#fff0c4,#e3b34e,#ffb8dd,#c7b7ff);background-clip:text;color:transparent}
+header {
+    padding: 22px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #17344c;
+    background: #090d17;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--gold);
+    text-shadow: 0 0 14px #ffd70066;
+}
+
+.logo span {
+    color: var(--blue);
+}
+
+button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .25s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px #00aaff66;
+}
+
+.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.gold {
+    background: var(--gold);
+    color: #111;
+}
+
+.danger {
+    background: #ff3d59;
+    color: white;
+}
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 45px auto;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    color: var(--blue);
+    text-shadow: 0 0 25px #00aaff66;
+}
+
+.hero p {
+    color: #aebbd0;
+    line-height: 1.7;
+}
+
+.panel {
+    background: #0d1320;
+    border: 1px solid #173c58;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 25px #007bff12;
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+    color: var(--gold);
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0 15px;
+    border: 1px solid #24435d;
+    border-radius: 8px;
+    background: #080d17;
+    color: white;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 10px #00aaff33;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: #101b2b;
+    padding: 23px;
+    border: 1px solid #214766;
+    border-radius: 13px;
+}
+
+.stat p {
+    color: #aebbd0;
+    margin-bottom: 12px;
+}
+
+.stat h3 {
+    font-size: 28px;
+    color: var(--blue);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.video-card {
+    background: #0b111c;
+    border: 1px solid #263d52;
+    border-radius: 14px;
+    padding: 14px;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    max-height: 360px;
+}
+
+.video-card h3 {
+    margin: 14px 0;
+    overflow-wrap: anywhere;
+}
+
+.video-info {
+    color: #b8c5d6;
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#status {
+    color: var(--gold);
+    margin-top: 12px;
+    overflow-wrap: anywhere;
+}
+
+.hidden {
+    display: none !important;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #8c9bad;
+    border-top: 1px solid #17344c;
+}
+
+@media (max-width: 650px) {
+    header {
+        padding: 18px 5%;
+    }
+
+    main {
+        width: 92%;
+        margin: 28px auto;
+    }
+
+    .stats,
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="rgb-bar"></div>
+
+<header>
+    <div class="logo">RGB <span>VIDEO STUDIO</span></div>
+    <button id="logoutBtn" class="danger hidden">
+        Logout
+    </button>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h1>Welcome to <span>RGB Video Studio</span></h1>
+        <p>Premium Neon Design • Video Library • Admin Dashboard</p>
+    </section>
+
+    <!-- Login -->
+    <section id="loginPanel" class="panel">
+        <h2>🔐 Admin Login</h2>
+
+        <form id="loginForm">
+            <label for="email">Email Address</label>
+            <input id="email" type="email"
+                   placeholder="Admin email"
+                   autocomplete="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password"
+                   placeholder="Admin password"
+                   autocomplete="current-password" required>
+
+            <button class="primary" type="submit">
+                Login to Dashboard
+            </button>
+        </form>
+
+        <p id="loginStatus" role="status"></p>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="dashboard" class="hidden">
+
+        <div class="stats">
+            <div class="stat">
+                <p>Total Videos</p>
+                <h3 id="totalVideos">0</h3>
+            </div>
+
+            <div class="stat">
+                <p>Total Views</p>
+                <h3 id="totalViews">0</h3>
+            </div>
+
+            <div class="stat">
+                <p>Account</p>
+                <h3 style="font-size:18px">Admin</h3>
+            </div>
+        </div>
+
+        <section class="panel">
+            <h2>📤 Upload New Video</h2>
+
+            <form id="uploadForm">
+                <label for="videoTitle">Video Title</label>
+                <input id="videoTitle"
+                       type="text"
+                       maxlength="150"
+                       placeholder="Enter video title"
+                       required>
+
+                <label for="videoFile">Choose Video</label>
+                <input id="videoFile"
+                       type="file"
+                       accept="video/mp4,video/webm,video/ogg"
+                       required>
+
+                <button class="gold" type="submit">
+                    Upload Video
+                </button>
+            </form>
+
+            <p id="status" role="status"></p>
+        </section>
+
+        <section class="panel">
+            <h2>🎬 Manage Your Videos</h2>
+
+            <div id="videoGrid" class="video-grid"></div>
+        </section>
+
+    </section>
+
+</main>
+
+<footer>
+    <div class="rgb-bar" style="margin-bottom:20px"></div>
+    RGB Video Studio © 2026
+</footer>
+
+<script>
+/*
+  Supabase Project Settings থেকে URL ও Publishable Key বসাও।
+  Secret/service_role key কখনো HTML-এ বসাবে না।
+*/
+const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+const configured =
+    !SUPABASE_URL.startsWith("YOUR_") &&
+    !SUPABASE_KEY.startsWith("YOUR_");
+
+let db = null;
+let currentVideos = [];
+
+const $ = id => document.getElementById(id);
+
+function message(text) {
+    $("status").textContent = text;
+}
+
+function loginMessage(text) {
+    $("loginStatus").textContent = text;
+}
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+function showLoggedIn(loggedIn) {
+    $("loginPanel").classList.toggle("hidden", loggedIn);
+    $("dashboard").classList.toggle("hidden", !loggedIn);
+    $("logoutBtn").classList.toggle("hidden", !loggedIn);
+}
+
+async function checkAdmin() {
+    const { data: { user }, error } =
+        await db.auth.getUser();
+
+    if (error || !user) {
+        showLoggedIn(false);
+        return false;
+    }
+
+    const { data, error: adminError } = await db
+        .from("admins")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+    if (adminError || !data) {
+        showLoggedIn(false);
+        loginMessage("এই Account Admin হিসেবে অনুমোদিত নয়।");
+        return false;
+    }
+
+    showLoggedIn(true);
+    return true;
+}
+
+async function loadVideos() {
+    const { data, error } = await db
+        .from("videos")
+        .select("id,title,storage_path,views,created_at")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        message("Video load failed: " + error.message);
+        return;
+    }
+
+    currentVideos = data || [];
+
+    $("totalVideos").textContent =
+        currentVideos.length;
+
+    $("totalViews").textContent =
+        currentVideos.reduce(
+            (sum, video) => sum + Number(video.views || 0), 0
+        ).toLocaleString();
+
+    const grid = $("videoGrid");
+    grid.replaceChildren();
+
+    if (currentVideos.length === 0) {
+        grid.textContent = "এখনও কোনো ভিডিও যোগ করা হয়নি।";
+        return;
+    }
+
+    for (const item of currentVideos) {
+        const card = document.createElement("article");
+        card.className = "video-card";
+
+        const title = document.createElement("h3");
+        title.textContent = item.title;
+
+        const info = document.createElement("p");
+        info.className = "video-info";
+        info.textContent =
+            `Views: ${Number(item.views || 0).toLocaleString()}`;
+
+        const player = document.createElement("video");
+        player.controls = true;
+        player.preload = "metadata";
+        player.playsInline = true;
+
+        const { data: signed, error: signedError } =
+            await db.storage
+                .from("videos")
+                .createSignedUrl(item.storage_path, 3600);
+
+        if (!signedError && signed?.signedUrl) {
+            player.src = signed.signedUrl;
+        } else {
+            player.poster = "";
+            info.textContent += " • Video URL unavailable";
+        }
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "danger";
+        deleteBtn.textContent = "Delete Video";
+        deleteBtn.addEventListener("click", () => deleteVideo(item));
+
+        actions.appendChild(deleteBtn);
+
+        card.append(player, title, info, actions);
+        grid.appendChild(card);
+    }
+}
+
+$("loginForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if (!db) {
+        loginMessage("আগে Supabase Project URL ও Publishable Key বসাও।");
+        return;
+    }
+
+    loginMessage("Logging in...");
+
+    const { error } = await db.auth.signInWithPassword({
+        email: $("email").value.trim(),
+        password: $("password").value
+    });
+
+    if (error) {
+        loginMessage("Login failed: " + error.message);
+        return;
+    }
+
+    if (await checkAdmin()) {
+        loginMessage("");
+        await loadVideos();
+    }
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+    await db.auth.signOut();
+    showLoggedIn(false);
+    loginMessage("You have logged out.");
+});
+
+$("uploadForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if (!(await checkAdmin())) return;
+
+    const file = $("videoFile").files[0];
+    const title = $("videoTitle").value.trim();
+
+    if (!file || !title) return;
+
+    // Storage ও bandwidth সীমা অনুযায়ী নিজের limit নির্ধারণ করো।
+    if (file.size > 100 * 1024 * 1024) {
+        message("এই Demo-তে সর্বোচ্চ 100 MB ফাইল নেওয়া হচ্ছে।");
+        return;
+    }
+
+    const allowedTypes = [
+        "video/mp4",
+        "video/webm",
+        "video/ogg"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+        message("MP4, WebM অথবা OGG ভিডিও নির্বাচন করো।");
+        return;
+    }
+
+    message("Uploading video...");
+
+    const path = crypto.randomUUID() + "-" +
+        file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+
+    const { error: uploadError } = await db.storage
+        .from("videos")
+        .upload(path, file, {
+            contentType: file.type,
+            upsert: false
+        });
+
+    if (uploadError) {
+        message("Upload failed: " + uploadError.message);
+        return;
+    }
+
+    const { error: insertError } = await db
+        .from("videos")
+        .insert({
+            title,
+            storage_path: path,
+            views: 0
+        });
+
+    if (insertError) {
+        // Database insert ব্যর্থ হলে orphaned file পরিষ্কার করার চেষ্টা।
+        await db.storage.from("videos").remove([path]);
+        message("Database error: " + insertError.message);
+        return;
+    }
+
+    $("uploadForm").reset();
+    message("Video uploaded successfully!");
+    await loadVideos();
+});
+
+async function deleteVideo(item) {
+    if (!(await checkAdmin())) return;
+
+    if (!confirm(`"${item.title}" ভিডিওটি Delete করবে?`)) {
+        return;
+    }
+
+    message("Deleting video...");
+
+    const { error: storageError } = await db.storage
+        .from("videos")
+        .remove([item.storage_path]);
+
+    if (storageError) {
+        message("Storage delete failed: " + storageError.message);
+        return;
+    }
+
+    const { error: dbError } = await db
+        .from("videos")
+        .delete()
+        .eq("id", item.id);
+
+    if (dbError) {
+        message("Database delete failed: " + dbError.message);
+        return;
+    }
+
+    message("Video deleted.");
+    await loadVideos();
+}
+
+async function startApp() {
+    if (!configured) {
+        showLoggedIn(false);
+        loginMessage(
+            "Supabase URL ও Publishable Key বসানোর পর Login চালু হবে।"
+        );
+        return;
+    }
+
+    db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    db.auth.onAuthStateChange((event, session) => {
+        // Auth callback-এর ভিতরে সরাসরি Supabase query না চালিয়ে
+        // callback শেষ হওয়ার পর আলাদা task-এ কাজ করি।
+        setTimeout(async () => {
+            if (!session) {
+                showLoggedIn(false);
+                return;
+            }
+
+            if (await checkAdmin()) {
+                await loadVideos();
+            }
+        }, 0);
+    });
+
+    if (await checkAdmin()) {
+        await loadVideos();
+    }
+}
+
+startApp();
+</script>
+
+</body>
+</html>
