@@ -1,61 +1,300 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>COROSSS D JAY — My Music Zone</title>
-<meta name="theme-color" content="#080808">
-<style>
-:root{--gold:#f7c948;--bg:#080808;--panel:#121212;--muted:#aaa;--line:#38301a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#211b08 0,#080808 48%);color:#f7f7f7;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}a{color:var(--gold)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid #8d6c14;border-radius:10px;background:var(--gold);color:#111;font-weight:800;padding:10px 14px}button.secondary{background:#191919;color:#f8d66e;border-color:#5b4816}button.danger{background:#351515;color:#ffbcbc;border-color:#7a3333}.wrap{width:min(1100px,94%);margin:auto}.top{padding:25px 0 18px;border-bottom:1px solid var(--line);text-align:center}.brand{color:var(--gold);font-weight:1000;letter-spacing:.12em;font-size:clamp(1.8rem,5vw,3.4rem);text-shadow:0 0 24px #d6a52644}.sub{color:#d8d1b8;letter-spacing:.2em;font-size:.8rem}.hero{margin:24px 0;padding:26px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#17140b,#0b0b0b 60%);text-align:center}.hero h1{margin:0 0 8px;color:#fff}.hero h1 span{color:var(--gold)}.hero p{color:var(--muted);margin:0}.controls{display:grid;grid-template-columns:1fr 190px;gap:10px;margin:20px 0}.field{width:100%;padding:12px;border-radius:10px;border:1px solid #4c4226;background:#111;color:white}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:28px 0 14px}.section-title h2{margin:0;color:var(--gold)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.card{background:linear-gradient(160deg,#181818,#0e0e0e);border:1px solid var(--line);border-radius:16px;padding:13px;min-width:0}.thumb{height:150px;width:100%;object-fit:cover;background:#050505;border-radius:10px;border:1px solid #292317}.placeholder{height:150px;border-radius:10px;background:linear-gradient(135deg,#29210c,#101010);display:grid;place-items:center;color:var(--gold);font-size:2rem}.card h3{margin:12px 0 5px;overflow-wrap:anywhere}.meta{color:var(--muted);font-size:.85rem;margin-bottom:12px}.player{width:100%;margin:8px 0}.card-actions{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-block;border:1px solid #4b3c16;color:#f5d46e;border-radius:99px;padding:3px 8px;font-size:.72rem}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #51431e;border-radius:14px}.admin{margin:34px 0 24px;border:1px solid #51431e;background:#0f0f0f;border-radius:18px;padding:18px}.admin h2{color:var(--gold);margin-top:0}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.row>*{min-width:0}.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:12px 0}.hidden{display:none!important}.status{min-height:1.4em;color:#f4d26d;font-size:.9rem}.footer{text-align:center;color:#777;border-top:1px solid var(--line);padding:25px 0;margin-top:35px;font-size:.85rem}.video{width:100%;max-height:320px;background:#000;border-radius:10px}.small{font-size:.8rem;color:#aaa;line-height:1.5}.admin-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #2d281b;padding:12px 0}.admin-item strong{overflow-wrap:anywhere}.badge{color:#9be3ad;font-size:.75rem}@media(max-width:600px){.controls,.row{grid-template-columns:1fr}.hero{padding:20px 14px}.section-title{align-items:flex-start;flex-direction:column}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070d">
+  <title>CROSSS D JAY | Music & Video</title>
+  <style>
+    :root {
+      --bg:#05070d; --panel:#0c111d; --panel2:#101827; --white:#f5f7ff;
+      --muted:#aeb8cc; --gold:#f5c451; --blue:#37a8ff; --line:#263349;
+      --rainbow:linear-gradient(110deg,#ff3b6b,#ff9d38,#ffe45c,#42f58d,#31c8ff,#8a65ff,#ff4fd8);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at top,#12203a 0,#05070d 45%,#020308 100%);color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 15% 15%,#1677ff12,transparent 28%),radial-gradient(circle at 85% 25%,#ffbf3f0c,transparent 28%)}
+    a{color:inherit}
+    .rgb-line{height:4px;background:var(--rainbow);background-size:300% 100%;animation:rainbow 6s linear infinite;box-shadow:0 0 18px #38bfff66}
+    @keyframes rainbow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+    @keyframes glow{0%,100%{filter:drop-shadow(0 0 5px #36b7ff55)}50%{filter:drop-shadow(0 0 12px #ffce5b88)}}
+    header{position:sticky;top:0;z-index:20;background:#05070de8;backdrop-filter:blur(16px);border-bottom:1px solid #253047}
+    .nav{max-width:1180px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+    .headphone{width:48px;height:48px;flex:0 0 auto;display:grid;place-items:center;border-radius:15px;border:1px solid #f5c45188;background:linear-gradient(145deg,#17243b,#070a12);box-shadow:0 0 20px #228dff25;animation:glow 4s ease-in-out infinite}
+    .headphone svg{width:31px;height:31px;stroke:var(--gold);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .brand-title{font-weight:1000;letter-spacing:1.3px;font-size:clamp(17px,3vw,24px);line-height:1}
+    .brand-title span{background:var(--rainbow);background-size:300%;animation:rainbow 6s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
+    .brand-sub{font-size:10px;color:#aeb8cc;letter-spacing:3px;margin-top:6px}
+    .navlinks{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .navlinks a,.navlinks button{font:inherit;font-size:13px;text-decoration:none;color:#dce7fa;background:#111a2a;border:1px solid #293950;border-radius:10px;padding:9px 12px;cursor:pointer}
+    .navlinks a:hover,.navlinks button:hover{border-color:var(--blue);box-shadow:0 0 14px #228dff25}
+    main{max-width:1180px;margin:auto;padding:24px 20px 70px}
+    .hero{position:relative;overflow:hidden;border:1px solid #2d405b;border-radius:26px;padding:clamp(25px,6vw,62px);background:linear-gradient(120deg,#0b1424f2,#0b0f1af2 60%,#17213a);box-shadow:0 18px 60px #0008}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;right:-50px;top:-85px;border-radius:50%;border:1px solid #37a8ff44;box-shadow:0 0 0 25px #37a8ff08,0 0 0 55px #f5c45108}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #f5c45166;color:var(--gold);background:#f5c4510c;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:2px}
+    .hero h1{font-size:clamp(36px,7vw,76px);line-height:.98;letter-spacing:-2px;margin:20px 0 14px;max-width:780px}
+    .hero h1 span{background:var(--rainbow);background-size:300%;animation:rainbow 6s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{color:#b6c2d8;max-width:610px;line-height:1.7;margin:0 0 23px}
+    .btn{border:0;border-radius:12px;padding:12px 17px;font-weight:850;cursor:pointer;color:#06101c;background:linear-gradient(120deg,var(--gold),#fff0ad);box-shadow:0 5px 20px #f5c45120}
+    .btn.blue{background:linear-gradient(120deg,#37a8ff,#a3dcff);color:#04101c}
+    .btn.ghost{background:#111a2a;color:#edf4ff;border:1px solid #33435b;box-shadow:none}
+    .btn.danger{background:#391522;color:#ffc4d1;border:1px solid #6d293e;box-shadow:none}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:34px 0 16px;flex-wrap:wrap}
+    .section-head h2{font-size:24px;margin:0;letter-spacing:-.5px}
+    .section-head p{color:var(--muted);font-size:13px;margin:6px 0 0}
+    .controls{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+    input,select{font:inherit;color:var(--white);background:#0b1220;border:1px solid #2c3a51;border-radius:11px;padding:12px 13px;outline:none;min-width:0}
+    input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #37a8ff16}
+    .controls input{flex:1;min-width:190px}
+    .controls select{min-width:145px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+    .card{min-width:0;border:1px solid #27364c;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#111a29,#090d16);box-shadow:0 12px 30px #0004;transition:transform .2s,border-color .2s}
+    .card:hover{transform:translateY(-3px);border-color:#378fce}
+    .thumb{height:170px;background:radial-gradient(circle at 50% 35%,#16375d,#090d16 70%);display:grid;place-items:center;position:relative;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .thumb .big-headphone{font-size:48px;filter:drop-shadow(0 0 15px #37a8ff66)}
+    .type-pill{position:absolute;top:11px;left:11px;border:1px solid #ffffff24;background:#05070dc9;border-radius:8px;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:1px}
+    .card-body{padding:15px}
+    .card h3{margin:0 0 8px;font-size:17px;overflow-wrap:anywhere}
+    .meta{font-size:12px;color:#9eacc3;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:13px}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .card-actions .btn{padding:9px 12px;font-size:12px}
+    .empty{grid-column:1/-1;border:1px dashed #34445c;border-radius:18px;padding:36px 18px;text-align:center;color:#aeb8cc;background:#0b111c}
+    .empty .symbol{font-size:32px;margin-bottom:9px}
+    .panel{margin-top:28px;border:1px solid #2b3b53;background:linear-gradient(160deg,#101827,#080c14);border-radius:20px;padding:22px}
+    .panel h2{margin:0 0 8px;font-size:21px}
+    .muted{color:var(--muted);font-size:13px;line-height:1.6}
+    .login-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:15px}
+    .admin-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}
+    .upload-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-top:14px}
+    .upload-form label{display:grid;gap:7px;color:#c5d0e2;font-size:12px}
+    .upload-form .wide{grid-column:1/-1}
+    .file-input{padding:9px}
+    .notice{display:none;margin-top:12px;border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.5}
+    .notice.show{display:block}.notice.ok{color:#b7ffd5;background:#0d2a20;border:1px solid #1b694b}.notice.err{color:#ffd0d9;background:#2c111b;border:1px solid #713046}
+    .status{display:inline-flex;align-items:center;gap:7px;color:#9cebc1;font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:#4ce49a;box-shadow:0 0 10px #4ce49a}
+    footer{border-top:1px solid #202c40;padding:24px 20px;color:#8594ad;text-align:center;font-size:12px}
+    .footer-brand{color:var(--gold);font-weight:900;letter-spacing:2px}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.login-form{grid-template-columns:1fr 1fr}.login-form button{grid-column:1/-1}}
+    @media(max-width:560px){.nav{padding:10px 13px}.headphone{width:41px;height:41px}.brand-sub{letter-spacing:1.5px;font-size:9px}.navlinks a{display:none}.navlinks button{padding:8px 10px}.hero{border-radius:20px}.hero h1{letter-spacing:-1px}.grid{grid-template-columns:1fr}.thumb{height:190px}.login-form,.upload-form{grid-template-columns:1fr}.upload-form .wide{grid-column:auto}.section-head{align-items:start}}
+  </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><div class="brand">COROSSS D JAY</div><div class="sub">MY MUSIC ZONE • BLACK & GOLD CLUB MIX</div></div></header>
-<main class="wrap">
-<section class="hero"><h1>Feel the <span>Beat</span></h1><p>Music • Mixes • Videos — press play and enjoy.</p></section>
-<div class="controls"><input id="search" class="field" type="search" placeholder="Search music and videos…" aria-label="Search media"><select id="categoryFilter" class="field" aria-label="Filter category"><option value="all">All categories</option><option>Club Mix</option><option>Promo</option><option>Music</option><option>Video</option><option>Other</option></select></div>
-<div class="section-title"><h2>🎧 Music & Videos</h2><span id="resultCount" class="pill">Loading…</span></div>
-<div id="mediaGrid" class="grid"></div><div id="empty" class="empty hidden">No media found. Try another search or category.</div>
-<section class="admin" id="adminPanel"><h2>🔐 Admin Panel</h2><p class="small">Only the configured admin account can upload or manage Supabase media. Public visitors do not need to sign in.</p>
-<div id="loginBox"><div class="formgrid"><input id="email" class="field" type="email" autocomplete="username" placeholder="Admin email"><input id="password" class="field" type="password" autocomplete="current-password" placeholder="Password"></div><button id="loginBtn">Admin Login</button> <button id="resetBtn" class="secondary">Forgot password?</button></div>
-<div id="adminTools" class="hidden"><div class="section-title"><h3>Upload new media</h3><button id="logoutBtn" class="secondary">Log out</button></div>
-<div class="formgrid"><input id="title" class="field" placeholder="Title" maxlength="120"><select id="type" class="field"><option value="audio">Audio / Music</option><option value="video">Video</option></select><select id="category" class="field"><option>Club Mix</option><option>Promo</option><option>Music</option><option>Video</option><option>Other</option></select><input id="mediaFile" class="field" type="file" accept="audio/*,video/mp4,video/webm"><input id="thumbFile" class="field" type="file" accept="image/*"><label class="small"><input id="isPublic" type="checkbox" checked> Show this item publicly</label></div><button id="uploadBtn">Upload media</button><p id="adminStatus" class="status" role="status"></p><h3>Manage uploaded items</h3><div id="adminList"></div></div>
-<div id="setupNotice" class="small"></div></section>
-</main><footer class="footer">© <span id="year"></span> COROSSS D JAY • MY MUSIC ZONE</footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-// Public browser settings only. Never put a Supabase service-role/secret key here.
-const SUPABASE_URL = 'https://odwyrnncykhjlqgkwnjk.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ';
-const ADMIN_UID = '61187c1a-8f1b-48b0-893c-77136be5422a';
-const BUCKET = 'media';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-const $ = id => document.getElementById(id);
-let sessionUser = null, allItems = [];
-$('year').textContent = new Date().getFullYear();
-const localVideos = [
- {id:'local-pt1',title:'DJ MARWEN MIX PROMO (PT1)',category:'Promo',media_type:'video',local_src:'./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4',views:null},
- {id:'local-pt2',title:'DJ MARWEN MIX PROMO (PT2)',category:'Promo',media_type:'video',local_src:'./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4',views:null}
-];
-function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function setStatus(msg){$('adminStatus').textContent=msg;}
-async function getSignedUrl(path, countView=false){const r=await fetch(`${SUPABASE_URL}/functions/v1/public-media-url`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({path})});const j=await r.json();if(!r.ok)throw new Error(j.error||'Could not load private file');return j.url;}
-async function fetchPublicMedia(){
- const {data,error}=await supabase.from('media_library').select('id,title,category,media_type,storage_path,thumbnail_path,views,created_at').eq('is_public',true).order('created_at',{ascending:false});
- if(error){$('setupNotice').textContent='Supabase media table is not set up yet. The two GitHub-hosted videos can still appear below. Follow SETUP.md in the project package to enable admin uploads and private media.';allItems=[...localVideos];render();return;}
- $('setupNotice').textContent='';allItems=[...localVideos,...(data||[])];for(const item of allItems){if(item.thumbnail_path){try{item._thumbUrl=await getSignedUrl(item.thumbnail_path,false);}catch(_){item._thumbUrl='';}}}render();
-}
-function render(){const q=$('search').value.trim().toLowerCase(),cat=$('categoryFilter').value;const items=allItems.filter(x=>(x.title||'').toLowerCase().includes(q)||(x.category||'').toLowerCase().includes(q)&&(cat==='all'||x.category===cat)).filter(x=>cat==='all'||x.category===cat);$('resultCount').textContent=items.length+' item'+(items.length===1?'':'s');$('empty').classList.toggle('hidden',items.length>0);$('mediaGrid').innerHTML=items.map(x=>{const isLocal=!!x.local_src;const thumb=x._thumbUrl||'';const title=esc(x.title);let player='';if(x.media_type==='video'){player=isLocal?`<video class="video" controls preload="metadata" playsinline src="${x.local_src}"></video>`:`<button class="secondary playBtn" data-id="${esc(x.id)}">▶ Load & play video</button><div class="playTarget" id="target-${esc(x.id)}"></div>`;}else{player=isLocal?`<audio class="player" controls preload="metadata" src="${x.local_src}"></audio>`:`<button class="secondary playBtn" data-id="${esc(x.id)}">▶ Load & play audio</button><div class="playTarget" id="target-${esc(x.id)}"></div>`;}return `<article class="card">${thumb?`<img class="thumb" src="${thumb}" alt="${title} thumbnail" loading="lazy">`:`<div class="placeholder">${x.media_type==='video'?'▶':'♫'}</div>`}<h3>${title}</h3><div class="meta"><span class="pill">${esc(x.category||'Other')}</span> &nbsp; ${x.media_type==='video'?'Video':'Audio'} ${x.views!=null?` • ${Number(x.views)} plays`:''}</div>${player}</article>`}).join('');}
-$('search').addEventListener('input',render);$('categoryFilter').addEventListener('change',render);
-$('mediaGrid').addEventListener('click',async e=>{const b=e.target.closest('.playBtn');if(!b)return;const item=allItems.find(x=>x.id===b.dataset.id);if(!item)return;b.disabled=true;b.textContent='Loading…';try{const mediaUrl=await getSignedUrl(item.storage_path,true);const target=$('target-'+item.id);target.innerHTML=item.media_type==='video'?`<video class="video" controls autoplay playsinline src="${mediaUrl}"></video>`:`<audio class="player" controls autoplay src="${mediaUrl}"></audio>`;item.views=(item.views||0)+1;}catch(err){alert('Could not play this item. Check that Supabase setup is complete. '+err.message);b.disabled=false;b.textContent='▶ Load & play';}});
-async function refreshAuth(){const {data}=await supabase.auth.getSession();sessionUser=data.session?.user||null;const isAdmin=!!sessionUser&&sessionUser.id===ADMIN_UID;$('loginBox').classList.toggle('hidden',isAdmin);$('adminTools').classList.toggle('hidden',!isAdmin);if(sessionUser&&!isAdmin){$('loginBox').classList.remove('hidden');$('adminTools').classList.add('hidden');setStatus('This account is not the configured admin.');await supabase.auth.signOut();sessionUser=null;}if(isAdmin){setStatus('Signed in as admin.');await loadAdminList();}}
-$('loginBtn').onclick=async()=>{setStatus('Signing in…');const {data,error}=await supabase.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){setStatus(error.message);return;}if(data.user?.id!==ADMIN_UID){await supabase.auth.signOut();setStatus('Access denied: this account is not the configured admin.');return;}await refreshAuth();};
-$('logoutBtn').onclick=async()=>{await supabase.auth.signOut();await refreshAuth();};
-$('resetBtn').onclick=async()=>{const email=$('email').value.trim();if(!email){setStatus('Enter your admin email first.');return;}const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});setStatus(error?error.message:'If the email is registered, a password reset email has been sent.');};
-$('uploadBtn').onclick=async()=>{if(!sessionUser||sessionUser.id!==ADMIN_UID)return setStatus('Please log in as admin.');const file=$('mediaFile').files[0];const title=$('title').value.trim();if(!file||!title)return setStatus('Enter a title and choose a media file.');const type=$('type').value;if(type==='audio'&&!file.type.startsWith('audio/'))return setStatus('Choose an audio file for Audio / Music.');if(type==='video'&&!file.type.startsWith('video/'))return setStatus('Choose a video file for Video.');if(file.size>100*1024*1024)return setStatus('File is over 100 MB. Choose a smaller file or configure resumable uploads.');$('uploadBtn').disabled=true;setStatus('Uploading…');let mediaPath=null,thumbPath=null;try{const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');mediaPath=`${sessionUser.id}/${crypto.randomUUID()}-${safe}`;let r=await supabase.storage.from(BUCKET).upload(mediaPath,file,{upsert:false,contentType:file.type||'application/octet-stream'});if(r.error)throw r.error;const thumb=$('thumbFile').files[0];if(thumb){thumbPath=`${sessionUser.id}/${crypto.randomUUID()}-${thumb.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;r=await supabase.storage.from(BUCKET).upload(thumbPath,thumb,{upsert:false,contentType:thumb.type});if(r.error)throw r.error;}const {error}=await supabase.from('media_library').insert({title,category:$('category').value,media_type:type,storage_path:mediaPath,thumbnail_path:thumbPath,is_public:$('isPublic').checked,views:0});if(error)throw error;setStatus('Upload successful!');$('title').value='';$('mediaFile').value='';$('thumbFile').value='';await fetchPublicMedia();await loadAdminList();}catch(err){if(mediaPath)await supabase.storage.from(BUCKET).remove([mediaPath]);if(thumbPath)await supabase.storage.from(BUCKET).remove([thumbPath]);setStatus(err.message||'Upload failed. Check SQL/storage policies.');}finally{$('uploadBtn').disabled=false;}};
-async function loadAdminList(){const {data,error}=await supabase.from('media_library').select('*').order('created_at',{ascending:false});if(error){$('adminList').innerHTML='<p class="small">Could not load admin list. Run the SQL setup first.</p>';return;}if(!data?.length){$('adminList').innerHTML='<p class="small">No uploaded items yet.</p>';return;}$('adminList').innerHTML=data.map(x=>`<div class="admin-item"><div><strong>${esc(x.title)}</strong><div class="small">${esc(x.category)} • ${x.media_type} • ${Number(x.views||0)} plays • ${x.is_public?'Public':'Hidden'}</div></div><div class="card-actions"><button class="secondary editBtn" data-id="${esc(x.id)}">Edit</button><button class="danger deleteBtn" data-id="${esc(x.id)}">Delete</button></div></div>`).join('');}
-$('adminList').addEventListener('click',async e=>{const edit=e.target.closest('.editBtn'),del=e.target.closest('.deleteBtn');if(edit){const item=await getAdminItem(edit.dataset.id);if(!item)return;const title=prompt('New title:',item.title);if(title===null)return;const category=prompt('Category:',item.category||'Other');if(category===null)return;const pub=confirm('Make this item public? Press Cancel to hide it.');let thumbnailPath=item.thumbnail_path;const picker=document.createElement('input');picker.type='file';picker.accept='image/*';picker.onchange=async()=>{try{if(picker.files[0]){const f=picker.files[0];const newPath=`${sessionUser.id}/${crypto.randomUUID()}-${f.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;const up=await supabase.storage.from(BUCKET).upload(newPath,f,{upsert:false,contentType:f.type});if(up.error)throw up.error;thumbnailPath=newPath;}const {error}=await supabase.from('media_library').update({title:title.trim()||item.title,category:category.trim()||'Other',is_public:pub,thumbnail_path:thumbnailPath}).eq('id',item.id);if(error)throw error;setStatus('Item updated.');await fetchPublicMedia();await loadAdminList();}catch(err){setStatus(err.message||'Update failed.');}};if(confirm('Choose a new thumbnail image? Press OK to choose one, Cancel to save title/category/visibility only.'))picker.click();else{const {error}=await supabase.from('media_library').update({title:title.trim()||item.title,category:category.trim()||'Other',is_public:pub}).eq('id',item.id);setStatus(error?error.message:'Item updated.');await fetchPublicMedia();await loadAdminList();}}if(del){const id=del.dataset.id;if(!confirm('Delete this uploaded media item permanently?'))return;const item=await getAdminItem(id);if(!item)return;const paths=[item.storage_path,item.thumbnail_path].filter(Boolean);const {error:dbErr}=await supabase.from('media_library').delete().eq('id',id);if(dbErr){setStatus(dbErr.message);return;}if(paths.length){const {error:stErr}=await supabase.storage.from(BUCKET).remove(paths);if(stErr)setStatus('Database row deleted, but storage cleanup failed: '+stErr.message);else setStatus('Deleted.');}await fetchPublicMedia();await loadAdminList();}});
-async function getAdminItem(id){const {data,error}=await supabase.from('media_library').select('*').eq('id',id).single();if(error){setStatus(error.message);return null;}return data;}
-supabase.auth.onAuthStateChange(()=>{setTimeout(refreshAuth,0)});
-render();fetchPublicMedia();refreshAuth();
-</script>
-</body></html>
+  <div class="rgb-line"></div>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#" aria-label="CROSSS D JAY home">
+        <span class="headphone" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 17v-3a11 11 0 0 1 22 0v3"/><rect x="4" y="16" width="6" height="10" rx="2"/><rect x="22" y="16" width="6" height="10" rx="2"/><path d="M26 26c-1 3-4 4-8 4"/></svg></span>
+        <span><div class="brand-title"><span>CROSSS D JAY</span></div><div class="brand-sub">MUSIC • MIX • VIBES</div></span>
+      </a>
+      <div class="navlinks">
+        <a href="#library">Music & Videos</a>
+        <a href="#admin">Admin</a>
+        <button type="button" id="refreshBtn">↻ Refresh</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">🎧 &nbsp; DJ MUSIC STATION &nbsp; • &nbsp; RGB MODE</div>
+      <h1>FEEL THE BEAT.<br><span>OWN THE VIBE.</span></h1>
+      <p>Welcome to CROSSS D JAY — your music and video corner with black, white, golden and electric-blue style, finished with rainbow RGB glow.</p>
+      <button class="btn" type="button" onclick="document.querySelector('#library').scrollIntoView({behavior:'smooth'})">▶ Explore Library</button>
+      <button class="btn blue" type="button" onclick="document.querySelector('#admin').scrollIntoView({behavior:'smooth'})">♛ Admin Login</button>
+    </section>
+
+    <section id="library">
+      <div class="section-head">
+        <div><h2>🎧 Music & Video Library</h2><p>Search a track, filter by type, then press Play.</p></div>
+        <span class="status"><span class="dot"></span><span id="libraryStatus">Loading library…</span></span>
+      </div>
+      <div class="controls">
+        <input id="searchInput" type="search" placeholder="🔎 Search title or file name…" aria-label="Search media">
+        <select id="typeFilter" aria-label="Filter by type"><option value="all">All media</option><option value="video">Videos</option><option value="audio">Music / Audio</option></select>
+        <select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option></select>
+      </div>
+      <div class="grid" id="mediaGrid">
+        <div class="empty"><div class="symbol">🎧</div>Loading media…</div>
+      </div>
+    </section>
+
+    <section class="panel" id="admin">
+      <h2>♛ Admin Control Room</h2>
+      <p class="muted">Admin login দিয়ে media upload, title/category edit, delete এবং view count manage করা যাবে। Visitor-রা শুধু media play করতে পারবে।</p>
+      <div id="loginArea">
+        <form id="loginForm" class="login-form">
+          <input id="adminEmail" type="email" placeholder="Admin email" autocomplete="username" required>
+          <input id="adminPassword" type="password" placeholder="Password" autocomplete="current-password" required>
+          <button class="btn" id="loginBtn" type="submit">Login</button>
+        </form>
+      </div>
+      <div id="adminArea" hidden>
+        <div class="admin-bar">
+          <span class="status"><span class="dot"></span>Logged in as Admin</span>
+          <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+        </div>
+        <form id="uploadForm" class="upload-form">
+          <label>Media file (MP3, WAV, MP4, WEBM)
+            <input class="file-input" id="mediaFile" type="file" accept="audio/*,video/mp4,video/webm,video/ogg" required>
+          </label>
+          <label>Display title
+            <input id="mediaTitle" type="text" maxlength="120" placeholder="Track title" required>
+          </label>
+          <label>Category
+            <input id="mediaCategory" type="text" maxlength="50" placeholder="e.g. DJ Mix, Remix, Promo" value="DJ Mix" required>
+          </label>
+          <label>Thumbnail image (optional)
+            <input class="file-input" id="thumbnailFile" type="file" accept="image/*">
+          </label>
+          <label class="wide">Or thumbnail image URL (optional)
+            <input id="thumbnailUrl" type="url" placeholder="https://…">
+          </label>
+          <button class="btn blue wide" id="uploadBtn" type="submit">⬆ Upload Media</button>
+        </form>
+      </div>
+      <div id="notice" class="notice" role="status"></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-brand">🎧 CROSSS D JAY 🎧</div><p>BLACK • WHITE • GOLD • BLUE • RGB RAINBOW</p><span>Made for music lovers.</span></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Supabase project configuration. A publishable/anon key is safe for browser use
+    // only when Row Level Security and Storage policies are configured correctly.
+    const SUPABASE_URL = 'https://odwyrnncykhjlqgkwnjk.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ';
+    const ADMIN_UID = '61187c1a-8f1b-48b0-893c-77136be5422a';
+    const BUCKET = 'media';
+
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+    const grid = document.getElementById('mediaGrid');
+    const notice = document.getElementById('notice');
+    let allMedia = [];
+    let currentUser = null;
+
+    function showNotice(message, type='ok') {
+      notice.textContent = message;
+      notice.className = 'notice show ' + type;
+    }
+    function hideNotice() { notice.className = 'notice'; notice.textContent = ''; }
+    function safeText(value) {
+      return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function isVideo(item) {
+      const text = `${item.media_type || ''} ${item.file_name || ''} ${item.title || ''}`.toLowerCase();
+      return item.media_type === 'video' || /\.(mp4|webm|ogg|mov|m4v)(\?|$)/i.test(text);
+    }
+    function mediaIcon(item) { return isVideo(item) ? '▶' : '♫'; }
+    function getDisplayUrl(item) { return item.signed_url || item.source_url || ''; }
+
+    async function fetchMedia() {
+      document.getElementById('libraryStatus').textContent = 'Loading library…';
+      try {
+        const { data, error } = await supabaseClient.from('media_items')
+          .select('id,file_name,title,category,thumbnail_url,media_type,views,created_at')
+          .order('created_at', { ascending: false });
+        if (error) throw error;
+        const items = data || [];
+        const signedItems = await Promise.all(items.map(async item => {
+          if (item.source_url) return item;
+          const { data: signed, error: signError } = await supabaseClient.storage.from(BUCKET).createSignedUrl(item.file_name, 3600);
+          return { ...item, signed_url: signError ? '' : signed?.signedUrl || '' };
+        }));
+        allMedia = signedItems;
+        populateCategories();
+        renderMedia();
+        document.getElementById('libraryStatus').textContent = `${allMedia.length} item(s)`;
+      } catch (error) {
+        allMedia = [];
+        renderMedia();
+        document.getElementById('libraryStatus').textContent = 'Could not load';
+        showNotice('Library load error: ' + (error.message || 'Check Supabase table and policies.'), 'err');
+      }
+    }
+
+    function populateCategories() {
+      const select = document.getElementById('categoryFilter');
+      const selected = select.value;
+      const categories = [...new Set(allMedia.map(m => m.category).filter(Boolean))].sort();
+      select.innerHTML = '<option value="all">All categories</option>' + categories.map(c => `<option value="${safeText(c)}">${safeText(c)}</option>`).join('');
+      if (categories.includes(selected)) select.value = selected;
+    }
+
+    function renderMedia() {
+      const term = document.getElementById('searchInput').value.trim().toLowerCase();
+      const type = document.getElementById('typeFilter').value;
+      const category = document.getElementById('categoryFilter').value;
+      const visible = allMedia.filter(item => {
+        const matchesTerm = `${item.title || ''} ${item.file_name || ''} ${item.category || ''}`.toLowerCase().includes(term);
+        const matchesType = type === 'all' || (type === 'video' ? isVideo(item) : !isVideo(item));
+        const matchesCategory = category === 'all' || item.category === category;
+        return matchesTerm && matchesType && matchesCategory;
+      });
+      if (!visible.length) {
+        grid.innerHTML = `<div class="empty"><div class="symbol">🎧</div><strong>No media found yet.</strong><br><span class="muted">Admin login করে media upload করো, অথবা search/filter change করো.</span></div>`;
+        return;
+      }
+      grid.innerHTML = visible.map(item => {
+        const video = isVideo(item);
+        const thumb = item.thumbnail_url ? `<img src="${safeText(item.thumbnail_url)}" alt="">` : `<span class="big-headphone">${video ? '🎬' : '🎧'}</span>`;
+        const url = getDisplayUrl(item);
+        const playControl = url
+          ? (video
+            ? `<video controls preload="none" playsinline src="${safeText(url)}" style="width:100%;max-height:230px;background:#000" data-view-id="${safeText(item.id)}"></video>`
+            : `<audio controls preload="none" src="${safeText(url)}" style="width:100%" data-view-id="${safeText(item.id)}"></audio>`)
+          : `<p class="muted">Can't create playback link. Check Storage SELECT policy.</p>`;
+        const adminButtons = currentUser && currentUser.id === ADMIN_UID
+          ? `<button class="btn ghost" data-edit="${safeText(item.id)}" type="button">✎ Edit</button><button class="btn danger" data-delete="${safeText(item.id)}" type="button">Delete</button>` : '';
+        return `<article class="card">
+          <div class="thumb">${thumb}<span class="type-pill">${video ? 'VIDEO' : 'AUDIO'}</span></div>
+          <div class="card-body">
+            <h3>${safeText(item.title || item.file_name)}</h3>
+            <div class="meta"><span>▣ ${safeText(item.category || 'Uncategorized')}</span><span>◉ ${Number(item.views || 0)} views</span></div>
+            ${playControl}
+            <div class="card-actions" style="margin-top:12px">${adminButtons}</div>
+          </div>
+        </article>`;
+      }).join('');
+      grid.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteMedia(btn.dataset.delete)));
+      grid.querySelectorAll('[data-edit]').forEach(btn => btn.addEventListener('click', () => editMedia(btn.dataset.edit)));
+      grid.querySelectorAll('[data-view-id]').forEach(player => {
+        player.addEventListener('play', () => incrementView(player.dataset.viewId), { once: true });
+      });
+    }
+
+    async function incrementView(id) {
+      try {
+        const { error } = await supabaseClient.rpc('increment_media_view', { media_item_id: id });
+        if (!error) {
+          const item = allMedia.find(m => m.id === id);
+          if (item) item.views = Number(item.views || 0) + 1;
+          // Update only view text on next render would reset playback, so leave current player running.
+        }
+      } catch (_) {}
+    }
+
+    async function syncAuth() {
+      const { data } = await supabaseClient.auth.getSession();
+      currentUser = data?.session?.user || null;
+      updateAdminUI();
+      await fetchMedia();
+    }
+    function updateAdminUI() {
+      const isAdmin = !!currentUser && currentUser.id === ADMIN_UID;
+      document.getElementById('loginArea').hidden = isAdmin;
+      document.getElementById('adminArea').hidden = !isAdmin;
+      if (currentUser && !isAdmin) {
+        showNotice('এই account Admin UID নয়। Admin account দিয়ে login করো.', 'err');
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      hideNotice();
+      const btn = document.getElementById('loginBtn');
+   
