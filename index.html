@@ -1,685 +1,854 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08000f">
+<title>COROSSS D JAY | MY MUSIC ZONE</title>
 
-  <title>COROSSS D JAY | MY MUSIC ZONE</title>
-  <meta name="theme-color" content="#080812">
-  <meta name="description" content="COROSSS D JAY - Cyberpunk Music and Video Zone">
+<style>
+:root {
+  --bg: #08000f;
+  --panel: rgba(19, 8, 32, .88);
+  --white: #fff;
+  --muted: #c6b7d8;
+  --pink: #ff00d4;
+  --blue: #00eaff;
+  --green: #39ff88;
+  --yellow: #faff00;
+  --purple: #a855ff;
+}
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+* { box-sizing: border-box; }
 
-  <style>
-    :root {
-      --bg: #080812;
-      --panel: #121225;
-      --pink: #ff00d4;
-      --blue: #00eaff;
-      --purple: #9b5cff;
-      --text: #f8f5ff;
-      --muted: #bcb9d0;
-      --border: #00eaff55;
-    }
+html { scroll-behavior: smooth; }
 
-    * {
-      box-sizing: border-box;
-    }
+body {
+  margin: 0;
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(ellipse at 10% 5%, #3c0055 0, transparent 32%),
+    radial-gradient(ellipse at 90% 25%, #001e50 0, transparent 35%),
+    radial-gradient(ellipse at 50% 90%, #3c002a 0, transparent 35%),
+    var(--bg);
+  overflow-x: hidden;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .13;
+  background-image:
+    linear-gradient(rgba(0,234,255,.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,0,212,.35) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
 
-    body {
-      margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(ellipse at top, #241044 0%, transparent 55%),
-        var(--bg);
-      font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-    }
+a { color: inherit; text-decoration: none; }
 
-    header {
-      padding: 35px 16px;
-      text-align: center;
-      border-bottom: 1px solid #ff00d455;
-      box-shadow: 0 0 25px #ff00d422;
-    }
+button, input, select { font: inherit; }
 
-    header h1 {
-      margin: 0;
-      color: var(--blue);
-      font-size: clamp(28px, 6vw, 48px);
-      text-shadow: 0 0 16px #00eaff88;
-      overflow-wrap: anywhere;
-    }
+button { cursor: pointer; }
 
-    header p {
-      margin-top: 12px;
-      color: var(--pink);
-      letter-spacing: 3px;
-      font-size: 12px;
-    }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 6%;
+  background: rgba(8,0,15,.88);
+  border-bottom: 1px solid rgba(255,0,212,.55);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 4px 28px #ff00d425;
+}
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 18px 10px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #080812ee;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #00eaff22;
-    }
+.brand {
+  font-weight: 1000;
+  letter-spacing: 2px;
+  font-size: 18px;
+  background: linear-gradient(90deg, var(--blue), var(--pink), var(--yellow), var(--green));
+  background-size: 300% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: rainbow 5s linear infinite;
+}
 
-    nav a,
-    button {
-      display: inline-block;
-      padding: 11px 16px;
-      border: 1px solid var(--blue);
-      border-radius: 8px;
-      color: var(--blue);
-      background: #111124;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 13px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: bold;
+}
 
-    nav a:hover,
-    button:hover {
-      color: #080812;
-      background: var(--blue);
-      box-shadow: 0 0 16px #00eaff66;
-    }
+nav a {
+  transition: .25s;
+}
 
-    button:disabled {
-      opacity: 0.55;
-      cursor: wait;
-    }
+nav a:hover { color: var(--blue); }
 
-    main {
-      width: min(1050px, 92%);
-      margin: 24px auto 55px;
-    }
+.hero {
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 75px 20px 65px;
+  position: relative;
+  overflow: hidden;
+}
 
-    .hero {
-      padding: 35px 15px;
-      text-align: center;
-    }
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .28;
+  pointer-events: none;
+  animation: pulse 4s ease-in-out infinite alternate;
+}
 
-    .hero h2 {
-      color: var(--pink);
-      font-size: clamp(26px, 5vw, 42px);
-      text-shadow: 0 0 15px #ff00d455;
-    }
+.hero::before {
+  background: var(--pink);
+  top: 12%;
+  left: -140px;
+}
 
-    .hero p {
-      color: var(--muted);
-      line-height: 1.8;
-    }
+.hero::after {
+  background: var(--blue);
+  bottom: 5%;
+  right: -140px;
+  animation-delay: 1.5s;
+}
 
-    .panel {
-      margin: 24px 0;
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: #121225ed;
-      box-shadow: 0 0 20px #00eaff12;
-      scroll-margin-top: 90px;
-    }
+.eyebrow {
+  color: var(--green);
+  letter-spacing: 5px;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
 
-    .panel h2 {
-      color: var(--blue);
-      margin-top: 0;
-    }
+.hero h1 {
+  position: relative;
+  margin: 22px 0 12px;
+  font-size: clamp(42px, 10vw, 100px);
+  font-weight: 1000;
+  line-height: .98;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  color: white;
+  text-shadow:
+    0 0 8px var(--pink),
+    0 0 25px #ff00d4a8,
+    0 0 65px #00eaff62;
+}
 
-    .subtitle {
-      color: var(--muted);
-      line-height: 1.7;
-    }
+.hero h1 span {
+  display: block;
+  background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink), var(--yellow), var(--green));
+  background-size: 300% 300%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: rainbow 6s linear infinite;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
-      gap: 16px;
-      margin-top: 18px;
-    }
+.subtitle {
+  max-width: 600px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 15px;
+}
 
-    .media-card {
-      min-width: 0;
-      padding: 15px;
-      border: 1px solid #ff00d455;
-      border-radius: 12px;
-      background: #090916;
-      overflow-wrap: anywhere;
-    }
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 25px;
+  position: relative;
+}
 
-    .media-card h3 {
-      color: var(--pink);
-      font-size: 16px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 22px;
+  border: 1px solid var(--pink);
+  border-radius: 8px;
+  color: white;
+  background: linear-gradient(120deg, #ff00d42b, #00eaff1a);
+  box-shadow: 0 0 18px #ff00d42a;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: transform .25s, box-shadow .25s;
+}
 
-    audio,
-    video {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      margin-top: 10px;
-      border-radius: 8px;
-    }
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #ff00d4a0, 0 0 45px #00eaff35;
+}
 
-    video {
-      background: #000;
-    }
+.btn.primary {
+  color: #08000f;
+  background: linear-gradient(100deg, var(--blue), var(--green));
+  border: 0;
+  box-shadow: 0 0 25px #00eaff55;
+}
 
-    input {
-      display: block;
-      width: 100%;
-      margin: 12px 0;
-      padding: 13px;
-      color: var(--text);
-      background: #080812;
-      border: 1px solid #555577;
-      border-radius: 8px;
-    }
+.btn.small {
+  padding: 9px 13px;
+  font-size: 11px;
+}
 
-    input[type="file"] {
-      border: 1px dashed var(--pink);
-    }
+.equalizer {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 6px;
+  height: 75px;
+  margin: 32px 0 8px;
+}
 
-    .hint {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
+.equalizer span {
+  width: 8px;
+  height: 20%;
+  border-radius: 6px;
+  background: linear-gradient(to top, var(--pink), var(--blue), var(--green));
+  box-shadow: 0 0 13px #ff00d477;
+  animation: beat .65s ease-in-out infinite alternate;
+}
 
-    #status {
-      padding: 12px;
-      margin-top: 15px;
-      border-radius: 8px;
-      background: #080812;
-      color: var(--blue);
-      overflow-wrap: anywhere;
-      line-height: 1.6;
-    }
+.equalizer span:nth-child(2n) { animation-delay: -.3s; }
+.equalizer span:nth-child(3n) { animation-delay: -.5s; }
+.equalizer span:nth-child(4n) { animation-delay: -.15s; }
+.equalizer span:nth-child(5n) { animation-delay: -.4s; }
 
-    .hidden {
-      display: none !important;
-    }
+.disc-wrap {
+  margin: 25px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
 
-    .danger {
-      color: #ff8298;
-      border-color: #ff526f;
-    }
+.disc {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #10091a 0 10%, #eee 11% 13%, #ff00d4 14% 18%, transparent 19%),
+    repeating-radial-gradient(circle, #21152d 0 3px, #08070d 4px 7px);
+  border: 2px solid var(--blue);
+  box-shadow: 0 0 18px var(--pink), inset 0 0 15px #ff00d4;
+  animation: spin 5s linear infinite;
+}
 
-    .danger:hover {
-      color: #fff;
-      background: #d92348;
-    }
+.disc-label {
+  color: var(--blue);
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 2px;
+  text-align: left;
+}
 
-    footer {
-      padding: 25px 15px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid #ff00d433;
-      font-size: 13px;
-    }
+.section {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 65px 0;
+}
 
-    @media (max-width: 480px) {
-      .panel {
-        padding: 16px;
-      }
+.section-head {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-      nav a {
-        padding: 10px 12px;
-      }
-    }
-  </style>
+.section-head .tag {
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: 4px;
+  font-weight: 900;
+}
+
+.section-head h2 {
+  font-size: clamp(27px, 5vw, 44px);
+  margin: 12px 0;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px #ff00d444;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.rainbow-line {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--pink), var(--blue), var(--green), var(--yellow), transparent);
+  box-shadow: 0 0 14px #ff00d455;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid #9b46bb60;
+  border-radius: 15px;
+  padding: 18px;
+  min-width: 0;
+  box-shadow: 0 12px 40px #0005;
+  transition: .25s;
+}
+
+.card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 0 24px #00eaff1f;
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 17px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.card-label {
+  display: inline-block;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+video, audio {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 12px;
+  border-radius: 10px;
+  background: #000;
+}
+
+video { aspect-ratio: 16 / 9; }
+
+.media-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.status {
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 18px 0;
+}
+
+.notice {
+  padding: 13px;
+  border: 1px solid #00eaff55;
+  border-radius: 8px;
+  background: #00eaff0b;
+  color: #c9faff;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.admin {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.admin details {
+  border: 1px solid #ff00d477;
+  background: var(--panel);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.admin summary {
+  padding: 18px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--pink);
+}
+
+.admin-inner { padding: 18px; }
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.form label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.form input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 7px;
+  color: white;
+  background: #08000f;
+  border: 1px solid #79508e;
+  border-radius: 7px;
+}
+
+.form input:focus {
+  outline: 1px solid var(--blue);
+  border-color: var(--blue);
+}
+
+.form input[type="file"] {
+  font-size: 12px;
+}
+
+.hidden { display: none !important; }
+
+#adminMessage {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  padding: 30px 15px;
+  text-align: center;
+  border-top: 1px solid #ff00d455;
+  background: #06000b;
+}
+
+footer strong {
+  background: linear-gradient(90deg, var(--blue), var(--pink), var(--green));
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes beat {
+  from { height: 15%; }
+  to { height: 100%; }
+}
+
+@keyframes pulse {
+  from { transform: scale(.85); opacity: .17; }
+  to { transform: scale(1.2); opacity: .38; }
+}
+
+@media (max-width: 650px) {
+  .topbar { align-items: flex-start; flex-direction: column; }
+  nav { gap: 12px; }
+  .hero { min-height: 70vh; }
+  .hero h1 { letter-spacing: -1px; }
+  .grid, .media-list { grid-template-columns: 1fr; }
+  .section { padding: 45px 0; }
+  .card { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>COROSSS D JAY</h1>
-    <p>MY MUSIC ZONE • CYBERPUNK RGB</p>
-  </header>
-
-  <nav>
+<header class="topbar">
+  <a class="brand" href="#home">⚡ COROSSS D JAY</a>
+  <nav aria-label="Main navigation">
     <a href="#home">HOME</a>
     <a href="#music">MUSIC</a>
     <a href="#videos">VIDEOS</a>
     <a href="#admin">ADMIN</a>
   </nav>
+</header>
 
-  <main>
+<main>
+<section class="hero" id="home">
+  <div class="eyebrow">★ WELCOME TO MY MUSIC ZONE ★</div>
 
-    <section class="hero" id="home">
-      <h2>WELCOME TO MY MUSIC ZONE ⚡</h2>
-      <p>Feel the Beat • Live the Music • COROSSS D JAY</p>
-    </section>
+  <h1>COROSSS <span>D JAY</span></h1>
 
-    <section class="panel" id="music">
-      <h2>🎵 MUSIC LIBRARY</h2>
-      <p class="subtitle">
-        Enjoy the music uploaded to COROSSS D JAY.
-      </p>
+  <p class="subtitle">
+    FEEL THE BASS. LIVE THE BEAT. OWN THE NIGHT.<br>
+    Your destination for DJ mixes, music and nonstop party vibes.
+  </p>
 
-      <div id="musicGallery" class="gallery">
-        <p class="hint">Loading music...</p>
-      </div>
-    </section>
+  <div class="actions">
+    <a class="btn primary" href="#videos">▶ WATCH MY VIDEOS</a>
+    <a class="btn" href="#music">♫ ENTER MUSIC ZONE</a>
+  </div>
 
-    <section class="panel" id="videos">
-      <h2>🎬 VIDEO GALLERY</h2>
-      <p class="subtitle">
-        Watch the latest DJ videos.
-      </p>
+  <div class="equalizer" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
 
-      <div id="videoGallery" class="gallery">
+  <div class="disc-wrap">
+    <div class="disc" aria-hidden="true"></div>
+    <div class="disc-label">
+      RGB DJ EXPERIENCE<br>
+      <span style="color:#ff00d4">BASS • BEATS • ENERGY</span>
+    </div>
+  </div>
+</section>
 
-        <!-- Existing GitHub video 1 -->
-        <article class="media-card">
-          <h3>DJ MARWEN MIX PROMO (PT1)</h3>
-          <video controls preload="metadata" playsinline>
-            <source
-              src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4"
-              type="video/mp4">
-            Your browser does not support this video.
-          </video>
-        </article>
+<div class="rainbow-line"></div>
 
-        <!-- Existing GitHub video 2 -->
-        <article class="media-card">
-          <h3>DJ MARWEN MIX PROMO (PT2)</h3>
-          <video controls preload="metadata" playsinline>
-            <source
-              src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4"
-              type="video/mp4">
-            Your browser does not support this video.
-          </video>
-        </article>
+<section class="section" id="music">
+  <div class="section-head">
+    <div class="tag">♪ THE SOUND ZONE ♪</div>
+    <h2>Music Zone</h2>
+    <p>Turn up the volume and enjoy the mix.</p>
+  </div>
 
-      </div>
-    </section>
+  <div class="grid">
+    <article class="card">
+      <span class="card-label">DJ MIX • PART 01</span>
+      <h3>DJ MARWEN MIX PROMO — PT1</h3>
+      <p>Play the first mix directly from the website.</p>
+      <audio controls preload="none">
+        <source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4" type="video/mp4">
+        Your browser cannot play this media.
+      </audio>
+      <p>For video playback, use the player in the Videos section below.</p>
+    </article>
 
-    <section class="panel" id="admin">
-      <h2>🔐 ADMIN CONTROL PANEL</h2>
+    <article class="card">
+      <span class="card-label">DJ MIX • PART 02</span>
+      <h3>DJ MARWEN MIX PROMO — PT2</h3>
+      <p>Play the second mix directly from the website.</p>
+      <audio controls preload="none">
+        <source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4" type="video/mp4">
+        Your browser cannot play this media.
+      </audio>
+      <p>For video playback, use the player in the Videos section below.</p>
+    </article>
+  </div>
+</section>
 
-      <p class="subtitle">
-        Admin login is required to upload music and videos.
-      </p>
+<div class="rainbow-line"></div>
 
-      <div id="loginBox">
-        <form id="loginForm">
-          <label for="email">Admin Email</label>
-          <input
-            id="email"
-            type="email"
-            autocomplete="username"
-            placeholder="Enter your admin email"
-            required>
+<section class="section" id="videos">
+  <div class="section-head">
+    <div class="tag">▶ PUBLIC VIDEO GALLERY</div>
+    <h2>My Videos</h2>
+    <p>Visitors can watch these videos without logging in.</p>
+  </div>
 
-          <label for="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Enter your password"
-            required>
+  <div class="media-list">
+    <article class="card">
+      <span class="card-label">GITHUB VIDEO • PART 01</span>
+      <h3>DJ MARWEN MIX PROMO — PT1</h3>
+      <video controls playsinline preload="metadata">
+        <source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+      </video>
+    </article>
 
-          <button id="loginButton" type="submit">
-            LOGIN
-          </button>
+    <article class="card">
+      <span class="card-label">GITHUB VIDEO • PART 02</span>
+      <h3>DJ MARWEN MIX PROMO — PT2</h3>
+      <video controls playsinline preload="metadata">
+        <source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+      </video>
+    </article>
+  </div>
+
+  <div class="section-head" style="margin-top:45px">
+    <div class="tag">NEW UPLOADS</div>
+    <h2>Latest DJ Media</h2>
+    <p>New media uploaded by the admin appears here.</p>
+  </div>
+
+  <div id="mediaStatus" class="status" aria-live="polite">
+    Loading latest media...
+  </div>
+  <div id="uploadedMedia" class="media-list"></div>
+</section>
+
+<div class="rainbow-line"></div>
+
+<section class="section" id="admin">
+  <div class="section-head">
+    <div class="tag">RESTRICTED CONTROL PANEL</div>
+    <h2>Admin Studio</h2>
+    <p>Only the site administrator needs to sign in to upload media.</p>
+  </div>
+
+  <div class="admin">
+    <details>
+      <summary>🔐 OPEN ADMIN LOGIN / UPLOAD PANEL</summary>
+
+      <div class="admin-inner">
+        <div class="notice">
+          Public visitors do not need an account to watch the GitHub videos above.
+          Sign in here only when you want to manage new uploads.
+        </div>
+
+        <form id="loginForm" class="form" style="margin-top:18px">
+          <label>
+            Admin email
+            <input id="email" type="email" autocomplete="username" required>
+          </label>
+
+          <label>
+            Password
+            <input id="password" type="password" autocomplete="current-password" required>
+          </label>
+
+          <button class="btn primary" type="submit">SIGN IN</button>
         </form>
-      </div>
 
-      <div id="uploadBox" class="hidden">
-        <h3>🎧 Upload New Media</h3>
+        <div id="adminPanel" class="hidden">
+          <p class="notice">Admin session active. Choose a file to upload.</p>
 
-        <p class="hint">
-          Choose an audio or video file. The storage policy will decide
-          whether your account is authorized to upload.
-        </p>
+          <form id="uploadForm" class="form" style="margin-top:18px">
+            <label>
+              Select audio or video file (maximum 100 MB)
+              <input id="mediaFile" type="file"
+                accept="audio/*,video/mp4,video/webm,video/ogg" required>
+            </label>
 
-        <form id="uploadForm">
-          <input
-            id="mediaFile"
-            type="file"
-            accept=".mp3,.m4a,.aac,.wav,.ogg,.flac,.opus,.mp4,.webm,audio/mpeg,audio/mp4,audio/aac,audio/wav,audio/ogg,video/mp4,video/webm"
-            required>
+            <button class="btn primary" id="uploadButton" type="submit">
+              ⬆ UPLOAD MEDIA
+            </button>
+          </form>
 
-          <button id="uploadButton" type="submit">
-            UPLOAD MEDIA
+          <button class="btn small" id="logoutButton" type="button" style="margin-top:15px">
+            LOG OUT
           </button>
-        </form>
+        </div>
 
-        <button id="logoutButton" class="danger" type="button">
-          LOGOUT
-        </button>
+        <p id="adminMessage" class="status" aria-live="polite"></p>
       </div>
+    </details>
+  </div>
+</section>
+</main>
 
-      <p id="status" role="status" aria-live="polite">
-        Connecting to Supabase...
-      </p>
-    </section>
+<footer>
+  <strong>⚡ COROSSS D JAY | MY MUSIC ZONE ⚡</strong>
+  <p>RGB LIGHTS • DJ BEATS • NONSTOP VIBES</p>
+  <p>© <span id="year"></span> COROSSS D JAY</p>
+</footer>
 
-  </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <footer>
-    © COROSSS D JAY | MY MUSIC ZONE
-  </footer>
+<script>
+"use strict";
 
-  <script>
-    "use strict";
+/*
+  Supabase project configuration.
+  The publishable key is intended for frontend use.
+  Never put a Supabase service_role or secret key in this file.
+*/
+const SUPABASE_URL = "https://odwyrnncykhjlqgkwnjk.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ";
+const BUCKET = "dj-media";
+const MAX_FILE_SIZE = 100 * 1024 * 1024;
 
-    // Supabase connection
-    const SUPABASE_URL =
-      "https://odwyrnncykhjlqgkwnjk.supabase.co";
+const $ = (id) => document.getElementById(id);
 
-    // This is a frontend publishable key, not a secret/service_role key.
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ";
+$("year").textContent = new Date().getFullYear();
 
-    const BUCKET = "dj-media";
-    const MAX_FILE_SIZE = 100 * 1024 * 1024;
+const mediaStatus = $("mediaStatus");
+const uploadedMedia = $("uploadedMedia");
+const adminMessage = $("adminMessage");
 
-    const musicGallery = document.getElementById("musicGallery");
-    const videoGallery = document.getElementById("videoGallery");
-    const loginBox = document.getElementById("loginBox");
-    const uploadBox = document.getElementById("uploadBox");
-    const statusBox = document.getElementById("status");
-    const loginButton = document.getElementById("loginButton");
-    const uploadButton = document.getElementById("uploadButton");
+let supabaseClient = null;
 
-    let client = null;
+function showAdminMessage(message) {
+  adminMessage.textContent = message;
+}
 
-    function setStatus(message) {
-      statusBox.textContent = message;
+function showMediaStatus(message) {
+  mediaStatus.textContent = message;
+}
+
+function setAdminState(isLoggedIn) {
+  $("loginForm").classList.toggle("hidden", isLoggedIn);
+  $("adminPanel").classList.toggle("hidden", !isLoggedIn);
+}
+
+function isVideo(fileName) {
+  return /\.(mp4|webm|ogv|ogg|mov|m4v)$/i.test(fileName);
+}
+
+function isAudio(fileName) {
+  return /\.(mp3|wav|ogg|oga|aac|m4a|flac|opus)$/i.test(fileName);
+}
+
+function safeMediaCard(fileName, url) {
+  const article = document.createElement("article");
+  article.className = "card";
+
+  const label = document.createElement("span");
+  label.className = "card-label";
+  label.textContent = isVideo(fileName) ? "UPLOADED VIDEO" : "UPLOADED AUDIO";
+
+  const title = document.createElement("h3");
+  title.textContent = fileName;
+
+  const player = document.createElement(isVideo(fileName) ? "video" : "audio");
+  player.controls = true;
+  player.preload = "metadata";
+
+  if (isVideo(fileName)) {
+    player.playsInline = true;
+  }
+
+  player.src = url;
+
+  article.append(label, title, player);
+  return article;
+}
+
+async function loadUploadedMedia() {
+  if (!supabaseClient) {
+    showMediaStatus("Media service is unavailable. GitHub videos can still play.");
+    return;
+  }
+
+  showMediaStatus("Checking for new uploads...");
+  uploadedMedia.replaceChildren();
+
+  try {
+    const { data, error } = await supabaseClient.storage
+      .from(BUCKET)
+      .list("", {
+        limit: 100,
+        sortBy: { column: "created_at", order: "desc" }
+      });
+
+    if (error) throw error;
+
+    const files = (data || []).filter(item =>
+      item.name &&
+      item.name !== ".emptyFolderPlaceholder" &&
+      (isVideo(item.name) || isAudio(item.name))
+    );
+
+    if (files.length === 0) {
+      showMediaStatus("No new uploads yet. The two GitHub videos above are separate and should still be available.");
+      return;
     }
 
-    function showLoginState(isLoggedIn) {
-      loginBox.classList.toggle("hidden", isLoggedIn);
-      uploadBox.classList.toggle("hidden", !isLoggedIn);
-    }
+    let displayed = 0;
 
-    function isAudio(name) {
-      return /\.(mp3|m4a|aac|wav|ogg|opus|flac)$/i.test(name);
-    }
-
-    function isVideo(name) {
-      return /\.(mp4|webm)$/i.test(name);
-    }
-
-    function createMediaCard(name, url, type) {
-      const card = document.createElement("article");
-      card.className = "media-card";
-
-      const heading = document.createElement("h3");
-      heading.textContent = name;
-      card.appendChild(heading);
-
-      const player = document.createElement(type);
-
-      player.controls = true;
-      player.preload = "metadata";
-      player.src = url;
-
-      if (type === "video") {
-        player.playsInline = true;
-      }
-
-      card.appendChild(player);
-      return card;
-    }
-
-    async function checkSession() {
-      const { data, error } = await client.auth.getSession();
-
-      if (error) {
-        setStatus("Could not check your login session.");
-        return;
-      }
-
-      showLoginState(Boolean(data.session));
-    }
-
-    async function loadMedia() {
-      if (!client) return;
-
-      musicGallery.replaceChildren();
-      videoGallery.replaceChildren();
-
-      const { data: files, error } = await client
-        .storage
-        .from(BUCKET)
-        .list("", {
-          limit: 100,
-          sortBy: { column: "name", order: "asc" }
-        });
-
-      if (error) {
-        setStatus(
-          "Could not load uploaded media. Check your Storage SELECT policy."
-        );
-        return;
-      }
-
-      const validFiles = (files || []).filter(file =>
-        file.name &&
-        file.name !== ".emptyFolderPlaceholder" &&
-        (isAudio(file.name) || isVideo(file.name))
-      );
-
-      let musicCount = 0;
-      let videoCount = 0;
-
-      for (const file of validFiles) {
-        const { data, error: signedUrlError } = await client
-          .storage
+    for (const file of files) {
+      const { data: signedData, error: signedError } =
+        await supabaseClient.storage
           .from(BUCKET)
           .createSignedUrl(file.name, 3600);
 
-        if (signedUrlError || !data || !data.signedUrl) {
-          continue;
-        }
-
-        if (isAudio(file.name)) {
-          musicGallery.appendChild(
-            createMediaCard(file.name, data.signedUrl, "audio")
-          );
-          musicCount++;
-        } else if (isVideo(file.name)) {
-          videoGallery.appendChild(
-            createMediaCard(file.name, data.signedUrl, "video")
-          );
-          videoCount++;
-        }
+      if (signedError || !signedData?.signedUrl) {
+        console.error("Could not create media URL:", file.name, signedError);
+        continue;
       }
 
-      if (musicCount === 0) {
-        const emptyMusic = document.createElement("p");
-        emptyMusic.className = "hint";
-        emptyMusic.textContent = "No uploaded music found yet.";
-        musicGallery.appendChild(emptyMusic);
-      }
-
-      if (videoCount === 0) {
-        const emptyVideos = document.createElement("p");
-        emptyVideos.className = "hint";
-        emptyVideos.textContent =
-          "No uploaded videos found yet. Existing videos are shown above only if their files exist in GitHub.";
-        videoGallery.appendChild(emptyVideos);
-      }
-    }
-
-    async function initialize() {
-      if (!window.supabase) {
-        setStatus("Supabase library failed to load. Check your internet connection.");
-        return;
-      }
-
-      client = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+      uploadedMedia.append(
+        safeMediaCard(file.name, signedData.signedUrl)
       );
-
-      client.auth.onAuthStateChange((event, session) => {
-        showLoginState(Boolean(session));
-      });
-
-      await checkSession();
-      await loadMedia();
-
-      if (statusBox.textContent === "Connecting to Supabase...") {
-        setStatus("Connected. You can browse available media.");
-      }
+      displayed++;
     }
 
-    document.getElementById("loginForm").addEventListener(
-      "submit",
-      async function(event) {
-        event.preventDefault();
+    showMediaStatus(
+      displayed
+        ? displayed + " uploaded file(s) available. Playback links refresh when the page reloads."
+        : "Files were found, but playback links could not be created. Check Storage SELECT permissions."
+    );
+  } catch (error) {
+    console.error("Media listing error:", error);
+    showMediaStatus(
+      "Could not load new uploads. Check Supabase Storage policies. GitHub videos above work independently."
+    );
+  }
+}
 
-        if (!client) {
-          setStatus("Supabase is not connected.");
-          return;
-        }
+async function initializeSupabase() {
+  if (!window.supabase?.createClient) {
+    showMediaStatus("Media service could not start. GitHub videos above are independent.");
+    showAdminMessage("Could not load the Supabase library. Check your internet connection.");
+    return;
+  }
 
-        loginButton.disabled = true;
-        setStatus("Logging in...");
-
-        try {
-          const email = document.getElementById("email").value.trim();
-          const password = document.getElementById("password").value;
-
-          const { data, error } = await client.auth.signInWithPassword({
-            email,
-            password
-          });
-
-          document.getElementById("password").value = "";
-
-          if (error) {
-            setStatus("Login failed. Check your email and password.");
-            return;
-          }
-
-          showLoginState(Boolean(data.session));
-          setStatus(
-            "Logged in. Upload permission is still controlled by Storage policies."
-          );
-        } catch (error) {
-          setStatus("Login failed because of a connection problem.");
-        } finally {
-          loginButton.disabled = false;
+  try {
+    supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
         }
       }
     );
 
-    document.getElementById("logoutButton").addEventListener(
-      "click",
-      async function() {
-        if (!client) return;
+    const { data, error } = await supabaseClient.auth.getSession();
 
-        const { error } = await client.auth.signOut();
+    if (error) throw error;
 
-        if (error) {
-          setStatus("Could not log out. Please try again.");
-          return;
-        }
+    setAdminState(!!data.session);
+    showAdminMessage(data.session ? "Admin session restored." : "");
+    await loadUploadedMedia();
 
-        showLoginState(false);
-        setStatus("You are logged out.");
-      }
-    );
-
-    document.getElementById("uploadForm").addEventListener(
-      "submit",
-      async function(event) {
-        event.preventDefault();
-
-        if (!client) {
-          setStatus("Supabase is not connected.");
-          return;
-        }
-
-        uploadButton.disabled = true;
-
-        try {
-          const { data: sessionData, error: sessionError } =
-            await client.auth.getSession();
-
-          if (sessionError || !sessionData.session) {
-            showLoginState(false);
-            setStatus("Please log in before uploading.");
-            return;
-          }
-
-          const fileInput = document.getElementById("mediaFile");
-          const file = fileInput.files[0];
-
-          if (!file) {
-            setStatus("Please choose a file.");
-            return;
-          }
-
-          if (file.size > MAX_FILE_SIZE) {
-            setStatus("This file is larger than the 100 MB limit.");
-            return;
-          }
-
-          if (!isAudio(file.name) && !isVideo(file.name)) {
-            setStatus("Unsupported file type.");
-            return;
-          }
-
-          const safeName = file.name
-            .normalize("NFKC")
-            .replace(/[^a-zA-Z0-9._() -]/g, "_")
-            .replace(/\s+/g, "_");
-
-          const uniqueName = Date.now() + "_" + safeName;
-
-          setStatus("Uploading file. Please wait...");
-
-          const { error } = await client
-            .storage
-            .from(BUCKET)
-            .upload(uniqueName, file, {
-              contentType: file.type || "application/octet-stream",
-              upsert: false
-            });
-
-          if (error) {
-            setStatus(
-              "Upload failed. Check the Storage policy, file type restrictions, and file size limit."
-            );
-            return;
-          }
-
-          fileInput.value = "";
-          setStatus("Upload successful! Refreshing media gallery...");
-
-          await loadMedia();
-          setStatus("Upload successful!");
-        } catch (error) {
-          setStatus("Upload failed because of a connection problem.");
-        } finally {
-          uploadButton.disabled = false;
-        }
-      }
-    );
-
-    initialize();
-  </script>
-
-</body>
-</html>
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
+      setAdminState(!!session);
+      if (!session) {
