@@ -91,11 +91,14 @@
     .card[data-kind="video"] .cover{width:176px;height:99px;flex-basis:176px}
     .card[data-kind="video"] video{width:100%;height:100%;max-height:none;object-fit:cover}
     .card.is-expanded{display:block;animation:expandCard .24s ease-out}
-    .card.is-expanded .cover{width:100%;height:auto;min-height:0;aspect-ratio:16/9;max-height:460px;margin:0;border-radius:0;flex-basis:auto}
+    .card.is-expanded[data-kind="video"]{max-width:640px;width:100%;margin-inline:auto}
+    .card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;min-height:0;aspect-ratio:16/9;max-height:360px;margin:0 auto;border-radius:12px 12px 0 0;flex-basis:auto;background:#000}
+    .card.is-expanded[data-kind="video"] video{width:100%;height:100%;max-height:360px;object-fit:contain}
     .card.is-expanded .cover img{object-fit:cover}
-    .card.is-expanded[data-kind="audio"] .cover{height:180px;aspect-ratio:auto}
-    .card.is-expanded[data-kind="video"] video{width:100%;height:auto;max-height:460px;object-fit:contain}
-    .card.is-expanded .card-body{padding:18px}
+    .card.is-expanded[data-kind="audio"]{display:flex;align-items:center;gap:0}
+    .card.is-expanded[data-kind="audio"] .cover{width:112px;height:112px;min-width:112px;aspect-ratio:1;flex:0 0 112px;margin:12px;border-radius:12px}
+    .card.is-expanded[data-kind="audio"] .card-body{padding:14px 16px}
+    .card.is-expanded .card-body{padding:16px}
     @keyframes expandCard{from{opacity:.8;transform:translateY(5px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
     .card[data-kind="audio"] .cover-fallback{font-size:26px}
     .card[data-kind="audio"] .badge,.card[data-kind="video"] .badge{font-size:9px;top:5px;left:5px;padding:3px 6px}
@@ -139,7 +142,7 @@
     .mobile-menu{display:none}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}.disc{animation:none!important}}
     @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:250px}.disc{width:220px}.orbit{width:270px}.admin-grid{grid-template-columns:1fr}}
-    @media(max-width:600px){.wrap{width:min(100% - 24px,1160px)}.nav{min-height:68px}.navlinks{gap:12px;font-size:11px}.navlinks .login-nav{display:none}.brand{font-size:12px}.brand-mark{width:38px;height:38px}.hero{padding:52px 0 32px}.hero-visual{min-height:220px}.section-head{align-items:start;flex-direction:column}.community{grid-template-columns:1fr}.admin-shell{padding:15px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:10px}.stat b{font-size:18px}.card[data-kind="audio"] .cover{width:76px;height:76px;flex-basis:76px;margin:10px 0 10px 10px}.card[data-kind="video"] .cover{width:128px;height:72px;flex-basis:128px;margin:10px 0 10px 10px}.card-body{padding:12px}.card-title{font-size:14px}.meta{margin-bottom:8px}.card.is-expanded[data-kind="audio"] .cover{width:100%;height:150px;margin:0}.card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;margin:0;aspect-ratio:16/9}.card.is-expanded .card-body{padding:14px}}
+    @media(max-width:600px){.wrap{width:min(100% - 24px,1160px)}.nav{min-height:68px}.navlinks{gap:12px;font-size:11px}.navlinks .login-nav{display:none}.brand{font-size:12px}.brand-mark{width:38px;height:38px}.hero{padding:52px 0 32px}.hero-visual{min-height:220px}.section-head{align-items:start;flex-direction:column}.community{grid-template-columns:1fr}.admin-shell{padding:15px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:10px}.stat b{font-size:18px}.card[data-kind="audio"] .cover{width:76px;height:76px;flex-basis:76px;margin:10px 0 10px 10px}.card[data-kind="video"] .cover{width:128px;height:72px;flex-basis:128px;margin:10px 0 10px 10px}.card-body{padding:12px}.card-title{font-size:14px}.meta{margin-bottom:8px}.card.is-expanded[data-kind="audio"] .cover{width:84px;height:84px;min-width:84px;flex-basis:84px;margin:10px}.card.is-expanded[data-kind="audio"] .card-body{padding:12px}.card.is-expanded[data-kind="video"]{max-width:100%}.card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;margin:0;aspect-ratio:16/9;max-height:240px}.card.is-expanded[data-kind="video"] video{max-height:240px}.card.is-expanded .card-body{padding:14px}}
   </style>
 </head>
 <body>
@@ -161,7 +164,7 @@
         <button id="navLoginBtn" class="btn btn-gold" type="button" onclick="document.getElementById('admin').scrollIntoView({behavior:'smooth'})">ADMIN LOGIN</button>
       </nav>
     </div>
-    </header>
+  </header>
 
   <main>
     <section class="hero" id="home">
@@ -381,8 +384,8 @@
         <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} plays</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
         ${src ? `<div class="track-wave" aria-hidden="true">${Array.from({length:36},(_,i)=>`<span style="height:${6+((i*7+3)%17)}px"></span>`).join('')}</div><audio controls preload="none" data-kind="audio" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}">Your browser does not support audio playback.</audio><div class="player-hint">♫ Tap play to expand the player · more tracks stay visible</div>` : '<div class="sub">Audio file URL unavailable.</div>'}
         ${adminActions(item)}
-</div>
-</article>`;
+      </div>
+    </article>`;
   }
 
   function videoCard(item) {
@@ -417,7 +420,13 @@
       el.addEventListener('click', () => el.closest('.card')?.classList.add('is-expanded'));
       el.addEventListener('play', () => {
         document.querySelectorAll('audio[data-kind="audio"]').forEach(other => { other.pause(); other.closest('.card')?.classList.remove('is-playing'); });
-        document.querySelectorAll('video[data-kind="video"]').forEach(other => { if (other !== el) { other.pause(); other.closest('.card')?.classList.remove('is-playing'); } });
+        // Keep only the currently playing video expanded; collapse previously playing videos.
+        document.querySelectorAll('video[data-kind="video"]').forEach(other => {
+          if (other !== el) {
+            other.pause();
+            other.closest('.card')?.classList.remove('is-playing', 'is-expanded');
+          }
+        });
         el.closest('.card')?.classList.add('is-playing','is-expanded');
         recordPlay('video', el.dataset.id);
       }, {once:true});
