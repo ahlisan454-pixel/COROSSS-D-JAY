@@ -390,18 +390,57 @@
 
   function videoCard(item) {
     const src = publicUrl(VIDEO_BUCKET, item.storage_path);
+
     return `<article class="card" data-kind="video" data-card="${escapeHtml(item.id)}">
-      <div class="cover">${src ? `<video controls preload="metadata" playsinline data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}">Your browser does not support video playback.</video>` : '<span class="cover-fallback">▶</span>'}<span class="badge">VIDEO</span></div>
+      <div class="cover">
+        ${src
+          ? `<video controls preload="metadata" playsinline data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}">Your browser does not support video playback.</video>`
+          : '<span class="cover-fallback">▶</span>'}
+        <span class="badge">VIDEO</span>
+      </div>
+
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
-        <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} views</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
-        <div class="player-hint">▶ Tap the video to expand · more videos stay visible</div>
+
+        <div class="meta">
+          <span>▶ ${Number(item.views || 0).toLocaleString()} views</span>
+          <span>${escapeHtml(prettyDate(item.created_at))}</span>
+        </div>
+
+        ${src
+          ? `<button class="btn btn-gold" type="button"
+                data-action="play-video"
+                data-id="${escapeHtml(item.id)}">
+                ▶ Play Video
+             </button>`
+          : '<div class="sub">Video URL unavailable.</div>'}
+
+        <div class="player-hint">
+          Press Play Video to watch · more videos stay visible
+        </div>
+
         ${adminActions(item)}
       </div>
     </article>`;
   }
 
-  function bindCardActions() {
+  function bindCardActions() {document.querySelectorAll('button[data-action="play-video"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        const video = card?.querySelector('video[data-kind="video"]');
+
+        if (!video) return;
+
+        card.classList.add('is-expanded');
+        video.play().catch(() => {
+            video.controls = true;
+            video.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        });
+    });
+});
     document.querySelectorAll('button[data-action="rename"]').forEach(btn => btn.addEventListener('click', () => renameItem(btn.dataset.kind, btn.dataset.id)));
     document.querySelectorAll('button[data-action="delete"]').forEach(btn => btn.addEventListener('click', () => deleteItem(btn.dataset.kind, btn.dataset.id)));
     document.querySelectorAll('audio[data-kind="audio"]').forEach(el => {
