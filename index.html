@@ -1,84 +1,728 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#05060b"><title>CROSS DJ | Music Connects Us</title>
-<style>
-:root{--bg:#05060b;--panel:#0a0d17;--line:#17283a;--cyan:#00f5ff;--pink:#ff28d7;--purple:#8a2bff;--green:#5bff70;--text:#f7f9ff;--muted:#aab4c8}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:82px}body{margin:0;background:radial-gradient(ellipse at 50% 0,#15102c 0,#070912 42%,#030408 100%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.22;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px,transparent 5px);mask-image:linear-gradient(#000,transparent 80%)}a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer;color:white}.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:12px clamp(14px,3vw,40px);background:#05060bed;backdrop-filter:blur(18px);border-bottom:1px solid #00eaff66;box-shadow:0 4px 30px #00eaff16}.brand{display:flex;align-items:center;gap:10px;min-width:max-content}.logo{width:45px;height:45px;border:2px solid var(--cyan);border-radius:50%;display:grid;place-items:center;color:var(--cyan);font-size:24px;font-weight:900;text-shadow:0 0 14px var(--cyan);box-shadow:0 0 18px #00eaff55,inset 0 0 14px #00eaff33}.brand strong{font-size:clamp(17px,2vw,25px);letter-spacing:1px}.brand strong span{color:var(--pink);text-shadow:0 0 12px var(--pink)}.brand small{display:block;color:#9caac4;letter-spacing:4px;font-size:8px}.nav{display:flex;gap:18px;align-items:center;margin:auto}.nav a{font-size:13px;color:#dce5f5;transition:.2s}.nav a:hover{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}.search{max-width:250px;flex:1;min-width:120px;background:#0b101b;border:1px solid #27364d;border-radius:22px;padding:10px 14px;color:white;outline:none}.btn{border:1px solid #00eaff99;border-radius:12px;background:linear-gradient(110deg,#091a2a,#17102a);padding:10px 17px;font-weight:750;box-shadow:0 0 15px #00eaff1f;transition:.2s}.btn:hover{box-shadow:0 0 22px #00eaff88;transform:translateY(-1px)}.btn.hot{background:linear-gradient(100deg,var(--cyan),#2a77ff,var(--pink));border:0;color:#05060b;text-shadow:none}.layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:18px;padding:18px clamp(12px,2vw,28px);max-width:1700px;margin:auto}.sidebar{border:1px solid #14293d;border-radius:18px;padding:16px;background:#070a12e8;align-self:start;position:sticky;top:85px;box-shadow:0 0 25px #00eaff0c}.section-label{font-size:10px;color:#7f91ae;letter-spacing:2px;margin:5px 8px 12px}.side-link{display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:10px;color:#d7e0ef;font-size:13px;margin:4px 0}.side-link:hover,.side-link.active{background:linear-gradient(100deg,#142b4b,#291039);color:var(--cyan);box-shadow:inset 2px 0 var(--pink)}.online{margin-top:25px;border-top:1px solid #19253a;padding-top:14px;font-size:12px;color:var(--muted)}.online b{color:var(--green)}.main{min-width:0}.hero{min-height:370px;position:relative;overflow:hidden;border-radius:22px;border:1px solid #00eaff8a;background:linear-gradient(90deg,#05060be8 0%,#05060b55 43%,#05060bb8 100%),radial-gradient(ellipse at 50% 100%,#f500ff77,transparent 45%),radial-gradient(ellipse at 20% 30%,#00eaff55,transparent 35%),radial-gradient(ellipse at 80% 20%,#a4ff0055,transparent 30%),linear-gradient(135deg,#111b35,#05060b 60%,#1b082b);box-shadow:0 0 30px #00eaff22,inset 0 0 60px #ff00d522;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:clamp(22px,4vw,55px);isolation:isolate}.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(115deg,transparent 0 50px,#00eaff26 52px,transparent 55px),repeating-linear-gradient(65deg,transparent 0 80px,#ff28d729 82px,transparent 85px);animation:lights 8s linear infinite}.hero:after{content:"";position:absolute;bottom:-100px;left:10%;right:10%;height:180px;border-radius:50%;background:#ff00e51b;filter:blur(35px);z-index:-1}.hero-copy .eyebrow{color:var(--cyan);font-weight:800;letter-spacing:4px;font-size:11px}.hero h1{font-size:clamp(35px,5.2vw,72px);line-height:.98;letter-spacing:-2px;margin:14px 0;text-shadow:0 0 22px #00eaff55}.hero h1 span{background:linear-gradient(90deg,#fff,var(--cyan),var(--pink),#a5ff00);background-clip:text;color:transparent}.hero p{color:#d4d9e9;max-width:470px;line-height:1.65}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.chip{font-size:10px;letter-spacing:1px;padding:5px 9px;border:1px solid var(--cyan);border-radius:7px;box-shadow:0 0 10px #00eaff25}.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.play-big{border-radius:25px;padding:14px 25px;background:linear-gradient(100deg,#00f5ff,#16ff8b,#ff28d7);color:#03050a;border:0;font-weight:900;letter-spacing:1px;box-shadow:0 0 24px #00eaff66}.hero-art{height:280px;display:grid;place-items:center;position:relative}.dj-disc{width:min(250px,70%);aspect-ratio:1;border-radius:50%;border:8px solid #202b40;background:repeating-radial-gradient(circle,#0a0d16 0 5px,#252c40 6px 7px,#090b11 8px 12px);box-shadow:0 0 25px var(--cyan),0 0 60px #ff28d777;animation:spin 14s linear infinite;display:grid;place-items:center;position:relative}.dj-disc:before{content:"";position:absolute;inset:24%;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#090b15 45%,var(--pink));box-shadow:0 0 30px #ff28d7}.disc-logo{position:relative;z-index:1;font-weight:1000;font-size:42px;color:white;text-shadow:0 0 15px var(--cyan)}.headphones{position:absolute;right:8%;bottom:4px;font-size:74px;filter:drop-shadow(0 0 12px var(--pink));transform:rotate(-13deg)}.eq{height:38px;display:flex;gap:4px;align-items:center;justify-content:center;margin-top:16px}.eq i{display:block;width:5px;border-radius:8px;background:linear-gradient(var(--cyan),var(--pink));height:var(--h);box-shadow:0 0 9px #00eaff;animation:eq .75s ease-in-out infinite alternate;animation-delay:var(--d)}.feature-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 22px}.feature{background:#080d17;border:1px solid #17364b;border-radius:12px;padding:13px;display:flex;align-items:center;gap:10px}.feature .ico{font-size:22px;color:var(--cyan)}.feature b{display:block;font-size:12px}.feature small{color:var(--muted);font-size:10px}.content-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px}.panel{background:linear-gradient(145deg,#0b101a,#06080f);border:1px solid #193247;border-radius:16px;padding:16px;min-width:0;box-shadow:0 8px 24px #0006}.panel h2{font-size:15px;margin:0 0 14px;display:flex;align-items:center;justify-content:space-between}.panel h2 span{color:var(--cyan);font-size:11px}.mix{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #172234}.cover{width:49px;height:49px;flex-shrink:0;border-radius:10px;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#ff28d7,#311e71 45%,#07101a);border:1px solid #c04cff77;font-size:22px;box-shadow:0 0 12px #ff28d722}.mix-info{min-width:0;flex:1}.mix-info b{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mix-info small{font-size:10px;color:var(--muted)}.round{width:31px;height:31px;border-radius:50%;border:1px solid #00eaff88;background:#07131f;color:var(--cyan);flex-shrink:0}.featured-player{padding:0;overflow:hidden;border-color:#9d2dff}.player-art{min-height:185px;padding:24px;background:radial-gradient(ellipse at 50% 60%,#f0f5ff33,transparent 30%),linear-gradient(135deg,#0d2846,#2a0840 60%,#07101b);position:relative;display:grid;place-items:center;text-align:center}.player-art:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(120deg,transparent 0 35px,#00eaff20 36px,transparent 38px)}.player-art>*{position:relative}.player-art .disc-logo{font-size:36px}.player-art h3{margin:7px 0 3px;font-size:22px}.player-art p{margin:0;color:#c3cfe0;font-size:11px}.player-controls{padding:15px}.progress{width:100%;accent-color:var(--cyan)}.control-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.control-row button{background:none;border:0;font-size:19px;color:var(--cyan)}.playlist-card{display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid #172234}.playlist-art{width:53px;height:59px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(140deg,#ff28d7,#3520a0,#00d9ff);font-size:24px}.playlist-card b{font-size:12px;display:block}.playlist-card small{font-size:10px;color:var(--muted)}.section-title{margin:24px 0 12px;display:flex;align-items:center;justify-content:space-between}.section-title h2{font-size:19px;margin:0}.section-title a{font-size:12px;color:var(--cyan)}.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.video-panel video{width:100%;max-height:420px;display:block;background:#000;border-radius:12px;border:1px solid #28364d}.video-panel h3{font-size:14px}.video-panel p{font-size:11px;color:var(--muted);line-height:1.5}.member-panel{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.auth-form{display:grid;gap:10px}.auth-form input{background:#050811;border:1px solid #26344b;color:white;border-radius:9px;padding:12px;min-width:0}.auth-form button{padding:12px}.auth-note{font-size:11px;color:var(--muted);line-height:1.5}.status{font-size:12px;color:var(--green);min-height:18px}.footer{margin-top:28px;padding:24px;text-align:center;border-top:1px solid #183043;color:#91a0b9;font-size:11px;letter-spacing:2px}.footer strong{color:white}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#07121e;border:1px solid var(--cyan);padding:12px 18px;border-radius:12px;box-shadow:0 0 20px #00eaff55;z-index:50;display:none}.hide{display:none!important}@keyframes spin{to{transform:rotate(360deg)}}@keyframes lights{to{background-position:200px 0,-200px 0}}@keyframes eq{to{transform:scaleY(.35)}}
-@media(max-width:1100px){.layout{grid-template-columns:150px minmax(0,1fr)}.nav{gap:10px}.nav a{font-size:11px}.search{display:none}.content-grid{grid-template-columns:1fr 1fr}.content-grid .featured-player{grid-column:span 2;grid-row:1}.feature-row{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.topbar{gap:10px;flex-wrap:wrap}.nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start;padding:5px 0}.nav a{white-space:nowrap}.brand{margin-right:auto}.layout{display:block;padding:10px}.sidebar{display:none}.hero{grid-template-columns:1fr;padding:25px;min-height:unset}.hero-art{height:190px;grid-row:1}.dj-disc{width:155px}.headphones{font-size:48px}.hero h1{font-size:44px}.content-grid{grid-template-columns:1fr}.content-grid .featured-player{grid-column:auto;grid-row:auto}.feature-row{gap:7px}.feature{padding:10px}.feature small{display:none}.video-grid,.member-panel{grid-template-columns:1fr}.panel{padding:13px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08080d">
+  <title>COROSSS D JAY | Official Music & Videos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg:#08080d; --panel:#111119; --panel2:#171722; --gold:#f4c95d;
+      --gold2:#ffe9a3; --blue:#38d9ff; --pink:#ff3cc7; --purple:#9b65ff;
+      --text:#f8f7fb; --muted:#a8a7b5; --line:#ffffff1b; --green:#54e5a2;
+      --radius:20px; --shadow:0 18px 55px #0008;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20152b 0,transparent 32%),radial-gradient(ellipse at 95% 25%,#10242d 0,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 80%);z-index:-1}
+    body:after{content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 18% 35%,#f4c95d12,transparent 30%),radial-gradient(ellipse at 78% 28%,#38d9ff13,transparent 28%),radial-gradient(ellipse at 58% 82%,#9b65ff12,transparent 32%);animation:ambientGlow 16s ease-in-out infinite alternate}
+    @keyframes ambientGlow{0%{transform:translate3d(-2%,0,0) scale(1);filter:hue-rotate(0deg)}100%{transform:translate3d(2%,-1%,0) scale(1.08);filter:hue-rotate(24deg)}}
+    .ambient-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict}
+    .ambient-logo{position:absolute;left:var(--x);top:var(--y);font:800 var(--size,24px) Orbitron,sans-serif;letter-spacing:2px;color:var(--color,#f4c95d);opacity:0;filter:drop-shadow(0 0 12px currentColor);animation:logoDrift var(--duration,20s) linear var(--delay,0s) infinite}
+    @keyframes logoDrift{0%{transform:translate3d(0,35px,0) rotate(-12deg) scale(.8);opacity:0}12%{opacity:.12}50%{transform:translate3d(28px,-45px,0) rotate(9deg) scale(1.06);opacity:.09}88%{opacity:.12}100%{transform:translate3d(-10px,-125px,0) rotate(18deg) scale(.9);opacity:0}}
+    header,main,footer{position:relative;z-index:1}
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:20;background:#08080de8;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:1px}
+    .brand-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--gold);color:var(--gold);box-shadow:0 0 18px #f4c95d30;font-size:21px}
+    .brand small{display:block;font:500 9px Poppins,sans-serif;color:var(--muted);letter-spacing:4px;margin-top:3px}
+    .navlinks{display:flex;align-items:center;gap:22px;color:#d5d3df;font-size:13px}
+    .navlinks a:hover{color:var(--gold)}
+    .btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;transition:transform .18s,filter .18s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+    .btn-gold{color:#17120a;background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 8px 24px #f4c95d20}
+    .btn-dark{color:var(--text);background:#ffffff10;border:1px solid var(--line)}
+    .btn-danger{color:#fff;background:#d83c58}
+    .btn-blue{color:#071116;background:linear-gradient(135deg,#a0f2ff,var(--blue))}
+    .hero{padding:78px 0 56px;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:42px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #f4c95d55;color:var(--gold2);background:#f4c95d0c;border-radius:99px;padding:8px 13px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+    .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+    h1,h2,h3{margin-top:0}
+    h1{font:900 clamp(38px,6vw,76px)/1.06 Orbitron,sans-serif;letter-spacing:-2px;margin:22px 0}
+    .gradient-text{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{max-width:600px;color:var(--muted);line-height:1.85;font-size:15px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .hero-visual{min-height:320px;display:grid;place-items:center;position:relative}
+    .disc{width:min(290px,72vw);aspect-ratio:1;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#111 0 3px,#29242d 4px 5px,#0c0c12 6px 9px);box-shadow:0 0 0 9px #f4c95d0b,0 0 65px #a45dff30,0 0 100px #38d9ff12;animation:vinylSpin 12s linear infinite;will-change:transform}.disc:after{box-shadow:0 0 20px #f4c95d35,inset 0 0 0 4px #ffffff08}
+    .disc:before{content:"";position:absolute;inset:28%;border-radius:50%;background:conic-gradient(var(--gold),var(--pink),var(--blue),var(--purple),var(--gold));box-shadow:0 0 36px #f4c95d40}
+    .disc:after{content:"DJ";position:absolute;inset:39%;display:grid;place-items:center;border-radius:50%;background:#111;color:var(--gold);font:900 24px Orbitron,sans-serif;border:2px solid #ffffff35}
+    .orbit{position:absolute;width:340px;aspect-ratio:1;border:1px solid #38d9ff40;border-radius:50%;transform:rotate(-28deg) scaleY(.42);box-shadow:0 0 22px #38d9ff0c}
+    .bars{position:absolute;bottom:5px;display:flex;gap:5px;align-items:center;height:44px}
+    .bars span{width:5px;border-radius:9px;background:linear-gradient(var(--blue),var(--pink));animation:bars 1s ease-in-out infinite alternate}
+    .bars span:nth-child(3n){animation-delay:.2s}.bars span:nth-child(2n){animation-delay:.4s}
+    @keyframes bars{from{height:8px}to{height:38px}} @keyframes vinylSpin{to{transform:rotate(360deg)}} @keyframes float{50%{transform:translateY(-9px)}}
+    .section{padding:44px 0 64px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:24px}
+    .kicker{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:9px}
+    h2{font:800 clamp(25px,4vw,37px) Orbitron,sans-serif;margin-bottom:0}
+    .sub{color:var(--muted);font-size:13px;margin-top:9px}
+    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 24px}
+    .field,.select{background:#111119;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;outline:none;min-width:0}
+    .field:focus,.select:focus{border-color:#f4c95d99}
+    .search{flex:1;min-width:210px}
+    .select option{background:#111119}
+    .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:13px;max-width:920px;margin-inline:auto}
+    .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0}
+    .card:hover{border-color:#f4c95d60;transform:translateY(-2px);transition:.2s}
+    .card{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .card:hover{box-shadow:0 18px 55px #0009,0 0 24px #f4c95d12,0 0 30px #9b65ff0b}
+    .card.is-playing{border-color:#f4c95d99;box-shadow:0 0 0 1px #f4c95d20,0 0 30px #f4c95d1d,0 0 38px #38d9ff10}
+    .track-wave{height:27px;display:flex;align-items:center;gap:3px;margin:0 0 11px;opacity:.45;overflow:hidden}
+    .track-wave span{display:block;flex:1;min-width:2px;height:5px;border-radius:5px;background:linear-gradient(180deg,var(--gold2),var(--gold),var(--blue));transform-origin:center;animation:waveDance .8s ease-in-out infinite alternate;animation-play-state:paused}
+    .track-wave span:nth-child(3n){animation-delay:-.3s}.track-wave span:nth-child(4n){animation-delay:-.55s}.track-wave span:nth-child(2n){animation-duration:.58s}
+    .is-playing .track-wave{opacity:1}.is-playing .track-wave span{animation-play-state:running}
+    @keyframes waveDance{from{transform:scaleY(.22);filter:brightness(.8)}to{transform:scaleY(1.8);filter:brightness(1.3)}}
+    .cover:after{content:"";position:absolute;inset:-50% auto -50% -80%;width:45%;transform:rotate(24deg);background:linear-gradient(90deg,transparent,#ffffff20,transparent);animation:coverShine 8s ease-in-out infinite;pointer-events:none}
+    @keyframes coverShine{0%,65%{left:-80%}100%{left:150%}}
+    .cover{height:94px;width:94px;flex:0 0 94px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:13px;margin:12px 0 12px 12px}
+    .cover img{width:100%;height:100%;object-fit:cover;display:block}
+    .card[data-kind="audio"],.card[data-kind="video"]{display:flex;align-items:flex-start;gap:0;position:relative}
+    .card-body{padding:14px 16px;flex:1;min-width:0}
+    .card[data-kind="video"] .cover{width:176px;height:99px;flex-basis:176px}
+    .card[data-kind="video"] video{width:100%;height:100%;max-height:none;object-fit:cover}
+    .card.is-expanded{display:block;animation:expandCard .24s ease-out}
+    .card.is-expanded[data-kind="video"]{max-width:640px;width:100%;margin-inline:auto}
+    .card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;min-height:0;aspect-ratio:16/9;max-height:360px;margin:0 auto;border-radius:12px 12px 0 0;flex-basis:auto;background:#000}
+    .card.is-expanded[data-kind="video"] video{width:100%;height:100%;max-height:360px;object-fit:contain}
+    .card.is-expanded .cover img{object-fit:cover}
+    .card.is-expanded[data-kind="audio"]{display:flex;align-items:center;gap:0}
+    .card.is-expanded[data-kind="audio"] .cover{width:112px;height:112px;min-width:112px;aspect-ratio:1;flex:0 0 112px;margin:12px;border-radius:12px}
+    .card.is-expanded[data-kind="audio"] .card-body{padding:14px 16px}
+    .card.is-expanded .card-body{padding:16px}
+    @keyframes expandCard{from{opacity:.8;transform:translateY(5px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .card[data-kind="audio"] .cover-fallback{font-size:26px}
+    .card[data-kind="audio"] .badge,.card[data-kind="video"] .badge{font-size:9px;top:5px;left:5px;padding:3px 6px}
+    .card:not(.is-expanded) .track-wave{height:17px;margin-bottom:6px}
+    .card:not(.is-expanded) .track-wave span{max-height:15px}
+    .cover-fallback{font:900 36px Orbitron,sans-serif;color:var(--gold);text-shadow:0 0 24px #f4c95d44}
+    .badge{position:absolute;top:12px;left:12px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:5px 9px;font-size:10px;color:var(--gold2);letter-spacing:1px}
+    .card-body{padding:16px}
+    .card-title{font-weight:700;font-size:16px;line-height:1.45;overflow-wrap:anywhere;margin:0 0 7px}
+    .meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:14px}
+    audio{width:100%;height:38px;display:block;filter:drop-shadow(0 0 8px #f4c95d12)}
+    video{width:100%;max-height:280px;display:block;background:#000}
+    .player-hint{font-size:10px;color:var(--muted);margin-top:5px}
+    .card:not(.is-expanded) .player-hint{display:block}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+    .card-actions .btn{font-size:11px;padding:8px 10px}
+    .empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #ffffff25;border-radius:18px;color:var(--muted)}
+    .status{display:none;margin:0 0 18px;padding:12px 14px;border-radius:12px;font-size:13px}
+    .status.show{display:block}.status.error{background:#d83c5820;border:1px solid #d83c5855;color:#ffb3c0}.status.ok{background:#54e5a218;border:1px solid #54e5a255;color:#a4ffd4}.status.info{background:#38d9ff16;border:1px solid #38d9ff50;color:#b8f4ff}
+    .community{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .community-box{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:linear-gradient(135deg,#171722,#0e0e15)}
+    .community-box p{color:var(--muted);font-size:13px;line-height:1.8}
+    .admin-shell{max-width:900px;margin:0 auto;border:1px solid #f4c95d40;border-radius:22px;padding:24px;background:linear-gradient(145deg,#181720,#0d0d13);box-shadow:var(--shadow)}
+    .admin-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+    .admin-head h3{font:700 19px Orbitron,sans-serif;margin:0}
+    .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .admin-box{border:1px solid var(--line);background:#ffffff04;border-radius:16px;padding:18px}
+    .admin-box h4{margin:0 0 14px;font-size:14px;color:var(--gold2)}
+    .stack{display:grid;gap:11px}
+    .stack label{font-size:12px;color:var(--muted)}
+    .stack input{width:100%;margin-top:6px}
+    input[type=file]{font-size:12px;padding:9px}
+    .admin-login{max-width:450px;margin:auto}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+    .stat{border:1px solid var(--line);border-radius:13px;padding:14px;background:#ffffff05}
+    .stat b{display:block;font:800 23px Orbitron,sans-serif;color:var(--gold)}
+    .stat span{font-size:11px;color:var(--muted)}
+    .hidden{display:none!important}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
+    .footer-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .mobile-menu{display:none}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}.disc{animation:none!important}}
+    @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:250px}.disc{width:220px}.orbit{width:270px}.admin-grid{grid-template-columns:1fr}}
+    @media(max-width:600px){.wrap{width:min(100% - 24px,1160px)}.nav{min-height:68px}.navlinks{gap:12px;font-size:11px}.navlinks .login-nav{display:none}.brand{font-size:12px}.brand-mark{width:38px;height:38px}.hero{padding:52px 0 32px}.hero-visual{min-height:220px}.section-head{align-items:start;flex-direction:column}.community{grid-template-columns:1fr}.admin-shell{padding:15px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:10px}.stat b{font-size:18px}.card[data-kind="audio"] .cover{width:76px;height:76px;flex-basis:76px;margin:10px 0 10px 10px}.card[data-kind="video"] .cover{width:128px;height:72px;flex-basis:128px;margin:10px 0 10px 10px}.card-body{padding:12px}.card-title{font-size:14px}.meta{margin-bottom:8px}.card.is-expanded[data-kind="audio"] .cover{width:84px;height:84px;min-width:84px;flex-basis:84px;margin:10px}.card.is-expanded[data-kind="audio"] .card-body{padding:12px}.card.is-expanded[data-kind="video"]{max-width:100%}.card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;margin:0;aspect-ratio:16/9;max-height:240px}.card.is-expanded[data-kind="video"] video{max-height:240px}.card.is-expanded .card-body{padding:14px}}
+  </style>
 </head>
 <body>
-<header class="topbar">
- <a class="brand" href="#home"><div class="logo" aria-label="CROSS DJ logo">C♪</div><div><strong>CROSS <span>DJ</span></strong><small>MUSIC CONNECTS US</small></div></a>
- <nav class="nav"><a href="#home">⌂ Home</a><a href="#mixes">♫ DJ Mixes</a><a href="#audioLibrary">Audio Library</a><a href="#videos">▣ Videos</a><a href="#playlists">▤ Playlists</a><a href="#members">♙ Members</a><a href="#about">ⓘ About</a></nav>
- <button class="btn" id="loginTop" onclick="document.querySelector('#members').scrollIntoView({behavior:'smooth'})">Login</button><button class="btn hot" onclick="showAuth('signup')">Sign Up</button>
-</header>
-<div class="layout">
-<aside class="sidebar"><div class="section-label">MAIN MENU</div><a class="side-link active" href="#home">⌂ Home</a><a class="side-link" href="#mixes">🎧 DJ Mixes</a><a class="side-link" href="#videos">▣ Videos</a><a class="side-link" href="#playlists">♫ Playlists</a><a class="side-link" href="#members">♡ My Favorites</a><a class="side-link" href="#members">♙ My Profile</a><div class="online"><div class="section-label">CLUB STATUS</div><p>● <b>RGB lights online</b></p><p>♫ Music connects us</p><p>🎧 Stay in the vibe</p></div></aside>
-<main class="main">
-<section class="hero" id="home"><div class="hero-copy"><div class="eyebrow">✦ THE SOUND OF YOUR NIGHT ✦</div><h1>MUSIC IS NOT<br>JUST <span>SOUND.</span></h1><p>It's a vibe. Feel the bass, live the moment. Welcome to the CROSS DJ zone — your home for mixes, videos and club energy.</p><div class="chips"><span class="chip">EDM</span><span class="chip">CLUB MIX</span><span class="chip">BOLLYWOOD</span><span class="chip">HINDI</span><span class="chip">PUNJABI</span><span class="chip">BASS</span><span class="chip">REMIX</span></div><div class="hero-actions"><a class="play-big" href="#mixes">▶ PLAY THE VIBE</a><a class="btn" href="#videos">Watch Videos ↗</a></div></div><div class="hero-art"><div class="dj-disc"><div class="disc-logo">C♪</div></div><div class="headphones">🎧</div></div></section>
-<div class="feature-row"><div class="feature"><div class="ico">🎧</div><div><b>HD Quality</b><small>Crystal clear sound</small></div></div><div class="feature"><div class="ico">ϟ</div><div><b>Club Energy</b><small>Feel every beat</small></div></div><div class="feature"><div class="ico">▦</div><div><b>Multiple Genres</b><small>For every mood</small></div></div><div class="feature"><div class="ico">♙</div><div><b>Member Zone</b><small>Sign in to your account</small></div></div></div>
-<div class="content-grid" id="mixes">
-<section class="panel"><h2>DJ MIXES <span>FEATURED</span></h2><div class="mix"><div class="cover">🎛️</div><div class="mix-info"><b>Club Night Mix</b><small>EDM • Club Vibes</small></div><button class="round" onclick="playDemo()">▶</button></div><div class="mix"><div class="cover">⚡</div><div class="mix-info"><b>Bollywood Remix</b><small>Bollywood • Remix</small></div><button class="round" onclick="playDemo()">▶</button></div><div class="mix"><div class="cover">🎚️</div><div class="mix-info"><b>Punjabi Bass Mix</b><small>Punjabi • Bass</small></div><button class="round" onclick="playDemo()">▶</button></div><div class="mix"><div class="cover">💿</div><div class="mix-info"><b>Hindi Party Mix</b><small>Hindi • Party</small></div><button class="round" onclick="playDemo()">▶</button></div><p class="auth-note">Use the video players below for your uploaded mixes.</p></section>
-<section class="panel featured-player"><div class="player-art"><div><div class="disc-logo">C♪</div><h3>CROSS DJ</h3><p>CLUB MIX • RGB SESSION</p><div class="eq" aria-label="Animated equalizer"><i style="--h:12px;--d:.1s"></i><i style="--h:25px;--d:.3s"></i><i style="--h:18px;--d:.2s"></i><i style="--h:34px;--d:.4s"></i><i style="--h:15px;--d:.15s"></i><i style="--h:29px;--d:.5s"></i><i style="--h:21px;--d:.25s"></i><i style="--h:37px;--d:.35s"></i><i style="--h:17px;--d:.1s"></i><i style="--h:28px;--d:.45s"></i><i style="--h:14px;--d:.2s"></i><i style="--h:31px;--d:.3s"></i></div></div></div><div class="player-controls"><div class="control-row"><span style="font-size:12px">🎧 <b>Now feel the beat</b></span><button id="demoPlay" onclick="playDemo()" aria-label="Toggle demo animation">▶</button><button onclick="toast('Choose one of the video players below to play your mix.')" aria-label="Next">⏭</button></div><input class="progress" type="range" min="0" max="100" value="42" aria-label="Decorative player progress" oninput="toast('For actual playback, use the video controls below.')"><div class="control-row"><small style="color:var(--muted)">RGB • CLUB • BASS</small><button onclick="toggleFavorite()" id="favBtn" aria-label="Favorite">♡</button></div></div></section>
-<section class="panel" id="playlists"><h2>FEATURED PLAYLISTS <span>✦</span></h2><div class="playlist-card"><div class="playlist-art">🌈</div><div><b>Club Mix Collection</b><small>EDM • Club energy</small></div></div><div class="playlist-card"><div class="playlist-art">💜</div><div><b>EDM Vibes</b><small>Electronic • Night drive</small></div></div><div class="playlist-card"><div class="playlist-art">🔥</div><div><b>Bollywood Remix</b><small>Desi • Dance</small></div></div><div class="playlist-card"><div class="playlist-art">🔊</div><div><b>Bass Boosted</b><small>Bass • Party</small></div></div></section>
-</div>
+  <div class="ambient-bg" aria-hidden="true">
+    <span class="ambient-logo" style="--x:8%;--y:74%;--size:28px;--duration:24s;--delay:-8s;--color:#f4c95d">♫</span>
+    <span class="ambient-logo" style="--x:83%;--y:79%;--size:21px;--duration:27s;--delay:-15s;--color:#38d9ff">DJ</span>
+    <span class="ambient-logo" style="--x:72%;--y:35%;--size:25px;--duration:22s;--delay:-4s;--color:#9b65ff">♪</span>
+    <span class="ambient-logo" style="--x:24%;--y:42%;--size:16px;--duration:29s;--delay:-20s;--color:#ff3cc7">BASS</span>
+    <span class="ambient-logo" style="--x:48%;--y:86%;--size:19px;--duration:25s;--delay:-11s;--color:#f4c95d">COROSSS</span>
+    <span class="ambient-logo" style="--x:91%;--y:17%;--size:23px;--duration:31s;--delay:-22s;--color:#38d9ff">♫</span>
+  </div>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="COROSSS D JAY home">
+        <span class="brand-mark">♫</span><span>COROSSS D JAY<small>OFFICIAL DJ ZONE</small></span>
+      </a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#library">Music & Videos</a><a href="#community">Community</a><a class="login-nav" href="#admin">Admin</a>
+        <button id="navLoginBtn" class="btn btn-gold" type="button" onclick="document.getElementById('admin').scrollIntoView({behavior:'smooth'})">ADMIN LOGIN</button>
+      </nav>
+    </div>
+  </header>
 
-  ection class="panel" id="audioLibrary" style="margin-top:18px">
- <h2>🎵 AUDIO LIBRARY <span id="audioCount">LOADING…</span></h2>
- <p class="auth-note">Public playback • Search tracks • Like, comment, share and add to your playlist.</p>
- <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><input id="audioSearch" class="search" style="display:block;max-width:none" placeholder="Search audio tracks…" oninput="renderAudio()"><button class="btn" onclick="loadAudio()">↻ Refresh</button></div>
- <div id="audioList" class="content-grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))"><p class="auth-note">Loading tracks…</p></div>
- <div id="audioAdmin" class="panel hide" style="margin-top:16px;border-color:var(--pink)"><h2>🔐 ADMIN: UPLOAD AUDIO <span>ADMIN ONLY</span></h2>
- <form id="audioUploadForm" class="auth-form"><input id="audioTitle" required maxlength="120" placeholder="Track title"><input id="audioFile" type="file" accept="audio/*" required><label class="auth-note" for="audioCover">Cover image (optional)</label><input id="audioCover" type="file" accept="image/*"><button class="btn hot" type="submit">Upload track + cover</button><div id="uploadStatus" class="status" role="status"></div></form></div>
-</section>
-<section class="panel" id="myPlaylists" style="margin-top:16px"><h2>🎧 MY PLAYLISTS <span>MEMBER SPACE</span></h2><div style="display:flex;gap:8px;flex-wrap:wrap"><input id="playlistName" class="search" style="display:block;max-width:none" maxlength="80" placeholder="New playlist name"><button class="btn hot" onclick="createPlaylist()">＋ Create playlist</button></div><div id="playlistList" style="margin-top:12px"><p class="auth-note">Log in to create and manage playlists.</p></div></section>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow"><span class="pulse"></span> Official DJ music hub</span>
+          <h1>FEEL THE BASS.<br><span class="gradient-text">OWN THE VIBE.</span></h1>
+          <p>Welcome to COROSSS D JAY — your place for DJ mixes, music drops and video sessions. Press play, turn up the energy, and enjoy the sound.</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#library">▶ Explore the Library</a>
+            <a class="btn btn-dark" href="#community">Join the Community ↗</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit"></div><div class="disc"></div>
+          <div class="bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
 
-<div class="section-title" id="videos"><h2>🎬 DJ VIDEO ZONE</h2><a href="#members">Member access →</a></div>
-<div class="video-grid"><section class="panel video-panel"><h3>🔥 DJ MARWEN MIX PROMO — PART 1</h3><video controls playsinline preload="metadata"><source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT1%29.mp4" type="video/mp4">Your browser does not support video playback.</video><p>Play Part 1 using the video controls, or use the button below to open/download it.</p><a class="btn hot" style="display:inline-block;margin-top:8px" href="https://github.com/ahlisan454-pixel/COROSSS-D-JAY/raw/refs/heads/main/DJ%20MARWEN%20MIX%20PROMO-(PT1).mp4" target="_blank" rel="noopener">⬇ DOWNLOAD PART 1</a></section><section class="panel video-panel"><h3>🔥 DJ MARWEN MIX PROMO — PART 2</h3><video controls playsinline preload="metadata"><source src="./DJ%20MARWEN%20MIX%20PROMO-%28PT2%29.mp4" type="video/mp4">Your browser does not support video playback.</video><p>Play Part 2 using the video controls, or use the button below to open/download it.</p><a class="btn hot" style="display:inline-block;margin-top:8px" href="https://github.com/ahlisan454-pixel/COROSSS-D-JAY/raw/refs/heads/main/DJ%20MARWEN%20MIX%20PROMO-(PT2).mp4" target="_blank" rel="noopener">⬇ DOWNLOAD PART 2</a></section></div>
-<section class="member-panel" id="members"><div class="panel"><h2>♙ CROSS DJ MEMBERS <span>SECURE LOGIN</span></h2><p class="auth-note">Create an account or log in to the member area. Email confirmation may be required. Your password is handled by Supabase Authentication.</p><div class="auth-form"><input id="authEmail" type="email" placeholder="Email address" autocomplete="email"><input id="authPassword" type="password" placeholder="Password (6+ characters)" autocomplete="current-password"><input id="authUsername" class="hide" type="text" placeholder="Choose a username" maxlength="24" autocomplete="nickname"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn hot" id="authSubmit" onclick="submitAuth()">Login</button><button class="btn" onclick="showAuth('signup')">Create account</button><button class="btn" onclick="resetPassword()">Forgot password?</button></div><div class="status" id="authStatus" role="status"></div></div></div><div class="panel"><h2>MY MEMBER SPACE <span>♡</span></h2><div id="memberState"><p class="auth-note">You're browsing as a guest. Log in to view your account status.</p><p>🎵 Mixes & videos<br>💜 Favorites<br>🎧 Member profile</p></div><button class="btn hide" id="logoutBtn" onclick="logout()">Log out</button><p class="auth-note">Please keep your password private and use an email account you can access.</p></div></section>
-<section class="panel" id="about" style="margin-top:16px"><h2>ABOUT CROSS DJ <span>MUSIC CONNECTS US</span></h2><p class="auth-note">CROSS DJ is a neon club-inspired music zone for DJ mixes, videos and good vibes. This website is built with a black-and-white club base, vivid RGB lighting, glowing controls and a headphone-inspired CROSS DJ mark.</p></section>
-</main></div>
-<footer class="footer"><strong>CROSS DJ</strong> &nbsp; • &nbsp; MUSIC CONNECTS US &nbsp; • &nbsp; DREAM · MIX · FEEL · REPEAT<br><br>© 2026 CROSS DJ · Made for the music</footer><div class="toast" id="toast" role="status"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <section class="section" id="library">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="kicker">The collection</div><h2>Music & Videos</h2><div class="sub">Play music and watch videos — no visitor login required.</div></div>
+        </div>
+        <div id="globalStatus" class="status" role="status"></div>
+        <div class="library-tools">
+          <input class="field search" id="searchInput" type="search" placeholder="Search music or videos..." aria-label="Search music or videos">
+          <select class="select" id="typeFilter" aria-label="Filter content type">
+            <option value="all">All content</option><option value="audio">Music only</option><option value="video">Videos only</option>
+          </select>
+          <select class="select" id="sortFilter" aria-label="Sort content">
+            <option value="newest">Newest first</option><option value="popular">Most played</option><option value="az">Title A–Z</option>
+          </select>
+        </div>
+        <div id="libraryGrid" class="grid">
+          <div class="empty">Loading the DJ library…</div>
+        </div>
+      </div>
+         </section>
+
+    <section class="section" id="community">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">Stay connected</div><h2>Join the Community</h2><div class="sub">Follow the latest mixes and updates.</div></div></div>
+        <div class="community">
+          <div class="community-box"><div class="kicker">New drops</div><h3>Fresh sound, fresh energy.</h3><p>Check back for new DJ mixes, video uploads and music releases from COROSSS D JAY.</p><a class="btn btn-gold" href="#library">Listen now →</a></div>
+          <div class="community-box"><div class="kicker">Social links</div><h3>Find your next vibe.</h3><p>Add your official YouTube, Facebook, Instagram or other social profile links here when you are ready.</p><div class="hero-actions"><a class="btn btn-dark" href="#admin">Manage website</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="admin">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">Restricted access</div><h2>Admin Studio</h2><div class="sub">Only the authorized admin account can manage uploads.</div></div></div>
+        <div id="loginPanel" class="admin-shell admin-login">
+          <h3 style="font-family:Orbitron;margin-top:0">Admin Login</h3>
+          <p class="sub">Sign in with the admin account configured for this website.</p>
+          <div id="loginStatus" class="status" role="status"></div>
+          <form id="loginForm" class="stack">
+            <label>Email<input id="loginEmail" class="field" type="email" autocomplete="username" required placeholder="Admin email"></label>
+            <label>Password<input id="loginPassword" class="field" type="password" autocomplete="current-password" required placeholder="Password"></label>
+            <button class="btn btn-gold" type="submit">Sign in</button>
+            <button class="btn btn-dark" type="button" id="resetPasswordBtn">Send password reset email</button>
+          </form>
+        </div>
+
+        <div id="adminPanel" class="admin-shell hidden">
+          <div class="admin-head"><h3>⚡ Admin Dashboard</h3><button id="logoutBtn" class="btn btn-dark" type="button">Sign out</button></div>
+          <div id="adminStatus" class="status" role="status"></div>
+          <div class="stats">
+            <div class="stat"><b id="statAudio">0</b><span>Music tracks</span></div>
+            <div class="stat"><b id="statVideos">0</b><span>Videos</span></div>
+            <div class="stat"><b id="statViews">0</b><span>Total plays/views</span></div>
+          </div>
+          <div class="admin-grid">
+            <form id="audioUploadForm" class="admin-box stack">
+              <h4>🎵 Upload a music track</h4>
+              <label>Track title<input id="audioTitle" class="field" type="text" maxlength="150" required placeholder="Enter track title"></label>
+              <label>Audio file<input id="audioFile" class="field" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" required></label>
+              <label>Track thumbnail (separate image)<input id="audioCover" class="field" type="file" accept="image/*" required></label>
+              <button class="btn btn-gold" type="submit">Upload music + thumbnail</button>
+              <small class="sub">Audio and cover are stored separately. Use a reasonably compressed audio file and image.</small>
+            </form>
+            <form id="videoUploadForm" class="admin-box stack">
+              <h4>🎬 Upload a video</h4>
+              <label>Video title<input id="videoTitle" class="field" type="text" maxlength="150" required placeholder="Enter video title"></label>
+              <label>Video file<input id="videoFile" class="field" type="file" accept="video/*,.mp4,.webm,.mov,.m4v" required></label>
+              <button class="btn btn-blue" type="submit">Upload video</button>
+              <small class="sub">Large files may take a while. Keep uploads within your Supabase Storage limits.</small>
+            </form>
+          </div>
+          <p class="sub" style="margin-top:18px">Tip: use the Rename or Delete buttons on a card in the public library to manage an item. Existing database entries are retained.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> COROSSS D JAY</span><span>Built for music lovers · Turn up the vibe ✦</span></div></footer>
+
 <script>
-  // Supabase browser publishable key only. Never put a service_role/secret key in public HTML.
-const SUPABASE_URL='https://odwyrnncykhjlqgkwnjk.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY='sb_publishable_FhSj4WXiHWdZXNbfgojXBg_y1CA4guJ';
-let supabaseClient=null, authMode='login', demoPlaying=false, isFavorite=false;
-try{if(window.supabase&&SUPABASE_URL&&SUPABASE_PUBLISHABLE_KEY){supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY)}}catch(e){console.error(e)}
-function toast(message){const el=document.getElementById('toast');el.textContent=message;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',3000)}
-function playDemo(){demoPlaying=!demoPlaying;document.getElementById('demoPlay').textContent=demoPlaying?'Ⅱ':'▶';toast('Use the Part 1 or Part 2 video player below for actual audio/video playback.')}
-function toggleFavorite(){isFavorite=!isFavorite;document.getElementById('favBtn').textContent=isFavorite?'♥':'♡';document.getElementById('favBtn').style.color=isFavorite?'var(--pink)':'var(--cyan)';toast(isFavorite?'Added to this browser session’s favorites.':'Removed from this browser session’s favorites.')}
-function showAuth(mode){authMode=mode;const username=document.getElementById('authUsername');username.classList.toggle('hide',mode!=='signup');document.getElementById('authSubmit').textContent=mode==='signup'?'Create account':'Login';document.getElementById('authStatus').textContent=mode==='signup'?'Sign up with your email and choose a username.':'';document.getElementById('authPassword').autocomplete=mode==='signup'?'new-password':'current-password';document.querySelector('#members').scrollIntoView({behavior:'smooth'})}
-async function submitAuth(){const status=document.getElementById('authStatus');const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPassword').value;const username=document.getElementById('authUsername').value.trim();if(!supabaseClient){status.textContent='Authentication could not initialize. Check the Supabase project key in index.html.';return}if(!email||!password){status.textContent='Please enter your email and password.';return}if(authMode==='signup'&&password.length<6){status.textContent='Please choose a password with at least 6 characters.';return}if(authMode==='signup'&&(!username||username.length<3)){status.textContent='Username must be at least 3 characters.';return}status.textContent='Please wait…';document.getElementById('authSubmit').disabled=true;try{let result;if(authMode==='signup'){result=await supabaseClient.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname,data:{username}}});if(result.error)throw result.error;if(result.data.session){await ensureProfile(result.data.user,username)}status.textContent=result.data.session?'Account created and signed in.':'Account created. Check your email to confirm, then log in.'}else{result=await supabaseClient.auth.signInWithPassword({email,password});if(result.error)throw result.error;await ensureProfile(result.data.user);status.textContent='Login successful! Welcome to CROSS DJ.'}await updateMemberUI()}catch(e){status.textContent=e.message||'Authentication failed. Please try again.'}finally{document.getElementById('authSubmit').disabled=false}}
-async function ensureProfile(user,providedUsername){if(!supabaseClient||!user)return;const username=(providedUsername||user.user_metadata?.username||user.email?.split('@')[0]||'member').replace(/[^a-zA-Z0-9_.-]/g,'').slice(0,24)||('member'+user.id.slice(0,6));const {error}=await supabaseClient.from('user_profiles').upsert({id:user.id,username},{onConflict:'id',ignoreDuplicates:true});if(error)console.warn('Profile setup:',error.message)}
-async function resetPassword(){const email=document.getElementById('authEmail').value.trim();const status=document.getElementById('authStatus');if(!email){status.textContent='Enter your email address first.';return}if(!supabaseClient){status.textContent='Authentication is not configured.';return}status.textContent='Sending password reset email…';try{const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});if(error)throw error;status.textContent='If the email is registered, a password reset link will arrive shortly.'}catch(e){status.textContent=e.message||'Could not request password reset.'}}
-async function updateMemberUI(){if(!supabaseClient)return;const {data:{user}}=await supabaseClient.auth.getUser();const state=document.getElementById('memberState');const logoutButton=document.getElementById('logoutBtn');document.getElementById('loginTop').textContent=user?'Member ✓':'Login';if(user){await ensureProfile(user);state.innerHTML='<p style="color:var(--green)">● Signed in</p><p><b>'+escapeHTML(user.user_metadata?.username||user.email?.split('@')[0]||'CROSS DJ Member')+'</b></p><p class="auth-note">'+escapeHTML(user.email||'')+'</p><p>🎵 Browse the public mixes and videos below.</p><p class="auth-note">Your account is connected. Playlist/favorite syncing needs the corresponding member UI to be implemented next.</p>';logoutButton.classList.remove('hide')}else{state.innerHTML='<p class="auth-note">You\'re browsing as a guest. Log in to view your account status.</p><p>🎵 Mixes & videos<br>💜 Favorites<br>🎧 Member profile</p>';logoutButton.classList.add('hide')}}
-function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function logout(){if(!supabaseClient)return;const {error}=await supabaseClient.auth.signOut();if(error)toast(error.message);else{document.getElementById('authStatus').textContent='You are logged out.';await updateMemberUI()}}
-if(supabaseClient){supabaseClient.auth.onAuthStateChange(()=>{setTimeout(updateMemberUI,0)});updateMemberUI().catch(console.error)}else{document.getElementById('authStatus').textContent='Supabase authentication is not connected yet.'}
+(() => {
+  'use strict';
 
-// CROSS DJ feature layer: uses the existing Supabase project and existing tables.
-let audioTracks=[], currentUser=null, adminUser=false, activeMedia=null;
-const AUDIO_BUCKET='dj-audio';
-  function mediaUrl(path,bucket=AUDIO_BUCKET){if(!path)return '';if(/^https?:\/\//i.test(path))return path;return supabaseClient.storage.from(bucket).getPublicUrl(path).data.publicUrl}
-async function checkAdmin(){if(!supabaseClient)return false;const {data:{user}}=await supabaseClient.auth.getUser();currentUser=user; if(!user)return false;const {data,error}=await supabaseClient.from('admins').select('user_id').eq('user_id',user.id).maybeSingle();if(error)console.warn('Admin check:',error.message);return !!data}
-async function loadAudio(){const list=document.getElementById('audioList');if(!supabaseClient){list.innerHTML='<p class="auth-note">Supabase is not connected.</p>';return}list.innerHTML='<p class="auth-note">Loading audio…</p>';try{const {data,error}=await supabaseClient.from('dj_audio').select('id,title,storage_path,thumbnail_path,views,uploaded_by,created_at').order('created_at',{ascending:false});if(error)throw error;audioTracks=data||[];document.getElementById('audioCount').textContent=audioTracks.length+' TRACKS';await renderAudio()}catch(e){list.innerHTML='<p class="auth-note">Could not load audio: '+escapeHTML(e.message)+'</p>';console.warn(e)}}
-async function renderAudio(){const list=document.getElementById('audioList');if(!list)return;const q=(document.getElementById('audioSearch')?.value||'').toLowerCase();const tracks=audioTracks.filter(t=>(t.title||'').toLowerCase().includes(q));if(!tracks.length){list.innerHTML='<p class="auth-note">No tracks found yet. Admin can upload tracks after signing in.</p>';return}const {data:{user}}=await supabaseClient.auth.getUser();const likesResult=user?await supabaseClient.from('dj_likes').select('media_id').eq('user_id',user.id).eq('media_type','audio'): {data:[]};const liked=new Set((likesResult.data||[]).map(x=>String(x.media_id)));list.innerHTML=tracks.map(t=>{const cover=mediaUrl(t.thumbnail_path);const src=mediaUrl(t.storage_path);return `<article class="panel" style="padding:12px"><img src="${escapeHTML(cover||'')}" alt="${escapeHTML(t.title)} cover" onerror="this.style.display='none'" style="width:100%;height:150px;object-fit:cover;border-radius:10px;background:#101626"><h3 style="font-size:14px;margin:10px 0">${escapeHTML(t.title||'Untitled track')}</h3><audio controls preload="none" style="width:100%" data-track="${t.id}" src="${escapeHTML(src)}"></audio><p class="auth-note">▶ ${Number(t.views||0)} plays/views</p><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" onclick="likeMedia('audio','${t.id}')">${liked.has(String(t.id))?'♥ Liked':'♡ Like'}</button><button class="btn" onclick="commentMedia('audio','${t.id}')">💬 Comment</button><button class="btn" onclick="shareMedia('${t.id}')">↗ Share</button>${user?`<button class="btn" onclick="addToPlaylist('${t.id}')">＋ Playlist</button>`:''}${adminUser?`<button class="btn" onclick="renameAudio('${t.id}')">Rename</button><button class="btn" onclick="deleteAudio('${t.id}')">Delete</button>`:''}</div><div id="comments-${t.id}" class="auth-note" style="margin-top:8px"></div></article>`}).join('');list.querySelectorAll('audio').forEach(a=>{a.addEventListener('play',()=>{const id=a.dataset.track;supabaseClient.from('dj_audio').update({views:(audioTracks.find(t=>String(t.id)===id)?.views||0)+1}).eq('id',id).then(()=>{const t=audioTracks.find(t=>String(t.id)===id);if(t)t.views=Number(t.views||0)+1})},{once:true})})}
-async function likeMedia(type,id){if(!supabaseClient)return;const {data:{user}}=await supabaseClient.auth.getUser();if(!user){toast('Log in first to like tracks.');return}try{const {data,error}=await supabaseClient.from('dj_likes').select('id').eq('user_id',user.id).eq('media_type',type).eq('media_id',String(id)).maybeSingle();if(error)throw error;if(data){const r=await supabaseClient.from('dj_likes').delete().eq('id',data.id);if(r.error)throw r.error;toast('Like removed')}else{const r=await supabaseClient.from('dj_likes').insert({user_id:user.id,media_type:type,media_id:String(id)});if(r.error)throw r.error;toast('Liked!')}await renderAudio()}catch(e){toast('Like failed: '+e.message)}}
-async function commentMedia(type,id){const {data:{user}}=await supabaseClient.auth.getUser();if(!user){toast('Log in to comment.');return}const body=prompt('Write your comment (max 500 characters):');if(!body||!body.trim())return;try{const {error}=await supabaseClient.from('dj_comments').insert({user_id:user.id,media_type:type,media_id:String(id),body:body.trim().slice(0,500)});if(error)throw error;toast('Comment posted');const el=document.getElementById('comments-'+id);if(el)el.textContent='Your comment was posted.'}catch(e){toast('Comment failed: '+e.message)}}
-function shareMedia(id){const url=location.origin+location.pathname+'#audioLibrary';if(navigator.share)navigator.share({title:'CROSS DJ track',url}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(url).then(()=>toast('Share link copied!')).catch(()=>prompt('Copy this link:',url));else prompt('Copy this link:',url)}
-async function createPlaylist(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user){toast('Log in to create playlists.');return}const name=document.getElementById('playlistName').value.trim();if(!name){toast('Enter a playlist name.');return}const {error}=await supabaseClient.from('dj_playlists').insert({user_id:user.id,name:name.slice(0,80)});if(error){toast('Could not create playlist: '+error.message);return}document.getElementById('playlistName').value='';await loadPlaylists();toast('Playlist created!')}
-async function loadPlaylists(){const el=document.getElementById('playlistList');if(!supabaseClient)return;const {data:{user}}=await supabaseClient.auth.getUser();if(!user){el.innerHTML='<p class="auth-note">Log in to create and manage playlists.</p>';return}const {data,error}=await supabaseClient.from('dj_playlists').select('id,name,created_at').eq('user_id',user.id).order('created_at',{ascending:false});if(error){el.innerHTML='<p class="auth-note">Playlist load failed: '+escapeHTML(error.message)+'</p>';return}el.innerHTML=(data||[]).map(p=>`<div class="mix"><div class="mix-info"><b>${escapeHTML(p.name)}</b><small>Your playlist</small></div><button class="btn" onclick="showPlaylist('${p.id}')">View</button></div>`).join('')||'<p class="auth-note">No playlists yet.</p>'}
-async function addToPlaylist(mediaId){const {data:{user}}=await supabaseClient.auth.getUser();if(!user){toast('Log in first.');return}const {data:lists,error}=await supabaseClient.from('dj_playlists').select('id,name').eq('user_id',user.id);if(error||!lists?.length){toast('Create a playlist first.');return}const choice=prompt('Enter playlist number:\n'+lists.map((p,i)=>(i+1)+'. '+p.name).join('\n'));const p=lists[Number(choice)-1];if(!p)return;const {error:e}=await supabaseClient.from('dj_playlist_tracks').insert({playlist_id:p.id,media_type:'audio',media_id:String(mediaId),position:0});if(e){toast('Could not add track: '+e.message);return}toast('Added to '+p.name)}
-async function showPlaylist(id){const {data,error}=await supabaseClient.from('dj_playlist_tracks').select('media_id,media_type,position').eq('playlist_id',id).order('position');if(error){toast(error.message);return}const names=(data||[]).map(x=>audioTracks.find(t=>String(t.id)===String(x.media_id))?.title||('Track '+x.media_id));alert(names.length?names.join('\n'):'This playlist is empty.')}
-async function renameAudio(id){if(!adminUser)return;const t=audioTracks.find(x=>String(x.id)===String(id));const title=prompt('New track title:',t?.title||'');if(!title?.trim())return;const {error}=await supabaseClient.from('dj_audio').update({title:title.trim().slice(0,120)}).eq('id',id);if(error){toast('Rename failed: '+error.message);return}toast('Track renamed');await loadAudio()}
-async function deleteAudio(id){if(!adminUser||!confirm('Delete this audio track from the library? This cannot be undone.'))return;const t=audioTracks.find(x=>String(x.id)===String(id));try{const {error}=await supabaseClient.from('dj_audio').delete().eq('id',id);if(error)throw error;if(t?.storage_path)await supabaseClient.storage.from(AUDIO_BUCKET).remove([t.storage_path]);if(t?.thumbnail_path)await supabaseClient.storage.from(AUDIO_BUCKET).remove([t.thumbnail_path]);toast('Track deleted');await loadAudio()}catch(e){toast('Delete failed: '+e.message)}}
-document.getElementById('audioUploadForm')?.addEventListener('submit',async e=>{e.preventDefault();const status=document.getElementById('uploadStatus');if(!adminUser||!currentUser){status.textContent='Admin login required.';return}const file=document.getElementById('audioFile').files[0],cover=document.getElementById('audioCover').files[0],title=document.getElementById('audioTitle').value.trim();if(!file||!title)return;const safe=s=>s.name.replace(/[^a-zA-Z0-9._-]/g,'_');const base=Date.now()+'_'+Math.random().toString(36).slice(2,8);status.textContent='Uploading audio…';const audioPath=currentUser.id+'/'+base+'_'+safe(file);try{let r=await supabaseClient.storage.from(AUDIO_BUCKET).upload(audioPath,file,{upsert:false,contentType:file.type||'audio/mpeg'});if(r.error)throw r.error;let thumbPath=null;if(cover){status.textContent='Uploading cover…';thumbPath=currentUser.id+'/'+base+'_cover_'+safe(cover);r=await supabaseClient.storage.from(AUDIO_BUCKET).upload(thumbPath,cover,{upsert:false,contentType:cover.type||'image/jpeg'});if(r.error){await supabaseClient.storage.from(AUDIO_BUCKET).remove([audioPath]);throw r.error}}status.textContent='Saving track…';r=await supabaseClient.from('dj_audio').insert({title,storage_path:audioPath,thumbnail_path:thumbPath,views:0,uploaded_by:currentUser.id});if(r.error)throw r.error;status.textContent='Upload successful!';document.getElementById('audioUploadForm').reset();await loadAudio()}catch(err){status.textContent='Upload failed: '+(err.message||'Check storage/table policies');console.error(err)}});
-async function refreshFeatureAccess(){adminUser=await checkAdmin();document.getElementById('audioAdmin').classList.toggle('hide',!adminUser);await loadAudio();await loadPlaylists()}
-if(supabaseClient){supabaseClient.auth.onAuthStateChange(()=>setTimeout(()=>refreshFeatureAccess().catch(console.error),0));setTimeout(()=>refreshFeatureAccess().catch(console.error),100)}
+  // Supabase publishable/anon key is intended for browser use. Never place a service_role key here.
+  const SUPABASE_URL = 'https://odwyrnncykhjlqgkwnjk.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ';
+  const ADMIN_USER_ID = '61187c1a-8f1b-48b0-893c-77136be5422a';
+  const AUDIO_BUCKET = 'dj-audio';
+  const VIDEO_BUCKET = 'dj-videos';
+  const AUDIO_TABLE = 'dj_audio';
+  const VIDEO_TABLE = 'dj_videos';
 
+  const $ = id => document.getElementById(id);
+  const client = window.supabase && window.supabase.createClient
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
+
+  let currentUser = null;
+  let isAdmin = false;
+  let audioItems = [];
+  let videoItems = [];
+  let combinedItems = [];
+  let busy = false;
+
+  $('year').textContent = new Date().getFullYear();
+
+  function showStatus(el, message, kind = 'info') {
+    if (!el) return;
+    el.textContent = message;
+    el.className = 'status show ' + kind;
+  }
+  function hideStatus(el) { if (el) { el.textContent = ''; el.className = 'status'; } }
+  function globalMessage(message, kind = 'info') { showStatus($('globalStatus'), message, kind); }
+  function adminMessage(message, kind = 'info') { showStatus($('adminStatus'), message, kind); }
+  function loginMessage(message, kind = 'info') { showStatus($('loginStatus'), message, kind); }
+  function friendlyError(error) {
+    const msg = error && (error.message || error.error_description) ? (error.message || error.error_description) : String(error || 'Unknown error');
+    if (/Invalid login credentials/i.test(msg)) return 'Login failed. Check the admin email and password.';
+    if (/row-level security|permission denied|not allowed/i.test(msg)) return 'Permission denied. Check the Supabase RLS and Storage policies for the admin account.';
+    if (/bucket/i.test(msg) && /not found/i.test(msg)) return 'Storage bucket not found. Check the dj-audio and dj-videos bucket names in Supabase.';
+    return msg;
+  }
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function publicUrl(bucket, path) {
+    if (!path || !client) return '';
+    const result = client.storage.from(bucket).getPublicUrl(path);
+    return result && result.data ? result.data.publicUrl : '';
+  }
+  function prettyDate(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    return Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString(undefined, {year:'numeric',month:'short',day:'numeric'});
+  }
+  function formatViews(n) {
+    const num = Number(n || 0);
+    return `${num.toLocaleString()} ${num === 1 ? 'play/view' : 'plays/views'}`;
+  }
+  function safeFileName(name) {
+    return String(name || 'upload').normalize('NFKD').replace(/[^\w.-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(-100) || 'upload';
+  }
+  function randomPath(folder, file) {
+    return `${currentUser.id}/${folder}/${Date.now()}-${cryptoRandom()}-${safeFileName(file.name)}`;
+  }
+  function cryptoRandom() {
+    try { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0].toString(36); }
+    catch (_) { return Math.random().toString(36).slice(2, 10); }
+  }
+  function setBusy(form, value, label) {
+    const button = form.querySelector('button[type="submit"]');
+    if (!button) return;
+    if (value) { button.dataset.oldText = button.textContent; button.disabled = true; button.textContent = label || 'Working…'; }
+    else { button.disabled = false; button.textContent = button.dataset.oldText || button.textContent; }
+  }
+
+  function render() {
+    const q = $('searchInput').value.trim().toLowerCase();
+    const type = $('typeFilter').value;
+    const sort = $('sortFilter').value;
+    let items = combinedItems.filter(item => {
+      const typeOk = type === 'all' || item.kind === type;
+      const searchOk = !q || `${item.title} ${item.kind}`.toLowerCase().includes(q);
+      return typeOk && searchOk;
+    });
+    if (sort === 'popular') items.sort((a,b) => Number(b.views || 0) - Number(a.views || 0));
+    else if (sort === 'az') items.sort((a,b) => a.title.localeCompare(b.title));
+    else items.sort((a,b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+
+    const grid = $('libraryGrid');
+    if (!items.length) {
+      grid.innerHTML = `<div class="empty">${combinedItems.length ? 'No items match your search/filter.' : 'No music or videos found yet. Check back soon!'}</div>`;
+      updateStats();
+      return;
+    }
+    grid.innerHTML = items.map(item => item.kind === 'audio' ? audioCard(item) : videoCard(item)).join('');
+    updateStats();
+    bindCardActions();
+  }
+
+  function adminActions(item) {
+    if (!isAdmin) return '';
+    return `<div class="card-actions">
+      <button class="btn btn-dark" type="button" data-action="rename" data-kind="${item.kind}" data-id="${escapeHtml(item.id)}">✎ Rename</button>
+      <button class="btn btn-danger" type="button" data-action="delete" data-kind="${item.kind}" data-id="${escapeHtml(item.id)}">Delete</button>
+    </div>`;
+  }
+
+  function audioCard(item) {
+    const cover = publicUrl(AUDIO_BUCKET, item.thumbnail_path);
+    const src = publicUrl(AUDIO_BUCKET, item.storage_path);
+    const image = cover ? `<img loading="lazy" src="${escapeHtml(cover)}" alt="${escapeHtml(item.title)} thumbnail" onerror="this.remove()">` : '';
+    return `<article class="card" data-kind="audio" data-card="${escapeHtml(item.id)}">
+      <div class="cover">${image}<span class="cover-fallback">♫</span><span class="badge">MUSIC</span></div>
+      <div class="card-body">
+        <h3 class="card-title">${escapeHtml(item.title)}</h3>
+        <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} plays</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
+        ${src ? `<div class="track-wave" aria-hidden="true">${Array.from({length:36},(_,i)=>`<span style="height:${6+((i*7+3)%17)}px"></span>`).join('')}</div><audio controls preload="none" data-kind="audio" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}">Your browser does not support audio playback.</audio><div class="player-hint">♫ Tap play to expand the player · more tracks stay visible</div>` : '<div class="sub">Audio file URL unavailable.</div>'}
+        ${adminActions(item)}
+      </div>
+    </article>`;
+  }
+
+  function videoCard(item) {
+    const src = publicUrl(VIDEO_BUCKET, item.storage_path);
+
+    return `<article class="card" data-kind="video" data-card="${escapeHtml(item.id)}">
+      <div class="cover">
+        ${src
+          ? `<video controls preload="metadata" playsinline data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}">Your browser does not support video playback.</video>`
+          : '<span class="cover-fallback">▶</span>'}
+        <span class="badge">VIDEO</span>
+      </div>
+
+      <div class="card-body">
+        <h3 class="card-title">${escapeHtml(item.title)}</h3>
+
+        <div class="meta">
+          <span>▶ ${Number(item.views || 0).toLocaleString()} views</span>
+          <span>${escapeHtml(prettyDate(item.created_at))}</span>
+        </div>
+
+        ${src
+          ? `<button class="btn btn-gold" type="button"
+                data-action="play-video"
+                data-id="${escapeHtml(item.id)}">
+                ▶ Play Video
+             </button>`
+          : '<div class="sub">Video URL unavailable.</div>'}
+
+        <div class="player-hint">
+          Press Play Video to watch · more videos stay visible
+        </div>
+
+        ${adminActions(item)}
+      </div>
+    </article>`;
+  }
+
+  function bindCardActions() {document.querySelectorAll('button[data-action="play-video"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        const video = card?.querySelector('video[data-kind="video"]');
+
+        if (!video) return;
+
+        card.classList.add('is-expanded');
+        video.play().catch(() => {
+            video.controls = true;
+            video.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        });
+    });
+});
+    document.querySelectorAll('button[data-action="rename"]').forEach(btn => btn.addEventListener('click', () => renameItem(btn.dataset.kind, btn.dataset.id)));
+    document.querySelectorAll('button[data-action="delete"]').forEach(btn => btn.addEventListener('click', () => deleteItem(btn.dataset.kind, btn.dataset.id)));
+    document.querySelectorAll('audio[data-kind="audio"]').forEach(el => {
+      el.addEventListener('play', () => {
+        document.querySelectorAll('audio[data-kind="audio"]').forEach(other => { if (other !== el) { other.pause(); other.closest('.card')?.classList.remove('is-playing'); } });
+        document.querySelectorAll('video[data-kind="video"]').forEach(other => { other.pause(); other.closest('.card')?.classList.remove('is-playing'); });
+        const card = el.closest('.card');
+        card?.classList.add('is-playing','is-expanded');
+        recordPlay('audio', el.dataset.id);
+      }, {once:true});
+      el.addEventListener('play', () => el.closest('.card')?.classList.add('is-playing','is-expanded'));
+      el.addEventListener('pause', () => el.closest('.card')?.classList.remove('is-playing'));
+      el.addEventListener('ended', () => el.closest('.card')?.classList.remove('is-playing'));
+    });
+    document.querySelectorAll('video[data-kind="video"]').forEach(el => {
+      el.addEventListener('click', () => el.closest('.card')?.classList.add('is-expanded'));
+      el.addEventListener('play', () => {
+        document.querySelectorAll('audio[data-kind="audio"]').forEach(other => { other.pause(); other.closest('.card')?.classList.remove('is-playing'); });
+        // Keep only the currently playing video expanded; collapse previously playing videos.
+        document.querySelectorAll('video[data-kind="video"]').forEach(other => {
+          if (other !== el) {
+            other.pause();
+                       other.closest('.card')?.classList.remove('is-playing', 'is-expanded');
+          }
+        });
+        el.closest('.card')?.classList.add('is-playing','is-expanded');
+        recordPlay('video', el.dataset.id);
+      }, {once:true});
+      el.addEventListener('play', () => el.closest('.card')?.classList.add('is-playing','is-expanded'));
+      el.addEventListener('pause', () => el.closest('.card')?.classList.remove('is-playing'));
+      el.addEventListener('ended', () => el.closest('.card')?.classList.remove('is-playing'));
+    });
+  }
+
+  function updateStats() {
+    $('statAudio').textContent = audioItems.length.toLocaleString();
+    $('statVideos').textContent = videoItems.length.toLocaleString();
+    const views = [...audioItems, ...videoItems].reduce((sum, item) => sum + Number(item.views || 0), 0);
+    $('statViews').textContent = views.toLocaleString();
+  }
+
+  async function loadLibrary() {
+    if (!client) {
+      $('libraryGrid').innerHTML = '<div class="empty">Supabase client could not load. Check your internet connection and reload.</div>';
+      return;
+    }
+    globalMessage('Loading music and videos…', 'info');
+    const [audioRes, videoRes] = await Promise.all([
+      client.from(AUDIO_TABLE).select('id,title,storage_path,thumbnail_path,views,uploaded_by,created_at').order('created_at', {ascending:false}),
+      client.from(VIDEO_TABLE).select('id,title,storage_path,views,uploaded_by,created_at').order('created_at', {ascending:false})
+    ]);
+    if (audioRes.error || videoRes.error) {
+      const errors = [audioRes.error, videoRes.error].filter(Boolean).map(e => friendlyError(e)).join(' | ');
+      globalMessage('Could not load all library items: ' + errors, 'error');
+      audioItems = audioRes.error ? [] : (audioRes.data || []);
+      videoItems = videoRes.error ? [] : (videoRes.data || []);
+    } else {
+      hideStatus($('globalStatus'));
+      audioItems = audioRes.data || [];
+      videoItems = videoRes.data || [];
+    }
+    combinedItems = [
+      ...audioItems.map(item => ({...item, kind:'audio'})),
+      ...videoItems.map(item => ({...item, kind:'video'}))
+    ];
+    render();
+  }
+
+  async function recordPlay(kind, id) {
+    if (!client) return;
+    const isAudio = kind === 'audio';
+    const table = isAudio ? AUDIO_TABLE : VIDEO_TABLE;
+    const rpc = isAudio ? 'increment_dj_audio_views' : 'increment_dj_video_views';
+    const args = isAudio ? {audio_id:id} : {video_id:id};
+    try {
+      const {error} = await client.rpc(rpc, args);
+      if (error) {
+        console.warn('View counter RPC failed:', error.message);
+        return;
+      }
+      const list = isAudio ? audioItems : videoItems;
+      const found = list.find(x => String(x.id) === String(id));
+      if (found) found.views = Number(found.views || 0) + 1;
+      const combined = combinedItems.find(x => x.kind === kind && String(x.id) === String(id));
+      if (combined) combined.views = Number(combined.views || 0) + 1;
+      updateStats();
+      const card = document.querySelector(`[data-card="${CSS.escape(String(id))}"]`);
+      const meta = card && card.querySelector('.meta span');
+      if (meta) meta.textContent = `▶ ${Number(found ? found.views : combined ? combined.views : 0).toLocaleString()} ${isAudio ? 'plays' : 'views'}`;
+    } catch (e) { console.warn('Could not increment view count:', e); }
+  }
+
+  async function syncAuth() {
+    if (!client) return;
+    const {data, error} = await client.auth.getSession();
+    if (error) console.warn(error.message);
+    currentUser = data && data.session ? data.session.user : null;
+    isAdmin = !!(currentUser && currentUser.id === ADMIN_USER_ID);
+    $('loginPanel').classList.toggle('hidden', isAdmin);
+    $('adminPanel').classList.toggle('hidden', !isAdmin);
+    $('navLoginBtn').textContent = isAdmin ? 'ADMIN DASHBOARD' : 'ADMIN LOGIN';
+    if (isAdmin) hideStatus($('loginStatus'));
+    render();
+  }
+
+  client?.auth.onAuthStateChange((_event, session) => {
+    currentUser = session ? session.user : null;
+    isAdmin = !!(currentUser && currentUser.id === ADMIN_USER_ID);
+    $('loginPanel').classList.toggle('hidden', isAdmin);
+    $('adminPanel').classList.toggle('hidden', !isAdmin);
+    $('navLoginBtn').textContent = isAdmin ? 'ADMIN DASHBOARD' : 'ADMIN LOGIN';
+    // Keep auth callback lightweight; the initial page load and uploads refresh data.
+  });
+
+  $('loginForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!client) return loginMessage('Supabase is not available. Reload and try again.', 'error');
+    const email = $('loginEmail').value.trim();
+    const password = $('loginPassword').value;
+    const button = $('loginForm').querySelector('button[type="submit"]');
+    button.disabled = true; button.textContent = 'Signing in…';
+    hideStatus($('loginStatus'));
+    try {
+      const {data, error} = await client.auth.signInWithPassword({email, password});
+      if (error) throw error;
+      if (!data.user || data.user.id !== ADMIN_USER_ID) {
+        await client.auth.signOut();
+        throw new Error('This account is not authorized as the website admin.');
+      }
+      currentUser = data.user; isAdmin = true;
+      $('loginPassword').value = '';
+      $('loginPanel').classList.add('hidden'); $('adminPanel').classList.remove('hidden');
+      loginMessage('Admin login successful.', 'ok');
+      adminMessage('Welcome back! You can now upload and manage content.', 'ok');
+      await loadLibrary();
+    } catch (e) { loginMessage(friendlyError(e), 'error'); }
+    finally { button.disabled = false; button.textContent = 'Sign in'; }
+  });
+
+  $('resetPasswordBtn').addEventListener('click', async () => {
+    if (!client) return loginMessage('Supabase is not available.', 'error');
+    const email = $('loginEmail').value.trim();
+    if (!email) return loginMessage('Enter your admin email first, then click password reset.', 'error');
+    try {
+      const {error} = await client.auth.resetPasswordForEmail(email, {redirectTo: window.location.origin + window.location.pathname});
+      if (error) throw error;
+      loginMessage('Password reset email requested. Check your inbox and spam folder.', 'ok');
+    } catch (e) { loginMessage(friendlyError(e), 'error'); }
+  });
+
+  $('logoutBtn').addEventListener('click', async () => {
+    if (!client) return;
+    const {error} = await client.auth.signOut();
+    if (error) adminMessage(friendlyError(error), 'error');
+    else {
+      currentUser = null; isAdmin = false;
+      $('adminPanel').classList.add('hidden'); $('loginPanel').classList.remove('hidden');
+      loginMessage('You have signed out.', 'ok');
+    }
+  });
+
+  $('audioUploadForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!isAdmin || !currentUser || currentUser.id !== ADMIN_USER_ID) return adminMessage('Admin login required.', 'error');
+    const form = event.currentTarget;
+    const title = $('audioTitle').value.trim();
+    const audioFile = $('audioFile').files[0];
+    const coverFile = $('audioCover').files[0];
+    if (!title || !audioFile || !coverFile) return adminMessage('Please enter a title and choose both an audio file and a thumbnail image.', 'error');
+    if (!audioFile.type.startsWith('audio/') && !/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(audioFile.name)) return adminMessage('Choose a valid audio file.', 'error');
+    if (!coverFile.type.startsWith('image/')) return adminMessage('Thumbnail must be an image file.', 'error');
+    if (audioFile.size > 250 * 1024 * 1024) return adminMessage('Audio file is over 250 MB. Please choose a smaller file.', 'error');
+    if (coverFile.size > 12 * 1024 * 1024) return adminMessage('Thumbnail is over 12 MB. Please choose a smaller image.', 'error');
+    setBusy(form, true, 'Uploading music…'); hideStatus($('adminStatus'));
+    let audioPath = '', coverPath = '';
+    try {
+      audioPath = randomPath('audio', audioFile);
+      coverPath = randomPath('covers', coverFile);
+      const audioUpload = await client.storage.from(AUDIO_BUCKET).upload(audioPath, audioFile, {cacheControl:'3600', upsert:false, contentType:audioFile.type || undefined});
+      if (audioUpload.error) throw audioUpload.error;
+      const coverUpload = await client.storage.from(AUDIO_BUCKET).upload(coverPath, coverFile, {cacheControl:'3600', upsert:false, contentType:coverFile.type || undefined});
+      if (coverUpload.error) {
+        await client.storage.from(AUDIO_BUCKET).remove([audioPath]);
+        audioPath = '';
+        throw coverUpload.error;
+      }
+      const {error} = await client.from(AUDIO_TABLE).insert({title, storage_path:audioPath, thumbnail_path:coverPath, uploaded_by:currentUser.id});
+      if (error) {
+        await client.storage.from(AUDIO_BUCKET).remove([audioPath, coverPath]);
+        audioPath = ''; coverPath = '';
+        throw error;
+      }
+      form.reset();
+      adminMessage('Music and thumbnail uploaded successfully!', 'ok');
+      await loadLibrary();
+    } catch (e) { adminMessage('Audio upload failed: ' + friendlyError(e), 'error'); }
+    finally { setBusy(form, false); }
+  });
+
+  $('videoUploadForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!isAdmin || !currentUser || currentUser.id !== ADMIN_USER_ID) return adminMessage('Admin login required.', 'error');
+    const form = event.currentTarget;
+    const title = $('videoTitle').value.trim();
+    const file = $('videoFile').files[0];
+    if (!title || !file) return adminMessage('Please enter a title and choose a video file.', 'error');
+    if (!file.type.startsWith('video/') && !/\.(mp4|webm|mov|m4v)$/i.test(file.name)) return adminMessage('Choose a valid video file.', 'error');
+    if (file.size > 500 * 1024 * 1024) return adminMessage('Video file is over 500 MB. Please choose a smaller file.', 'error');
+    setBusy(form, true, 'Uploading video…'); hideStatus($('adminStatus'));
+    let path = '';
+    try {
+      path = randomPath('videos', file);
+      const {error:uploadError} = await client.storage.from(VIDEO_BUCKET).upload(path, file, {cacheControl:'3600', upsert:false, contentType:file.type || undefined});
+      if (uploadError) throw uploadError;
+      const {error:insertError} = await client.from(VIDEO_TABLE).insert({title, storage_path:path, uploaded_by:currentUser.id});
+      if (insertError) {
+        await client.storage.from(VIDEO_BUCKET).remove([path]);
+        path = '';
+        throw insertError;
+      }
+      form.reset();
+      adminMessage('Video uploaded successfully!', 'ok');
+      await loadLibrary();
+    } catch (e) { adminMessage('Video upload failed: ' + friendlyError(e), 'error'); }
+    finally { setBusy(form, false); }
+  });
+
+  async function renameItem(kind, id) {
+    if (!isAdmin) return adminMessage('Admin login required.', 'error');
+    const list = kind === 'audio' ? audioItems : videoItems;
+    const item = list.find(x => String(x.id) === String(id));
+    if (!item) return adminMessage('Could not find that item.', 'error');
+    const nextTitle = window.prompt('Enter a new title:', item.title);
+    if (nextTitle === null) return;
+    const title = nextTitle.trim();
+    if (!title) return adminMessage('Title cannot be empty.', 'error');
+    if (title.length > 150) return adminMessage('Title must be 150 characters or fewer.', 'error');
+    try {
+           const table = kind === 'audio' ? AUDIO_TABLE : VIDEO_TABLE;
+      const {error} = await client.from(table).update({title}).eq('id', id);
+      if (error) throw error;
+      adminMessage('Title updated successfully.', 'ok');
+      await loadLibrary();
+    } catch (e) { adminMessage('Rename failed: ' + friendlyError(e), 'error'); }
+  }
+
+  async function deleteItem(kind, id) {
+    if (!isAdmin) return adminMessage('Admin login required.', 'error');
+    const list = kind === 'audio' ? audioItems : videoItems;
+    const item = list.find(x => String(x.id) === String(id));
+    if (!item) return adminMessage('Could not find that item.', 'error');
+    const label = kind === 'audio' ? 'music track' : 'video';
+    if (!window.confirm(`Delete "${item.title}" and its stored file${kind === 'audio' ? ' and thumbnail' : ''}? This cannot be undone.`)) return;
+    try {
+      const table = kind === 'audio' ? AUDIO_TABLE : VIDEO_TABLE;
+      const bucket = kind === 'audio' ? AUDIO_BUCKET : VIDEO_BUCKET;
+      const paths = kind === 'audio' ? [item.storage_path, item.thumbnail_path].filter(Boolean) : [item.storage_path].filter(Boolean);
+      if (paths.length) {
+        const {error:storageError} = await client.storage.from(bucket).remove(paths);
+        if (storageError) throw storageError;
+      }
+      const {error:rowError} = await client.from(table).delete().eq('id', id);
+      if (rowError) throw rowError;
+      adminMessage(`Deleted ${label}.`, 'ok');
+      await loadLibrary();
+    } catch (e) { adminMessage('Delete failed: ' + friendlyError(e), 'error'); }
+  }
+
+  $('searchInput').addEventListener('input', render);
+  $('typeFilter').addEventListener('change', render);
+  $('sortFilter').addEventListener('change', render);
+
+  (async function init() {
+    if (!client) {
+      $('libraryGrid').innerHTML = '<div class="empty">Could not initialize Supabase. Check your connection and configuration.</div>';
+      loginMessage('Supabase JavaScript client did not load.', 'error');
+      return;
+    }
+    await syncAuth();
+    await loadLibrary();
+  })();
+})();
 </script>
-</body></html>
+</body>
+</html>
