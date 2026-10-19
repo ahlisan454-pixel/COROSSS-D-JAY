@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08080d">
-  <title>COROSSS D JAY | Official Music & Videos</title>
+  <title>COROSSS CLOUD | Music & Videos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -136,6 +136,23 @@
     .stat{border:1px solid var(--line);border-radius:13px;padding:14px;background:#ffffff05}
     .stat b{display:block;font:800 23px Orbitron,sans-serif;color:var(--gold)}
     .stat span{font-size:11px;color:var(--muted)}
+
+    .social-panel{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);min-width:0}
+    .social-buttons{display:flex;gap:8px;flex-wrap:wrap}
+    .social-btn{border:1px solid #ffffff22;background:#ffffff09;color:var(--text);border-radius:10px;padding:8px 11px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+    .social-btn:hover{border-color:#f4c95d88;color:var(--gold2)}
+    .social-btn.is-liked{background:#ff3cc71a;border-color:#ff3cc788;color:#ff9ce5}
+    .social-count{color:var(--muted);font-size:11px;margin:9px 0 0}
+    .social-comments{margin-top:12px;display:grid;gap:8px}
+    .social-comment-list{display:grid;gap:8px;max-height:220px;overflow:auto}
+    .social-comment{padding:9px 11px;border-radius:10px;background:#ffffff08;border:1px solid #ffffff10;font-size:12px;overflow-wrap:anywhere;white-space:pre-wrap}
+    .social-comment time{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+    .social-form{display:flex;gap:7px;align-items:stretch}
+    .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text);outline:none;font-size:12px}
+    .social-form input:focus{border-color:#f4c95d99}
+    .social-note{color:var(--muted);font-size:11px;margin:6px 0 0}
+    .social-admin-metrics{display:flex;gap:12px;flex-wrap:wrap;color:var(--gold2);font-size:11px;margin:4px 0 10px}
+    @media(max-width:600px){.social-btn{padding:8px 9px}.social-form{flex-wrap:wrap}.social-form input{flex-basis:100%}}
     .hidden{display:none!important}
     footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
     .footer-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -156,8 +173,8 @@
   </div>
   <header class="topbar">
     <div class="wrap nav">
-      <a class="brand" href="#home" aria-label="COROSSS D JAY home">
-        <span class="brand-mark">♫</span><span>COROSSS D JAY<small>OFFICIAL DJ ZONE</small></span>
+      <a class="brand" href="#home" aria-label="COROSSS CLOUD home">
+        <span class="brand-mark">♫</span><span>COROSSS CLOUD<small>MUSIC & VIDEO CLOUD</small></span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#library">Music & Videos</a><a href="#community">Community</a><a class="login-nav" href="#admin">Admin</a>
@@ -172,7 +189,7 @@
         <div>
           <span class="eyebrow"><span class="pulse"></span> Official DJ music hub</span>
           <h1>FEEL THE BASS.<br><span class="gradient-text">OWN THE VIBE.</span></h1>
-          <p>Welcome to COROSSS D JAY — your place for DJ mixes, music drops and video sessions. Press play, turn up the energy, and enjoy the sound.</p>
+          <p>Welcome to COROSSS CLOUD — your place for DJ mixes, music drops and video sessions. Press play, turn up the energy, and enjoy the sound.</p>
           <div class="hero-actions">
             <a class="btn btn-gold" href="#library">▶ Explore the Library</a>
             <a class="btn btn-dark" href="#community">Join the Community ↗</a>
@@ -210,7 +227,7 @@
       <div class="wrap">
         <div class="section-head"><div><div class="kicker">Stay connected</div><h2>Join the Community</h2><div class="sub">Follow the latest mixes and updates.</div></div></div>
         <div class="community">
-          <div class="community-box"><div class="kicker">New drops</div><h3>Fresh sound, fresh energy.</h3><p>Check back for new DJ mixes, video uploads and music releases from COROSSS D JAY.</p><a class="btn btn-gold" href="#library">Listen now →</a></div>
+          <div class="community-box"><div class="kicker">New drops</div><h3>Fresh sound, fresh energy.</h3><p>Check back for new DJ mixes, video uploads and music releases from COROSSS CLOUD.</p><a class="btn btn-gold" href="#library">Listen now →</a></div>
           <div class="community-box"><div class="kicker">Social links</div><h3>Find your next vibe.</h3><p>Add your official YouTube, Facebook, Instagram or other social profile links here when you are ready.</p><div class="hero-actions"><a class="btn btn-dark" href="#admin">Manage website</a></div></div>
         </div>
       </div>
@@ -262,7 +279,7 @@
     </section>
   </main>
 
-  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> COROSSS D JAY</span><span>Built for music lovers · Turn up the vibe ✦</span></div></footer>
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> COROSSS CLOUD</span><span>Built for music lovers · Turn up the vibe ✦</span></div></footer>
 
 <script>
 (() => {
@@ -381,8 +398,9 @@
       <div class="cover">${image}<span class="cover-fallback">♫</span><span class="badge">MUSIC</span></div>
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
-        <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} plays</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
+        <div class="meta">${isAdmin ? `<span>▶ ${Number(item.views || 0).toLocaleString()} plays</span>` : ``}<span>${escapeHtml(prettyDate(item.created_at))}</span></div>
         ${src ? `<div class="track-wave" aria-hidden="true">${Array.from({length:36},(_,i)=>`<span style="height:${6+((i*7+3)%17)}px"></span>`).join('')}</div><audio controls preload="none" data-kind="audio" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}">Your browser does not support audio playback.</audio><div class="player-hint">♫ Tap play to expand the player · more tracks stay visible</div>` : '<div class="sub">Audio file URL unavailable.</div>'}
+        ${socialSection(item)}
         ${adminActions(item)}
       </div>
     </article>`;
@@ -403,7 +421,7 @@
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
 
         <div class="meta">
-          <span>▶ ${Number(item.views || 0).toLocaleString()} views</span>
+          ${isAdmin ? `<span>▶ ${Number(item.views || 0).toLocaleString()} views</span>` : ``}
           <span>${escapeHtml(prettyDate(item.created_at))}</span>
         </div>
 
@@ -419,9 +437,191 @@
           Press Play Video to watch · more videos stay visible
         </div>
 
+        ${socialSection(item)}
         ${adminActions(item)}
       </div>
     </article>`;
+  }
+
+  const SOCIAL_LIKES = 'dj_social_likes';
+  const SOCIAL_COMMENTS = 'dj_social_comments';
+  const SOCIAL_SHARES = 'dj_social_shares';
+
+  function getVisitorId() {
+    const key = 'corosssCloudVisitorId';
+    try {
+      let id = localStorage.getItem(key);
+      if (!id) {
+        id = (crypto && crypto.randomUUID) ? crypto.randomUUID() : 'v-' + Date.now().toString(36) + Math.random().toString(36).slice(2);
+        localStorage.setItem(key, id);
+      }
+      return id;
+    } catch (_) { return 'v-' + Math.random().toString(36).slice(2) + Date.now().toString(36); }
+  }
+
+  function socialSection(item) {
+    const kind = item.kind;
+    const id = escapeHtml(item.id);
+    return `<section class="social-panel" data-social-kind="${kind}" data-social-id="${id}" aria-label="Like, comment and share">
+      <div class="social-buttons">
+        <button class="social-btn" type="button" data-social-action="like" aria-pressed="false">♡ <span data-like-label>Like</span>${isAdmin ? ` · <span data-like-count>0</span>` : ``}</button>
+        <button class="social-btn" type="button" data-social-action="comments">💬 Comment</button>
+        <button class="social-btn" type="button" data-social-action="share">↗ Share</button>
+      </div>
+      <div class="social-comments hidden">
+        ${isAdmin ? `<div class="social-admin-metrics"><span>Likes: <b data-like-count>0</b></span><span>Shares: <b data-share-count>0</b></span><span>Comments: <b data-comment-count>0</b></span></div><div class="social-comment-list"><div class="social-note">Loading comments…</div></div>` : `<p class="social-note">Your comment will be sent to the site admin for review.</p>`}
+        <form class="social-form"><input type="text" name="comment" maxlength="500" placeholder="Write a comment…" aria-label="Write a comment" required><button class="social-btn" type="submit">Post</button></form>
+        <p class="social-note">Please keep comments respectful. No account needed.</p>
+      </div>
+      <p class="social-note" data-social-status role="status"></p>
+    </section>`;
+  }
+
+  function socialStatus(panel, message) {
+    const el = panel.querySelector('[data-social-status]');
+    if (el) el.textContent = message || '';
+  }
+
+  function formatCommentDate(value) {
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? '' : d.toLocaleString(undefined, {dateStyle:'medium',timeStyle:'short'});
+  }
+
+  async function loadSocial(panel) {
+    if (!client) return;
+    const kind = panel.dataset.socialKind;
+    const id = panel.dataset.socialId;
+    const visitorId = getVisitorId();
+    const likeButton = panel.querySelector('[data-social-action="like"]');
+    let likedItems = {};
+    try { likedItems = JSON.parse(localStorage.getItem('corosssCloudLikedItems') || '{}'); } catch (_) {}
+    const likeKey = `${kind}:${id}`;
+    const liked = !!likedItems[likeKey];
+    if (likeButton) {
+      likeButton.classList.toggle('is-liked', liked);
+      likeButton.setAttribute('aria-pressed', String(liked));
+      const label = likeButton.querySelector('[data-like-label]');
+      if (label) label.textContent = liked ? 'Liked' : 'Like';
+      likeButton.firstChild.textContent = liked ? '♥ ' : '♡ ';
+    }
+    // Counts and comments are queried only for the authorized admin session.
+    if (!isAdmin) return;
+    const [countRes, sharesRes, commentsRes] = await Promise.all([
+      client.from(SOCIAL_LIKES).select('id', {count:'exact', head:true}).eq('item_kind', kind).eq('item_id', id),
+      client.from(SOCIAL_SHARES).select('id', {count:'exact', head:true}).eq('item_kind', kind).eq('item_id', id),
+      client.from(SOCIAL_COMMENTS).select('id,comment_text,created_at').eq('item_kind', kind).eq('item_id', id).order('created_at', {ascending:false}).limit(100)
+    ]);
+    if (countRes.error || sharesRes.error || commentsRes.error) {
+      socialStatus(panel, 'Admin analytics need the updated Supabase SQL setup.');
+      return;
+    }
+    panel.querySelectorAll('[data-like-count]').forEach(el => el.textContent = Number(countRes.count || 0).toLocaleString());
+    const shareCount = panel.querySelector('[data-share-count]');
+    if (shareCount) shareCount.textContent = Number(sharesRes.count || 0).toLocaleString();
+    const commentCount = panel.querySelector('[data-comment-count]');
+    if (commentCount) commentCount.textContent = Number(commentsRes.data?.length || 0).toLocaleString();
+    const list = panel.querySelector('.social-comment-list');
+    if (list) {
+      const comments = commentsRes.data || [];
+      list.innerHTML = comments.length ? comments.map(c => `<div class="social-comment">${escapeHtml(c.comment_text)}<time>${escapeHtml(formatCommentDate(c.created_at))}</time></div>`).join('') : '<div class="social-note">No comments yet.</div>';
+    }
+  }
+
+  async function shareItem(panel) {
+    const kind = panel.dataset.socialKind;
+    const id = panel.dataset.socialId;
+    const item = combinedItems.find(x => x.kind === kind && String(x.id) === String(id));
+    if (!item) return socialStatus(panel, 'Could not find this item to share.');
+    const url = new URL(window.location.href);
+    url.searchParams.set('shared', `${kind}:${id}`);
+    const shareData = {title: `${item.title} | COROSSS CLOUD`, text: `Listen/watch "${item.title}" on COROSSS CLOUD`, url: url.toString()};
+    try { await client?.from(SOCIAL_SHARES).insert({item_kind:kind, item_id:id, visitor_id:getVisitorId()}); } catch (e) { console.warn('Share event could not be recorded:', e); }
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        socialStatus(panel, 'Share menu opened. Choose any app available on your device.');
+      } else if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(shareData.url);
+        socialStatus(panel, 'Link copied! Paste it into any app or message.');
+      } else {
+        window.prompt('Copy this link and share it in any app:', shareData.url);
+        socialStatus(panel, 'Copy the link and share it anywhere.');
+      }
+    } catch (e) {
+      if (e && e.name === 'AbortError') return;
+      try {
+        window.prompt('Copy this link and share it in any app:', shareData.url);
+        socialStatus(panel, 'Copy the link and share it anywhere.');
+      } catch (_) { socialStatus(panel, 'Could not open the share menu. Please copy the page URL.'); }
+    }
+  }
+
+  function bindSocialActions() {
+    document.querySelectorAll('.social-panel').forEach(panel => {
+      loadSocial(panel);
+      const likeButton = panel.querySelector('[data-social-action="like"]');
+      likeButton?.addEventListener('click', async () => {
+        if (!client) return socialStatus(panel, 'Supabase is not available.');
+        likeButton.disabled = true;
+        const kind = panel.dataset.socialKind, id = panel.dataset.socialId, visitorId = getVisitorId();
+        try {
+          let likedItems = {};
+          try { likedItems = JSON.parse(localStorage.getItem('corosssCloudLikedItems') || '{}'); } catch (_) {}
+          const likeKey = `${kind}:${id}`;
+          if (likedItems[likeKey]) {
+            const {error} = await client.from(SOCIAL_LIKES).delete().eq('item_kind', kind).eq('item_id', id).eq('visitor_id', visitorId);
+            if (error) throw error;
+            delete likedItems[likeKey];
+          } else {
+            const {error} = await client.from(SOCIAL_LIKES).insert({item_kind:kind, item_id:id, visitor_id:visitorId});
+            if (error) throw error;
+            likedItems[likeKey] = true;
+          }
+          try { localStorage.setItem('corosssCloudLikedItems', JSON.stringify(likedItems)); } catch (_) {}
+          socialStatus(panel, '');
+          await loadSocial(panel);
+        } catch (e) { socialStatus(panel, 'Like could not be saved. Run the supplied Supabase SQL setup.'); console.warn('Social like failed:', e); }
+        finally { likeButton.disabled = false; }
+      });
+      panel.querySelector('[data-social-action="comments"]')?.addEventListener('click', () => {
+        const comments = panel.querySelector('.social-comments');
+        comments?.classList.toggle('hidden');
+        if (comments && !comments.classList.contains('hidden')) comments.querySelector('input')?.focus();
+      });
+      panel.querySelector('[data-social-action="share"]')?.addEventListener('click', () => shareItem(panel));
+      panel.querySelector('.social-form')?.addEventListener('submit', async event => {
+        event.preventDefault();
+        const input = event.currentTarget.elements.comment;
+        const comment = String(input.value || '').trim();
+        if (!comment) return;
+        if (!client) return socialStatus(panel, 'Supabase is not available.');
+        const submit = event.currentTarget.querySelector('button[type="submit"]');
+        submit.disabled = true;
+        try {
+          const {error} = await client.from(SOCIAL_COMMENTS).insert({item_kind:panel.dataset.socialKind, item_id:panel.dataset.socialId, visitor_id:getVisitorId(), comment_text:comment});
+          if (error) throw error;
+          input.value = '';
+          socialStatus(panel, 'Comment posted.');
+          await loadSocial(panel);
+        } catch (e) { socialStatus(panel, 'Comment could not be posted. Run the supplied Supabase SQL setup.'); console.warn('Social comment failed:', e); }
+        finally { submit.disabled = false; }
+      });
+    });
+  }
+
+  function focusSharedItem() {
+    const value = new URL(window.location.href).searchParams.get('shared');
+    if (!value) return;
+    const split = value.indexOf(':');
+    if (split < 0) return;
+    const kind = value.slice(0, split), id = value.slice(split + 1);
+    const card = document.querySelector(`.card[data-kind="${CSS.escape(kind)}"][data-card="${CSS.escape(id)}"]`);
+    if (card) {
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+      card.classList.add('is-expanded');
+      card.style.outline = '2px solid var(--gold)';
+      setTimeout(() => { card.style.outline = ''; }, 3500);
+    }
   }
 
   function bindCardActions() {document.querySelectorAll('button[data-action="play-video"]').forEach(btn => {
@@ -473,6 +673,7 @@
       el.addEventListener('pause', () => el.closest('.card')?.classList.remove('is-playing'));
       el.addEventListener('ended', () => el.closest('.card')?.classList.remove('is-playing'));
     });
+    bindSocialActions();
   }
 
   function updateStats() {
@@ -489,8 +690,8 @@
     }
     globalMessage('Loading music and videos…', 'info');
     const [audioRes, videoRes] = await Promise.all([
-      client.from(AUDIO_TABLE).select('id,title,storage_path,thumbnail_path,views,uploaded_by,created_at').order('created_at', {ascending:false}),
-      client.from(VIDEO_TABLE).select('id,title,storage_path,views,uploaded_by,created_at').order('created_at', {ascending:false})
+      client.from(AUDIO_TABLE).select(isAdmin ? 'id,title,storage_path,thumbnail_path,views,uploaded_by,created_at' : 'id,title,storage_path,thumbnail_path,uploaded_by,created_at').order('created_at', {ascending:false}),
+      client.from(VIDEO_TABLE).select(isAdmin ? 'id,title,storage_path,views,uploaded_by,created_at' : 'id,title,storage_path,uploaded_by,created_at').order('created_at', {ascending:false})
     ]);
     if (audioRes.error || videoRes.error) {
       const errors = [audioRes.error, videoRes.error].filter(Boolean).map(e => friendlyError(e)).join(' | ');
@@ -507,6 +708,7 @@
       ...videoItems.map(item => ({...item, kind:'video'}))
     ];
     render();
+    focusSharedItem();
   }
 
   async function recordPlay(kind, id) {
@@ -552,7 +754,7 @@
     $('loginPanel').classList.toggle('hidden', isAdmin);
     $('adminPanel').classList.toggle('hidden', !isAdmin);
     $('navLoginBtn').textContent = isAdmin ? 'ADMIN DASHBOARD' : 'ADMIN LOGIN';
-    // Keep auth callback lightweight; the initial page load and uploads refresh data.
+    render();
   });
 
   $('loginForm').addEventListener('submit', async event => {
