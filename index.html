@@ -332,12 +332,36 @@
 
   let currentUser = null;
   let isAdmin = false;
-    let audioItems = [];
+  let audioItems = [];
   let videoItems = [];
   let combinedItems = [];
   let busy = false;
 
   $('year').textContent = new Date().getFullYear();
+
+  // Surface browser-side failures in the page instead of leaving auth buttons apparently unresponsive.
+  window.addEventListener('error', event => {
+    const message = event && event.message ? event.message : 'A browser script error occurred.';
+    const el = $('loginStatus');
+    if (el && !el.textContent) {
+      el.textContent = 'Website script error: ' + message + ' — refresh the page and check the latest index.html was published.';
+      el.className = 'status show error';
+    }
+    const publicEl = $('publicAuthStatus');
+    if (publicEl && !publicEl.textContent) {
+      publicEl.textContent = 'Website script error: ' + message + ' — refresh the page and check the latest index.html was published.';
+      publicEl.className = 'status error';
+    }
+  });
+  window.addEventListener('unhandledrejection', event => {
+    const reason = event && event.reason;
+    const message = reason && reason.message ? reason.message : String(reason || 'Unexpected request error');
+    const el = $('loginStatus');
+    if (el && !el.textContent) {
+      el.textContent = 'Request error: ' + message;
+      el.className = 'status show error';
+    }
+  });
 
   function showStatus(el, message, kind = 'info') {
     if (!el) return;
@@ -436,7 +460,7 @@
     const grid = $('libraryGrid');
     renderLikedPlaylist();
     if (!items.length) {
-      grid.innerHTML = `<div class="empty">${combinedItems.length ? 'No items match your search/filter.' : 'No music or videos found yet. Check back soon!'}</div>`;
+    grid.innerHTML = `<div class="empty">${combinedItems.length ? 'No items match your search/filter.' : 'No music or videos found yet. Check back soon!'}</div>`;
       updateStats();
       return;
     }
@@ -1076,11 +1100,19 @@
   (async function init() {
     if (!client) {
       $('libraryGrid').innerHTML = '<div class="empty">Could not initialize Supabase. Check your connection and configuration.</div>';
-      loginMessage('Supabase JavaScript client did not load.', 'error');
+      loginMessage('Supabase JavaScript client did not load. Check your internet connection and refresh the page.', 'error');
+      publicAuthMessage('Supabase JavaScript client did not load. Check your internet connection and refresh the page.', 'error');
       return;
     }
-    await syncAuth();
-    await loadLibrary();
+    try {
+      await syncAuth();
+      await loadLibrary();
+    } catch (e) {
+      const message = 'Website initialization failed: ' + friendlyError(e);
+      loginMessage(message, 'error');
+      publicAuthMessage(message, 'error');
+      console.error(message, e);
+    }
   })();
 })();
 </script>
