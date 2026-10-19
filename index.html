@@ -118,7 +118,7 @@
     .empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #ffffff25;border-radius:18px;color:var(--muted)}
     .status{display:none;margin:0 0 18px;padding:12px 14px;border-radius:12px;font-size:13px}
     .status.show{display:block}.status.error{background:#d83c5820;border:1px solid #d83c5855;color:#ffb3c0}.status.ok{background:#54e5a218;border:1px solid #54e5a255;color:#a4ffd4}.status.info{background:#38d9ff16;border:1px solid #38d9ff50;color:#b8f4ff}
-    .community{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .community{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
     .community-box{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:linear-gradient(135deg,#171722,#0e0e15)}
     .community-box p{color:var(--muted);font-size:13px;line-height:1.8}
     .admin-shell{max-width:900px;margin:0 auto;border:1px solid #f4c95d40;border-radius:22px;padding:24px;background:linear-gradient(145deg,#181720,#0d0d13);box-shadow:var(--shadow)}
@@ -152,6 +152,16 @@
     .social-form input:focus{border-color:#f4c95d99}
     .social-note{color:var(--muted);font-size:11px;margin:6px 0 0}
     .social-admin-metrics{display:flex;gap:12px;flex-wrap:wrap;color:var(--gold2);font-size:11px;margin:4px 0 10px}
+    .liked-playlist{margin:18px 0 22px;border:1px solid #f4c95d40;border-radius:16px;padding:16px;background:linear-gradient(135deg,#f4c95d0b,#ffffff03)}
+    .liked-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+    .liked-playlist h3{font:700 15px Orbitron,sans-serif;color:var(--gold2);margin:0}
+    .liked-playlist-note{font-size:11px;color:var(--muted);margin:5px 0 12px}
+    .liked-playlist-list{display:grid;gap:8px}
+    .liked-playlist-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#ffffff05}
+    .liked-playlist-item strong{display:block;font-size:12px;overflow-wrap:anywhere}
+    .liked-playlist-item small{color:var(--muted);font-size:10px}
+    .liked-playlist-empty{font-size:12px;color:var(--muted);padding:8px 0}
+    @media(max-width:600px){.liked-playlist-item{align-items:flex-start}.liked-playlist-item .btn{padding:8px;font-size:10px}}
     @media(max-width:600px){.social-btn{padding:8px 9px}.social-form{flex-wrap:wrap}.social-form input{flex-basis:100%}}
     .hidden{display:none!important}
     footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
@@ -177,7 +187,7 @@
         <span class="brand-mark">♫</span><span>COROSSS CLOUD<small>MUSIC & VIDEO CLOUD</small></span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
-        <a href="#library">Music & Videos</a><a href="#community">Community</a><a class="login-nav" href="#admin">Admin</a>
+        <a href="#library">Music & Videos</a><a href="#community">Community</a><a href="#community">Public Login</a><a class="login-nav" href="#admin">Admin</a>
         <button id="navLoginBtn" class="btn btn-gold" type="button" onclick="document.getElementById('admin').scrollIntoView({behavior:'smooth'})">ADMIN LOGIN</button>
       </nav>
     </div>
@@ -217,6 +227,11 @@
             <option value="newest">Newest first</option><option value="popular">Most played</option><option value="az">Title A–Z</option>
           </select>
         </div>
+        <section class="liked-playlist" id="likedPlaylist" aria-label="Your liked playlist">
+          <div class="liked-playlist-head"><h3>♥ YOUR LIKED PLAYLIST</h3><span class="sub" id="likedPlaylistCount">0 items</span></div>
+          <p class="liked-playlist-note">Audio and videos you like appear here on this browser. Tap “Open” to play them from the library.</p>
+          <div class="liked-playlist-list" id="likedPlaylistList"><div class="liked-playlist-empty">Like a track or video to start your playlist.</div></div>
+        </section>
         <div id="libraryGrid" class="grid">
           <div class="empty">Loading the DJ library…</div>
         </div>
@@ -229,6 +244,22 @@
         <div class="community">
           <div class="community-box"><div class="kicker">New drops</div><h3>Fresh sound, fresh energy.</h3><p>Check back for new DJ mixes, video uploads and music releases from COROSSS CLOUD.</p><a class="btn btn-gold" href="#library">Listen now →</a></div>
           <div class="community-box"><div class="kicker">Social links</div><h3>Find your next vibe.</h3><p>Add your official YouTube, Facebook, Instagram or other social profile links here when you are ready.</p><div class="hero-actions"><a class="btn btn-dark" href="#admin">Manage website</a></div></div>
+          <div class="community-box public-auth-box" id="publicAccount">
+            <div class="kicker">Listener account</div>
+            <h3 id="publicAuthHeading">Public Login / Sign Up</h3>
+            <p class="sub">Create a listener account or sign in. Public accounts cannot access the admin dashboard.</p>
+            <div id="publicAuthStatus" class="status" role="status"></div>
+            <form id="publicAuthForm" class="stack">
+              <label>Email<input id="publicAuthEmail" class="field" type="email" autocomplete="email" required placeholder="Your email address"></label>
+              <label>Password<input id="publicAuthPassword" class="field" type="password" autocomplete="new-password" minlength="6" required placeholder="At least 6 characters"></label>
+              <button class="btn btn-gold" type="submit" id="publicAuthSubmit">Create account</button>
+              <button class="btn btn-dark" type="button" id="publicAuthToggle">Already have an account? Sign in</button>
+            </form>
+            <div id="publicAccountSignedIn" class="hidden">
+              <p id="publicSignedInText" class="sub"></p>
+              <button class="btn btn-dark" type="button" id="publicLogoutBtn">Sign out</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -301,7 +332,7 @@
 
   let currentUser = null;
   let isAdmin = false;
-  let audioItems = [];
+    let audioItems = [];
   let videoItems = [];
   let combinedItems = [];
   let busy = false;
@@ -358,6 +389,37 @@
     else { button.disabled = false; button.textContent = button.dataset.oldText || button.textContent; }
   }
 
+  function getLikedItems() {
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem('corosssCloudLikedItems') || '{}'); } catch (_) {}
+    return combinedItems.filter(item => !!saved[`${item.kind}:${item.id}`]);
+  }
+
+  function renderLikedPlaylist() {
+    const list = $('likedPlaylistList');
+    const count = $('likedPlaylistCount');
+    if (!list || !count) return;
+    const liked = getLikedItems();
+    count.textContent = `${liked.length} ${liked.length === 1 ? 'item' : 'items'}`;
+    if (!liked.length) {
+      list.innerHTML = '<div class="liked-playlist-empty">Like a track or video to start your playlist.</div>';
+      return;
+    }
+    list.innerHTML = liked.map(item => `<div class="liked-playlist-item"><div><strong>${item.kind === 'audio' ? '♫' : '▶'} ${escapeHtml(item.title || 'Untitled')}</strong><small>${item.kind === 'audio' ? 'AUDIO TRACK' : 'VIDEO'}</small></div><button class="btn btn-dark" type="button" data-play-liked-kind="${item.kind}" data-play-liked-id="${escapeHtml(item.id)}">Open</button></div>`).join('');
+    list.querySelectorAll('[data-play-liked-id]').forEach(button => button.addEventListener('click', () => {
+      const kind = button.dataset.playLikedKind;
+      const id = button.dataset.playLikedId;
+      const card = document.querySelector(`.card[data-kind="${CSS.escape(kind)}"][data-card="${CSS.escape(id)}"]`);
+      if (!card) return;
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+      card.classList.add('is-expanded');
+      card.style.outline = '2px solid var(--gold)';
+      setTimeout(() => { card.style.outline = ''; }, 2200);
+      const media = card.querySelector(kind === 'audio' ? 'audio' : 'video');
+      if (media) media.play().catch(() => { media.controls = true; });
+    }));
+  }
+
   function render() {
     const q = $('searchInput').value.trim().toLowerCase();
     const type = $('typeFilter').value;
@@ -372,6 +434,7 @@
     else items.sort((a,b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
 
     const grid = $('libraryGrid');
+    renderLikedPlaylist();
     if (!items.length) {
       grid.innerHTML = `<div class="empty">${combinedItems.length ? 'No items match your search/filter.' : 'No music or videos found yet. Check back soon!'}</div>`;
       updateStats();
@@ -580,6 +643,7 @@
           try { localStorage.setItem('corosssCloudLikedItems', JSON.stringify(likedItems)); } catch (_) {}
           socialStatus(panel, '');
           await loadSocial(panel);
+          renderLikedPlaylist();
         } catch (e) { socialStatus(panel, 'Like could not be saved. Run the supplied Supabase SQL setup.'); console.warn('Social like failed:', e); }
         finally { likeButton.disabled = false; }
       });
@@ -735,6 +799,32 @@
     } catch (e) { console.warn('Could not increment view count:', e); }
   }
 
+  let publicAuthMode = 'signup';
+
+  function publicAuthMessage(message, type = '') {
+    const el = $('publicAuthStatus');
+    if (!el) return;
+    el.textContent = message || '';
+    el.className = 'status' + (type ? ' ' + type : '');
+  }
+
+  function updatePublicAuthUI() {
+    const signedIn = !!(currentUser && !isAdmin);
+    $('publicAuthForm').classList.toggle('hidden', signedIn);
+    $('publicAccountSignedIn').classList.toggle('hidden', !signedIn);
+    $('publicAuthHeading').textContent = signedIn ? 'Listener Account' : (publicAuthMode === 'signup' ? 'Public Sign Up' : 'Public Login');
+    $('publicAuthSubmit').textContent = publicAuthMode === 'signup' ? 'Create account' : 'Sign in';
+    $('publicAuthToggle').textContent = publicAuthMode === 'signup' ? 'Already have an account? Sign in' : 'New here? Create an account';
+    if (signedIn) {
+      $('publicSignedInText').textContent = 'Signed in as ' + (currentUser.email || 'listener') + '. Public accounts cannot access admin tools.';
+      $('publicAuthPassword').value = '';
+    } else if (isAdmin) {
+      $('publicAuthHeading').textContent = 'Admin is signed in';
+      $('publicAuthForm').classList.add('hidden');
+      $('publicAccountSignedIn').classList.add('hidden');
+    }
+  }
+
   async function syncAuth() {
     if (!client) return;
     const {data, error} = await client.auth.getSession();
@@ -745,6 +835,7 @@
     $('adminPanel').classList.toggle('hidden', !isAdmin);
     $('navLoginBtn').textContent = isAdmin ? 'ADMIN DASHBOARD' : 'ADMIN LOGIN';
     if (isAdmin) hideStatus($('loginStatus'));
+    updatePublicAuthUI();
     render();
   }
 
@@ -754,7 +845,74 @@
     $('loginPanel').classList.toggle('hidden', isAdmin);
     $('adminPanel').classList.toggle('hidden', !isAdmin);
     $('navLoginBtn').textContent = isAdmin ? 'ADMIN DASHBOARD' : 'ADMIN LOGIN';
+    updatePublicAuthUI();
     render();
+  });
+
+  $('publicAuthToggle').addEventListener('click', () => {
+    publicAuthMode = publicAuthMode === 'signup' ? 'signin' : 'signup';
+    publicAuthMessage('');
+    updatePublicAuthUI();
+    $('publicAuthPassword').value = '';
+  });
+
+  $('publicAuthForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!client) return publicAuthMessage('Supabase is not available. Reload and try again.', 'error');
+    const email = $('publicAuthEmail').value.trim();
+    const password = $('publicAuthPassword').value;
+    const button = $('publicAuthSubmit');
+    button.disabled = true;
+    button.textContent = publicAuthMode === 'signup' ? 'Creating account…' : 'Signing in…';
+    publicAuthMessage('');
+    try {
+      if (publicAuthMode === 'signup') {
+        const { data, error } = await client.auth.signUp({
+          email,
+          password,
+          options: { emailRedirectTo: window.location.href.split('#')[0] }
+        });
+        if (error) throw error;
+        $('publicAuthPassword').value = '';
+        if (data.session) {
+          publicAuthMessage('Account created and signed in successfully.', 'ok');
+        } else {
+          publicAuthMessage('Account request created. Check your email to confirm the account, then sign in.', 'ok');
+          publicAuthMode = 'signin';
+          updatePublicAuthUI();
+        }
+      } else {
+        const { data, error } = await client.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        if (!data.user || data.user.id === ADMIN_USER_ID) {
+          // Keep admin access managed only by the dedicated admin login panel.
+          if (data.user && data.user.id === ADMIN_USER_ID) {
+            await client.auth.signOut();
+            throw new Error('Please use the Admin Login section for the admin account.');
+          }
+          throw new Error('Could not sign in. Please try again.');
+        }
+        $('publicAuthPassword').value = '';
+        publicAuthMessage('You are signed in.', 'ok');
+        updatePublicAuthUI();
+      }
+    } catch (e) {
+      publicAuthMessage(friendlyError(e), 'error');
+    } finally {
+      button.disabled = false;
+      updatePublicAuthUI();
+    }
+  });
+
+  $('publicLogoutBtn').addEventListener('click', async () => {
+    if (!client || isAdmin) return;
+    const { error } = await client.auth.signOut();
+    if (error) publicAuthMessage(friendlyError(error), 'error');
+    else {
+      publicAuthMessage('You have signed out.', 'ok');
+      publicAuthMode = 'signin';
+      updatePublicAuthUI();
+    }
   });
 
   $('loginForm').addEventListener('submit', async event => {
