@@ -330,6 +330,19 @@
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
     : null;
 
+  // Prevent auth controls from staying disabled forever when the network/API does not respond.
+  function authRequestWithTimeout(request, timeoutMs = 15000) {
+    let timer;
+    return Promise.race([
+      request,
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error(
+          'The authentication server did not respond within 15 seconds. Check your internet connection and verify the Supabase Project URL and publishable key in the Supabase dashboard.'
+        )), timeoutMs);
+      })
+    ]).finally(() => clearTimeout(timer));
+  }
+
   let currentUser = null;
   let isAdmin = false;
   let audioItems = [];
@@ -460,7 +473,7 @@
     const grid = $('libraryGrid');
     renderLikedPlaylist();
     if (!items.length) {
-    grid.innerHTML = `<div class="empty">${combinedItems.length ? 'No items match your search/filter.' : 'No music or videos found yet. Check back soon!'}</div>`;
+      grid.innerHTML = `<div class="empty">${combinedItems.length ? 'No items match your search/filter.' : 'No music or videos found yet. Check back soon!'}</div>`;
       updateStats();
       return;
     }
@@ -723,7 +736,7 @@
         video.play().catch(() => {
             video.controls = true;
             video.scrollIntoView({
-                behavior: 'smooth',
+              behavior: 'smooth',
                 block: 'center'
             });
         });
@@ -891,11 +904,11 @@
     publicAuthMessage('');
     try {
       if (publicAuthMode === 'signup') {
-        const { data, error } = await client.auth.signUp({
+        const { data, error } = await authRequestWithTimeout(client.auth.signUp({
           email,
           password,
           options: { emailRedirectTo: window.location.href.split('#')[0] }
-        });
+        }));
         if (error) throw error;
         $('publicAuthPassword').value = '';
         if (data.session) {
@@ -906,7 +919,9 @@
           updatePublicAuthUI();
         }
       } else {
-        const { data, error } = await client.auth.signInWithPassword({ email, password });
+        const { data, error } = await authRequestWithTimeout(
+          client.auth.signInWithPassword({ email, password })
+        );
         if (error) throw error;
         if (!data.user || data.user.id === ADMIN_USER_ID) {
           // Keep admin access managed only by the dedicated admin login panel.
@@ -956,7 +971,7 @@
       }
       currentUser = data.user; isAdmin = true;
       $('loginPassword').value = '';
-      $('loginPanel').classList.add('hidden'); $('adminPanel').classList.remove('hidden');
+       $('loginPanel').classList.add('hidden'); $('adminPanel').classList.remove('hidden');
       loginMessage('Admin login successful.', 'ok');
       adminMessage('Welcome back! You can now upload and manage content.', 'ok');
       await loadLibrary();
