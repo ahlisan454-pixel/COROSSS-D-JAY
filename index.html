@@ -19,12 +19,6 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:88px}
     body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20152b 0,transparent 32%),radial-gradient(ellipse at 95% 25%,#10242d 0,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 80%);z-index:-1}
-    body:after{content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 18% 35%,#f4c95d12,transparent 30%),radial-gradient(ellipse at 78% 28%,#38d9ff13,transparent 28%),radial-gradient(ellipse at 58% 82%,#9b65ff12,transparent 32%);animation:ambientGlow 16s ease-in-out infinite alternate}
-    @keyframes ambientGlow{0%{transform:translate3d(-2%,0,0) scale(1);filter:hue-rotate(0deg)}100%{transform:translate3d(2%,-1%,0) scale(1.08);filter:hue-rotate(24deg)}}
-    .ambient-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict}
-    .ambient-logo{position:absolute;left:var(--x);top:var(--y);font:800 var(--size,24px) Orbitron,sans-serif;letter-spacing:2px;color:var(--color,#f4c95d);opacity:0;filter:drop-shadow(0 0 12px currentColor);animation:logoDrift var(--duration,20s) linear var(--delay,0s) infinite}
-    @keyframes logoDrift{0%{transform:translate3d(0,35px,0) rotate(-12deg) scale(.8);opacity:0}12%{opacity:.12}50%{transform:translate3d(28px,-45px,0) rotate(9deg) scale(1.06);opacity:.09}88%{opacity:.12}100%{transform:translate3d(-10px,-125px,0) rotate(18deg) scale(.9);opacity:0}}
     header,main,footer{position:relative;z-index:1}
     a{color:inherit;text-decoration:none}
     button,input,select,textarea{font:inherit}
@@ -53,15 +47,6 @@
     .gradient-text{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero p{max-width:600px;color:var(--muted);line-height:1.85;font-size:15px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-    .hero-visual{min-height:320px;display:grid;place-items:center;position:relative}
-    .disc{width:min(290px,72vw);aspect-ratio:1;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#111 0 3px,#29242d 4px 5px,#0c0c12 6px 9px);box-shadow:0 0 0 9px #f4c95d0b,0 0 65px #a45dff30,0 0 100px #38d9ff12;animation:vinylSpin 12s linear infinite;will-change:transform}
-    .disc:before{content:"";position:absolute;inset:28%;border-radius:50%;background:conic-gradient(var(--gold),var(--pink),var(--blue),var(--purple),var(--gold));box-shadow:0 0 36px #f4c95d40}
-    .disc:after{content:"DJ";position:absolute;inset:39%;display:grid;place-items:center;border-radius:50%;background:#111;color:var(--gold);font:900 24px Orbitron,sans-serif;border:2px solid #ffffff35;box-shadow:0 0 20px #f4c95d35,inset 0 0 0 4px #ffffff08}
-    .orbit{position:absolute;width:340px;aspect-ratio:1;border:1px solid #38d9ff40;border-radius:50%;transform:rotate(-28deg) scaleY(.42);box-shadow:0 0 22px #38d9ff0c}
-    .bars{position:absolute;bottom:5px;display:flex;gap:5px;align-items:center;height:44px}
-    .bars span{width:5px;border-radius:9px;background:linear-gradient(var(--blue),var(--pink));animation:bars 1s ease-in-out infinite alternate}
-    .bars span:nth-child(3n){animation-delay:.2s}.bars span:nth-child(2n){animation-delay:.4s}
-    @keyframes bars{from{height:8px}to{height:38px}} @keyframes vinylSpin{to{transform:rotate(360deg)}}
     .section{padding:44px 0 64px}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:24px}
     .kicker{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:9px}
@@ -75,35 +60,20 @@
     .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:13px;max-width:920px;margin-inline:auto}
     .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
     .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
-    .card:hover{border-color:#f4c95d60;transform:translateY(-2px);box-shadow:0 18px 55px #0009,0 0 24px #f4c95d12,0 0 30px #9b65ff0b}
-    .card.is-playing{border-color:#f4c95d99;box-shadow:0 0 0 1px #f4c95d20,0 0 30px #f4c95d1d,0 0 38px #38d9ff10}
-    .track-wave{height:27px;display:flex;align-items:center;gap:3px;margin:0 0 11px;opacity:.45;overflow:hidden}
-    .track-wave span{display:block;flex:1;min-width:2px;height:5px;border-radius:5px;background:linear-gradient(180deg,var(--gold2),var(--gold),var(--blue));transform-origin:center;animation:waveDance .8s ease-in-out infinite alternate;animation-play-state:paused}
-    .track-wave span:nth-child(3n){animation-delay:-.3s}.track-wave span:nth-child(4n){animation-delay:-.55s}.track-wave span:nth-child(2n){animation-duration:.58s}
-    .is-playing .track-wave{opacity:1}.is-playing .track-wave span{animation-play-state:running}
-    @keyframes waveDance{from{transform:scaleY(.22);filter:brightness(.8)}to{transform:scaleY(1.8);filter:brightness(1.3)}}
-    .cover{height:94px;width:94px;flex:0 0 94px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:13px;margin:12px 0 12px 12px}
+    .card:hover{border-color:#f4c95d60;transform:translateY(-2px)}
+    .cover{height:94px;width:94px;flex:0 0 94px;background:#12121b;position:relative;display:grid;place-items:center;overflow:hidden;border-radius:13px;margin:12px 0 12px 12px}
     .cover img{width:100%;height:100%;object-fit:cover;display:block}
     .card[data-kind="audio"],.card[data-kind="video"]{display:flex;align-items:flex-start;gap:0;position:relative}
     .card-body{padding:14px 16px;flex:1;min-width:0}
     .card[data-kind="video"] .cover{width:176px;height:99px;flex-basis:176px}
-    .card[data-kind="video"] video{width:100%;height:100%;max-height:none;object-fit:cover}
-    .card.is-expanded{display:block;animation:expandCard .24s ease-out}
-    .card.is-expanded[data-kind="video"]{max-width:640px;width:100%;margin-inline:auto}
-    .card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;min-height:0;aspect-ratio:16/9;max-height:360px;margin:0 auto;border-radius:12px 12px 0 0;flex-basis:auto;background:#000}
-    .card.is-expanded[data-kind="video"] video{width:100%;height:100%;max-height:360px;object-fit:contain}
-    .card.is-expanded[data-kind="audio"]{display:flex;align-items:center;gap:0}
-    .card.is-expanded[data-kind="audio"] .cover{width:112px;height:112px;min-width:112px;aspect-ratio:1;flex:0 0 112px;margin:12px;border-radius:12px}
-    .card.is-expanded .card-body{padding:16px}
-    @keyframes expandCard{from{opacity:.8;transform:translateY(5px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
-    .cover-fallback{font:900 36px Orbitron,sans-serif;color:var(--gold);text-shadow:0 0 24px #f4c95d44}
+    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover}
+    .cover-fallback{font:900 36px Orbitron,sans-serif;color:var(--gold)}
     .badge{position:absolute;top:12px;left:12px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:5px 9px;font-size:10px;color:var(--gold2);letter-spacing:1px}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
     .card-title{font-weight:700;font-size:16px;line-height:1.45;overflow-wrap:anywhere;margin:0 0 7px}
     .meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:14px}
-    audio{width:100%;height:38px;display:block;filter:drop-shadow(0 0 8px #f4c95d12)}
+    audio{width:100%;height:38px;display:block}
     video{width:100%;max-height:280px;display:block;background:#000}
-    .player-hint{font-size:10px;color:var(--muted);margin-top:5px}
     .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
     .card-actions .btn{font-size:11px;padding:8px 10px}
     .empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #ffffff25;border-radius:18px;color:var(--muted)}
@@ -121,13 +91,13 @@
     .stack{display:grid;gap:11px}
     .stack label{font-size:12px;color:var(--muted)}
     .stack input,.stack textarea{width:100%;margin-top:6px}
-    input[type=file]{font-size:12px;padding:9px}
     .admin-login{max-width:450px;margin:auto}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
     .stat{border:1px solid var(--line);border-radius:13px;padding:14px;background:#ffffff05}
     .stat b{display:block;font:800 23px Orbitron,sans-serif;color:var(--gold)}
     .stat span{font-size:11px;color:var(--muted)}
 
+    /* Social and Chat Styles */
     .social-panel{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);min-width:0}
     .social-buttons{display:flex;gap:8px;flex-wrap:wrap}
     .social-btn{border:1px solid #ffffff22;background:#ffffff09;color:var(--text);border-radius:10px;padding:8px 11px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
@@ -135,72 +105,55 @@
     .social-btn.is-liked{background:#ff3cc71a;border-color:#ff3cc788;color:#ff9ce5}
     .social-comments{margin-top:12px;display:grid;gap:8px}
     .social-comment-list{display:grid;gap:8px;max-height:220px;overflow:auto}
-    .social-comment{padding:9px 11px;border-radius:10px;background:#ffffff08;border:1px solid #ffffff10;font-size:12px;overflow-wrap:anywhere;white-space:pre-wrap}
+    .social-comment{padding:9px 11px;border-radius:10px;background:#ffffff08;border:1px solid #ffffff10;font-size:12px;white-space:pre-wrap}
     .social-comment time{display:block;color:var(--muted);font-size:10px;margin-top:4px}
     .social-form{display:flex;gap:7px;align-items:stretch}
-    .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text);outline:none;font-size:12px}
+    .social-form input{flex:1;background:#111119;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text);outline:none;font-size:12px}
     .social-note{color:var(--muted);font-size:11px;margin:6px 0 0}
-    .liked-playlist{margin:18px 0 22px;border:1px solid #f4c95d40;border-radius:16px;padding:16px;background:linear-gradient(135deg,#f4c95d0b,#ffffff03)}
-    .liked-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-    .liked-playlist h3{font:700 15px Orbitron,sans-serif;color:var(--gold2);margin:0}
-    .liked-playlist-note{font-size:11px;color:var(--muted);margin:5px 0 12px}
-    .liked-playlist-list{display:grid;gap:8px}
-    .liked-playlist-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#ffffff05}
-    .liked-playlist-item strong{display:block;font-size:12px;overflow-wrap:anywhere}
-    .liked-playlist-item small{color:var(--muted);font-size:10px}
-    .liked-playlist-empty{font-size:12px;color:var(--muted);padding:8px 0}
     
     .user-profile-badge{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#ffffff08;border:1px solid var(--gold);border-radius:12px;margin-bottom:15px}
     .user-avatar{width:36px;height:36px;border-radius:50%;background:var(--gold);color:#000;display:grid;place-items:center;font-weight:900;font-family:Orbitron}
     
+    /* Live Chat Box Overlay / Section */
+    .chat-box-container{background:#111119;border:1px solid var(--gold);border-radius:16px;padding:16px;margin-top:16px}
+    .chat-messages{height:200px;overflow-y:auto;background:#08080d;border-radius:10px;padding:10px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+    .chat-msg{padding:8px 12px;border-radius:10px;font-size:12px;max-width:80%}
+    .chat-msg.user{background:#38d9ff20;align-self:flex-end;border:1px solid #38d9ff40}
+    .chat-msg.admin{background:#f4c95d20;align-self:flex-start;border:1px solid #f4c95d40}
+    
     .hidden{display:none!important}
     footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
     .footer-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:250px}.disc{width:220px}.orbit{width:270px}.admin-grid{grid-template-columns:1fr}}
-    @media(max-width:600px){.wrap{width:min(100% - 24px,1160px)}.nav{min-height:68px}.navlinks{gap:12px;font-size:11px}.brand{font-size:12px}.brand-mark{width:38px;height:38px}.hero{padding:52px 0 32px}.hero-visual{min-height:220px}.section-head{align-items:start;flex-direction:column}.community{grid-template-columns:1fr}.admin-shell{padding:15px}}
   </style>
 </head>
 <body>
-  <div class="ambient-bg" aria-hidden="true">
-    <span class="ambient-logo" style="--x:8%;--y:74%;--size:28px;--duration:24s;--delay:-8s;--color:#f4c95d">♫</span>
-    <span class="ambient-logo" style="--x:83%;--y:79%;--size:21px;--duration:27s;--delay:-15s;--color:#38d9ff">DJ</span>
-    <span class="ambient-logo" style="--x:72%;--y:35%;--size:25px;--duration:22s;--delay:-4s;--color:#9b65ff">♪</span>
-    <span class="ambient-logo" style="--x:24%;--y:42%;--size:16px;--duration:29s;--delay:-20s;--color:#ff3cc7">BASS</span>
-    <span class="ambient-logo" style="--x:48%;--y:86%;--size:19px;--duration:25s;--delay:-11s;--color:#f4c95d">COROSSS</span>
-  </div>
-
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#home">
-        <span class="brand-mark">♫</span><span>COROSSS CLOUD<small>MUSIC, VIDEO & PREMIUM</small></span>
+        <span class="brand-mark">♫</span><span>COROSSS CLOUD<small>MUSIC & PREMIUM</small></span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
-        <a href="#audio-library">Audio Music</a>
-        <a href="#video-library">Video Music</a>
+        <a href="#audio-library">Audio</a>
+        <a href="#video-library">Videos</a>
         <a href="#premium-section">Premium Mixes</a>
         <a href="#community">Account</a>
-        <button id="navLoginBtn" class="btn btn-gold" type="button" onclick="document.getElementById('admin').scrollIntoView({behavior:'smooth'})">ADMIN LOGIN</button>
+        <button id="navLoginBtn" class="btn btn-gold" type="button" onclick="document.getElementById('admin').scrollIntoView({behavior:'smooth'})">ADMIN</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION -->
     <section class="hero" id="home">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow"><span class="pulse"></span> Official DJ Music & Video Hub</span>
+          <span class="eyebrow"><span class="pulse"></span> Official DJ Music Hub</span>
           <h1>FEEL THE BASS.<br><span class="gradient-text">OWN THE VIBE.</span></h1>
-          <p>Welcome to COROSSS CLOUD — your premier destination for audio tracks, video mixes, and exclusive premium song drops.</p>
+          <p>Welcome to COROSSS CLOUD — stream audio, watch video sessions, and buy exclusive premium tracks.</p>
           <div class="hero-actions">
-            <a class="btn btn-gold" href="#audio-library">▶ Listen Audio</a>
-            <a class="btn btn-blue" href="#video-library">🎬 Watch Videos</a>
-            <a class="btn btn-pink" href="#premium-section">🔥 Premium Songs</a>
+            <a class="btn btn-gold" href="#audio-library">▶ Audio Tracks</a>
+            <a class="btn btn-blue" href="#video-library">🎬 Videos</a>
+            <a class="btn btn-pink" href="#premium-section">🔥 Premium Mixes</a>
           </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="orbit"></div><div class="disc"></div>
-          <div class="bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </div>
       </div>
     </section>
@@ -208,110 +161,45 @@
     <!-- 1. AUDIO MUSIC SECTION -->
     <section class="section" id="audio-library">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Audio Stream</div>
-            <h2>🎵 Audio Music</h2>
-            <div class="sub">High quality DJ mixes and music tracks.</div>
-          </div>
-        </div>
-        <div id="audioStatus" class="status" role="status"></div>
+        <div class="section-head"><div><div class="kicker">Stream</div><h2>🎵 Audio Music</h2></div></div>
         <div class="library-tools">
-          <input class="field search" id="audioSearch" type="search" placeholder="Search audio tracks...">
-          <select class="select" id="audioSort">
-            <option value="newest">Newest first</option>
-            <option value="popular">Most played</option>
-            <option value="az">Title A–Z</option>
-          </select>
+          <input class="field search" id="audioSearch" type="search" placeholder="Search audio...">
         </div>
-        <section class="liked-playlist" id="likedPlaylist">
-          <div class="liked-playlist-head">
-            <h3>♥ YOUR LIKED PLAYLIST</h3>
-            <span class="sub" id="likedPlaylistCount">0 items</span>
-          </div>
-          <div class="liked-playlist-list" id="likedPlaylistList">
-            <div class="liked-playlist-empty">Like a track or video to start your playlist.</div>
-          </div>
-        </section>
-        <div id="audioGrid" class="grid">
-          <div class="empty">Loading Audio Music…</div>
-        </div>
+        <div id="audioGrid" class="grid"><div class="empty">Loading Audio...</div></div>
       </div>
     </section>
 
     <!-- 2. VIDEO MUSIC SECTION -->
-    <section class="section" id="video-library" style="background: rgba(255,255,255,0.01);">
+    <section class="section" id="video-library">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Visual Beats</div>
-            <h2>🎬 Video Music</h2>
-            <div class="sub">Watch full DJ video performances and music videos.</div>
-          </div>
-        </div>
-        <div id="videoStatus" class="status" role="status"></div>
-        <div class="library-tools">
-          <input class="field search" id="videoSearch" type="search" placeholder="Search videos...">
-        </div>
-        <div id="videoGrid" class="grid">
-          <div class="empty">Loading Video Music…</div>
-        </div>
+        <div class="section-head"><div><div class="kicker">Visuals</div><h2>🎬 Video Music</h2></div></div>
+        <div id="videoGrid" class="grid"><div class="empty">Loading Videos...</div></div>
       </div>
     </section>
 
-    <!-- 3. PREMIUM SONG & MIXES SECTION -->
+    <!-- 3. PREMIUM MIXES SECTION -->
     <section class="section" id="premium-section">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Exclusive Demos</div>
-            <h2>🔥 Premium Songs & Mixes</h2>
-            <div class="sub">Listen to song demos and buy directly from DJ Lisan.</div>
-          </div>
-        </div>
-        <div id="pmStatus" class="status" role="status"></div>
-        <div id="pmGrid" class="grid-cards">
-          <div class="empty">Loading Premium Mix Demos…</div>
-        </div>
+        <div class="section-head"><div><div class="kicker">Exclusive</div><h2>🔥 Premium Songs & Demos</h2></div></div>
+        <div id="pmGrid" class="grid-cards"><div class="empty">Loading Premium Mixes...</div></div>
       </div>
     </section>
 
-    <!-- COMMUNITY & LISTENER ACCOUNT SECTION -->
+    <!-- COMMUNITY & ACCOUNT SECTION -->
     <section class="section" id="community">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="kicker">User Dashboard</div>
-            <h2>Listener Profile & Account</h2>
-            <div class="sub">Sign up with Username, Email and Password to get your custom profile.</div>
-          </div>
-        </div>
+        <div class="section-head"><div><div class="kicker">Profile</div><h2>Listener Account & Chat</h2></div></div>
         <div class="community">
-          <div class="community-box">
-            <div class="kicker">Fresh Updates</div>
-            <h3>Connect with COROSSS CLOUD</h3>
-            <p>Get instant updates on upcoming exclusive drops and premium sound packs.</p>
-            <a class="btn btn-gold" href="#premium-section">Explore Premium →</a>
-          </div>
-
-          <!-- PUBLIC AUTH / PROFILE BOX -->
-          <div class="community-box public-auth-box" id="publicAccount">
-            <div class="kicker">Listener Account</div>
-            <h3 id="publicAuthHeading">Public Login / Sign Up</h3>
+          <div class="community-box" id="publicAccount">
+            <h3>Listener Sign Up / Login</h3>
             <div id="publicAuthStatus" class="status" role="status"></div>
-
+            
             <form id="publicAuthForm" class="stack">
               <div id="usernameFieldGroup">
-                <label>Username
-                  <input id="publicAuthUsername" class="field" type="text" placeholder="Enter username (e.g. dj_fan)">
-                </label>
+                <label>Username<input id="publicAuthUsername" class="field" type="text" placeholder="Username"></label>
               </div>
-              <label>Email Address
-                <input id="publicAuthEmail" class="field" type="email" autocomplete="email" required placeholder="Your email address">
-              </label>
-              <label>Password
-                <input id="publicAuthPassword" class="field" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters">
-              </label>
+              <label>Email<input id="publicAuthEmail" class="field" type="email" required placeholder="Email address"></label>
+              <label>Password<input id="publicAuthPassword" class="field" type="password" minlength="6" required placeholder="Password (min 6 chars)"></label>
               <button class="btn btn-gold" type="submit" id="publicAuthSubmit">Create Account</button>
               <button class="btn btn-dark" type="button" id="publicAuthToggle">Already have an account? Sign In</button>
             </form>
@@ -320,73 +208,71 @@
               <div class="user-profile-badge">
                 <div class="user-avatar" id="userAvatarMark">U</div>
                 <div>
-                  <strong id="userProfileName" style="display:block;font-size:14px;color:var(--gold);">User</strong>
-                  <small id="userProfileEmail" style="color:var(--muted);font-size:11px;">email@domain.com</small>
+                  <strong id="userProfileName" style="color:var(--gold);">User</strong>
+                  <small id="userProfileEmail" style="display:block;color:var(--muted);"></small>
                 </div>
               </div>
-              <p class="sub">You are logged in as a verified listener!</p>
               <button class="btn btn-dark" type="button" id="publicLogoutBtn">Sign Out</button>
+
+              <!-- DIRECT CHAT BOX CONTAINER -->
+              <div class="chat-box-container">
+                <h4>💬 Direct Live Chat with DJ Lisan</h4>
+                <div id="chatMessages" class="chat-messages"></div>
+                <form id="chatForm" class="social-form" style="margin-top:8px">
+                  <input type="text" id="chatInput" placeholder="Type your message..." required autocomplete="off">
+                  <button class="btn btn-gold" type="submit">Send</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ADMIN STUDIO SECTION -->
+    <!-- ADMIN STUDIO -->
     <section class="section" id="admin">
       <div class="wrap">
-        <div class="section-head">
-          <div><div class="kicker">Authorized Area</div><h2>Admin Studio</h2><div class="sub">Upload and manage Audio, Video, and Premium Mixes.</div></div>
-        </div>
-
-        <div id="loginPanel" class="admin-shell admin-login">
+        <div class="admin-shell admin-login" id="loginPanel">
           <h3 style="font-family:Orbitron;margin-top:0">Admin Login</h3>
-          <p class="sub">Sign in with authorized administrator credentials.</p>
           <div id="loginStatus" class="status" role="status"></div>
           <form id="loginForm" class="stack">
-            <label>Email<input id="loginEmail" class="field" type="email" autocomplete="username" required placeholder="Admin email"></label>
-            <label>Password<input id="loginPassword" class="field" type="password" autocomplete="current-password" required placeholder="Password"></label>
+            <label>Email<input id="loginEmail" class="field" type="email" required></label>
+            <label>Password<input id="loginPassword" class="field" type="password" required></label>
             <button class="btn btn-gold" type="submit">Sign in as Admin</button>
           </form>
         </div>
 
         <div id="adminPanel" class="admin-shell hidden">
-          <div class="admin-head"><h3>⚡ Admin Control Center</h3><button id="logoutBtn" class="btn btn-dark" type="button">Sign out</button></div>
+          <div class="admin-head"><h3>⚡ Admin Dashboard</h3><button id="logoutBtn" class="btn btn-dark" type="button">Sign out</button></div>
           <div id="adminStatus" class="status" role="status"></div>
           <div class="stats">
-            <div class="stat"><b id="statAudio">0</b><span>Audio Music</span></div>
+            <div class="stat"><b id="statAudio">0</b><span>Audio</span></div>
             <div class="stat"><b id="statVideos">0</b><span>Videos</span></div>
-            <div class="stat"><b id="statPremium">0</b><span>Premium Mixes</span></div>
+            <div class="stat"><b id="statPremium">0</b><span>Premium</span></div>
           </div>
-
           <div class="admin-grid">
-            <!-- AUDIO UPLOAD -->
             <form id="audioUploadForm" class="admin-box stack">
-              <h4>🎵 Upload Audio Music</h4>
-              <label>Track Title<input id="audioTitle" class="field" type="text" maxlength="150" required placeholder="Audio title"></label>
+              <h4>Upload Audio</h4>
+              <label>Title<input id="audioTitle" class="field" type="text" required></label>
               <label>Audio File<input id="audioFile" class="field" type="file" accept="audio/*" required></label>
-              <label>Thumbnail Image<input id="audioCover" class="field" type="file" accept="image/*" required></label>
-              <button class="btn btn-gold" type="submit">Upload Audio</button>
+              <label>Cover Image<input id="audioCover" class="field" type="file" accept="image/*" required></label>
+              <button class="btn btn-gold" type="submit">Upload</button>
             </form>
-
-            <!-- VIDEO UPLOAD -->
             <form id="videoUploadForm" class="admin-box stack">
-              <h4>🎬 Upload Video Music</h4>
-              <label>Video Title<input id="videoTitle" class="field" type="text" maxlength="150" required placeholder="Video title"></label>
+              <h4>Upload Video</h4>
+              <label>Title<input id="videoTitle" class="field" type="text" required></label>
               <label>Video File<input id="videoFile" class="field" type="file" accept="video/*" required></label>
-              <button class="btn btn-blue" type="submit">Upload Video</button>
+              <button class="btn btn-blue" type="submit">Upload</button>
             </form>
           </div>
-
-          <!-- PREMIUM MIX UPLOAD -->
           <div class="admin-box stack" style="margin-top:18px">
-            <h4>🔥 Upload Premium Mix Demo</h4>
+            <h4>Upload Premium Mix</h4>
             <form id="pmUploadForm" class="stack">
-              <label>Mix Title<input id="pmTitle" class="field" type="text" required placeholder="e.g. DJ Lisan Club Mix 2026"></label>
-              <label>Price ($ or BDT)<input id="pmPrice" class="field" type="number" step="0.01" required placeholder="10.00"></label>
-              <label>Thumbnail Cover<input id="pmCover" class="field" type="file" accept="image/*" required></label>
-              <label>Demo Audio File (MP3/WAV)<input id="pmDemoFile" class="field" type="file" accept="audio/*" required></label>
-              <button class="btn btn-pink" type="submit">Upload Premium Mix</button>
+              <label>Title<input id="pmTitle" class="field" type="text" required></label>
+              <label>Price<input id="pmPrice" class="field" type="number" step="0.01" required></label>
+              <label>Cover<input id="pmCover" class="field" type="file" accept="image/*" required></label>
+              <label>Demo Audio<input id="pmDemoFile" class="field" type="file" accept="audio/*" required></label>
+              <button class="btn btn-pink" type="submit">Upload Premium</button>
             </form>
           </div>
         </div>
@@ -395,10 +281,7 @@
   </main>
 
   <footer>
-    <div class="wrap footer-inner">
-      <span>© <span id="year"></span> COROSSS CLOUD</span>
-      <span>CÖRÖSSS ÖFFB3AT · DJ Lisan Official</span>
-    </div>
+    <div class="wrap footer-inner"><span>© <span id="year"></span> COROSSS CLOUD</span><span>DJ Lisan</span></div>
   </footer>
 
 <script>
@@ -416,8 +299,9 @@
   const AUDIO_TABLE = 'dj_audio';
   const VIDEO_TABLE = 'dj_videos';
   const PREMIUM_TABLE = 'premium_mixes';
+  const CHAT_TABLE = 'dj_chats'; // Chat messages table name
 
-  const WHATSAPP_NUMBER = '8801700000000'; // আপনার হোয়াটসঅ্যাপ নম্বরটি এখানে বসাতে পারেন
+  const WHATSAPP_NUMBER = '8801700000000'; // Apnar WhatsApp number
 
   const $ = id => document.getElementById(id);
   const client = window.supabase && window.supabase.createClient
@@ -426,289 +310,322 @@
 
   let currentUser = null;
   let isAdmin = false;
-
-  let audioItems = [];
-  let videoItems = [];
-  let premiumItems = [];
+  let audioItems = [], videoItems = [], premiumItems = [];
   let publicAuthMode = 'signup';
+  let chatChannel = null;
 
   $('year').textContent = new Date().getFullYear();
 
-  function showStatus(el, message, kind = 'info') {
+  function showStatus(el, msg, kind = 'info') {
     if (!el) return;
-    el.textContent = message;
+    el.textContent = msg;
     el.className = 'status show ' + kind;
   }
-  function hideStatus(el) { if (el) { el.textContent = ''; el.className = 'status'; } }
   function escapeHtml(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
   function publicUrl(bucket, path) {
     if (!path || !client) return '';
-    const res = client.storage.from(bucket).getPublicUrl(path);
-    return res && res.data ? res.data.publicUrl : '';
+    return client.storage.from(bucket).getPublicUrl(path).data.publicUrl;
   }
-
   function randomPath(folder, file) {
-    const safe = safeFileName(file.name);
-    return `${currentUser ? currentUser.id : 'public'}/${folder}/${Date.now()}-${safe}`;
-  }
-  function safeFileName(name) {
-    return String(name || 'upload').replace(/[^\w.-]+/g, '-').slice(-80);
+    return `${currentUser ? currentUser.id : 'pub'}/${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
   }
 
-  // --- LIKED PLAYLIST LOGIC ---
-  function getLikedItems() {
-    let saved = {};
-    try { saved = JSON.parse(localStorage.getItem('corosssCloudLikedItems') || '{}'); } catch (_) {}
-    const combined = [...audioItems.map(i=>({...i,kind:'audio'})), ...videoItems.map(i=>({...i,kind:'video'}))];
-    return combined.filter(item => !!saved[`${item.kind}:${item.id}`]);
-  }
-
-  function renderLikedPlaylist() {
-    const list = $('likedPlaylistList');
-    const count = $('likedPlaylistCount');
-    if (!list || !count) return;
-    const liked = getLikedItems();
-    count.textContent = `${liked.length} items`;
-    if (!liked.length) {
-      list.innerHTML = '<div class="liked-playlist-empty">Like a track or video to start your playlist.</div>';
-      return;
-    }
-    list.innerHTML = liked.map(item => `
-      <div class="liked-playlist-item">
-        <div><strong>${item.kind === 'audio' ? '♫' : '▶'} ${escapeHtml(item.title)}</strong><small>${item.kind.toUpperCase()}</small></div>
-        <button class="btn btn-dark" type="button" onclick="document.querySelector('[data-card=\\'${item.id}\\']')?.scrollIntoView({behavior:'smooth'})">Open</button>
-      </div>
-    `).join('');
-  }
-
-  // --- AUDIO RENDER ---
+  // --- RENDER AUDIO ---
   function renderAudio() {
-    const q = $('audioSearch').value.trim().toLowerCase();
-    const sort = $('audioSort').value;
-    let items = audioItems.filter(i => !q || i.title.toLowerCase().includes(q));
-    
-    if (sort === 'popular') items.sort((a,b) => Number(b.views||0) - Number(a.views||0));
-    else if (sort === 'az') items.sort((a,b) => a.title.localeCompare(b.title));
-    else items.sort((a,b) => new Date(b.created_at||0) - new Date(a.created_at||0));
-
+    const q = $('audioSearch').value.toLowerCase();
+    const items = audioItems.filter(i => !q || i.title.toLowerCase().includes(q));
     const grid = $('audioGrid');
-    if (!items.length) {
-      grid.innerHTML = '<div class="empty">No audio tracks found.</div>';
-      return;
-    }
+    if (!items.length) { grid.innerHTML = '<div class="empty">No audio tracks.</div>'; return; }
 
-    grid.innerHTML = items.map(item => {
-      const cover = publicUrl(AUDIO_BUCKET, item.thumbnail_path);
-      const src = publicUrl(AUDIO_BUCKET, item.storage_path);
-      return `
-        <article class="card" data-kind="audio" data-card="${escapeHtml(item.id)}">
-          <div class="cover"><img src="${escapeHtml(cover)}" alt="cover" onerror="this.remove()"><span class="cover-fallback">♫</span><span class="badge">AUDIO</span></div>
-          <div class="card-body">
-            <h3 class="card-title">${escapeHtml(item.title)}</h3>
-            <div class="track-wave" aria-hidden="true">${Array.from({length:30},(_,i)=>`<span style="height:${6+((i*7+3)%17)}px"></span>`).join('')}</div>
-            <audio controls preload="none" src="${escapeHtml(src)}"></audio>
-            ${isAdmin ? `<div class="card-actions"><button class="btn btn-danger" onclick="deleteItem('audio','${item.id}')">Delete</button></div>` : ''}
-          </div>
-        </article>`;
-    }).join('');
-    renderLikedPlaylist();
+    grid.innerHTML = items.map(item => `
+      <article class="card" data-kind="audio">
+        <div class="cover"><img src="${escapeHtml(publicUrl(AUDIO_BUCKET, item.thumbnail_path))}" onerror="this.remove()"><span class="cover-fallback">♫</span><span class="badge">AUDIO</span></div>
+        <div class="card-body">
+          <h3 class="card-title">${escapeHtml(item.title)}</h3>
+          <div class="meta"><span>▶ ${Number(item.views || 0)} plays</span></div>
+          <audio controls preload="none" src="${escapeHtml(publicUrl(AUDIO_BUCKET, item.storage_path))}" onplay="recordPlay('audio','${item.id}')"></audio>
+          ${socialSection('audio', item.id)}
+          ${isAdmin ? `<div class="card-actions"><button class="btn btn-danger" onclick="deleteItem('audio','${item.id}')">Delete</button></div>` : ''}
+        </div>
+      </article>`).join('');
+    bindSocial();
   }
 
-  // --- VIDEO RENDER ---
-  function renderVideo() {
-    const q = $('videoSearch').value.trim().toLowerCase();
-    let items = videoItems.filter(i => !q || i.title.toLowerCase().includes(q));
-
+  // --- RENDER VIDEO ---
+ function renderVideo() {
     const grid = $('videoGrid');
-    if (!items.length) {
-      grid.innerHTML = '<div class="empty">No videos found.</div>';
-      return;
-    }
+    if (!videoItems.length) { grid.innerHTML = '<div class="empty">No videos.</div>'; return; }
 
-    grid.innerHTML = items.map(item => {
-      const src = publicUrl(VIDEO_BUCKET, item.storage_path);
-      return `
-        <article class="card" data-kind="video" data-card="${escapeHtml(item.id)}">
-          <div class="cover">
-            <video controls preload="metadata" src="${escapeHtml(src)}"></video>
-            <span class="badge">VIDEO</span>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">${escapeHtml(item.title)}</h3>
-            ${isAdmin ? `<div class="card-actions"><button class="btn btn-danger" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
-          </div>
-        </article>`;
-    }).join('');
+    grid.innerHTML = videoItems.map(item => `
+      <article class="card" data-kind="video">
+        <div class="cover"><video controls preload="metadata" src="${escapeHtml(publicUrl(VIDEO_BUCKET, item.storage_path))}" onplay="recordPlay('video','${item.id}')"></video><span class="badge">VIDEO</span></div>
+        <div class="card-body">
+          <h3 class="card-title">${escapeHtml(item.title)}</h3>
+          <div class="meta"><span>▶ ${Number(item.views || 0)} views</span></div>
+          ${socialSection('video', item.id)}
+          ${isAdmin ? `<div class="card-actions"><button class="btn btn-danger" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
+        </div>
+      </article>`).join('');
+    bindSocial();
   }
 
-  // --- PREMIUM MIX RENDER ---
+  // --- RENDER PREMIUM ---
   function renderPremium() {
     const grid = $('pmGrid');
-    if (!premiumItems.length) {
-      grid.innerHTML = '<div class="empty">No Premium Mixes available right now.</div>';
-      return;
-    }
+    if (!premiumItems.length) { grid.innerHTML = '<div class="empty">No Premium Mixes.</div>'; return; }
 
     grid.innerHTML = premiumItems.map(item => {
       const cover = publicUrl(PREMIUM_BUCKET, item.thumbnail_path);
       const demo = publicUrl(PREMIUM_BUCKET, item.demo_path);
-      const buyText = encodeURIComponent(`Hi DJ Lisan! I want to buy the premium mix: "${item.title}"`);
-      const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${buyText}`;
-
       return `
         <article class="card" style="display:block">
           <div style="position:relative;height:180px;background:#000">
-            <img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover" alt="cover">
-            <span class="badge badge-premium">PREMIUM MIX</span>
+            <img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover">
+            <span class="badge badge-premium">PREMIUM</span>
           </div>
           <div class="card-body">
             <h3 class="card-title">${escapeHtml(item.title)}</h3>
-            <p style="color:var(--gold);font-weight:700;margin:4px 0 10px">Price: $${escapeHtml(item.price || '0.00')}</p>
-            <small class="sub" style="display:block;margin-bottom:6px">Listen to Demo Track:</small>
+            <p style="color:var(--gold);font-weight:700">Price: $${escapeHtml(item.price)}</p>
             <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
             <div class="hero-actions" style="margin-top:14px">
-              <a class="btn btn-gold" style="width:100%" href="${waLink}" target="_blank">🛒 BUY NOW (Contact DJ)</a>
+              <button class="btn btn-gold" style="width:100%" onclick="handleBuyNow('${escapeHtml(item.title)}')">🛒 BUY NOW (Chat)</button>
             </div>
-            ${isAdmin ? `<div class="card-actions" style="margin-top:10px"><button class="btn btn-danger" onclick="deleteItem('premium','${item.id}')">Delete Premium</button></div>` : ''}
+            ${isAdmin ? `<div class="card-actions" style="margin-top:10px"><button class="btn btn-danger" onclick="deleteItem('premium','${item.id}')">Delete</button></div>` : ''}
           </div>
         </article>`;
     }).join('');
   }
 
-  // --- LOAD ALL DATA ---
-  async function loadAll() {
-    if (!client) return;
-    const [aRes, vRes, pRes] = await Promise.all([
-      client.from(AUDIO_TABLE).select('*').order('created_at', {ascending:false}),
-      client.from(VIDEO_TABLE).select('*').order('created_at', {ascending:false}),
-      client.from(PREMIUM_TABLE).select('*').order('created_at', {ascending:false})
-    ]);
-
-    audioItems = aRes.data || [];
-    videoItems = vRes.data || [];
-    premiumItems = pRes.data || [];
-
-    renderAudio();
-    renderVideo();
-    renderPremium();
-    updateStats();
+  // --- SOCIAL COMPONENTS (Like, Comment, Share) ---
+  function socialSection(kind, id) {
+    return `
+      <div class="social-panel" data-kind="${kind}" data-id="${id}">
+        <div class="social-buttons">
+          <button class="social-btn" onclick="toggleLike('${kind}','${id}',this)">♡ Like</button>
+          <button class="social-btn" onclick="toggleComments(this)">💬 Comment</button>
+          <button class="social-btn" onclick="shareItem('${kind}','${id}')">↗ Share</button>
+        </div>
+        <div class="social-comments hidden">
+          <div class="social-comment-list">Loading comments...</div>
+          <form class="social-form" onsubmit="postComment(event,'${kind}','${id}')">
+            <input type="text" placeholder="Write comment..." required maxlength="300">
+            <button class="social-btn" type="submit">Post</button>
+          </form>
+        </div>
+      </div>`;
   }
 
-  function updateStats() {
-    if ($('statAudio')) $('statAudio').textContent = audioItems.length;
-    if ($('statVideos')) $('statVideos').textContent = videoItems.length;
-    if ($('statPremium')) $('statPremium').textContent = premiumItems.length;
+  window.toggleLike = async (kind, id, btn) => {
+    let likes = JSON.parse(localStorage.getItem('corosss_likes') || '{}');
+    const key = `${kind}_${id}`;
+    likes[key] = !likes[key];
+    localStorage.setItem('corosss_likes', JSON.stringify(likes));
+    btn.classList.toggle('is-liked', likes[key]);
+    btn.textContent = likes[key] ? '♥ Liked' : '♡ Like';
+  };
+
+  window.toggleComments = (btn) => {
+    const panel = btn.closest('.social-panel');
+    const comments = panel.querySelector('.social-comments');
+    comments.classList.toggle('hidden');
+    if (!comments.classList.contains('hidden')) loadComments(panel);
+  };
+
+  async function loadComments(panel) {
+    const kind = panel.dataset.kind;
+    const id = panel.dataset.id;
+    const list = panel.querySelector('.social-comment-list');
+    const { data } = await client.from('dj_comments').select('*').eq('item_kind', kind).eq('item_id', id).order('created_at', {ascending:false});
+    if (!data || !data.length) { list.innerHTML = '<div class="social-note">No comments yet.</div>'; return; }
+    list.innerHTML = data.map(c => `<div class="social-comment"><b>${escapeHtml(c.username || 'User')}</b>: ${escapeHtml(c.text)}<time>${new Date(c.created_at).toLocaleTimeString()}</time></div>`).join('');
   }
 
-  // --- AUTHENTICATION & PROFILE UI ---
-  function updateAuthUI() {
-    const signedIn = !!(currentUser && !isAdmin);
+  window.postComment = async (e, kind, id) => {
+    e.preventDefault();
+    const input = e.target.querySelector('input');
+    const text = input.value.trim();
+    if (!text) return;
+    const username = currentUser ? (currentUser.user_metadata?.username || currentUser.email.split('@')[0]) : 'Guest';
+    await client.from('dj_comments').insert({ item_kind: kind, item_id: id, username, text });
+    input.value = '';
+    loadComments(e.target.closest('.social-panel'));
+  };
+
+  window.shareItem = (kind, id) => {
+    const url = window.location.href.split('#')[0] + `#${kind}-${id}`;
+    navigator.clipboard?.writeText(url);
+    alert('Link copied to clipboard!');
+  };
+
+  window.bindSocial = () => {
+    document.querySelectorAll('.social-panel').forEach(panel => {
+      const kind = panel.dataset.kind, id = panel.dataset.id;
+      let likes = JSON.parse(localStorage.getItem('corosss_likes') || '{}');
+      if (likes[`${kind}_${id}`]) {
+        const btn = panel.querySelector('.social-buttons button');
+        btn.classList.add('is-liked');
+        btn.textContent = '♥ Liked';
+      }
+    });
+  };
+
+  // --- BUY NOW & AUTOMATIC WELCOME CHAT SYSTEM ---
+  window.handleBuyNow = async (songTitle) => {
+    if (!currentUser) {
+      alert('Please sign in or create an account first to chat with DJ Lisan!');
+      $('community').scrollIntoView({behavior: 'smooth'});
+      return;
+    }
     
-    $('publicAuthForm').classList.toggle('hidden', signedIn);
-    $('publicAccountSignedIn').classList.toggle('hidden', !signedIn);
-    $('usernameFieldGroup').classList.toggle('hidden', publicAuthMode === 'signin');
+    // Switch view to chat and ensure automatic welcome message exists
+    $('community').scrollIntoView({behavior: 'smooth'});
+    await loadChatMessages();
+    
+    // Check if welcome message already sent for this user, if not insert it automatically
+    const { data } = await client.from(CHAT_TABLE).select('*').eq('user_id', currentUser.id);
+    if (!data || data.length === 0) {
+      const welcomeText = `Hello ${currentUser.user_metadata?.username || 'User'}! Welcome to COROSSS CLOUD. Thanks for your interest in "${songTitle}". How can I help you complete your purchase?`;
+      await client.from(CHAT_TABLE).insert({
+        user_id: currentUser.id,
+        sender: 'admin',
+        message: welcomeText
+      });
+      await loadChatMessages();
+    }
+  };
 
-    $('publicAuthHeading').textContent = signedIn ? 'Your Listener Profile' : (publicAuthMode === 'signup' ? 'Create Listener Account' : 'Listener Login');
-    $('publicAuthSubmit').textContent = publicAuthMode === 'signup' ? 'Create Account' : 'Sign In';
-    $('publicAuthToggle').textContent = publicAuthMode === 'signup' ? 'Already have an account? Sign In' : 'New listener? Sign Up';
+  // --- LIVE CHAT FUNCTIONS ---
+  async function loadChatMessages() {
+    if (!currentUser) return;
+    const { data, error } = await client.from(CHAT_TABLE).select('*').eq('user_id', currentUser.id).order('created_at', {ascending: true});
+    const container = $('chatMessages');
+    if (!container) return;
+
+    if (error || !data || !data.length) {
+      container.innerHTML = '<div class="sub" style="text-align:center">No messages yet. Send a message below!</div>';
+      return;
+    }
+
+    container.innerHTML = data.map(m => `
+      <div class="chat-msg ${m.sender === 'admin' ? 'admin' : 'user'}">
+        <b>${m.sender === 'admin' ? 'DJ Lisan' : 'You'}:</b> ${escapeHtml(m.message)}
+      </div>`).join('');
+    container.scrollTop = container.scrollHeight;
+  }
+
+  $('chatForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!currentUser) return;
+    const input = $('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+
+    const { error } = await client.from(CHAT_TABLE).insert({
+      user_id: currentUser.id,
+      sender: 'user',
+      message
+    });
+
+    if (!error) {
+      input.value = '';
+      await loadChatMessages();
+    }
+  });
+
+  // Realtime chat subscription
+  function subscribeChat() {
+    if (!currentUser || chatChannel) return;
+    chatChannel = client.channel('public:dj_chats')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: CHAT_TABLE, filter: `user_id=eq.${currentUser.id}` }, () => {
+        loadChatMessages();
+      })
+      .subscribe();
+  }
+
+  // --- AUTH SYSTEM (NO VERIFICATION CODE / INSTANT LOGIN) ---
+  function updateAuthUI() {
+    const signedIn = !!currentUser;
+    $('publicAuthForm').classList.toggle('hidden', signedIn);
+    $('publicAccountSignedIn').classList.toggle('hidden', !signedIn);$('usernameFieldGroup').classList.toggle('hidden', publicAuthMode === 'signin');
 
     if (signedIn) {
       const username = currentUser.user_metadata?.username || currentUser.email.split('@')[0];
       $('userProfileName').textContent = '@' + username;
       $('userProfileEmail').textContent = currentUser.email;
       $('userAvatarMark').textContent = username.charAt(0).toUpperCase();
+      loadChatMessages();
+      subscribeChat();
     }
 
     $('loginPanel').classList.toggle('hidden', isAdmin);
-    $('adminPanel').classList.toggle('hidden', !isAdmin);
-    $('navLoginBtn').textContent = isAdmin ? 'ADMIN DASHBOARD' : 'ADMIN LOGIN';
+    $('adminPanel').classList.toggle('hidden', !isAdmin);$('navLoginBtn').textContent = isAdmin ? 'ADMIN' : 'LOGIN';
   }
 
   $('publicAuthToggle').addEventListener('click', () => {
     publicAuthMode = publicAuthMode === 'signup' ? 'signin' : 'signup';
-    hideStatus($('publicAuthStatus'));
-    updateAuthUI();
+    $('publicAuthHeading').textContent = publicAuthMode === 'signup' ? 'Listener Sign Up' : 'Listener Login';
+    $('publicAuthSubmit').textContent = publicAuthMode === 'signup' ? 'Create Account' : 'Sign In';$('publicAuthToggle').textContent = publicAuthMode === 'signup' ? 'Already have an account? Sign In' : 'New? Create Account';
+    $('usernameFieldGroup').classList.toggle('hidden', publicAuthMode === 'signin');
   });
 
-  // --- SIGN UP & LOGIN SUBMIT ---
-  $('publicAuthForm').addEventListener('submit', async event => {
-    event.preventDefault();
-    if (!client) return;
-
+  $('publicAuthForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
     const email = $('publicAuthEmail').value.trim();
     const password = $('publicAuthPassword').value;
     const username = $('publicAuthUsername').value.trim();
+    const statusEl = $('publicAuthStatus');
 
-    const button = $('publicAuthSubmit');
-    button.disabled = true;
-    showStatus($('publicAuthStatus'), 'Processing request...', 'info');
+    showStatus(statusEl, 'Processing...', 'info');
 
     try {
       if (publicAuthMode === 'signup') {
-        if (!username) throw new Error('Please choose a username.');
-        
+        // Instant sign up without verification code requirement
         const { data, error } = await client.auth.signUp({
           email,
           password,
-          options: {
-            data: { username: username }
-          }
+          options: { data: { username: username || email.split('@')[0] } }
         });
         if (error) throw error;
-        
-        if (data.session) {
-          currentUser = data.session.user;
-          showStatus($('publicAuthStatus'), 'Account created & logged in!', 'ok');
-        } else {
-          showStatus($('publicAuthStatus'), 'Registration successful! Check your email to verify.', 'ok');
-          publicAuthMode = 'signin';
-        }
+        currentUser = data.user || data.session?.user;
+        showStatus(statusEl, 'Account created successfully!', 'ok');
       } else {
         const { data, error } = await client.auth.signInWithPassword({ email, password });
         if (error) throw error;
         currentUser = data.user;
-        showStatus($('publicAuthStatus'), 'Signed in successfully!', 'ok');
+        showStatus(statusEl, 'Logged in successfully!', 'ok');
       }
-    } catch (e) {
-      showStatus($('publicAuthStatus'), e.message, 'error');
-    } finally {
-      button.disabled = false;
+      isAdmin = currentUser && currentUser.id === ADMIN_USER_ID;
       updateAuthUI();
+    } catch (err) {
+      showStatus(statusEl, err.message, 'error');
     }
   });
 
   $('publicLogoutBtn').addEventListener('click', async () => {
-    if (!client) return;
     await client.auth.signOut();
     currentUser = null;
     isAdmin = false;
     updateAuthUI();
-    showStatus($('publicAuthStatus'), 'Signed out.', 'ok');
   });
 
-  // --- ADMIN LOGIN ---
-  $('loginForm').addEventListener('submit', async event => {
-    event.preventDefault();
+  // --- ADMIN LOGIN & UPLOADS ---
+  $('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
     const email = $('loginEmail').value.trim();
     const password = $('loginPassword').value;
-
     try {
       const { data, error } = await client.auth.signInWithPassword({ email, password });
       if (error) throw error;
-
       if (data.user.id !== ADMIN_USER_ID) {
         await client.auth.signOut();
-        throw new Error('Unauthorized admin account.');
+        throw new Error('Not authorized as admin.');
       }
-
       currentUser = data.user;
       isAdmin = true;
       updateAuthUI();
-      showStatus($('adminStatus'), 'Welcome Admin!', 'ok');
       loadAll();
-    } catch (e) {
-      showStatus($('loginStatus'), e.message, 'error');
+    } catch (err) {
+      showStatus($('loginStatus'), err.message, 'error');
     }
   });
 
@@ -720,121 +637,101 @@
     loadAll();
   });
 
-  // --- ADMIN UPLOADS ---
-  $('audioUploadForm').addEventListener('submit', async event => {
-    event.preventDefault();
-    if (!isAdmin) return;
-
+  // Upload handlers
+  $('audioUploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
     const title = $('audioTitle').value.trim();
     const audioFile = $('audioFile').files[0];
     const coverFile = $('audioCover').files[0];
+    const path = randomPath('audio', audioFile);
+    const coverPath = randomPath('covers', coverFile);
 
-    showStatus($('adminStatus'), 'Uploading Audio...', 'info');
-    try {
-      const audioPath = randomPath('audio', audioFile);
-      const coverPath = randomPath('covers', coverFile);
-
-      await client.storage.from(AUDIO_BUCKET).upload(audioPath, audioFile);
-      await client.storage.from(AUDIO_BUCKET).upload(coverPath, coverFile);
-
-      await client.from(AUDIO_TABLE).insert({ title, storage_path: audioPath, thumbnail_path: coverPath, uploaded_by: currentUser.id });
-
-      $('audioUploadForm').reset();
-      showStatus($('adminStatus'), 'Audio Track uploaded!', 'ok');
-      loadAll();
-    } catch (e) {
-      showStatus($('adminStatus'), e.message, 'error');
-    }
+    await client.storage.from(AUDIO_BUCKET).upload(path, audioFile);
+    await client.storage.from(AUDIO_BUCKET).upload(coverPath, coverFile);
+    await client.from(AUDIO_TABLE).insert({ title, storage_path: path, thumbnail_path: coverPath, uploaded_by: currentUser.id });
+    e.target.reset();
+    showStatus($('adminStatus'), 'Audio uploaded!', 'ok');
+    loadAll();
   });
 
-  $('videoUploadForm').addEventListener('submit', async event => {
-    event.preventDefault();
-    if (!isAdmin) return;
-
+  $('videoUploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
     const title = $('videoTitle').value.trim();
-    const videoFile = $('videoFile').files[0];
-
-    showStatus($('adminStatus'), 'Uploading Video...', 'info');
-    try {
-      const videoPath = randomPath('video', videoFile);
-      await client.storage.from(VIDEO_BUCKET).upload(videoPath, videoFile);
-      await client.from(VIDEO_TABLE).insert({ title, storage_path: videoPath, uploaded_by: currentUser.id });
-
-      $('videoUploadForm').reset();
-      showStatus($('adminStatus'), 'Video uploaded!', 'ok');
-      loadAll();
-    } catch (e) {
-      showStatus($('adminStatus'), e.message, 'error');
-    }
+    const file = $('videoFile').files[0];
+    const path = randomPath('video', file);
+    await client.storage.from(VIDEO_BUCKET).upload(path, file);
+    await client.from(VIDEO_TABLE).insert({ title, storage_path: path, uploaded_by: currentUser.id });
+    e.target.reset();
+    showStatus($('adminStatus'), 'Video uploaded!', 'ok');
+    loadAll();
   });
 
-  $('pmUploadForm').addEventListener('submit', async event => {
-    event.preventDefault();
-    if (!isAdmin) return;
-
+  $('pmUploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
     const title = $('pmTitle').value.trim();
     const price = Number($('pmPrice').value);
-    const coverFile = $('pmCover').files[0];
-    const demoFile = $('pmDemoFile').files[0];
+    const cover = $('pmCover').files[0];
+    const demo = $('pmDemoFile').files[0];
+    const coverPath = randomPath('covers', cover);
+    const demoPath = randomPath('demos', demo);
 
-    showStatus($('adminStatus'), 'Uploading Premium Mix...', 'info');
-    try {
-      const coverPath = randomPath('covers', coverFile);
-      const demoPath = randomPath('demos', demoFile);
-
-      await client.storage.from(PREMIUM_BUCKET).upload(coverPath, coverFile);
-      await client.storage.from(PREMIUM_BUCKET).upload(demoPath, demoFile);
-
-      await client.from(PREMIUM_TABLE).insert({
-        title,
-        price,
-        thumbnail_path: coverPath,
-        demo_path: demoPath
-      });
-
-      $('pmUploadForm').reset();
-      showStatus($('adminStatus'), 'Premium Mix uploaded!', 'ok');
-      loadAll();
-    } catch (e) {
-      showStatus($('adminStatus'), e.message, 'error');
-    }
+    await client.storage.from(PREMIUM_BUCKET).upload(coverPath, cover);
+    await client.storage.from(PREMIUM_BUCKET).upload(demoPath, demo);
+    await client.from(PREMIUM_TABLE).insert({ title, price, thumbnail_path: coverPath, demo_path: demoPath });
+    e.target.reset();
+    showStatus($('adminStatus'), 'Premium Mix uploaded!', 'ok');
+    loadAll();
   });
 
-  // --- DELETE ITEM (GLOBAL FUNCTION) ---
   window.deleteItem = async (type, id) => {
-    if (!isAdmin || !confirm('Delete this item permanently?')) return;
+    if (!confirm('Delete item?')) return;
+    let table = AUDIO_TABLE;
+    if (type === 'video') table = VIDEO_TABLE;
+    if (type === 'premium') table = PREMIUM_TABLE;
+    await client.from(table).delete().eq('id', id);
+    loadAll();
+  };
 
-    try {
-      let table = AUDIO_TABLE, bucket = AUDIO_BUCKET;
-      if (type === 'video') { table = VIDEO_TABLE; bucket = VIDEO_BUCKET; }
-      if (type === 'premium') { table = PREMIUM_TABLE; bucket = PREMIUM_BUCKET; }
-
-      await client.from(table).delete().eq('id', id);
-      showStatus($('adminStatus'), 'Item deleted.', 'ok');
-      loadAll();
-    } catch (e) {
-      alert('Delete failed: ' + e.message);
+  window.recordPlay = async (kind, id) => {
+    const table = kind === 'audio' ? AUDIO_TABLE : VIDEO_TABLE;
+    const item = (kind === 'audio' ? audioItems : videoItems).find(i => i.id === id);
+    if (item) {
+      const views = (item.views || 0) + 1;
+      await client.from(table).update({ views }).eq('id', id);
+      item.views = views;
     }
   };
 
-  // SEARCH LISTENERS
-  $('audioSearch').addEventListener('input', renderAudio);
-  $('audioSort').addEventListener('change', renderAudio);
-  $('videoSearch').addEventListener('input', renderVideo);
+  async function loadAll() {
+    const [a, v, p] = await Promise.all([
+      client.from(AUDIO_TABLE).select('*').order('created_at', {ascending:false}),
+      client.from(VIDEO_TABLE).select('*').order('created_at', {ascending:false}),
+      client.from(PREMIUM_TABLE).select('*').order('created_at', {ascending:false})
+    ]);
+    audioItems = a.data || [];
+    videoItems = v.data || [];
+    premiumItems = p.data || [];
+    renderAudio();
+    renderVideo();
+    renderPremium();
+    $('statAudio').textContent = audioItems.length;
+    $('statVideos').textContent = videoItems.length;
+    $('statPremium').textContent = premiumItems.length;
+  }
 
-  // INITIALIZE
-  (async function init() {
-    if (!client) return;
+  $('audioSearch').addEventListener('input', renderAudio);
+
+  // Init
+  (async () => {
     const { data } = await client.auth.getSession();
     currentUser = data?.session?.user || null;
-    isAdmin = !!(currentUser && currentUser.id === ADMIN_USER_ID);
-
+    isAdmin = currentUser && currentUser.id === ADMIN_USER_ID;
     updateAuthUI();
-    await loadAll();
+    loadAll();
 
-    client.auth.onAuthStateChange((_event, session) => {
+    client.auth.onAuthStateChange((_, session) => {
       currentUser = session?.user || null;
-      isAdmin = !!(currentUser && currentUser.id === ADMIN_USER_ID);
+      isAdmin = currentUser && currentUser.id === ADMIN_USER_ID;
       updateAuthUI();
       loadAll();
     });
