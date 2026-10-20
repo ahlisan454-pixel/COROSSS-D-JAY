@@ -1131,5 +1131,460 @@
   })();
 })();
 </script>
+ <script>
+(() => {
+  'use strict';
+
+  const SB_URL = 'https://odwyrnncykhjlqgkwnjk.supabase.co';
+  const SB_KEY = 'sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ';
+  const ADMIN_ID = '61187c1a-8f1b-48b0-893c-77136be5422a';
+
+  if (!window.supabase?.createClient) {
+    console.error('Supabase library did not load.');
+    return;
+  }
+
+  const db = window.supabase.createClient(SB_URL, SB_KEY);
+  let user = null;
+  let activeConversation = null;
+  let liveChannel = null;
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;',
+    '"':'&quot;', "'":'&#39;'
+  }[c]));
+
+  const money = n => Number(n || 0).toLocaleString();
+
+  const section = document.createElement('section');
+  section.className = 'section';
+  section.id = 'premium-mixes';
+  section.innerHTML = `
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Exclusive DJ collection</div>
+          <h2>Premium Mixes</h2>
+          <p class="sub">Listen to demos and contact the admin to request a mix.</p>
+        </div>
+      </div>
+
+      <div id="pmStatus" class="status" role="status"></div>
+      <div id="pmGrid" class="library-grid"
+           style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
+        <p class="sub">Loading premium mixes…</p>
+      </div>
+
+      <div class="admin-shell" style="margin-top:28px">
+        <h3 style="font-family:Orbitron">Premium Mix Admin</h3>
+        <p class="sub">Admin login-er session thakle ekhane mix upload/manage korte parbe.</p>
+        <form id="pmUpload" class="stack">
+          <label>Mix title
+            <input class="field" name="title" maxlength="150" required>
+          </label>
+          <label>Price
+            <input class="field" name="price" type="number" min="0" step="0.01" required>
+          </label>
+          <label>Thumbnail image
+            <input class="field" name="cover" type="file" accept="image/*" required>
+          </label>
+          <label>Demo audio (public)
+            <input class="field" name="demo" type="file" accept="audio/*" required>
+          </label>
+          <label>Full mix file (private)
+            <input class="field" name="full" type="file" accept="audio/*" required>
+          </label>
+          <button class="btn btn-gold" type="submit">Upload Premium Mix</button>
+        </form>
+      </div>
+
+      <div class="admin-shell" style="margin-top:24px">
+        <h3 style="font-family:Orbitron">Private Mix Chat</h3>
+        <p class="sub">Customer email verify kore nijer request-er chat dekhte parbe.</p>
+        <form id="pmEmailForm" class="stack">
+          <label>Your email
+            <input class="field" id="pmEmail" type="email" autocomplete="email" required>
+          </label>
+          <button class="btn btn-gold" type="submit">Send sign-in email</button>
+        </form>
+        <form id="pmOtpForm" class="stack hidden" style="margin-top:12px">
+          <label>Email verification code
+            <input class="field" id="pmOtp" inputmode="numeric" autocomplete="one-time-code" required>
+          </label>
+          <button class="btn btn-gold" type="submit">Verify code</button>
+        </form>
+        <div id="pmConversations" class="stack" style="margin-top:18px"></div>
+        <div id="pmChat" class="hidden" style="margin-top:18px">
+          <h4 id="pmChatTitle">Conversation</h4>
+          <div id="pmMessages" class="stack"
+               style="max-height:320px;overflow:auto;margin:12px 0"></div>
+          <form id="pmMessageForm" class="stack">
+            <label>Message
+              <textarea class="field" name="body" rows="3" maxlength="3000" required></textarea>
+            </label>
+            <button class="btn btn-gold" type="submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </div>`;
+
+  const footer = document.querySelector('footer');
+  if (footer) footer.before(section);
+  else document.body.append(section);
+
+  const $ = id => document.getElementById(id);
+
+  function status(message, kind = 'info') {
+    const el = $('pmStatus');
+    el.textContent = message;
+    el.className = 'status show ' + kind;
+  }
+
+  function isAdmin() {
+    return !!user && user.id === ADMIN_ID;
+  }
+
+  async function uploadFile(bucket, file) {
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const path = `${crypto.randomUUID()}-${safeName}`;
+    const { error } = await db.storage.from(bucket).upload(path, file, {
+      upsert: false,
+      contentType: file.type || 'application/octet-stream'
+    });
+    if (error) throw error;
+    return path;
+  }
+
+  async function loadMixes() {
+    const { data, error } = await db
+      .from('premium_mixes')
+      .select('id,title,price,thumbnail_path,demo_path,created_at')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      $('pmGrid').textContent = 'Could not load mixes. Check table and RLS policies.';
+      console.error(error);
+      return;
+    }
+
+    if (!data?.length) {
+      $('pmGrid').innerHTML = '<p class="empty">No premium mixes uploaded yet.</p>';
+      return;
+    }
+
+    $('pmGrid').innerHTML = data.map(mix => {
+      const cover = db.storage.from('premium-public')
+        .getPublicUrl(mix.thumbnail_path).data.publicUrl;
+      const demo = db.storage.from('premium-public')
+        .getPublicUrl(mix.demo_path).data.publicUrl;
+
+      return `
+        <article class="community-box">
+          <img src="${esc(cover)}" alt="${esc(mix.title)}"
+               style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px">
+          <h3>${esc(mix.title)}</h3>
+          <p>Price: ${esc(money(mix.price))}</p>
+          <audio controls preload="none" style="width:100%">
+            <source src="${esc(demo)}">
+          </audio>
+          <div class="card-actions">
+            <button class="btn btn-gold" data-buy="${esc(mix.id)}" type="button">
+              BUY NOW / Chat
+            </button>
+            ${isAdmin() ? `
+              <button class="btn btn-dark" data-edit="${esc(mix.id)}" type="button">Edit</button>
+              <button class="btn btn-dark" data-delete="${esc(mix.id)}" type="button">Delete</button>
+            ` : ''}
+          </div>
+        </article>`;
+    }).join('');
+
+    $('pmGrid').querySelectorAll('[data-buy]').forEach(btn => {
+      btn.addEventListener('click', () => startMixChat(btn.dataset.buy));
+    });
+    $('pmGrid').querySelectorAll('[data-edit]').forEach(btn => {
+      btn.addEventListener('click', () => editMix(btn.dataset.edit));
+    });
+    $('pmGrid').querySelectorAll('[data-delete]').forEach(btn => {
+      btn.addEventListener('click', () => deleteMix(btn.dataset.delete));
+    });
+  }
+
+  $('pmUpload').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!isAdmin()) return status('Admin account diye login korte hobe.', 'error');
+
+    const form = event.currentTarget;
+    const title = form.elements.title.value.trim();
+    const price = Number(form.elements.price.value);
+    const cover = form.elements.cover.files[0];
+    const demo = form.elements.demo.files[0];
+    const full = form.elements.full.files[0];
+
+    if (!title || !cover || !demo || !full || price < 0) {
+      return status('Shob field thikmoto fill koro.', 'error');
+    }
+
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+
+    try {
+      const thumbnailPath = await uploadFile('premium-public', cover);
+      const demoPath = await uploadFile('premium-public', demo);
+      const fullPath = await uploadFile('premium-private', full);
+
+      const { error } = await db.from('premium_mixes').insert({
+        title,
+        price,
+        thumbnail_path: thumbnailPath,
+        demo_path: demoPath,
+        full_path: fullPath
+      });
+      if (error) throw error;
+
+      form.reset();
+      status('Premium mix uploaded.', 'ok');
+      await loadMixes();
+    } catch (e) {
+      console.error(e);
+      status('Upload failed: ' + (e.message || 'Check storage policies and file limits.'), 'error');
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  async function editMix(id) {
+    if (!isAdmin()) return;
+    const { data: mix, error } = await db.from('premium_mixes')
+      .select('id,title,price')
+      .eq('id', id).single();
+    if (error) return status(error.message, 'error');
+
+    const title = prompt('Mix title:', mix.title);
+    if (title === null) return;
+    const priceText = prompt('Price:', String(mix.price));
+    if (priceText === null) return;
+    const price = Number(priceText);
+    if (!title.trim() || !Number.isFinite(price) || price < 0) {
+      return status('Title or price invalid.', 'error');
+    }
+
+    const { error: updateError } = await db.from('premium_mixes')
+      .update({ title: title.trim(), price }).eq('id', id);
+    if (updateError) return status(updateError.message, 'error');
+
+    status('Mix updated.', 'ok');
+    await loadMixes();
+  }
+
+  async function deleteMix(id) {
+    if (!isAdmin() || !confirm('Delete this premium mix?')) return;
+
+    const { data: mix, error } = await db.from('premium_mixes')
+      .select('id,thumbnail_path,demo_path,full_path')
+      .eq('id', id).single();
+    if (error) return status(error.message, 'error');
+
+    const { error: deleteError } = await db.from('premium_mixes')
+      .delete().eq('id', id);
+    if (deleteError) return status(deleteError.message, 'error');
+
+    await db.storage.from('premium-public').remove(
+      [mix.thumbnail_path, mix.demo_path].filter(Boolean)
+    );
+    await db.storage.from('premium-private').remove(
+      [mix.full_path].filter(Boolean)
+    );
+
+    status('Mix deleted.', 'ok');
+    await loadMixes();
+  }
+
+  $('pmEmailForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    const email = $('pmEmail').value.trim();
+    try {
+      const { error } = await db.auth.signInWithOtp({
+        email,
+        options: { shouldCreateUser: true }
+      });
+      if (error) throw error;
+      $('pmOtpForm').classList.remove('hidden');
+      status('Email sent. Email-e code ele code enter koro. Link-only email ele OTP template configure korte hobe.', 'ok');
+    } catch (e) {
+      status('Email send failed: ' + e.message, 'error');
+    }
+  });
+
+  $('pmOtpForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    const email = $('pmEmail').value.trim();
+    const token = $('pmOtp').value.trim();
+
+    try {
+      const { data, error } = await db.auth.verifyOtp({
+        email, token, type: 'email'
+      });
+      if (error) throw error;
+
+      user = data.user;
+      status('Email verified.', 'ok');
+      await showConversations();
+    } catch (e) {
+      status('Verification failed: ' + e.message, 'error');
+    }
+  });
+
+  async function startMixChat(mixId) {
+    if (!user) {
+      $('pmEmail').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      $('pmEmail').focus();
+      status('Age email verify koro, tarpor abar BUY NOW click koro.');
+      return;
+    }
+
+    try {
+      let { data: conv, error } = await db.from('premium_conversations')
+        .select('id,customer_id,mix_id')
+        .eq('customer_id', user.id)
+        .eq('mix_id', mixId)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (!conv) {
+        const result = await db.from('premium_conversations')
+          .insert({ customer_id: user.id, mix_id: mixId })
+          .select('id,customer_id,mix_id')
+          .single();
+
+        if (result.error) {
+          // Another request may have created the same conversation.
+          const retry = await db.from('premium_conversations')
+            .select('id,customer_id,mix_id')
+            .eq('customer_id', user.id)
+            .eq('mix_id', mixId)
+            .maybeSingle();
+          if (retry.error || !retry.data) throw result.error;
+          conv = retry.data;
+        } else {
+          conv = result.data;
+        }
+      }
+
+      await openChat(conv);
+      status('Chat opened. Admin reply dile ekhane dekhte parbe.', 'ok');
+    } catch (e) {
+      status('Could not open chat: ' + e.message, 'error');
+    }
+  }
+
+  async function showConversations() {
+    if (!user) return;
+
+    const query = db.from('premium_conversations')
+      .select('id,customer_id,mix_id,created_at')
+      .order('created_at', { ascending: false });
+
+    // RLS must restrict customer results to their own conversations.
+    const { data, error } = await query;
+    if (error) return status('Could not load chats: ' + error.message, 'error');
+
+    const rows = data || [];
+    $('pmConversations').innerHTML = rows.length ? rows.map(c => `
+      <button class="btn btn-dark" type="button" data-conv="${esc(c.id)}">
+        ${isAdmin() ? 'Customer: ' + esc(c.customer_id) + ' · ' : ''}
+        Mix request · ${esc(c.id.slice(0, 8))}
+      </button>
+    `).join('') : '<p class="sub">No conversations yet. Browse mixes and press BUY NOW.</p>';
+
+    $('pmConversations').querySelectorAll('[data-conv]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const conv = rows.find(c => c.id === btn.dataset.conv);
+        if (conv) await openChat(conv);
+      });
+    });
+  }
+
+  async function openChat(conv) {
+    activeConversation = conv;
+    $('pmChat').classList.remove('hidden');
+    $('pmChatTitle').textContent = 'Private conversation · ' + conv.id.slice(0, 8);
+
+    if (liveChannel) await db.removeChannel(liveChannel);
+    await loadMessages();
+
+    liveChannel = db.channel('premium-chat-' + conv.id)
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'premium_messages',
+        filter: 'conversation_id=eq.' + conv.id
+      }, loadMessages)
+      .subscribe();
+
+    $('pmChat').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function loadMessages() {
+    if (!activeConversation) return;
+
+    const { data, error } = await db.from('premium_messages')
+      .select('id,conversation_id,sender_id,body,created_at')
+      .eq('conversation_id', activeConversation.id)
+      .order('created_at', { ascending: true });
+
+    if (error) return status('Could not load messages: ' + error.message, 'error');
+
+    $('pmMessages').innerHTML = (data || []).map(m => `
+      <div class="community-box" style="padding:12px">
+        <small class="sub">${m.sender_id === ADMIN_ID ? 'Admin' : 'Customer'}</small>
+        <div style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(m.body)}</div>
+        <small class="sub">${esc(new Date(m.created_at).toLocaleString())}</small>
+      </div>
+    `).join('') || '<p class="sub">No messages yet.</p>';
+
+    $('pmMessages').scrollTop = $('pmMessages').scrollHeight;
+  }
+
+  $('pmMessageForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!user || !activeConversation) return status('Age chat open koro.', 'error');
+
+    const form = event.currentTarget;
+    const body = form.elements.body.value.trim();
+    if (!body) return;
+
+    const { error } = await db.from('premium_messages').insert({
+      conversation_id: activeConversation.id,
+      sender_id: user.id,
+      body
+    });
+
+    if (error) return status('Message send failed: ' + error.message, 'error');
+
+    form.reset();
+    await loadMessages();
+  });
+
+  async function init() {
+    const { data } = await db.auth.getSession();
+    user = data.session?.user || null;
+    await loadMixes();
+    if (user) await showConversations();
+
+    db.auth.onAuthStateChange((_event, session) => {
+      user = session?.user || null;
+      loadMixes();
+      if (user) showConversations();
+    });
+  }
+
+  init().catch(e => {
+    console.error(e);
+    status('Initialization failed: ' + e.message, 'error');
+  });
+})();
+</script> 
 </body>
 </html>
