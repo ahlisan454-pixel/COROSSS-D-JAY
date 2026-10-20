@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#08080d">
-  <title>COROSSS CLOUD | Music & Videos</title>
+  <title>COROSSS CLOUD | Music & Videos & Premium Mixes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
     @keyframes logoDrift{0%{transform:translate3d(0,35px,0) rotate(-12deg) scale(.8);opacity:0}12%{opacity:.12}50%{transform:translate3d(28px,-45px,0) rotate(9deg) scale(1.06);opacity:.09}88%{opacity:.12}100%{transform:translate3d(-10px,-125px,0) rotate(18deg) scale(.9);opacity:0}}
     header,main,footer{position:relative;z-index:1}
     a{color:inherit;text-decoration:none}
-    button,input,select{font:inherit}
+    button,input,select,textarea{font:inherit}
     button{cursor:pointer}
     .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
     .topbar{position:sticky;top:0;z-index:20;background:#08080de8;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
@@ -43,6 +43,7 @@
     .btn-dark{color:var(--text);background:#ffffff10;border:1px solid var(--line)}
     .btn-danger{color:#fff;background:#d83c58}
     .btn-blue{color:#071116;background:linear-gradient(135deg,#a0f2ff,var(--blue))}
+    .btn-pink{color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple))}
     .hero{padding:78px 0 56px;position:relative;overflow:hidden}
     .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:42px}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #f4c95d55;color:var(--gold2);background:#f4c95d0c;border-radius:99px;padding:8px 13px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
@@ -60,14 +61,14 @@
     .bars{position:absolute;bottom:5px;display:flex;gap:5px;align-items:center;height:44px}
     .bars span{width:5px;border-radius:9px;background:linear-gradient(var(--blue),var(--pink));animation:bars 1s ease-in-out infinite alternate}
     .bars span:nth-child(3n){animation-delay:.2s}.bars span:nth-child(2n){animation-delay:.4s}
-    @keyframes bars{from{height:8px}to{height:38px}} @keyframes vinylSpin{to{transform:rotate(360deg)}}
+    @keyframes bars{from{height:8px}to{height:38px}} @keyframes vinylSpin{to{transform:rotate(360deg)}} @keyframes float{50%{transform:translateY(-9px)}}
     .section{padding:44px 0 64px}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:24px}
     .kicker{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:9px}
     h2{font:800 clamp(25px,4vw,37px) Orbitron,sans-serif;margin-bottom:0}
     .sub{color:var(--muted);font-size:13px;margin-top:9px}
     .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 24px}
-    .field,.select{background:#111119;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;outline:none;min-width:0}
+    .field,.select{background:#111119;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;outline:none;min-width:0;width:100%}
     .field:focus,.select:focus{border-color:#f4c95d99}
     .search{flex:1;min-width:210px}
     .select option{background:#111119}
@@ -85,9 +86,10 @@
     .card-body{padding:14px 16px;flex:1;min-width:0}
     .card[data-kind="video"] .cover{width:176px;height:99px;flex-basis:176px}
     .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover}
-    .card.is-expanded{display:block}
+    .card.is-expanded{display:block;animation:expandCard .24s ease-out}
     .card.is-expanded[data-kind="video"]{max-width:640px;width:100%;margin-inline:auto}
     .card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;aspect-ratio:16/9;max-height:360px;margin:0 auto;border-radius:12px 12px 0 0;flex-basis:auto;background:#000}
+    @keyframes expandCard{from{opacity:.8;transform:translateY(5px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
     .cover-fallback{font:900 36px Orbitron,sans-serif;color:var(--gold);text-shadow:0 0 24px #f4c95d44}
     .badge{position:absolute;top:12px;left:12px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:5px 9px;font-size:10px;color:var(--gold2);letter-spacing:1px}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
@@ -95,6 +97,7 @@
     .meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:14px}
     audio{width:100%;height:38px;display:block;filter:drop-shadow(0 0 8px #f4c95d12)}
     video{width:100%;max-height:280px;display:block;background:#000}
+    .player-hint{font-size:10px;color:var(--muted);margin-top:5px}
     .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
     .card-actions .btn{font-size:11px;padding:8px 10px}
     .empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #ffffff25;border-radius:18px;color:var(--muted)}
@@ -111,7 +114,7 @@
     .admin-box h4{margin:0 0 14px;font-size:14px;color:var(--gold2)}
     .stack{display:grid;gap:11px}
     .stack label{font-size:12px;color:var(--muted)}
-    .stack input{width:100%;margin-top:6px}
+    .stack input,.stack textarea{width:100%;margin-top:6px}
     input[type=file]{font-size:12px;padding:9px}
     .admin-login{max-width:450px;margin:auto}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
@@ -130,15 +133,20 @@
     .social-comment time{display:block;color:var(--muted);font-size:10px;margin-top:4px}
     .social-form{display:flex;gap:7px;align-items:stretch}
     .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text);outline:none;font-size:12px}
+    .social-note{color:var(--muted);font-size:11px;margin:6px 0 0}
     .liked-playlist{margin:18px 0 22px;border:1px solid #f4c95d40;border-radius:16px;padding:16px;background:linear-gradient(135deg,#f4c95d0b,#ffffff03)}
     .liked-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
     .liked-playlist h3{font:700 15px Orbitron,sans-serif;color:var(--gold2);margin:0}
+    .liked-playlist-note{font-size:11px;color:var(--muted);margin:5px 0 12px}
     .liked-playlist-list{display:grid;gap:8px}
     .liked-playlist-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#ffffff05}
-    
+    .liked-playlist-item strong{display:block;font-size:12px;overflow-wrap:anywhere}
+    .liked-playlist-item small{color:var(--muted);font-size:10px}
+    .liked-playlist-empty{font-size:12px;color:var(--muted);padding:8px 0}
     .hidden{display:none!important}
     footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
     .footer-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:250px}.disc{width:220px}.orbit{width:270px}.admin-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -147,6 +155,8 @@
     <span class="ambient-logo" style="--x:83%;--y:79%;--size:21px;--duration:27s;--delay:-15s;--color:#38d9ff">DJ</span>
     <span class="ambient-logo" style="--x:72%;--y:35%;--size:25px;--duration:22s;--delay:-4s;--color:#9b65ff">♪</span>
     <span class="ambient-logo" style="--x:24%;--y:42%;--size:16px;--duration:29s;--delay:-20s;--color:#ff3cc7">BASS</span>
+    <span class="ambient-logo" style="--x:48%;--y:86%;--size:19px;--duration:25s;--delay:-11s;--color:#f4c95d">COROSSS</span>
+    <span class="ambient-logo" style="--x:91%;--y:17%;--size:23px;--duration:31s;--delay:-22s;--color:#38d9ff">♫</span>
   </div>
 
   <header class="topbar">
@@ -158,13 +168,14 @@
         <a href="#library">Music & Videos</a>
         <a href="#premium-section">Premium Mixes</a>
         <a href="#community">Community</a>
+        <a href="#admin">Admin</a>
         <button id="navLoginBtn" class="btn btn-gold" type="button" onclick="document.getElementById('admin').scrollIntoView({behavior:'smooth'})">ADMIN LOGIN</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION WITH ROTATING VINYL DISC & DJ PLAYER -->
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
       <div class="wrap hero-grid">
         <div>
@@ -179,44 +190,47 @@
         <div class="hero-visual" aria-hidden="true">
           <div class="orbit"></div>
           <div class="disc"></div>
-          <div class="bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </div>
       </div>
     </section>
 
-    <!-- 1. MUSIC & VIDEOS LIBRARY -->
+    <!-- LIBRARY SECTION -->
     <section class="section" id="library">
       <div class="wrap">
         <div class="section-head">
-          <div><div class="kicker">The collection</div><h2>Music & Videos</h2><div class="sub">Play music and watch videos with RGB lights & wave animations.</div></div>
+          <div><div class="kicker">The collection</div><h2>Music & Videos</h2><div class="sub">Play music and watch videos with wave animations & interactive features.</div></div>
         </div>
         <div id="globalStatus" class="status" role="status"></div>
         <div class="library-tools">
-          <input class="field search" id="searchInput" type="search" placeholder="Search music or videos...">
-          <select class="select" id="typeFilter">
+          <input class="field search" id="searchInput" type="search" placeholder="Search music or videos..." aria-label="Search music or videos">
+          <select class="select" id="typeFilter" aria-label="Filter content type">
             <option value="all">All content</option>
             <option value="audio">Music only</option>
             <option value="video">Videos only</option>
           </select>
-          <select class="select" id="sortFilter">
+          <select class="select" id="sortFilter" aria-label="Sort content">
             <option value="newest">Newest first</option>
             <option value="popular">Most played</option>
             <option value="az">Title A–Z</option>
           </select>
         </div>
-        <section class="liked-playlist" id="likedPlaylist">
+        <section class="liked-playlist" id="likedPlaylist" aria-label="Your liked playlist">
           <div class="liked-playlist-head"><h3>♥ YOUR LIKED PLAYLIST</h3><span class="sub" id="likedPlaylistCount">0 items</span></div>
-          <div class="liked-playlist-list" id="likedPlaylistList"><div class="liked-playlist-empty">Like a track or video to add here.</div></div>
+          <p class="liked-playlist-note">Audio and videos you like appear here on this browser. Tap “Open” to play them from the library.</p>
+          <div class="liked-playlist-list" id="likedPlaylistList"><div class="liked-playlist-empty">Like a track or video to start your playlist.</div></div>
         </section>
-        <div id="libraryGrid" class="grid"><div class="empty">Loading the DJ library…</div></div>
+        <div id="libraryGrid" class="grid">
+          <div class="empty">Loading the DJ library…</div>
+        </div>
       </div>
     </section>
 
-    <!-- 2. PREMIUM MIXES SECTION -->
+    <!-- PREMIUM MIXES SECTION -->
     <section class="section" id="premium-section">
       <div class="wrap">
         <div class="section-head">
-          <div><div class="kicker">Exclusive DJ Collection</div><h2>Premium Mixes</h2><div class="sub">Listen to demos and chat directly with the admin.</div></div>
+          <div><div class="kicker">Exclusive DJ Collection</div><h2>Premium Mixes</h2><div class="sub">Listen to demos and chat directly with DJ Lisan.</div></div>
         </div>
         <div id="pmStatus" class="status" role="status"></div>
         <div id="pmGrid" class="grid-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
@@ -248,15 +262,27 @@
       </div>
     </section>
 
-    <!-- 3. COMMUNITY SECTION -->
+    <!-- COMMUNITY & PROFILE SECTION -->
     <section class="section" id="community">
       <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Stay connected</div><h2>Community & Account</h2><div class="sub">Manage your listener account.</div></div></div>
+        <div class="section-head"><div><div class="kicker">Stay connected</div><h2>Join the Community & Profile</h2><div class="sub">Follow the latest mixes and manage your listener account.</div></div></div>
         <div class="community">
-          <div class="community-box"><div class="kicker">New drops</div><h3>Fresh sound, fresh energy.</h3><p>Check back for new DJ mixes, video uploads and music releases.</p></div>
+          <div class="community-box">
+            <div class="kicker">New drops</div>
+            <h3>Fresh sound, fresh energy.</h3>
+            <p>Check back for new DJ mixes, video uploads and music releases from COROSSS CLOUD.</p>
+            <a class="btn btn-gold" href="#library">Listen now →</a>
+          </div>
+          <div class="community-box">
+            <div class="kicker">Social links</div>
+            <h3>Find your next vibe.</h3>
+            <p>Add your official YouTube, Facebook, Instagram or other social profile links here when you are ready.</p>
+            <div class="hero-actions"><a class="btn btn-dark" href="#admin">Manage website</a></div>
+          </div>
           <div class="community-box public-auth-box" id="publicAccount">
-            <div class="kicker">Listener account</div>
+            <div class="kicker">Listener profile</div>
             <h3 id="publicAuthHeading">Public Login / Sign Up</h3>
+            <p class="sub">Create a listener account or sign in to save preferences and interact.</p>
             <div id="publicAuthStatus" class="status" role="status"></div>
             <form id="publicAuthForm" class="stack">
               <label>Email<input id="publicAuthEmail" class="field" type="email" autocomplete="email" required placeholder="Your email address"></label>
@@ -273,17 +299,19 @@
       </div>
     </section>
 
-    <!-- 4. ADMIN STUDIO SECTION -->
+    <!-- ADMIN STUDIO SECTION -->
     <section class="section" id="admin">
       <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Restricted access</div><h2>Admin Studio</h2><div class="sub">Manage Music, Videos, and Premium Mixes.</div></div></div>
+        <div class="section-head"><div><div class="kicker">Restricted access</div><h2>Admin Studio</h2><div class="sub">Only authorized admin account can manage uploads and mixes.</div></div></div>
         <div id="loginPanel" class="admin-shell admin-login">
           <h3 style="font-family:Orbitron;margin-top:0">Admin Login</h3>
+          <p class="sub">Sign in with the admin account configured for this website.</p>
           <div id="loginStatus" class="status" role="status"></div>
           <form id="loginForm" class="stack">
             <label>Email<input id="loginEmail" class="field" type="email" autocomplete="username" required placeholder="Admin email"></label>
             <label>Password<input id="loginPassword" class="field" type="password" autocomplete="current-password" required placeholder="Password"></label>
-            <button class="btn btn-gold" type="submit">Sign in as Admin</button>
+            <button class="btn btn-gold" type="submit">Sign in</button>
+            <button class="btn btn-dark" type="button" id="resetPasswordBtn">Send password reset email</button>
           </form>
         </div>
 
@@ -311,17 +339,17 @@
 
           <div class="admin-grid">
             <form id="audioUploadForm" class="admin-box stack">
-              <h4>🎵 Upload Music Track</h4>
+              <h4>🎵 Upload a music track</h4>
               <label>Track title<input id="audioTitle" class="field" type="text" maxlength="150" required placeholder="Enter track title"></label>
-              <label>Audio file<input id="audioFile" class="field" type="file" accept="audio/*" required></label>
-              <label>Thumbnail image<input id="audioCover" class="field" type="file" accept="image/*" required></label>
-              <button class="btn btn-gold" type="submit">Upload Music</button>
+              <label>Audio file<input id="audioFile" class="field" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" required></label>
+              <label>Track thumbnail (separate image)<input id="audioCover" class="field" type="file" accept="image/*" required></label>
+              <button class="btn btn-gold" type="submit">Upload music + thumbnail</button>
             </form>
             <form id="videoUploadForm" class="admin-box stack">
-              <h4>🎬 Upload Video</h4>
+              <h4>🎬 Upload a video</h4>
               <label>Video title<input id="videoTitle" class="field" type="text" maxlength="150" required placeholder="Enter video title"></label>
-              <label>Video file<input id="videoFile" class="field" type="file" accept="video/*" required></label>
-              <button class="btn btn-blue" type="submit">Upload Video</button>
+              <label>Video file<input id="videoFile" class="field" type="file" accept="video/*,.mp4,.webm,.mov,.m4v" required></label>
+              <button class="btn btn-blue" type="submit">Upload video</button>
             </form>
           </div>
         </div>
@@ -329,7 +357,12 @@
     </section>
   </main>
 
-  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> COROSSS CLOUD</span><span>CÖRÖSSS ÖFFB3AT · DJ Lisan Official</span></div></footer>
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> COROSSS CLOUD</span>
+      <span>CÖRÖSSS ÖFFB3AT · Built for music lovers ✦</span>
+    </div>
+  </footer>
 
 <script>
 (() => {
@@ -364,6 +397,15 @@
     el.className = 'status show ' + kind;
   }
   function hideStatus(el) { if (el) { el.textContent = ''; el.className = 'status'; } }
+  function globalMessage(message, kind = 'info') { showStatus($('globalStatus'), message, kind); }
+  function adminMessage(message, kind = 'info') { showStatus($('adminStatus'), message, kind); }
+  function loginMessage(message, kind = 'info') { showStatus($('loginStatus'), message, kind); }
+  
+  function friendlyError(error) {
+    const msg = error && (error.message || error.error_description) ? (error.message || error.error_description) : String(error || 'Unknown error');
+    if (/Invalid login credentials/i.test(msg)) return 'Login failed. Check the admin email and password.';
+    return msg;
+  }
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
@@ -728,7 +770,53 @@
     loadMixes();
   };
 
-  // --- AUTH & ADMIN ---
+  // --- PUBLIC PROFILE AUTH ---
+  function updatePublicAuthUI() {
+    const signedIn = !!(currentUser && !isAdmin);
+    $('publicAuthForm').classList.toggle('hidden', signedIn);
+    $('publicAccountSignedIn').classList.toggle('hidden', !signedIn);
+    if (signedIn) {
+      $('publicSignedInText').textContent = 'Signed in as ' + (currentUser.email || 'listener');
+    }
+  }
+
+  $('publicAuthToggle').addEventListener('click', () => {
+    const mode = $('publicAuthSubmit').textContent.includes('Create') ? 'signin' : 'signup';
+    $('publicAuthHeading').textContent = mode === 'signup' ? 'Public Sign Up' : 'Public Login';
+    $('publicAuthSubmit').textContent = mode === 'signup' ? 'Create account' : 'Sign in';
+    $('publicAuthToggle').textContent = mode === 'signup' ? 'Already have an account? Sign in' : 'New here? Create an account';
+  });
+
+  $('publicAuthForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = $('publicAuthEmail').value.trim();
+    const password = $('publicAuthPassword').value;
+    const isSignup = $('publicAuthSubmit').textContent.includes('Create');
+    try {
+      if (isSignup) {
+        const { data, error } = await client.auth.signUp({ email, password });
+        if (error) throw error;
+        currentUser = data.user || data.session?.user;
+        alert('Account created successfully!');
+      } else {
+        const { data, error } = await client.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        currentUser = data.user;
+        alert('Signed in successfully!');
+      }
+      updatePublicAuthUI();
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+
+  $('publicLogoutBtn').addEventListener('click', async () => {
+    await client.auth.signOut();
+    currentUser = null;
+    updatePublicAuthUI();
+  });
+
+  // --- ADMIN AUTH ---
   async function syncAuth() {
     if (!client) return;
     const { data } = await client.auth.getSession();
@@ -740,6 +828,7 @@
     if (currentUser) loadConversations();
     loadLibrary();
     loadMixes();
+    updatePublicAuthUI();
   }
 
   $('loginForm').addEventListener('submit', async e => {
