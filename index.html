@@ -14,137 +14,145 @@
       --bg:#08080d; --panel:#111119; --panel2:#171722; --gold:#f4c95d;
       --gold2:#ffe9a3; --blue:#38d9ff; --pink:#ff3cc7; --purple:#9b65ff;
       --text:#f8f7fb; --muted:#a8a7b5; --line:#ffffff1b; --green:#54e5a2;
-      --radius:20px; --shadow:0 18px 55px #0008;
+      --radius:18px; --shadow:0 14px 40px #0008;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
     body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20152b 0,transparent 32%),radial-gradient(ellipse at 95% 25%,#10242d 0,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 80%);z-index:-1}
-    body:after{content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 18% 35%,#f4c95d12,transparent 30%),radial-gradient(ellipse at 78% 28%,#38d9ff13,transparent 28%),radial-gradient(ellipse at 58% 82%,#9b65ff12,transparent 32%);animation:ambientGlow 16s ease-in-out infinite alternate}
-    @keyframes ambientGlow{0%{transform:translate3d(-2%,0,0) scale(1);filter:hue-rotate(0deg)}100%{transform:translate3d(2%,-1%,0) scale(1.08);filter:hue-rotate(24deg)}}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;z-index:-1}
     header,main,footer{position:relative;z-index:1}
     a{color:inherit;text-decoration:none}
     button,input,select,textarea{font:inherit}
     button{cursor:pointer}
-    .wrap{width:min(1160px,calc(100% - 24px));margin:auto}
-    .topbar{position:sticky;top:0;z-index:20;background:#08080de8;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-    .nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:1px;font-size:14px}
-    .brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--gold);color:var(--gold);box-shadow:0 0 18px #f4c95d30;font-size:18px}
-    .brand small{display:block;font:500 8px Poppins,sans-serif;color:var(--muted);letter-spacing:2px;margin-top:2px}
-    .navlinks{display:flex;align-items:center;gap:14px;color:#d5d3df;font-size:12px;flex-wrap:wrap}
+    .wrap{width:min(1140px,calc(100% - 24px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:20;background:#08080de8;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:6px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:1px;font-size:13px}
+    .brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--gold);color:var(--gold);box-shadow:0 0 14px #f4c95d30;font-size:16px}
+    .brand small{display:block;font:500 7px Poppins,sans-serif;color:var(--muted);letter-spacing:2px;margin-top:2px}
+    .navlinks{display:flex;align-items:center;gap:12px;color:#d5d3df;font-size:11px;flex-wrap:wrap}
     .navlinks a:hover{color:var(--gold)}
-    .btn{border:0;border-radius:12px;padding:10px 14px;font-weight:700;transition:transform .18s,filter .18s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+    .btn{border:0;border-radius:10px;padding:9px 13px;font-weight:700;transition:transform .18s,filter .18s;display:inline-flex;align-items:center;justify-content:center;gap:6px}
     .btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
-    .btn-gold{color:#17120a;background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 8px 24px #f4c95d20}
+    .btn-gold{color:#17120a;background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 6px 20px #f4c95d20}
     .btn-dark{color:var(--text);background:#ffffff10;border:1px solid var(--line)}
     .btn-danger{color:#fff;background:#d83c58}
     .btn-blue{color:#071116;background:linear-gradient(135deg,#a0f2ff,var(--blue))}
     .btn-pink{color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple))}
-    .btn-telegram{color:#fff;background:linear-gradient(135deg,#24a1de,#229ed9);box-shadow:0 8px 24px #24a1de30}
-    .hero{padding:56px 0 40px;position:relative;overflow:hidden}
-    .hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:32px}
+    .btn-telegram{color:#fff;background:linear-gradient(135deg,#24a1de,#229ed9);box-shadow:0 6px 20px #24a1de30}
+    .hero{padding:50px 0 36px;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:28px}
     @media(min-width:850px){.hero-grid{grid-template-columns:1.2fr .8fr}}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #f4c95d55;color:var(--gold2);background:#f4c95d0c;border-radius:99px;padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-    .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #f4c95d55;color:var(--gold2);background:#f4c95d0c;border-radius:99px;padding:5px 10px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+    .pulse{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
     h1,h2,h3{margin-top:0}
-    h1{font:900 clamp(32px,5vw,68px)/1.08 Orbitron,sans-serif;letter-spacing:-1px;margin:18px 0}
+    h1{font:900 clamp(30px,5vw,64px)/1.08 Orbitron,sans-serif;letter-spacing:-1px;margin:16px 0}
     .gradient-text{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{max-width:600px;color:var(--muted);line-height:1.75;font-size:14px}
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-    .hero-visual{min-height:260px;display:grid;place-items:center;position:relative}
-    .disc{width:min(240px,70vw);aspect-ratio:1;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#111 0 3px,#29242d 4px 5px,#0c0c12 6px 9px);box-shadow:0 0 0 8px #f4c95d0b,0 0 50px #a45dff30,0 0 80px #38d9ff12;animation:vinylSpin 12s linear infinite;will-change:transform}
-    .disc:before{content:"";position:absolute;inset:28%;border-radius:50%;background:conic-gradient(var(--gold),var(--pink),var(--blue),var(--purple),var(--gold));box-shadow:0 0 36px #f4c95d40}
-    .disc:after{content:"DJ";position:absolute;inset:39%;display:grid;place-items:center;border-radius:50%;background:#111;color:var(--gold);font:900 20px Orbitron,sans-serif;border:2px solid #ffffff35}
-    .orbit{position:absolute;width:280px;aspect-ratio:1;border:1px solid #38d9ff40;border-radius:50%;transform:rotate(-28deg) scaleY(.42);box-shadow:0 0 22px #38d9ff0c}
-    .bars{position:absolute;bottom:2px;display:flex;gap:4px;align-items:center;height:36px}
-    .bars span{width:4px;border-radius:9px;background:linear-gradient(var(--blue),var(--pink));animation:bars 1s ease-in-out infinite alternate}
-    .bars span:nth-child(3n){animation-delay:.2s}.bars span:nth-child(2n){animation-delay:.4s}
-    @keyframes bars{from{height:6px}to{height:30px}} @keyframes vinylSpin{to{transform:rotate(360deg)}}
-    .section{padding:36px 0 52px}
-    .section-head{display:flex;justify-content:space-between;align-items:start;flex-direction:column;gap:12px;margin-bottom:20px}
+    .hero p{max-width:580px;color:var(--muted);line-height:1.7;font-size:13px}
+    .hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+    .hero-visual{min-height:240px;display:grid;place-items:center;position:relative}
+    .disc{width:min(220px,65vw);aspect-ratio:1;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#111 0 3px,#29242d 4px 5px,#0c0c12 6px 9px);box-shadow:0 0 0 7px #f4c95d0b,0 0 45px #a45dff25;animation:vinylSpin 12s linear infinite}
+    .disc:before{content:"";position:absolute;inset:28%;border-radius:50%;background:conic-gradient(var(--gold),var(--pink),var(--blue),var(--purple),var(--gold))}
+    .disc:after{content:"DJ";position:absolute;inset:39%;display:grid;place-items:center;border-radius:50%;background:#111;color:var(--gold);font:900 18px Orbitron,sans-serif;border:2px solid #ffffff35}
+    @keyframes vinylSpin{to{transform:rotate(360deg)}}
+    .section{padding:32px 0 48px}
+    .section-head{display:flex;justify-content:space-between;align-items:start;flex-direction:column;gap:10px;margin-bottom:18px}
     @media(min-width:768px){.section-head{flex-direction:row;align-items:end}}
-    .kicker{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
-    h2{font:800 clamp(22px,3.5vw,34px) Orbitron,sans-serif;margin-bottom:0}
-    .sub{color:var(--muted);font-size:12px;margin-top:6px}
-    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px}
-    .field,.select{background:#111119;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:10px 12px;outline:none;min-width:0;width:100%}
+    .kicker{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+    h2{font:800 clamp(20px,3.5vw,32px) Orbitron,sans-serif;margin-bottom:0}
+    .sub{color:var(--muted);font-size:11px;margin-top:4px}
+    .library-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+    .field,.select{background:#111119;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:9px 11px;outline:none;min-width:0;width:100%}
     .field:focus,.select:focus{border-color:#f4c95d99}
-    .search{flex:1;min-width:180px}
+    .search{flex:1;min-width:170px}
     .select option{background:#111119}
     .grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:920px;margin-inline:auto}
-    .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:transform .25s ease,border-color .25s ease}
-    .card:hover{border-color:#f4c95d60;transform:translateY(-2px)}
-    .card.is-playing{border-color:#f4c95d99;box-shadow:0 0 0 1px #f4c95d20,0 0 25px #f4c95d1d,0 0 35px #ff3cc715}
-    .track-wave{height:24px;display:flex;align-items:center;gap:3px;margin:0 0 10px;opacity:.45;overflow:hidden}
-    .track-wave span{display:block;flex:1;min-width:2px;height:5px;border-radius:5px;background:linear-gradient(180deg,var(--gold2),var(--gold),var(--blue));transform-origin:center;animation:waveDance .8s ease-in-out infinite alternate;animation-play-state:paused}
-    .is-playing .track-wave{opacity:1}.is-playing .track-wave span{animation-play-state:running}
-    @keyframes waveDance{from{transform:scaleY(.22)}to{transform:scaleY(1.8)}}
-    .cover{height:84px;width:84px;flex:0 0 84px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:12px;margin:10px 0 10px 10px}
+    
+    /* NORMAL CARDS & SUBTLE NORMAL RGB LIGHTS */
+    .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:transform .2s ease,border-color .2s ease}
+    .card:hover{border-color:#f4c95d50;transform:translateY(-1px)}
+    .card.is-playing{border-color:#38d9ffaa;box-shadow:0 0 15px #38d9ff22, inset 0 0 10px #38d9ff10}
+    
+    /* PREMIUM MIX CARDS & SPECIAL PREMIUM RGB LIGHTS */
+    .card.is-premium-playing{border-color:#ff3cc7cc;box-shadow:0 0 20px #ff3cc733, inset 0 0 12px #ff3cc715}
+
+    .track-wave{height:22px;display:flex;align-items:center;gap:3px;margin:0 0 8px;opacity:.45;overflow:hidden}
+    .track-wave span{display:block;flex:1;min-width:2px;height:4px;border-radius:4px;background:linear-gradient(180deg,var(--gold2),var(--gold),var(--blue));transform-origin:center;animation:waveDance .8s ease-in-out infinite alternate;animation-play-state:paused}
+    .is-playing .track-wave,.is-premium-playing .track-wave{opacity:1}
+    .is-playing .track-wave span,.is-premium-playing .track-wave span{animation-play-state:running}
+    @keyframes waveDance{from{transform:scaleY(.2)}to{transform:scaleY(1.6)}}
+
+    .cover{height:76px;width:76px;flex:0 0 76px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:10px;margin:10px 0 10px 10px}
     .cover img{width:100%;height:100%;object-fit:cover;display:block}
     .card[data-kind="audio"],.card[data-kind="video"]{display:flex;align-items:flex-start;gap:0;position:relative}
-    .card-body{padding:12px 14px;flex:1;min-width:0}
-    .card[data-kind="video"] .cover{width:140px;height:80px;flex-basis:140px}
-    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover}
-    .badge{position:absolute;top:10px;left:10px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:4px 8px;font-size:9px;color:var(--gold2);letter-spacing:1px}
+    .card-body{padding:10px 12px;flex:1;min-width:0}
+    
+    /* VIDEO PLAY BUTTON OVERLAY STYLING */
+    .card[data-kind="video"] .cover{width:130px;height:75px;flex-basis:130px;cursor:pointer}
+    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover;display:block}
+    .video-play-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4);display:grid;place-items:center;color:#fff;font-size:20px;transition:background .2s;pointer-events:none}
+    .card[data-kind="video"] .cover:hover .video-play-overlay{background:rgba(0,0,0,0.2);color:var(--blue)}
+
+    .badge{position:absolute;top:8px;left:8px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:3px 7px;font-size:8px;color:var(--gold2);letter-spacing:1px}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
-    .card-title{font-weight:700;font-size:15px;line-height:1.4;overflow-wrap:anywhere;margin:0 0 6px}
-    .meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:10px}
-    audio{width:100%;height:36px;display:block}
-    video{width:100%;max-height:240px;display:block;background:#000}
-    .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .card-actions .btn{font-size:11px;padding:7px 10px}
-    .empty{grid-column:1/-1;text-align:center;padding:32px 16px;border:1px dashed #ffffff25;border-radius:16px;color:var(--muted);font-size:13px}
-    .status{display:none;margin:0 0 16px;padding:10px 12px;border-radius:12px;font-size:12px}
+    .card-title{font-weight:700;font-size:14px;line-height:1.35;overflow-wrap:anywhere;margin:0 0 5px}
+    .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-bottom:8px}
+    audio{width:100%;height:32px;display:block}
+    .card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .card-actions .btn{font-size:10px;padding:6px 9px}
+    .empty{grid-column:1/-1;text-align:center;padding:28px 14px;border:1px dashed #ffffff25;border-radius:14px;color:var(--muted);font-size:12px}
+    .status{display:none;margin:0 0 14px;padding:9px 11px;border-radius:10px;font-size:11px}
     .status.show{display:block}.status.error{background:#d83c5820;border:1px solid #d83c5855;color:#ffb3c0}.status.ok{background:#54e5a218;border:1px solid #54e5a255;color:#a4ffd4}.status.info{background:#38d9ff16;border:1px solid #38d9ff50;color:#b8f4ff}
-    .community{display:grid;grid-template-columns:1fr;gap:16px}
-    @media(min-width:768px){.community{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}}
-    .community-box{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:linear-gradient(135deg,#171722,#0e0e15)}
-    .community-box p{color:var(--muted);font-size:12px;line-height:1.7}
-    .admin-shell{max-width:900px;margin:0 auto;border:1px solid #f4c95d40;border-radius:20px;padding:20px;background:linear-gradient(145deg,#181720,#0d0d13);box-shadow:var(--shadow)}
-    .admin-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-    .admin-head h3{font:700 17px Orbitron,sans-serif;margin:0}
-    .admin-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    
+    .community{display:grid;grid-template-columns:1fr;gap:14px}
+    @media(min-width:768px){.community{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}}
+    .community-box{border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:linear-gradient(135deg,#171722,#0e0e15)}
+    .community-box p{color:var(--muted);font-size:11px;line-height:1.6}
+    
+    .admin-shell{max-width:880px;margin:0 auto;border:1px solid #f4c95d40;border-radius:18px;padding:18px;background:linear-gradient(145deg,#181720,#0d0d13);box-shadow:var(--shadow)}
+    .admin-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .admin-head h3{font:700 16px Orbitron,sans-serif;margin:0}
+    .admin-grid{display:grid;grid-template-columns:1fr;gap:14px}
     @media(min-width:768px){.admin-grid{grid-template-columns:1fr 1fr}}
-    .admin-box{border:1px solid var(--line);background:#ffffff04;border-radius:14px;padding:16px}
-    .admin-box h4{margin:0 0 12px;font-size:13px;color:var(--gold2)}
-    .stack{display:grid;gap:10px}
-    .stack label{font-size:11px;color:var(--muted)}
-    .stack input,.stack textarea{width:100%;margin-top:4px}
-    input[type=file]{font-size:11px;padding:8px}
-    .admin-login{max-width:420px;margin:auto}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
-    .stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#ffffff05;text-align:center}
-    .stat b{display:block;font:800 20px Orbitron,sans-serif;color:var(--gold)}
-    .stat span{font-size:10px;color:var(--muted)}
+    .admin-box{border:1px solid var(--line);background:#ffffff04;border-radius:12px;padding:14px}
+    .admin-box h4{margin:0 0 10px;font-size:12px;color:var(--gold2)}
+    .stack{display:grid;gap:9px}
+    .stack label{font-size:10px;color:var(--muted)}
+    .stack input,.stack textarea{width:100%;margin-top:3px}
+    input[type=file]{font-size:10px;padding:7px}
+    .admin-login{max-width:400px;margin:auto}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+    .stat{border:1px solid var(--line);border-radius:10px;padding:10px;background:#ffffff05;text-align:center}
+    .stat b{display:block;font:800 18px Orbitron,sans-serif;color:var(--gold)}
+    .stat span{font-size:9px;color:var(--muted)}
 
-    /* COROSSS CLOUD LIKE PLAYLIST STYLE */
-    .soundcloud-playlist{margin:24px 0;border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:linear-gradient(135deg,#14141d,#0a0a0f);box-shadow:var(--shadow)}
-    .soundcloud-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;flex-wrap:wrap}
-    .soundcloud-playlist-head h3{font:800 16px Orbitron,sans-serif;color:var(--gold2);margin:0;display:flex;align-items:center;gap:8px}
-    .soundcloud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-    .sc-card{background:#181824;border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;position:relative}
-    .sc-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:#000}
-    .sc-card-title{font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .sc-card-type{font-size:9px;color:var(--gold);text-transform:uppercase;font-weight:700}
+    /* PLAYLIST & PROFILE */
+    .soundcloud-playlist{margin:22px 0;border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:linear-gradient(135deg,#14141d,#0a0a0f);box-shadow:var(--shadow)}
+    .soundcloud-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:8px;flex-wrap:wrap}
+    .soundcloud-playlist-head h3{font:800 15px Orbitron,sans-serif;color:var(--gold2);margin:0;display:flex;align-items:center;gap:6px}
+    .soundcloud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+    .sc-card{background:#181824;border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:6px;position:relative}
+    .sc-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;background:#000}
+    .sc-card-title{font-size:11px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sc-card-type{font-size:8px;color:var(--gold);text-transform:uppercase;font-weight:700}
 
-    .user-profile-card{display:flex;align-items:center;gap:14px;background:#171722;border:1px solid var(--gold);padding:16px;border-radius:var(--radius);margin-top:12px}
-    .user-avatar{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#222;display:grid;place-items:center;font-size:24px;color:var(--gold)}
+    .user-profile-card{display:flex;align-items:center;gap:12px;background:#171722;border:1px solid var(--gold);padding:14px;border-radius:var(--radius);margin-top:10px}
+    .user-avatar{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#222;display:grid;place-items:center;font-size:22px;color:var(--gold)}
 
-    .social-panel{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);min-width:0}
-    .social-buttons{display:flex;gap:6px;flex-wrap:wrap}
-    .social-btn{border:1px solid #ffffff22;background:#ffffff09;color:var(--text);border-radius:8px;padding:7px 10px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:5px}
+    .social-panel{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);min-width:0}
+    .social-buttons{display:flex;gap:5px;flex-wrap:wrap}
+    .social-btn{border:1px solid #ffffff22;background:#ffffff09;color:var(--text);border-radius:7px;padding:6px 9px;font-size:9px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
     .social-btn:hover{border-color:#f4c95d88;color:var(--gold2)}
     .social-btn.is-liked{background:#ff3cc71a;border-color:#ff3cc788;color:#ff9ce5}
-    .social-comments{margin-top:10px;display:grid;gap:6px}
-    .social-comment-list{display:grid;gap:6px;max-height:180px;overflow:auto}
-    .social-comment{padding:8px 10px;border-radius:8px;background:#ffffff08;border:1px solid #ffffff10;font-size:11px;overflow-wrap:anywhere;white-space:pre-wrap}
-    .social-comment time{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-    .social-form{display:flex;gap:6px;align-items:stretch}
-    .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--text);outline:none;font-size:11px}
+    .social-comments{margin-top:8px;display:grid;gap:5px}
+    .social-comment-list{display:grid;gap:5px;max-height:160px;overflow:auto}
+    .social-comment{padding:7px 9px;border-radius:7px;background:#ffffff08;border:1px solid #ffffff10;font-size:10px;overflow-wrap:anywhere;white-space:pre-wrap}
+    .social-comment time{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+    .social-form{display:flex;gap:5px;align-items:stretch}
+    .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:7px;padding:7px;color:var(--text);outline:none;font-size:10px}
     .hidden{display:none!important}
-    footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:11px}
-    .footer-inner{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:10px}
+    .footer-inner{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
   </style>
 </head>
 <body>
@@ -179,7 +187,12 @@
         <div class="hero-visual" aria-hidden="true">
           <div class="orbit"></div>
           <div class="disc"></div>
-          <div class="bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="bars" style="position:absolute;bottom:2px;display:flex;gap:4px;align-items:center;height:32px">
+            <span style="width:3px;height:12px;background:var(--blue);border-radius:4px"></span>
+            <span style="width:3px;height:24px;background:var(--pink);border-radius:4px"></span>
+            <span style="width:3px;height:18px;background:var(--gold);border-radius:4px"></span>
+            <span style="width:3px;height:28px;background:var(--purple);border-radius:4px"></span>
+          </div>
         </div>
       </div>
     </section>
@@ -216,7 +229,7 @@
             <h3><span>🧡</span> COROSSS CLOUD LIKE PLAYLIST</h3>
             <span class="sub" id="likedCount">0 saved</span>
           </div>
-          <p class="sub" style="margin-bottom:14px">Your liked tracks and videos saved on this browser:</p>
+          <p class="sub" style="margin-bottom:12px">Your liked tracks and videos saved on this browser:</p>
           <div class="soundcloud-grid" id="likedPlaylistGrid">
             <div class="empty">No liked tracks yet.</div>
           </div>
@@ -264,18 +277,18 @@
 
             <div id="publicAccountSignedIn" class="hidden">
               <div class="user-profile-card">
-                <img id="userAvatarImg" class="user-avatar" src="" alt="Avatar" onerror="this.src='https://via.placeholder.com/60/f4c95d/000000?text=USER'">
+                <img id="userAvatarImg" class="user-avatar" src="" alt="Avatar" onerror="this.src='https://via.placeholder.com/54/f4c95d/000000?text=USER'">
                 <div style="flex:1">
                   <h4 id="userDisplayName" style="margin:0;color:var(--gold2)">Listener</h4>
-                  <p id="publicSignedInText" class="sub" style="margin:2px 0 8px"></p>
+                  <p id="publicSignedInText" class="sub" style="margin:2px 0 6px"></p>
                 </div>
               </div>
-              <form id="profileUpdateForm" class="stack" style="margin-top:12px">
+              <form id="profileUpdateForm" class="stack" style="margin-top:10px">
                 <label>Display Name<input id="profileNameInput" class="field" type="text" placeholder="Enter your name"></label>
                 <label>Profile Picture<input id="profileAvatarInput" class="field" type="file" accept="image/*"></label>
                 <button class="btn btn-gold" type="submit">Update Profile</button>
               </form>
-              <button class="btn btn-dark" type="button" id="publicLogoutBtn" style="margin-top:10px;width:100%">Sign out</button>
+              <button class="btn btn-dark" type="button" id="publicLogoutBtn" style="margin-top:8px;width:100%">Sign out</button>
             </div>
           </div>
         </div>
@@ -283,7 +296,7 @@
     </section>
 
     <!-- ADMIN STUDIO SECTION -->
-    <section class="section" id="admin" style="border-top:1px dashed var(--line);margin-top:30px">
+    <section class="section" id="admin" style="border-top:1px dashed var(--line);margin-top:28px">
       <div class="wrap">
         <div class="section-head"><div><div class="kicker">Restricted Access</div><h2>Admin Studio</h2><div class="sub">Website owner dashboard for uploads and content management.</div></div></div>
         
@@ -422,7 +435,7 @@
         <img src="${escapeHtml(cover)}" alt="">
         <div class="sc-card-type">${item.kind}</div>
         <div class="sc-card-title">${escapeHtml(item.title)}</div>
-        <button class="btn btn-gold" style="font-size:9px;padding:5px 7px;margin-top:auto" onclick="document.querySelector('[data-card=\\'${item.id}\\']')?.scrollIntoView({behavior:'smooth'})">▶ Play</button>
+        <button class="btn btn-gold" style="font-size:8px;padding:4px 6px;margin-top:auto" onclick="document.querySelector('[data-card=\\'${item.id}\\']')?.scrollIntoView({behavior:'smooth'})">▶ Play</button>
       </div>`;
     }).join('');
   }
@@ -461,10 +474,10 @@
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
         <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} plays</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
-        <div class="track-wave" aria-hidden="true">${Array.from({length:30},(_,i)=>`<span style="height:${6+((i*7+3)%17)}px"></span>`).join('')}</div>
+        <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
         <audio controls preload="none" data-kind="audio" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></audio>
         ${socialSection('audio', item.id)}
-        ${isAdmin ? `<div class="card-actions"><button class="btn btn-danger" type="button" onclick="deleteItem('audio','${item.id}')">Delete</button></div>` : ''}
+        ${isAdmin ? `<div class="card-actions"><button class="btn btn-dark" type="button" onclick="renameItem('audio','${item.id}','${escapeHtml(item.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteItem('audio','${item.id}')">Delete</button></div>` : ''}
       </div>
     </article>`;
   }
@@ -472,43 +485,88 @@
   function videoCard(item) {
     const src = publicUrl(VIDEO_BUCKET, item.storage_path);
     return `<article class="card" data-kind="video" data-card="${escapeHtml(item.id)}">
-      <div class="cover"><video controls preload="metadata" data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></video><span class="badge">VIDEO</span></div>
+      <div class="cover" onclick="triggerVideoPlay(this)">
+        <video preload="metadata" data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></video>
+        <div class="video-play-overlay">▶</div>
+        <span class="badge">VIDEO</span>
+      </div>
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
         <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} views</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
         ${socialSection('video', item.id)}
-        ${isAdmin ? `<div class="card-actions"><button class="btn btn-danger" type="button" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
+        ${isAdmin ? `<div class="card-actions"><button class="btn btn-dark" type="button" onclick="renameItem('video','${item.id}','${escapeHtml(item.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
       </div>
     </article>`;
   }
+
+  window.triggerVideoPlay = (coverEl) => {
+    const vid = coverEl.querySelector('video');
+    const overlay = coverEl.querySelector('.video-play-overlay');
+    if (vid) {
+      if (vid.paused) {
+        vid.play();
+        vid.controls = true;
+        if (overlay) overlay.style.display = 'none';
+        const card = coverEl.closest('.card');
+        if (card) {
+          card.classList.add('is-playing');
+          const id = vid.dataset.id;
+          if (id) incrementViews(id, VIDEO_TABLE);
+        }
+      } else {
+        vid.pause();
+      }
+    }
+  };
 
   function setupAudioListeners() {
     document.querySelectorAll('audio').forEach(audio => {
       audio.onplay = () => {
         const card = audio.closest('.card');
-        if (card) card.classList.add('is-playing');
-        // Increment play view count if it's library audio
+        if (card) {
+          if (card.dataset.isPremium) {
+            card.classList.add('is-premium-playing');
+          } else {
+            card.classList.add('is-playing');
+          }
+        }
         const id = audio.dataset.id;
         if (id && audio.dataset.kind === 'audio') {
-          incrementViews(id);
+          incrementViews(id, AUDIO_TABLE);
         }
       };
       audio.onpause = () => {
         const card = audio.closest('.card');
-        if (card) card.classList.remove('is-playing');
+        if (card) {
+          card.classList.remove('is-playing');
+          card.classList.remove('is-premium-playing');
+        }
       };
       audio.onended = () => {
         const card = audio.closest('.card');
+        if (card) {
+          card.classList.remove('is-playing');
+          card.classList.remove('is-premium-playing');
+        }
+      };
+    });
+
+    // Also handle video pause state to remove playing class
+    document.querySelectorAll('video').forEach(vid => {
+      vid.onpause = () => {
+        const card = vid.closest('.card');
         if (card) card.classList.remove('is-playing');
+        const overlay = card?.querySelector('.video-play-overlay');
+        if (overlay && vid.currentTime === 0) overlay.style.display = 'grid';
       };
     });
   }
 
-  async function incrementViews(id) {
+  async function incrementViews(id, tableName) {
     try {
-      const { data } = await client.from(AUDIO_TABLE).select('views').eq('id', id).single();
+      const { data } = await client.from(tableName).select('views').eq('id', id).single();
       if (data) {
-        await client.from(AUDIO_TABLE).update({ views: (data.views || 0) + 1 }).eq('id', id);
+        await client.from(tableName).update({ views: (data.views || 0) + 1 }).eq('id', id);
       }
     } catch (_) {}
   }
@@ -566,18 +624,7 @@
     loadComments(e.target.closest('.social-panel'));
   };
 
-  function bindCardActions() {
-    document.querySelectorAll('.social-panel').forEach(panel => {
-      const kind = panel.dataset.socialKind, id = panel.dataset.socialId;
-      let likes = {};
-      try { likes = JSON.parse(localStorage.getItem('corosss_likes') || '{}'); } catch (_) {}
-      if (likes[`${kind}_${id}`]) {
-        const btn = panel.querySelector('.social-buttons button');
-        btn.classList.add('is-liked');
-        btn.textContent = '♥ Liked';
-      }
-    });
-  }
+  function bindCardActions() {}
 
   function updateStats() {
     $('statAudio').textContent = audioItems.length.toLocaleString();
@@ -601,7 +648,23 @@
     render();
   }
 
-  // --- PREMIUM MIXES ---
+  // --- RENAME FUNCTIONALITY ---
+  window.renameItem = async (type, id, currentTitle) => {
+    if (!isAdmin) return alert('Admin login required.');
+    const newTitle = prompt('Enter new title:', currentTitle);
+    if (!newTitle || !newTitle.trim()) return;
+    const tableName = type === 'audio' ? AUDIO_TABLE : type === 'video' ? VIDEO_TABLE : 'premium_mixes';
+    const { error } = await client.from(tableName).update({ title: newTitle.trim() }).eq('id', id);
+    if (error) {
+      alert('Failed to rename: ' + error.message);
+    } else {
+      alert('Renamed successfully!');
+      if (type === 'premium') loadMixes();
+      else loadLibrary();
+    }
+  };
+
+  // --- PREMIUM MIXES WITH SPECIAL PREMIUM RGB ---
   async function loadMixes() {
     const { data, error } = await client.from('premium_mixes').select('*').order('created_at', { ascending: false });
     const grid = $('pmGrid');
@@ -612,16 +675,16 @@
     grid.innerHTML = data.map(mix => {
       const cover = client.storage.from('premium-public').getPublicUrl(mix.thumbnail_path).data.publicUrl;
       const demo = client.storage.from('premium-public').getPublicUrl(mix.demo_path).data.publicUrl;
-      return `<article class="card" style="display:block">
-        <div style="position:relative;height:160px;background:#000"><img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover"><span class="badge badge-premium">PREMIUM MIX</span></div>
+      return `<article class="card" data-is-premium="true" style="display:block">
+        <div style="position:relative;height:150px;background:#000"><img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover"><span class="badge badge-premium">PREMIUM MIX</span></div>
         <div class="card-body">
           <h3 class="card-title">${escapeHtml(mix.title)}</h3>
           <p style="color:var(--gold);font-weight:700">Price: ৳${escapeHtml(mix.price || '0')}</p>
-          <div class="track-wave" aria-hidden="true">${Array.from({length:30},(_,i)=>`<span style="height:${6+((i*7+3)%17)}px"></span>`).join('')}</div>
+          <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
           <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
-          <div class="card-actions" style="margin-top:12px">
+          <div class="card-actions" style="margin-top:10px">
             <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ BUY NOW via Telegram</a>
-            ${isAdmin ? `<button class="btn btn-danger" type="button" onclick="deleteMix('${mix.id}')" style="width:100%;margin-top:6px">Delete Mix</button>` : ''}
+            ${isAdmin ? `<button class="btn btn-dark" type="button" onclick="renameItem('premium','${mix.id}','${escapeHtml(mix.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteMix('${mix.id}')">Delete</button>` : ''}
           </div>
         </div>
       </article>`;
@@ -663,6 +726,13 @@
     if (!isAdmin || !confirm('Delete this premium mix?')) return;
     await client.from('premium_mixes').delete().eq('id', id);
     loadMixes();
+  };
+
+  window.deleteItem = async (type, id) => {
+    if (!isAdmin || !confirm('Delete this item?')) return;
+    const tableName = type === 'audio' ? AUDIO_TABLE : VIDEO_TABLE;
+    await client.from(tableName).delete().eq('id', id);
+    loadLibrary();
   };
 
   // --- PUBLIC PROFILE & AVATAR UPDATES ---
