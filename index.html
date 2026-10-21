@@ -492,12 +492,12 @@
     </article>`;
   }
 
-  function videoCard(item) {
+    function videoCard(item) {
     const src = publicUrl(VIDEO_BUCKET, item.storage_path);
     return `<article class="card" data-kind="video" data-card="${escapeHtml(item.id)}">
       <div class="cover">
-        <video controls preload="metadata" data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></video>
         <span class="badge">VIDEO</span>
+        <video controls controlsList="nodownload" preload="metadata" data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></video>
       </div>
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
@@ -506,7 +506,9 @@
         ${isAdmin ? `<div class="card-actions"><button class="btn btn-dark" type="button" onclick="renameItem('video','${item.id}','${escapeHtml(item.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
       </div>
     </article>`;
+   
   }
+  
 
   // PAUSE ALL OTHER PLAYERS
   function pauseAllOthers(currentMedia) {
@@ -684,7 +686,54 @@
         </div>
       </article>`;
     }).join('');
-    setupAudioListeners();
+
+      // PAUSE ALL OTHER PLAYERS AUTOMATICALLY
+  function pauseAllOthers(currentMedia) {
+    document.querySelectorAll('audio, video').forEach(media => {
+      if (media !== currentMedia) {
+        media.pause();
+        const card = media.closest('.card');
+        if (card) {
+          card.classList.remove('is-playing');
+          card.classList.remove('is-premium-playing');
+        }
+      }
+    });
+  }
+
+  function setupAudioListeners() {
+    document.querySelectorAll('audio, video').forEach(media => {
+      media.onplay = () => {
+        pauseAllOthers(media);
+        const card = media.closest('.card');
+        if (card) {
+          if (card.dataset.isPremium) {
+            card.classList.add('is-premium-playing');
+          } else {
+            card.classList.add('is-playing');
+          }
+        }
+        const id = media.dataset.id;
+        const kind = media.dataset.kind;
+        if (id) {
+          incrementViews(id, kind === 'video' ? VIDEO_TABLE : AUDIO_TABLE);
+        }
+      };
+      media.onpause = () => {
+        const card = media.closest('.card');
+        if (card) {
+          card.classList.remove('is-playing');
+          card.classList.remove('is-premium-playing');
+        }
+      };
+      media.onended = () => {
+        const card = media.closest('.card');
+        if (card) {
+          card.classList.remove('is-playing');
+          card.classList.remove('is-premium-playing');
+        }
+      };
+    });
   }
 
   $('pmUpload').addEventListener('submit', async e => {
