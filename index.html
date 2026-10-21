@@ -22,22 +22,19 @@
     body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 80%);z-index:-1}
     body:after{content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 18% 35%,#f4c95d12,transparent 30%),radial-gradient(ellipse at 78% 28%,#38d9ff13,transparent 28%),radial-gradient(ellipse at 58% 82%,#9b65ff12,transparent 32%);animation:ambientGlow 16s ease-in-out infinite alternate}
     @keyframes ambientGlow{0%{transform:translate3d(-2%,0,0) scale(1);filter:hue-rotate(0deg)}100%{transform:translate3d(2%,-1%,0) scale(1.08);filter:hue-rotate(24deg)}}
-    .ambient-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict}
-    .ambient-logo{position:absolute;left:var(--x);top:var(--y);font:800 var(--size,24px) Orbitron,sans-serif;letter-spacing:2px;color:var(--color,#f4c95d);opacity:0;filter:drop-shadow(0 0 12px currentColor);animation:logoDrift var(--duration,20s) linear var(--delay,0s) infinite}
-    @keyframes logoDrift{0%{transform:translate3d(0,35px,0) rotate(-12deg) scale(.8);opacity:0}12%{opacity:.12}50%{transform:translate3d(28px,-45px,0) rotate(9deg) scale(1.06);opacity:.09}88%{opacity:.12}100%{transform:translate3d(-10px,-125px,0) rotate(18deg) scale(.9);opacity:0}}
     header,main,footer{position:relative;z-index:1}
     a{color:inherit;text-decoration:none}
     button,input,select,textarea{font:inherit}
     button{cursor:pointer}
-    .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+    .wrap{width:min(1160px,calc(100% - 24px));margin:auto}
     .topbar{position:sticky;top:0;z-index:20;background:#08080de8;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{display:flex;align-items:center;gap:12px;font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:1px}
-    .brand-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--gold);color:var(--gold);box-shadow:0 0 18px #f4c95d30;font-size:21px}
-    .brand small{display:block;font:500 9px Poppins,sans-serif;color:var(--muted);letter-spacing:4px;margin-top:3px}
-    .navlinks{display:flex;align-items:center;gap:22px;color:#d5d3df;font-size:13px}
+    .nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:1px;font-size:14px}
+    .brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--gold);color:var(--gold);box-shadow:0 0 18px #f4c95d30;font-size:18px}
+    .brand small{display:block;font:500 8px Poppins,sans-serif;color:var(--muted);letter-spacing:2px;margin-top:2px}
+    .navlinks{display:flex;align-items:center;gap:14px;color:#d5d3df;font-size:12px;flex-wrap:wrap}
     .navlinks a:hover{color:var(--gold)}
-    .btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;transition:transform .18s,filter .18s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+    .btn{border:0;border-radius:12px;padding:10px 14px;font-weight:700;transition:transform .18s,filter .18s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
     .btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
     .btn-gold{color:#17120a;background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 8px 24px #f4c95d20}
     .btn-dark{color:var(--text);background:#ffffff10;border:1px solid var(--line)}
@@ -45,105 +42,109 @@
     .btn-blue{color:#071116;background:linear-gradient(135deg,#a0f2ff,var(--blue))}
     .btn-pink{color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple))}
     .btn-telegram{color:#fff;background:linear-gradient(135deg,#24a1de,#229ed9);box-shadow:0 8px 24px #24a1de30}
-    .hero{padding:78px 0 56px;position:relative;overflow:hidden}
-    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:42px}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #f4c95d55;color:var(--gold2);background:#f4c95d0c;border-radius:99px;padding:8px 13px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+    .hero{padding:56px 0 40px;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:32px}
+    @media(min-width:850px){.hero-grid{grid-template-columns:1.2fr .8fr}}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #f4c95d55;color:var(--gold2);background:#f4c95d0c;border-radius:99px;padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
     .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
     h1,h2,h3{margin-top:0}
-    h1{font:900 clamp(38px,6vw,76px)/1.06 Orbitron,sans-serif;letter-spacing:-2px;margin:22px 0}
+    h1{font:900 clamp(32px,5vw,68px)/1.08 Orbitron,sans-serif;letter-spacing:-1px;margin:18px 0}
     .gradient-text{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{max-width:600px;color:var(--muted);line-height:1.85;font-size:15px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-    .hero-visual{min-height:320px;display:grid;place-items:center;position:relative}
-    .disc{width:min(290px,72vw);aspect-ratio:1;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#111 0 3px,#29242d 4px 5px,#0c0c12 6px 9px);box-shadow:0 0 0 9px #f4c95d0b,0 0 65px #a45dff30,0 0 100px #38d9ff12;animation:vinylSpin 12s linear infinite;will-change:transform}
+    .hero p{max-width:600px;color:var(--muted);line-height:1.75;font-size:14px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .hero-visual{min-height:260px;display:grid;place-items:center;position:relative}
+    .disc{width:min(240px,70vw);aspect-ratio:1;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#111 0 3px,#29242d 4px 5px,#0c0c12 6px 9px);box-shadow:0 0 0 8px #f4c95d0b,0 0 50px #a45dff30,0 0 80px #38d9ff12;animation:vinylSpin 12s linear infinite;will-change:transform}
     .disc:before{content:"";position:absolute;inset:28%;border-radius:50%;background:conic-gradient(var(--gold),var(--pink),var(--blue),var(--purple),var(--gold));box-shadow:0 0 36px #f4c95d40}
-    .disc:after{content:"DJ";position:absolute;inset:39%;display:grid;place-items:center;border-radius:50%;background:#111;color:var(--gold);font:900 24px Orbitron,sans-serif;border:2px solid #ffffff35}
-    .orbit{position:absolute;width:340px;aspect-ratio:1;border:1px solid #38d9ff40;border-radius:50%;transform:rotate(-28deg) scaleY(.42);box-shadow:0 0 22px #38d9ff0c}
-    .bars{position:absolute;bottom:5px;display:flex;gap:5px;align-items:center;height:44px}
-    .bars span{width:5px;border-radius:9px;background:linear-gradient(var(--blue),var(--pink));animation:bars 1s ease-in-out infinite alternate}
+    .disc:after{content:"DJ";position:absolute;inset:39%;display:grid;place-items:center;border-radius:50%;background:#111;color:var(--gold);font:900 20px Orbitron,sans-serif;border:2px solid #ffffff35}
+    .orbit{position:absolute;width:280px;aspect-ratio:1;border:1px solid #38d9ff40;border-radius:50%;transform:rotate(-28deg) scaleY(.42);box-shadow:0 0 22px #38d9ff0c}
+    .bars{position:absolute;bottom:2px;display:flex;gap:4px;align-items:center;height:36px}
+    .bars span{width:4px;border-radius:9px;background:linear-gradient(var(--blue),var(--pink));animation:bars 1s ease-in-out infinite alternate}
     .bars span:nth-child(3n){animation-delay:.2s}.bars span:nth-child(2n){animation-delay:.4s}
-    @keyframes bars{from{height:8px}to{height:38px}} @keyframes vinylSpin{to{transform:rotate(360deg)}}
-    .section{padding:44px 0 64px}
-    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:24px}
-    .kicker{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:9px}
-    h2{font:800 clamp(25px,4vw,37px) Orbitron,sans-serif;margin-bottom:0}
-    .sub{color:var(--muted);font-size:13px;margin-top:9px}
-    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 24px}
-    .field,.select{background:#111119;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px 14px;outline:none;min-width:0;width:100%}
+    @keyframes bars{from{height:6px}to{height:30px}} @keyframes vinylSpin{to{transform:rotate(360deg)}}
+    .section{padding:36px 0 52px}
+    .section-head{display:flex;justify-content:space-between;align-items:start;flex-direction:column;gap:12px;margin-bottom:20px}
+    @media(min-width:768px){.section-head{flex-direction:row;align-items:end}}
+    .kicker{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+    h2{font:800 clamp(22px,3.5vw,34px) Orbitron,sans-serif;margin-bottom:0}
+    .sub{color:var(--muted);font-size:12px;margin-top:6px}
+    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px}
+    .field,.select{background:#111119;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:10px 12px;outline:none;min-width:0;width:100%}
     .field:focus,.select:focus{border-color:#f4c95d99}
-    .search{flex:1;min-width:210px}
+    .search{flex:1;min-width:180px}
     .select option{background:#111119}
-    .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:13px;max-width:920px;margin-inline:auto}
-    .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
-    .card:hover{border-color:#f4c95d60;transform:translateY(-2px);box-shadow:0 18px 55px #0009,0 0 24px #f4c95d12,0 0 30px #9b65ff0b}
-    .card.is-playing{border-color:#f4c95d99;box-shadow:0 0 0 1px #f4c95d20,0 0 30px #f4c95d1d,0 0 38px #38d9ff10}
-    .track-wave{height:27px;display:flex;align-items:center;gap:3px;margin:0 0 11px;opacity:.45;overflow:hidden}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:920px;margin-inline:auto}
+    .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:transform .25s ease,border-color .25s ease}
+    .card:hover{border-color:#f4c95d60;transform:translateY(-2px)}
+    .card.is-playing{border-color:#f4c95d99;box-shadow:0 0 0 1px #f4c95d20,0 0 25px #f4c95d1d,0 0 35px #ff3cc715}
+    .track-wave{height:24px;display:flex;align-items:center;gap:3px;margin:0 0 10px;opacity:.45;overflow:hidden}
     .track-wave span{display:block;flex:1;min-width:2px;height:5px;border-radius:5px;background:linear-gradient(180deg,var(--gold2),var(--gold),var(--blue));transform-origin:center;animation:waveDance .8s ease-in-out infinite alternate;animation-play-state:paused}
     .is-playing .track-wave{opacity:1}.is-playing .track-wave span{animation-play-state:running}
-    @keyframes waveDance{from{transform:scaleY(.22);filter:brightness(.8)}to{transform:scaleY(1.8);filter:brightness(1.3)}}
-    .cover{height:94px;width:94px;flex:0 0 94px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:13px;margin:12px 0 12px 12px}
+    @keyframes waveDance{from{transform:scaleY(.22)}to{transform:scaleY(1.8)}}
+    .cover{height:84px;width:84px;flex:0 0 84px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:12px;margin:10px 0 10px 10px}
     .cover img{width:100%;height:100%;object-fit:cover;display:block}
     .card[data-kind="audio"],.card[data-kind="video"]{display:flex;align-items:flex-start;gap:0;position:relative}
-    .card-body{padding:14px 16px;flex:1;min-width:0}
-    .card[data-kind="video"] .cover{width:176px;height:99px;flex-basis:176px}
+    .card-body{padding:12px 14px;flex:1;min-width:0}
+    .card[data-kind="video"] .cover{width:140px;height:80px;flex-basis:140px}
     .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover}
-    .badge{position:absolute;top:12px;left:12px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:5px 9px;font-size:10px;color:var(--gold2);letter-spacing:1px}
+    .badge{position:absolute;top:10px;left:10px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:4px 8px;font-size:9px;color:var(--gold2);letter-spacing:1px}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
-    .card-title{font-weight:700;font-size:16px;line-height:1.45;overflow-wrap:anywhere;margin:0 0 7px}
-    .meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:14px}
-    audio{width:100%;height:38px;display:block;filter:drop-shadow(0 0 8px #f4c95d12)}
-    video{width:100%;max-height:280px;display:block;background:#000}
-    .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
-    .card-actions .btn{font-size:11px;padding:8px 10px}
-    .empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #ffffff25;border-radius:18px;color:var(--muted)}
-    .status{display:none;margin:0 0 18px;padding:12px 14px;border-radius:12px;font-size:13px}
+    .card-title{font-weight:700;font-size:15px;line-height:1.4;overflow-wrap:anywhere;margin:0 0 6px}
+    .meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:10px}
+    audio{width:100%;height:36px;display:block}
+    video{width:100%;max-height:240px;display:block;background:#000}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .card-actions .btn{font-size:11px;padding:7px 10px}
+    .empty{grid-column:1/-1;text-align:center;padding:32px 16px;border:1px dashed #ffffff25;border-radius:16px;color:var(--muted);font-size:13px}
+    .status{display:none;margin:0 0 16px;padding:10px 12px;border-radius:12px;font-size:12px}
     .status.show{display:block}.status.error{background:#d83c5820;border:1px solid #d83c5855;color:#ffb3c0}.status.ok{background:#54e5a218;border:1px solid #54e5a255;color:#a4ffd4}.status.info{background:#38d9ff16;border:1px solid #38d9ff50;color:#b8f4ff}
-    .community{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-    .community-box{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:linear-gradient(135deg,#171722,#0e0e15)}
-    .community-box p{color:var(--muted);font-size:13px;line-height:1.8}
-    .admin-shell{max-width:900px;margin:0 auto;border:1px solid #f4c95d40;border-radius:22px;padding:24px;background:linear-gradient(145deg,#181720,#0d0d13);box-shadow:var(--shadow)}
-    .admin-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:20px}
-    .admin-head h3{font:700 19px Orbitron,sans-serif;margin:0}
-    .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .admin-box{border:1px solid var(--line);background:#ffffff04;border-radius:16px;padding:18px}
-    .admin-box h4{margin:0 0 14px;font-size:14px;color:var(--gold2)}
-    .stack{display:grid;gap:11px}
-    .stack label{font-size:12px;color:var(--muted)}
-    .stack input,.stack textarea{width:100%;margin-top:6px}
-    input[type=file]{font-size:12px;padding:9px}
-    .admin-login{max-width:450px;margin:auto}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-    .stat{border:1px solid var(--line);border-radius:13px;padding:14px;background:#ffffff05}
-    .stat b{display:block;font:800 23px Orbitron,sans-serif;color:var(--gold)}
-    .stat span{font-size:11px;color:var(--muted)}
+    .community{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:768px){.community{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}}
+    .community-box{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:linear-gradient(135deg,#171722,#0e0e15)}
+    .community-box p{color:var(--muted);font-size:12px;line-height:1.7}
+    .admin-shell{max-width:900px;margin:0 auto;border:1px solid #f4c95d40;border-radius:20px;padding:20px;background:linear-gradient(145deg,#181720,#0d0d13);box-shadow:var(--shadow)}
+    .admin-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+    .admin-head h3{font:700 17px Orbitron,sans-serif;margin:0}
+    .admin-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:768px){.admin-grid{grid-template-columns:1fr 1fr}}
+    .admin-box{border:1px solid var(--line);background:#ffffff04;border-radius:14px;padding:16px}
+    .admin-box h4{margin:0 0 12px;font-size:13px;color:var(--gold2)}
+    .stack{display:grid;gap:10px}
+    .stack label{font-size:11px;color:var(--muted)}
+    .stack input,.stack textarea{width:100%;margin-top:4px}
+    input[type=file]{font-size:11px;padding:8px}
+    .admin-login{max-width:420px;margin:auto}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+    .stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#ffffff05;text-align:center}
+    .stat b{display:block;font:800 20px Orbitron,sans-serif;color:var(--gold)}
+    .stat span{font-size:10px;color:var(--muted)}
 
-    /* SoundCloud Style Playlist & Profile Styling */
-    .soundcloud-playlist{margin:28px 0;border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:linear-gradient(135deg,#14141d,#0a0a0f);box-shadow:var(--shadow)}
-    .soundcloud-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:12px}
-    .soundcloud-playlist-head h3{font:800 18px Orbitron,sans-serif;color:var(--gold2);margin:0;display:flex;align-items:center;gap:8px}
-    .soundcloud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-    .sc-card{background:#181824;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;position:relative}
-    .sc-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:#000}
-    .sc-card-title{font-size:13px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .sc-card-type{font-size:10px;color:var(--gold);text-transform:uppercase;font-weight:700}
+    /* COROSSS CLOUD LIKE PLAYLIST STYLE */
+    .soundcloud-playlist{margin:24px 0;border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:linear-gradient(135deg,#14141d,#0a0a0f);box-shadow:var(--shadow)}
+    .soundcloud-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;flex-wrap:wrap}
+    .soundcloud-playlist-head h3{font:800 16px Orbitron,sans-serif;color:var(--gold2);margin:0;display:flex;align-items:center;gap:8px}
+    .soundcloud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+    .sc-card{background:#181824;border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;position:relative}
+    .sc-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:#000}
+    .sc-card-title{font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sc-card-type{font-size:9px;color:var(--gold);text-transform:uppercase;font-weight:700}
 
-    .user-profile-card{display:flex;align-items:center;gap:18px;background:#171722;border:1px solid var(--gold);padding:20px;border-radius:var(--radius);margin-top:15px}
-    .user-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#222;display:grid;place-items:center;font-size:28px;color:var(--gold)}
+    .user-profile-card{display:flex;align-items:center;gap:14px;background:#171722;border:1px solid var(--gold);padding:16px;border-radius:var(--radius);margin-top:12px}
+    .user-avatar{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#222;display:grid;place-items:center;font-size:24px;color:var(--gold)}
 
-    .social-panel{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);min-width:0}
-    .social-buttons{display:flex;gap:8px;flex-wrap:wrap}
-    .social-btn{border:1px solid #ffffff22;background:#ffffff09;color:var(--text);border-radius:10px;padding:8px 11px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+    .social-panel{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);min-width:0}
+    .social-buttons{display:flex;gap:6px;flex-wrap:wrap}
+    .social-btn{border:1px solid #ffffff22;background:#ffffff09;color:var(--text);border-radius:8px;padding:7px 10px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:5px}
     .social-btn:hover{border-color:#f4c95d88;color:var(--gold2)}
     .social-btn.is-liked{background:#ff3cc71a;border-color:#ff3cc788;color:#ff9ce5}
-    .social-comments{margin-top:12px;display:grid;gap:8px}
-    .social-comment-list{display:grid;gap:8px;max-height:220px;overflow:auto}
-    .social-comment{padding:9px 11px;border-radius:10px;background:#ffffff08;border:1px solid #ffffff10;font-size:12px;overflow-wrap:anywhere;white-space:pre-wrap}
-    .social-comment time{display:block;color:var(--muted);font-size:10px;margin-top:4px}
-    .social-form{display:flex;gap:7px;align-items:stretch}
-    .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text);outline:none;font-size:12px}
+    .social-comments{margin-top:10px;display:grid;gap:6px}
+    .social-comment-list{display:grid;gap:6px;max-height:180px;overflow:auto}
+    .social-comment{padding:8px 10px;border-radius:8px;background:#ffffff08;border:1px solid #ffffff10;font-size:11px;overflow-wrap:anywhere;white-space:pre-wrap}
+    .social-comment time{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+    .social-form{display:flex;gap:6px;align-items:stretch}
+    .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--text);outline:none;font-size:11px}
     .hidden{display:none!important}
-    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
-    .footer-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:11px}
+    .footer-inner{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
   </style>
 </head>
 <body>
@@ -153,10 +154,10 @@
         <span class="brand-mark">♫</span><span>COROSSS CLOUD<small>MUSIC & VIDEO CLOUD</small></span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
-        <a href="#library">Music & Videos</a>
-        <a href="#liked-section">♥ Liked Playlist</a>
-        <a href="#premium-section">Premium Mixes</a>
-        <a href="#community">Profile & Community</a>
+        <a href="#library">Library</a>
+        <a href="#liked-section">♥ Liked</a>
+        <a href="#premium-section">Mixes</a>
+        <a href="#community">Profile</a>
       </nav>
     </div>
   </header>
@@ -207,17 +208,17 @@
       </div>
     </section>
 
-    <!-- SOUNDCLOUD STYLE LIKED PLAYLIST SECTION -->
+    <!-- COROSSS CLOUD LIKE PLAYLIST SECTION -->
     <section class="section" id="liked-section">
       <div class="wrap">
         <div class="soundcloud-playlist">
           <div class="soundcloud-playlist-head">
-            <h3><span>🧡</span> SOUNDCLOUD-STYLE LIKED PLAYLIST</h3>
-            <span class="sub" id="likedCount">0 items saved</span>
+            <h3><span>🧡</span> COROSSS CLOUD LIKE PLAYLIST</h3>
+            <span class="sub" id="likedCount">0 saved</span>
           </div>
-          <p class="sub" style="margin-bottom:18px">Your liked tracks and videos are saved in your personal browser library below:</p>
+          <p class="sub" style="margin-bottom:14px">Your liked tracks and videos saved on this browser:</p>
           <div class="soundcloud-grid" id="likedPlaylistGrid">
-            <div class="empty">No liked tracks yet. Like any song or video to build your playlist!</div>
+            <div class="empty">No liked tracks yet.</div>
           </div>
         </div>
       </div>
@@ -230,7 +231,7 @@
           <div><div class="kicker">Exclusive DJ Collection</div><h2>Premium Mixes</h2><div class="sub">Listen to demos and buy instantly via Telegram.</div></div>
         </div>
         <div id="pmStatus" class="status" role="status"></div>
-        <div id="pmGrid" class="grid-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+        <div id="pmGrid" class="grid-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
           <div class="empty">Loading premium mixes…</div>
         </div>
       </div>
@@ -245,7 +246,7 @@
             <div class="kicker">Direct Contact</div>
             <h3>Chat on Telegram</h3>
             <p>Have questions about mixes or custom bookings? Reach out to DJ Lisan directly on Telegram.</p>
-            <a class="btn btn-telegram" href="https://t.me/corossscloud" target="_blank" style="margin-top:12px">✈️ Open Telegram</a>
+            <a class="btn btn-telegram" href="https://t.me/corossscloud" target="_blank" style="margin-top:10px">✈️ Open Telegram</a>
           </div>
 
           <!-- USER LISTENER PROFILE PANEL -->
@@ -263,18 +264,18 @@
 
             <div id="publicAccountSignedIn" class="hidden">
               <div class="user-profile-card">
-                <img id="userAvatarImg" class="user-avatar" src="" alt="Avatar" onerror="this.src='https://via.placeholder.com/70/f4c95d/000000?text=USER'">
+                <img id="userAvatarImg" class="user-avatar" src="" alt="Avatar" onerror="this.src='https://via.placeholder.com/60/f4c95d/000000?text=USER'">
                 <div style="flex:1">
                   <h4 id="userDisplayName" style="margin:0;color:var(--gold2)">Listener</h4>
-                  <p id="publicSignedInText" class="sub" style="margin:4px 0 10px"></p>
+                  <p id="publicSignedInText" class="sub" style="margin:2px 0 8px"></p>
                 </div>
               </div>
-              <form id="profileUpdateForm" class="stack" style="margin-top:15px">
+              <form id="profileUpdateForm" class="stack" style="margin-top:12px">
                 <label>Display Name<input id="profileNameInput" class="field" type="text" placeholder="Enter your name"></label>
-                <label>Profile Picture (Image)<input id="profileAvatarInput" class="field" type="file" accept="image/*"></label>
+                <label>Profile Picture<input id="profileAvatarInput" class="field" type="file" accept="image/*"></label>
                 <button class="btn btn-gold" type="submit">Update Profile</button>
               </form>
-              <button class="btn btn-dark" type="button" id="publicLogoutBtn" style="margin-top:12px;width:100%">Sign out</button>
+              <button class="btn btn-dark" type="button" id="publicLogoutBtn" style="margin-top:10px;width:100%">Sign out</button>
             </div>
           </div>
         </div>
@@ -282,7 +283,7 @@
     </section>
 
     <!-- ADMIN STUDIO SECTION -->
-    <section class="section" id="admin" style="border-top:1px dashed var(--line);margin-top:40px">
+    <section class="section" id="admin" style="border-top:1px dashed var(--line);margin-top:30px">
       <div class="wrap">
         <div class="section-head"><div><div class="kicker">Restricted Access</div><h2>Admin Studio</h2><div class="sub">Website owner dashboard for uploads and content management.</div></div></div>
         
@@ -300,13 +301,13 @@
           <div class="admin-head"><h3>⚡ Admin Dashboard</h3><button id="logoutBtn" class="btn btn-dark" type="button">Sign out</button></div>
           <div id="adminStatus" class="status" role="status"></div>
           <div class="stats">
-            <div class="stat"><b id="statAudio">0</b><span>Music tracks</span></div>
+            <div class="stat"><b id="statAudio">0</b><span>Music</span></div>
             <div class="stat"><b id="statVideos">0</b><span>Videos</span></div>
-            <div class="stat"><b id="statViews">0</b><span>Total plays/views</span></div>
+            <div class="stat"><b id="statViews">0</b><span>Plays</span></div>
           </div>
 
           <!-- ADMIN PREMIUM MIX UPLOAD -->
-          <div class="admin-box stack" style="margin-bottom:18px">
+          <div class="admin-box stack" style="margin-bottom:14px">
             <h4>🔥 Upload Premium Mix</h4>
             <form id="pmUpload" class="stack">
               <label>Mix Title<input class="field" name="title" maxlength="150" required placeholder="Enter mix title"></label>
@@ -320,17 +321,17 @@
 
           <div class="admin-grid">
             <form id="audioUploadForm" class="admin-box stack">
-              <h4>🎵 Upload a music track</h4>
-              <label>Track title<input id="audioTitle" class="field" type="text" maxlength="150" required placeholder="Enter track title"></label>
+              <h4>🎵 Upload Music</h4>
+              <label>Track title<input id="audioTitle" class="field" type="text" maxlength="150" required placeholder="Track title"></label>
               <label>Audio file<input id="audioFile" class="field" type="file" accept="audio/*" required></label>
-              <label>Track thumbnail<input id="audioCover" class="field" type="file" accept="image/*" required></label>
-              <button class="btn btn-gold" type="submit">Upload music</button>
+              <label>Thumbnail<input id="audioCover" class="field" type="file" accept="image/*" required></label>
+              <button class="btn btn-gold" type="submit">Upload Music</button>
             </form>
             <form id="videoUploadForm" class="admin-box stack">
-              <h4>🎬 Upload a video</h4>
-              <label>Video title<input id="videoTitle" class="field" type="text" maxlength="150" required placeholder="Enter video title"></label>
+              <h4>🎬 Upload Video</h4>
+              <label>Video title<input id="videoTitle" class="field" type="text" maxlength="150" required placeholder="Video title"></label>
               <label>Video file<input id="videoFile" class="field" type="file" accept="video/*" required></label>
-              <button class="btn btn-blue" type="submit">Upload video</button>
+              <button class="btn btn-blue" type="submit">Upload Video</button>
             </form>
           </div>
         </div>
@@ -410,7 +411,7 @@
     const liked = getLikedItems();
     count.textContent = `${liked.length} saved`;
     if (!liked.length) {
-      grid.innerHTML = '<div class="empty">No liked tracks yet. Like any song or video to build your playlist!</div>';
+      grid.innerHTML = '<div class="empty">No liked tracks yet.</div>';
       return;
     }
     grid.innerHTML = liked.map(item => {
@@ -421,7 +422,7 @@
         <img src="${escapeHtml(cover)}" alt="">
         <div class="sc-card-type">${item.kind}</div>
         <div class="sc-card-title">${escapeHtml(item.title)}</div>
-        <button class="btn btn-gold" style="font-size:10px;padding:6px 8px;margin-top:auto" onclick="document.querySelector('[data-card=\\'${item.id}\\']')?.scrollIntoView({behavior:'smooth'})">▶ Play</button>
+        <button class="btn btn-gold" style="font-size:9px;padding:5px 7px;margin-top:auto" onclick="document.querySelector('[data-card=\\'${item.id}\\']')?.scrollIntoView({behavior:'smooth'})">▶ Play</button>
       </div>`;
     }).join('');
   }
@@ -449,6 +450,7 @@
     grid.innerHTML = items.map(item => item.kind === 'audio' ? audioCard(item) : videoCard(item)).join('');
     updateStats();
     bindCardActions();
+    setupAudioListeners();
   }
 
   function audioCard(item) {
@@ -478,6 +480,37 @@
         ${isAdmin ? `<div class="card-actions"><button class="btn btn-danger" type="button" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
       </div>
     </article>`;
+  }
+
+  function setupAudioListeners() {
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.onplay = () => {
+        const card = audio.closest('.card');
+        if (card) card.classList.add('is-playing');
+        // Increment play view count if it's library audio
+        const id = audio.dataset.id;
+        if (id && audio.dataset.kind === 'audio') {
+          incrementViews(id);
+        }
+      };
+      audio.onpause = () => {
+        const card = audio.closest('.card');
+        if (card) card.classList.remove('is-playing');
+      };
+      audio.onended = () => {
+        const card = audio.closest('.card');
+        if (card) card.classList.remove('is-playing');
+      };
+    });
+  }
+
+  async function incrementViews(id) {
+    try {
+      const { data } = await client.from(AUDIO_TABLE).select('views').eq('id', id).single();
+      if (data) {
+        await client.from(AUDIO_TABLE).update({ views: (data.views || 0) + 1 }).eq('id', id);
+      }
+    } catch (_) {}
   }
 
   function socialSection(kind, id) {
@@ -584,6 +617,7 @@
         <div class="card-body">
           <h3 class="card-title">${escapeHtml(mix.title)}</h3>
           <p style="color:var(--gold);font-weight:700">Price: ৳${escapeHtml(mix.price || '0')}</p>
+          <div class="track-wave" aria-hidden="true">${Array.from({length:30},(_,i)=>`<span style="height:${6+((i*7+3)%17)}px"></span>`).join('')}</div>
           <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
           <div class="card-actions" style="margin-top:12px">
             <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ BUY NOW via Telegram</a>
@@ -592,6 +626,7 @@
         </div>
       </article>`;
     }).join('');
+    setupAudioListeners();
   }
 
   $('pmUpload').addEventListener('submit', async e => {
@@ -755,7 +790,7 @@
     await client.storage.from(AUDIO_BUCKET).upload(thumbnail_path, coverFile);
     await client.from(AUDIO_TABLE).insert({ title, storage_path, thumbnail_path, uploaded_by: currentUser.id });
     e.target.reset();
-    alert('Music uploaded successfully!');
+    alert('Audio uploaded successfully!');
     loadLibrary();
   });
 
