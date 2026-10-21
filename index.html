@@ -52,7 +52,6 @@
     .hero p{max-width:580px;color:var(--muted);line-height:1.7;font-size:13px}
     .hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
     
-    /* VIRTUAL DISC & RGB LIGHTS */
     .hero-visual{min-height:280px;display:grid;place-items:center;position:relative}
     .disc{width:min(230px,68vw);aspect-ratio:1;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#111 0 3px,#29242d 4px 5px,#0c0c12 6px 9px);box-shadow:0 0 0 8px #f4c95d0b,0 0 50px #a45dff25;animation:vinylSpin 12s linear infinite}
     .disc:before{content:"";position:absolute;inset:28%;border-radius:50%;background:conic-gradient(var(--gold),var(--pink),var(--blue),var(--purple),var(--gold));box-shadow:0 0 30px #f4c95d40}
@@ -77,13 +76,11 @@
     .select option{background:#111119}
     .grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:920px;margin-inline:auto}
     
-    /* SOUNDCLOUD STYLE EXPANDABLE PLAYING CARDS */
-    .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:all .3s cubic-bezier(.25,.8,.25,1)}
+    .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:all .3s ease}
     .card:hover{border-color:#f4c95d50}
     
-    /* EXPANDED ACTIVE CARD STYLE */
-    .card.is-playing{border-color:#38d9ffaa;box-shadow:0 0 25px #38d9ff33;transform:scale(1.02);margin-block:8px}
-    .card.is-premium-playing{border-color:#ff3cc7cc;box-shadow:0 0 28px #ff3cc744;transform:scale(1.02);margin-block:8px}
+    .card.is-playing{border-color:#38d9ffaa;box-shadow:0 0 20px #38d9ff28}
+    .card.is-premium-playing{border-color:#ff3cc7cc;box-shadow:0 0 22px #ff3cc733}
 
     .track-wave{height:22px;display:flex;align-items:center;gap:3px;margin:0 0 8px;opacity:.45;overflow:hidden}
     .track-wave span{display:block;flex:1;min-width:2px;height:4px;border-radius:4px;background:linear-gradient(180deg,var(--gold2),var(--gold),var(--blue));transform-origin:center;animation:waveDance .8s ease-in-out infinite alternate;animation-play-state:paused}
@@ -96,13 +93,10 @@
     .card[data-kind="audio"],.card[data-kind="video"]{display:flex;align-items:flex-start;gap:0;position:relative}
     .card-body{padding:10px 12px;flex:1;min-width:0}
     
-    /* VIDEO STYLING & EXPAND */
-    .card[data-kind="video"] .cover{width:140px;height:85px;flex-basis:140px}
-    .card[data-kind="video"].is-playing .cover{width:100%;height:220px;flex-basis:auto}
-    .card[data-kind="video"].is-playing{flex-direction:column}
-    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
+    .card[data-kind="video"] .cover{width:140px;height:95px;flex-basis:140px;background:#000}
+    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;outline:none}
 
-    .badge{position:absolute;top:8px;left:8px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:3px 7px;font-size:8px;color:var(--gold2);letter-spacing:1px}
+    .badge{position:absolute;top:6px;left:6px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:2px 6px;font-size:8px;color:var(--gold2);letter-spacing:1px;pointer-events:none;z-index:2}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
     .card-title{font-weight:700;font-size:14px;line-height:1.35;overflow-wrap:anywhere;margin:0 0 5px}
     .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-bottom:8px}
@@ -135,7 +129,6 @@
     .stat b{display:block;font:800 18px Orbitron,sans-serif;color:var(--gold)}
     .stat span{font-size:9px;color:var(--muted)}
 
-    /* PLAYLIST & PROFILE */
     .soundcloud-playlist{margin:22px 0;border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:linear-gradient(135deg,#14141d,#0a0a0f);box-shadow:var(--shadow)}
     .soundcloud-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:8px;flex-wrap:wrap}
     .soundcloud-playlist-head h3{font:800 15px Orbitron,sans-serif;color:var(--gold2);margin:0;display:flex;align-items:center;gap:6px}
@@ -180,7 +173,6 @@
   </header>
 
   <main>
-    <!-- HERO SECTION WITH VIRTUAL DISC & RGB LIGHTS -->
     <section class="hero" id="home">
       <div class="wrap hero-grid">
         <div>
@@ -196,7 +188,6 @@
         <div class="hero-visual" aria-hidden="true">
           <div class="orbit"></div>
           <div class="disc"></div>
-          <!-- VIRTUAL DISC RGB LIGHTS -->
           <div class="hero-bars">
             <span></span><span></span><span></span><span></span><span></span>
             <span></span><span></span><span></span><span></span><span></span>
@@ -207,7 +198,6 @@
       </div>
     </section>
 
-    <!-- LIBRARY SECTION -->
     <section class="section" id="library">
       <div class="wrap">
         <div class="section-head">
@@ -231,7 +221,6 @@
       </div>
     </section>
 
-    <!-- COROSSS CLOUD LIKE PLAYLIST SECTION -->
     <section class="section" id="liked-section">
       <div class="wrap">
         <div class="soundcloud-playlist">
@@ -247,7 +236,6 @@
       </div>
     </section>
 
-    <!-- PREMIUM MIXES SECTION -->
     <section class="section" id="premium-section">
       <div class="wrap">
         <div class="section-head">
@@ -260,7 +248,6 @@
       </div>
     </section>
 
-    <!-- COMMUNITY & LISTENER PROFILE SECTION -->
     <section class="section" id="community">
       <div class="wrap">
         <div class="section-head"><div><div class="kicker">Listener Hub</div><h2>User Profile & Community</h2><div class="sub">Manage your account profile and connect with us.</div></div></div>
@@ -272,7 +259,6 @@
             <a class="btn btn-telegram" href="https://t.me/corossscloud" target="_blank" style="margin-top:10px">✈️ Open Telegram</a>
           </div>
 
-          <!-- USER LISTENER PROFILE PANEL -->
           <div class="community-box public-auth-box" id="publicAccount">
             <div class="kicker">Listener Account</div>
             <h3 id="publicAuthHeading">Listener Sign In / Sign Up</h3>
@@ -305,7 +291,6 @@
       </div>
     </section>
 
-    <!-- ADMIN STUDIO SECTION -->
     <section class="section" id="admin" style="border-top:1px dashed var(--line);margin-top:28px">
       <div class="wrap">
         <div class="section-head"><div><div class="kicker">Restricted Access</div><h2>Admin Studio</h2><div class="sub">Website owner dashboard for uploads and content management.</div></div></div>
@@ -329,7 +314,6 @@
             <div class="stat"><b id="statViews">0</b><span>Plays</span></div>
           </div>
 
-          <!-- ADMIN PREMIUM MIX UPLOAD -->
           <div class="admin-box stack" style="margin-bottom:14px">
             <h4>🔥 Upload Premium Mix</h4>
             <form id="pmUpload" class="stack">
@@ -492,7 +476,7 @@
     </article>`;
   }
 
-    function videoCard(item) {
+  function videoCard(item) {
     const src = publicUrl(VIDEO_BUCKET, item.storage_path);
     return `<article class="card" data-kind="video" data-card="${escapeHtml(item.id)}">
       <div class="cover">
@@ -506,11 +490,8 @@
         ${isAdmin ? `<div class="card-actions"><button class="btn btn-dark" type="button" onclick="renameItem('video','${item.id}','${escapeHtml(item.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
       </div>
     </article>`;
-   
   }
-  
 
-  // PAUSE ALL OTHER PLAYERS
   function pauseAllOthers(currentMedia) {
     document.querySelectorAll('audio, video').forEach(media => {
       if (media !== currentMedia) {
@@ -645,7 +626,6 @@
     render();
   }
 
-  // --- RENAME FUNCTIONALITY ---
   window.renameItem = async (type, id, currentTitle) => {
     if (!isAdmin) return alert('Admin login required.');
     const newTitle = prompt('Enter new title:', currentTitle);
@@ -661,7 +641,6 @@
     }
   };
 
-  // --- PREMIUM MIXES WITH SPECIAL PREMIUM RGB ---
   async function loadMixes() {
     const { data, error } = await client.from('premium_mixes').select('*').order('created_at', { ascending: false });
     const grid = $('pmGrid');
@@ -686,54 +665,7 @@
         </div>
       </article>`;
     }).join('');
-
-      // PAUSE ALL OTHER PLAYERS AUTOMATICALLY
-  function pauseAllOthers(currentMedia) {
-    document.querySelectorAll('audio, video').forEach(media => {
-      if (media !== currentMedia) {
-        media.pause();
-        const card = media.closest('.card');
-        if (card) {
-          card.classList.remove('is-playing');
-          card.classList.remove('is-premium-playing');
-        }
-      }
-    });
-  }
-
-  function setupAudioListeners() {
-    document.querySelectorAll('audio, video').forEach(media => {
-      media.onplay = () => {
-        pauseAllOthers(media);
-        const card = media.closest('.card');
-        if (card) {
-          if (card.dataset.isPremium) {
-            card.classList.add('is-premium-playing');
-          } else {
-            card.classList.add('is-playing');
-          }
-        }
-        const id = media.dataset.id;
-        const kind = media.dataset.kind;
-        if (id) {
-          incrementViews(id, kind === 'video' ? VIDEO_TABLE : AUDIO_TABLE);
-        }
-      };
-      media.onpause = () => {
-        const card = media.closest('.card');
-        if (card) {
-          card.classList.remove('is-playing');
-          card.classList.remove('is-premium-playing');
-        }
-      };
-      media.onended = () => {
-        const card = media.closest('.card');
-        if (card) {
-          card.classList.remove('is-playing');
-          card.classList.remove('is-premium-playing');
-        }
-      };
-    });
+    setupAudioListeners();
   }
 
   $('pmUpload').addEventListener('submit', async e => {
@@ -779,7 +711,6 @@
     loadLibrary();
   };
 
-  // --- PUBLIC PROFILE & AVATAR UPDATES ---
   function updatePublicAuthUI() {
     const signedIn = !!(currentUser && !isAdmin);
     $('publicAuthForm').classList.toggle('hidden', signedIn);
@@ -855,7 +786,6 @@
     updatePublicAuthUI();
   });
 
-  // --- ADMIN AUTH ---
   async function syncAuth() {
     if (!client) return;
     const { data } = await client.auth.getSession();
