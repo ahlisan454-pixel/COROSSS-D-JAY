@@ -19,26 +19,30 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:80px}
     
-    /* THEME DYNAMIC GLOW ANIMATION */
-    body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20152b 0,transparent 32%),radial-gradient(ellipse at 95% 25%,#10242d 0,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh;overflow-x:hidden;animation:bgGlow 10s ease-in-out infinite alternate}
-    @keyframes bgGlow{
-      0%{filter:brightness(1)}
-      50%{filter:brightness(1.12)}
-      100%{filter:brightness(1)}
+    /* LIGHTWEIGHT LAG-FREE DJ THEME GLOW */
+    body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20152b 0,transparent 32%),radial-gradient(ellipse at 95% 25%,#10242d 0,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh;overflow-x:hidden;animation:djThemeGlow 12s ease-in-out infinite alternate}
+    @keyframes djThemeGlow{
+      0%{filter:brightness(1) hue-rotate(0deg)}
+      50%{filter:brightness(1.08) hue-rotate(15deg)}
+      100%{filter:brightness(1) hue-rotate(0deg)}
     }
 
     body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;z-index:-1}
     
-    /* FLOATING BACKGROUND TEXT ANIMATION (DJ VIBES) */
-    .bg-text-animation{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;opacity:.07}
-    .floating-txt{position:absolute;font-family:Orbitron,sans-serif;font-weight:900;text-transform:uppercase;white-space:nowrap;animation:floatText 18s linear infinite}
-    .floating-txt:nth-child(1){top:10%;left:-20%;font-size:8vw;color:var(--gold);animation-duration:24s}
-    .floating-txt:nth-child(2){top:40%;right:-20%;font-size:7vw;color:var(--blue);animation-duration:20s;animation-direction:reverse}
-    .floating-txt:nth-child(3){top:75%;left:-10%;font-size:9vw;color:var(--pink);animation-duration:28s}
-    @keyframes floatText{
-      0%{transform:translateX(0) rotate(0deg)}
-      50%{transform:translateX(60vw) rotate(3deg)}
-      100%{transform:translateX(120vw) rotate(0deg)}
+    /* FLOATING BACKGROUND TEXT (ONLY COROSSS CLOUD) */
+    .bg-text-animation{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;opacity:.05}
+    .floating-txt{position:absolute;font-family:Orbitron,sans-serif;font-weight:900;text-transform:uppercase;white-space:nowrap;will-change:transform}
+    .floating-txt:nth-child(1){top:12%;left:-20%;font-size:9vw;color:var(--gold);animation:floatLeft 22s linear infinite}
+    .floating-txt:nth-child(2){top:50%;right:-20%;font-size:8vw;color:var(--blue);animation:floatRight 26s linear infinite}
+    .floating-txt:nth-child(3){top:80%;left:-10%;font-size:10vw;color:var(--pink);animation:floatLeft 28s linear infinite}
+    
+    @keyframes floatLeft{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(110vw)}
+    }
+    @keyframes floatRight{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-110vw)}
     }
 
     header,main,footer{position:relative;z-index:2}
@@ -69,7 +73,11 @@
     .pulse{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
     h1,h2,h3{margin-top:0}
     h1{font:900 clamp(30px,5vw,64px)/1.08 Orbitron,sans-serif;letter-spacing:-1px;margin:16px 0}
-    .gradient-text{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .gradient-text{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;animation:textShift 6s ease-in-out infinite alternate}
+    @keyframes textShift{
+      0%{filter:hue-rotate(0deg)}
+      100%{filter:hue-rotate(60deg)}
+    }
     .hero p{max-width:580px;color:var(--muted);line-height:1.7;font-size:13px}
     .hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
     
@@ -181,11 +189,11 @@
   </style>
 </head>
 <body>
-  <!-- FLOATING BACKGROUND ANIMATED TEXTS -->
+  <!-- BACKGROUND ANIMATED WATERMARK TEXTS -->
   <div class="bg-text-animation" aria-hidden="true">
     <div class="floating-txt">COROSSS CLOUD</div>
-    <div class="floating-txt">DJ LISAN</div>
-    <div class="floating-txt">OFFBEAT MIXES</div>
+    <div class="floating-txt">COROSSS CLOUD</div>
+    <div class="floating-txt">COROSSS CLOUD</div>
   </div>
 
   <header class="topbar">
@@ -285,7 +293,7 @@
           <div class="community-box">
             <div class="kicker">Direct Contact</div>
             <h3>Chat on Telegram</h3>
-            <p>Have questions about mixes or custom bookings? Reach out to DJ Lisan directly on Telegram.</p>
+            <p>Have questions about mixes or custom bookings? Reach out directly on Telegram.</p>
             <a class="btn btn-telegram" href="https://t.me/corossscloud" target="_blank" style="margin-top:10px">✈️ Open Telegram</a>
           </div>
 
@@ -382,8 +390,7 @@
       <span>CÖRÖSSS ÖFFB3AT · Built for music lovers ✦</span>
     </div>
   </footer>
-  
-<script>
+
 <script>
 (() => {
   'use strict';
@@ -409,7 +416,8 @@
   let videoItems = [];
   let combinedItems = [];
 
-  $('year').textContent = new Date().getFullYear();
+  const yearEl = $('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   function showStatus(el, message, kind = 'info') {
     if (!el) return;
@@ -466,9 +474,14 @@
   }
 
   function render() {
-    const q = $('searchInput').value.trim().toLowerCase();
-    const type = $('typeFilter').value;
-    const sort = $('sortFilter').value;
+    const searchEl = $('searchInput');
+    const typeEl = $('typeFilter');
+    const sortEl = $('sortFilter');
+    
+    const q = searchEl ? searchEl.value.trim().toLowerCase() : '';
+    const type = typeEl ? typeEl.value : 'all';
+    const sort = sortEl ? sortEl.value : 'newest';
+
     let items = combinedItems.filter(item => {
       const typeOk = type === 'all' || item.kind === type;
       const searchOk = !q || `${item.title} ${item.kind}`.toLowerCase().includes(q);
@@ -480,6 +493,8 @@
 
     const grid = $('libraryGrid');
     renderLikedPlaylist();
+    if (!grid) return;
+
     if (!items.length) {
       grid.innerHTML = `<div class="empty">No items match your search/filter.</div>`;
       updateStats();
@@ -487,7 +502,6 @@
     }
     grid.innerHTML = items.map(item => item.kind === 'audio' ? audioCard(item) : videoCard(item)).join('');
     updateStats();
-    bindCardActions();
     setupAudioListeners();
   }
 
@@ -635,28 +649,30 @@
     loadComments(e.target.closest('.social-panel'));
   };
 
-  function bindCardActions() {}
-
   function updateStats() {
-    $('statAudio').textContent = audioItems.length.toLocaleString();
-    $('statVideos').textContent = videoItems.length.toLocaleString();
+    if ($('statAudio')) $('statAudio').textContent = audioItems.length.toLocaleString();
+    if ($('statVideos')) $('statVideos').textContent = videoItems.length.toLocaleString();
     const views = [...audioItems, ...videoItems].reduce((sum, item) => sum + Number(item.views || 0), 0);
-    $('statViews').textContent = views.toLocaleString();
+    if ($('statViews')) $('statViews').textContent = views.toLocaleString();
   }
 
   async function loadLibrary() {
     if (!client) return;
-    const [audioRes, videoRes] = await Promise.all([
-      client.from(AUDIO_TABLE).select('*').order('created_at', {ascending:false}),
-      client.from(VIDEO_TABLE).select('*').order('created_at', {ascending:false})
-    ]);
-    audioItems = audioRes.data || [];
-    videoItems = videoRes.data || [];
-    combinedItems = [
-      ...audioItems.map(item => ({...item, kind:'audio'})),
-      ...videoItems.map(item => ({...item, kind:'video'}))
-    ];
-    render();
+    try {
+      const [audioRes, videoRes] = await Promise.all([
+        client.from(AUDIO_TABLE).select('*').order('created_at', {ascending:false}),
+        client.from(VIDEO_TABLE).select('*').order('created_at', {ascending:false})
+      ]);
+      audioItems = audioRes.data || [];
+      videoItems = videoRes.data || [];
+      combinedItems = [
+        ...audioItems.map(item => ({...item, kind:'audio'})),
+        ...videoItems.map(item => ({...item, kind:'video'}))
+      ];
+      render();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   window.renameItem = async (type, id, currentTitle) => {
@@ -675,61 +691,67 @@
   };
 
   async function loadMixes() {
-    const { data, error } = await client.from('premium_mixes').select('*').order('created_at', { ascending: false });
-    const grid = $('pmGrid');
-    if (error || !data || !data.length) {
-      grid.innerHTML = '<div class="empty">No premium mixes uploaded yet.</div>';
-      return;
-    }
-    grid.innerHTML = data.map(mix => {
-      const cover = client.storage.from('premium-public').getPublicUrl(mix.thumbnail_path).data.publicUrl;
-      const demo = client.storage.from('premium-public').getPublicUrl(mix.demo_path).data.publicUrl;
-      return `<article class="card" data-is-premium="true" style="display:block">
-        <div style="position:relative;height:150px;background:#000"><img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover"><span class="badge badge-premium">PREMIUM MIX</span></div>
-        <div class="card-body">
-          <h3 class="card-title">${escapeHtml(mix.title)}</h3>
-          <p style="color:var(--gold);font-weight:700">Price: ৳${escapeHtml(mix.price || '0')}</p>
-          <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
-          <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
-          <div class="card-actions" style="margin-top:10px">
-            <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ BUY NOW via Telegram</a>
-            ${isAdmin ? `<button class="btn btn-dark" type="button" onclick="renameItem('premium','${mix.id}','${escapeHtml(mix.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteMix('${mix.id}')">Delete</button>` : ''}
+    if (!client) return;
+    try {
+      const { data, error } = await client.from('premium_mixes').select('*').order('created_at', { ascending: false });
+      const grid = $('pmGrid');
+      if (!grid) return;
+      if (error || !data || !data.length) {
+        grid.innerHTML = '<div class="empty">No premium mixes uploaded yet.</div>';
+        return;
+      }
+      grid.innerHTML = data.map(mix => {
+        const cover = client.storage.from('premium-public').getPublicUrl(mix.thumbnail_path).data.publicUrl;
+        const demo = client.storage.from('premium-public').getPublicUrl(mix.demo_path).data.publicUrl;
+        return `<article class="card" data-is-premium="true" style="display:block">
+          <div style="position:relative;height:150px;background:#000"><img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover"><span class="badge badge-premium">PREMIUM MIX</span></div>
+          <div class="card-body">
+            <h3 class="card-title">${escapeHtml(mix.title)}</h3>
+            <p style="color:var(--gold);font-weight:700">Price: ৳${escapeHtml(mix.price || '0')}</p>
+            <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
+            <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
+            <div class="card-actions" style="margin-top:10px">
+              <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ BUY NOW via Telegram</a>
+              ${isAdmin ? `<button class="btn btn-dark" type="button" onclick="renameItem('premium','${mix.id}','${escapeHtml(mix.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteMix('${mix.id}')">Delete</button>` : ''}
+            </div>
           </div>
-        </div>
-      </article>`;
-    }).join('');
-    setupAudioListeners();
+        </article>`;
+      }).join('');
+      setupAudioListeners();
+    } catch(e) { console.error(e); }
   }
 
-  $('pmUpload').addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!isAdmin) return alert('Admin login required.');
-    const form = e.currentTarget;
-    const title = form.elements.title.value.trim();
-    const price = Number(form.elements.price.value);
-    const cover = form.elements.cover.files[0];
-    const demo = form.elements.demo.files[0];
-    const full = form.elements.full.files[0];
+  if ($('pmUpload')) {
+    $('pmUpload').addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!isAdmin) return alert('Admin login required.');
+      const form = e.currentTarget;
+      const title = form.elements.title.value.trim();
+      const price = Number(form.elements.price.value);
+      const cover = form.elements.cover.files[0];
+      const demo = form.elements.demo.files[0];
+      const full = form.elements.full.files[0];
 
-    const upFile = async (bucket, file) => {
-      const path = `${Date.now()}-${safeFileName(file.name)}`;
-      await client.storage.from(bucket).upload(path, file);
-      return path;
-    };
+      const upFile = async (bucket, file) => {
+        const path = `${Date.now()}-${safeFileName(file.name)}`;
+        await client.storage.from(bucket).upload(path, file);
+        return path;
+      };
 
-    try {
-      const thumbnail_path = await upFile('premium-public', cover);
-      const demo_path = await upFile('premium-public', demo);
-      const full_path = await upFile('premium-private', full);
+      try {
+        const thumbnail_path = await upFile('premium-public', cover);
+        const demo_path = await upFile('premium-public', demo);
+        const full_path = await upFile('premium-private', full);
 
-      await client.from('premium_mixes').insert({ title, price, thumbnail_path, demo_path, full_path });
-      form.reset();
-      alert('Premium Mix uploaded successfully!');
-      loadMixes();
-    } catch (err) {
-      alert('Upload failed: ' + err.message);
-    }
-  });
+        await client.from('premium_mixes').insert({ title, price, thumbnail_path, demo_path, full_path });
+        form.reset();
+        alert('Premium Mix uploaded successfully!');
+        loadMixes();
+      } catch (err) {
+        alert('Upload failed: ' + err.message);
+      }
+    });
+  }
 
   window.deleteMix = async (id) => {
     if (!isAdmin || !confirm('Delete this premium mix?')) return;
@@ -746,144 +768,164 @@
 
   function updatePublicAuthUI() {
     const signedIn = !!(currentUser && !isAdmin);
-    $('publicAuthForm').classList.toggle('hidden', signedIn);
-    $('publicAccountSignedIn').classList.toggle('hidden', !signedIn);
+    if ($('publicAuthForm')) $('publicAuthForm').classList.toggle('hidden', signedIn);
+    if ($('publicAccountSignedIn')) $('publicAccountSignedIn').classList.toggle('hidden', !signedIn);
     if (signedIn) {
       const name = currentUser.user_metadata?.display_name || currentUser.email.split('@')[0];
       const avatar = currentUser.user_metadata?.avatar_url || '';
-      $('userDisplayName').textContent = name;
-      $('publicSignedInText').textContent = currentUser.email;
-      if (avatar) $('userAvatarImg').src = avatar;
-      $('profileNameInput').value = name;
+      if ($('userDisplayName')) $('userDisplayName').textContent = name;
+      if ($('publicSignedInText')) $('publicSignedInText').textContent = currentUser.email;
+      if (avatar && $('userAvatarImg')) $('userAvatarImg').src = avatar;
+      if ($('profileNameInput')) $('profileNameInput').value = name;
     }
   }
 
-  $('profileUpdateForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!currentUser) return;
-    const displayName = $('profileNameInput').value.trim();
-    const file = $('profileAvatarInput').files[0];
-    let avatar_url = currentUser.user_metadata?.avatar_url || '';
+  if ($('profileUpdateForm')) {
+    $('profileUpdateForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!currentUser) return;
+      const displayName = $('profileNameInput').value.trim();
+      const file = $('profileAvatarInput').files[0];
+      let avatar_url = currentUser.user_metadata?.avatar_url || '';
 
-    if (file) {
-      const path = `avatars/${currentUser.id}-${Date.now()}-${safeFileName(file.name)}`;
-      await client.storage.from(AUDIO_BUCKET).upload(path, file);
-      avatar_url = publicUrl(AUDIO_BUCKET, path);
-    }
-
-    const { data, error } = await client.auth.updateUser({
-      data: { display_name: displayName, avatar_url }
-    });
-
-    if (error) alert('Failed to update profile: ' + error.message);
-    else {
-      currentUser = data.user;
-      alert('Profile updated successfully!');
-      updatePublicAuthUI();
-    }
-  });
-
-  $('publicAuthToggle').addEventListener('click', () => {
-    const mode = $('publicAuthSubmit').textContent.includes('Create') ? 'signin' : 'signup';
-    $('publicAuthHeading').textContent = mode === 'signup' ? 'Listener Sign Up' : 'Listener Sign In';
-    $('publicAuthSubmit').textContent = mode === 'signup' ? 'Create account' : 'Sign in';
-    $('publicAuthToggle').textContent = mode === 'signup' ? 'Already have an account? Sign in' : 'New here? Create an account';
-  });
-
-  $('publicAuthForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const email = $('publicAuthEmail').value.trim();
-    const password = $('publicAuthPassword').value;
-    const isSignup = $('publicAuthSubmit').textContent.includes('Create');
-    try {
-      if (isSignup) {
-        const { data, error } = await client.auth.signUp({ email, password });
-        if (error) throw error;
-        currentUser = data.user || data.session?.user;
-        alert('Account created successfully!');
-      } else {
-        const { data, error } = await client.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        currentUser = data.user;
-        alert('Signed in successfully!');
+      if (file) {
+        const path = `avatars/${currentUser.id}-${Date.now()}-${safeFileName(file.name)}`;
+        await client.storage.from(AUDIO_BUCKET).upload(path, file);
+        avatar_url = publicUrl(AUDIO_BUCKET, path);
       }
-      updatePublicAuthUI();
-    } catch (err) {
-      alert(err.message);
-    }
-  });
 
-  $('publicLogoutBtn').addEventListener('click', async () => {
-    await client.auth.signOut();
-    currentUser = null;
-    updatePublicAuthUI();
-  });
+      const { data, error } = await client.auth.updateUser({
+        data: { display_name: displayName, avatar_url }
+      });
+
+      if (error) alert('Failed to update profile: ' + error.message);
+      else {
+        currentUser = data.user;
+        alert('Profile updated successfully!');
+        updatePublicAuthUI();
+      }
+    });
+  }
+
+  if ($('publicAuthToggle')) {
+    $('publicAuthToggle').addEventListener('click', () => {
+      const mode = $('publicAuthSubmit').textContent.includes('Create') ? 'signin' : 'signup';
+      $('publicAuthHeading').textContent = mode === 'signup' ? 'Listener Sign Up' : 'Listener Sign In';
+      $('publicAuthSubmit').textContent = mode === 'signup' ? 'Create account' : 'Sign in';
+      $('publicAuthToggle').textContent = mode === 'signup' ? 'Already have an account? Sign in' : 'New here? Create an account';
+    });
+  }
+
+  if ($('publicAuthForm')) {
+    $('publicAuthForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = $('publicAuthEmail').value.trim();
+      const password = $('publicAuthPassword').value;
+      const isSignup = $('publicAuthSubmit').textContent.includes('Create');
+      try {
+        if (isSignup) {
+          const { data, error } = await client.auth.signUp({ email, password });
+          if (error) throw error;
+          currentUser = data.user || data.session?.user;
+          alert('Account created successfully!');
+        } else {
+          const { data, error } = await client.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          currentUser = data.user;
+          alert('Signed in successfully!');
+        }
+        updatePublicAuthUI();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  }
+
+  if ($('publicLogoutBtn')) {
+    $('publicLogoutBtn').addEventListener('click', async () => {
+      await client.auth.signOut();
+      currentUser = null;
+      updatePublicAuthUI();
+    });
+  }
 
   async function syncAuth() {
     if (!client) return;
     const { data } = await client.auth.getSession();
     currentUser = data?.session?.user || null;
     isAdmin = !!(currentUser && currentUser.id === ADMIN_USER_ID);
-    $('loginPanel').classList.toggle('hidden', isAdmin);
-    $('adminPanel').classList.toggle('hidden', !isAdmin);
+    if ($('loginPanel')) $('loginPanel').classList.toggle('hidden', isAdmin);
+    if ($('adminPanel')) $('adminPanel').classList.toggle('hidden', !isAdmin);
     loadLibrary();
     loadMixes();
     updatePublicAuthUI();
   }
 
-  $('loginForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const email = $('loginEmail').value.trim();
-    const password = $('loginPassword').value;
-    const { data, error } = await client.auth.signInWithPassword({ email, password });
-    if (error) { showStatus($('loginStatus'), error.message, 'error'); return; }
-    if (data.user.id !== ADMIN_USER_ID) {
+  if ($('loginForm')) {
+    $('loginForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = $('loginEmail').value.trim();
+      const password = $('loginPassword').value;
+      const { data, error } = await client.auth.signInWithPassword({ email, password });
+      if (error) { showStatus($('loginStatus'), error.message, 'error'); return; }
+      if (data.user.id !== ADMIN_USER_ID) {
+        await client.auth.signOut();
+        showStatus($('loginStatus'), 'Unauthorized admin account.', 'error');
+        return;
+      }
+      currentUser = data.user;
+      isAdmin = true;
+      syncAuth();
+    });
+  }
+
+  if ($('logoutBtn')) {
+    $('logoutBtn').addEventListener('click', async () => {
       await client.auth.signOut();
-      showStatus($('loginStatus'), 'Unauthorized admin account.', 'error');
-      return;
-    }
-    currentUser = data.user;
-    isAdmin = true;
-    syncAuth();
-  });
+      currentUser = null;
+      isAdmin = false;
+      syncAuth();
+    });
+  }
 
-  $('logoutBtn').addEventListener('click', async () => {
-    await client.auth.signOut();
-    currentUser = null;
-    isAdmin = false;
-    syncAuth();
-  });
+  if ($('audioUploadForm')) {
+    $('audioUploadForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!isAdmin) return;
+      const title = $('audioTitle').value.trim();
+      const audioFile = $('audioFile').files[0];
+      const coverFile = $('audioCover').files[0];
+      const storage_path = randomPath('audio', audioFile);
+      const thumbnail_path = randomPath('covers', coverFile);
 
-  $('audioUploadForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!isAdmin) return;
-    const title = $('audioTitle').value.trim();
-    const audioFile = $('audioFile').files[0];
-    const coverFile = $('audioCover').files[0];
-    const storage_path = randomPath('audio', audioFile);
-    const thumbnail_path = randomPath('covers', coverFile);
+      await client.storage.from(AUDIO_BUCKET).upload(storage_path, audioFile);
+      await client.storage.from(AUDIO_BUCKET).upload(thumbnail_path, coverFile);
+      await client.from(AUDIO_TABLE).insert({ title, storage_path, thumbnail_path, uploaded_by: currentUser.id });
+      e.target.reset();
+      alert('Audio uploaded successfully!');
+      loadLibrary();
+    });
+  }
 
-    await client.storage.from(AUDIO_BUCKET).upload(storage_path, audioFile);
-    await client.storage.from(AUDIO_BUCKET).upload(thumbnail_path, coverFile);
-    await client.from(AUDIO_TABLE).insert({ title, storage_path, thumbnail_path, uploaded_by: currentUser.id });
-    e.target.reset();
-    alert('Audio uploaded successfully!');
-    loadLibrary();
-  });
+  if ($('videoUploadForm')) {
+    $('videoUploadForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!isAdmin) return;
+      const title = $('videoTitle').value.trim();
+      const file = $('videoFile').files[0];
+      const storage_path = randomPath('video', file);
 
-  $('videoUploadForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!isAdmin) return;
-    const title = $('videoTitle').value.trim();
-    const file = $('videoFile').files[0];
-    const storage_path = randomPath('video', file);
+      await client.storage.from(VIDEO_BUCKET).upload(storage_path, file);
+      await client.from(VIDEO_TABLE).insert({ title, storage_path, uploaded_by: currentUser.id });
+      e.target.reset();
+      alert('Video uploaded successfully!');
+      loadLibrary();
+    });
+  }
 
-    await client.storage.from(VIDEO_BUCKET).upload(storage_path, file);
-    await client.from(VIDEO_TABLE).insert({ title, storage_path, uploaded_by: currentUser.id });
-    e.target.reset();
-    alert('Video uploaded successfully!');
-    loadLibrary();
-  });
+  if ($('searchInput')) $('searchInput').addEventListener('input', render);
+  if ($('typeFilter')) $('typeFilter').addEventListener('change', render);
+  if ($('sortFilter')) $('sortFilter').addEventListener('change', render);
 
   syncAuth();
 })();
