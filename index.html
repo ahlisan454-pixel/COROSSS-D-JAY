@@ -277,7 +277,7 @@
     <section class="section" id="premium-section">
       <div class="wrap">
         <div class="section-head">
-          <div><div class="kicker">Exclusive DJ Collection</div><h2>Premium Mixes</h2><div class="sub">Listen to demos and buy instantly via Telegram.</div></div>
+          <div><div class="kicker">Exclusive DJ Collection</div><h2>Premium Mixes</h2><div class="sub">Listen to demos and message us on Telegram for details.</div></div>
         </div>
         <div id="pmStatus" class="status" role="status"></div>
         <div id="pmGrid" class="grid-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
@@ -356,7 +356,6 @@
             <h4>🔥 Upload Premium Mix</h4>
             <form id="pmUpload" class="stack">
               <label>Mix Title<input class="field" name="title" maxlength="150" required placeholder="Enter mix title"></label>
-              <label>Price (৳)<input class="field" name="price" type="number" min="0" step="1" required placeholder="500"></label>
               <label>Thumbnail Image<input class="field" name="cover" type="file" accept="image/*" required></label>
               <label>Demo Audio (Public)<input class="field" name="demo" type="file" accept="audio/*" required></label>
               <label>Full Mix File (Private)<input class="field" name="full" type="file" accept="audio/*" required></label>
@@ -707,11 +706,10 @@
           <div style="position:relative;height:150px;background:#000"><img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover"><span class="badge badge-premium">PREMIUM MIX</span></div>
           <div class="card-body">
             <h3 class="card-title">${escapeHtml(mix.title)}</h3>
-            <p style="color:var(--gold);font-weight:700">Price: ৳${escapeHtml(mix.price || '0')}</p>
             <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
             <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
             <div class="card-actions" style="margin-top:10px">
-              <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ BUY NOW via Telegram</a>
+              <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ Get via Telegram</a>
               ${isAdmin ? `<button class="btn btn-dark" type="button" onclick="renameItem('premium','${mix.id}','${escapeHtml(mix.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteMix('${mix.id}')">Delete</button>` : ''}
             </div>
           </div>
@@ -727,7 +725,6 @@
       if (!isAdmin) return alert('Admin login required.');
       const form = e.currentTarget;
       const title = form.elements.title.value.trim();
-      const price = Number(form.elements.price.value);
       const cover = form.elements.cover.files[0];
       const demo = form.elements.demo.files[0];
       const full = form.elements.full.files[0];
@@ -743,7 +740,7 @@
         const demo_path = await upFile('premium-public', demo);
         const full_path = await upFile('premium-private', full);
 
-        await client.from('premium_mixes').insert({ title, price, thumbnail_path, demo_path, full_path });
+        await client.from('premium_mixes').insert({ title, price: 0, thumbnail_path, demo_path, full_path });
         form.reset();
         alert('Premium Mix uploaded successfully!');
         loadMixes();
