@@ -93,10 +93,19 @@
     .card[data-kind="audio"],.card[data-kind="video"]{display:flex;align-items:flex-start;gap:0;position:relative}
     .card-body{padding:10px 12px;flex:1;min-width:0}
     
-    .card[data-kind="video"] .cover{width:140px;height:95px;flex-basis:140px;background:#000}
-    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;outline:none}
+    /* YOUTUBE STYLE VIDEO EXPANSION & CONTAINER */
+    .card[data-kind="video"] .cover{width:160px;height:100px;flex-basis:160px;background:#000;margin:10px}
+    .card[data-kind="video"].is-playing{flex-direction:column}
+    .card[data-kind="video"].is-playing .cover{width:100%;height:230px;flex-basis:auto;margin:0;border-radius:0}
+    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover;display:block;outline:none}
 
-    .badge{position:absolute;top:6px;left:6px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:2px 6px;font-size:8px;color:var(--gold2);letter-spacing:1px;pointer-events:none;z-index:2}
+    /* CENTERED BIG PLAY BUTTON OVERLAY */
+    .video-overlay-btn{position:absolute;inset:0;background:rgba(0,0,0,0.35);display:grid;place-items:center;cursor:pointer;transition:background .2s;z-index:3}
+    .video-overlay-btn span{width:46px;height:46px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:900;box-shadow:0 4px 15px #f4c95d40;transition:transform .2s}
+    .video-overlay-btn:hover span{transform:scale(1.1)}
+    .card.is-playing .video-overlay-btn{display:none}
+
+    .badge{position:absolute;top:6px;left:6px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:2px 6px;font-size:8px;color:var(--gold2);letter-spacing:1px;pointer-events:none;z-index:4}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
     .card-title{font-weight:700;font-size:14px;line-height:1.35;overflow-wrap:anywhere;margin:0 0 5px}
     .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-bottom:8px}
@@ -352,7 +361,6 @@
       <span>CÖRÖSSS ÖFFB3AT · Built for music lovers ✦</span>
     </div>
   </footer>
-
 <script>
 (() => {
   'use strict';
@@ -482,6 +490,7 @@
       <div class="cover">
         <span class="badge">VIDEO</span>
         <video controls controlsList="nodownload" preload="metadata" data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></video>
+        <div class="video-overlay-btn" onclick="playVideoCard(this)"><span>▶</span></div>
       </div>
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
@@ -491,6 +500,14 @@
       </div>
     </article>`;
   }
+
+  window.playVideoCard = (overlayEl) => {
+    const card = overlayEl.closest('.card');
+    const vid = card.querySelector('video');
+    if (vid) {
+      vid.play();
+    }
+  };
 
   function pauseAllOthers(currentMedia) {
     document.querySelectorAll('audio, video').forEach(media => {
@@ -519,8 +536,10 @@
         }
         const id = media.dataset.id;
         const kind = media.dataset.kind;
-        if (id) {
-          incrementViews(id, kind === 'video' ? VIDEO_TABLE : AUDIO_TABLE);
+        if (id && kind === 'video') {
+          incrementViews(id, VIDEO_TABLE);
+        } else if (id && kind === 'audio') {
+          incrementViews(id, AUDIO_TABLE);
         }
       };
       media.onpause = () => {
