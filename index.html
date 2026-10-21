@@ -414,6 +414,8 @@
   let audioItems = [];
   let videoItems = [];
   let combinedItems = [];
+  let globalLikes = {};
+  let globalCommentsCount = {};
 
   const yearEl = $('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -471,6 +473,12 @@
         }
       }, 500);
     }
+  }
+
+  function requireLogin() {
+    alert('Please sign in or create a listener account to like or comment!');
+    const target = $('community');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function getLikedItems() {
@@ -627,16 +635,22 @@
   }
 
   function socialSection(kind, id, title) {
+    let localLikes = {};
+    try { localLikes = JSON.parse(localStorage.getItem('corosss_likes') || '{}'); } catch (_) {}
+    const isLiked = !!localLikes[`${kind}_${id}`];
+    const likeCount = globalLikes[`${kind}_${id}`] || 0;
+    const cCount = globalCommentsCount[`${kind}_${id}`] || 0;
+
     return `<div class="social-panel" data-social-kind="${kind}" data-social-id="${id}">
       <div class="social-buttons">
-        <button class="social-btn" type="button" onclick="toggleLike('${kind}','${id}',this)">♡ Like</button>
-        <button class="social-btn" type="button" onclick="toggleComments(this)">💬 Comment</button>
+        <button class="social-btn ${isLiked ? 'is-liked' : ''}" type="button" onclick="toggleLike('${kind}','${id}',this)">${isLiked ? '♥ Liked' : '♡ Like'} (${likeCount})</button>
+        <button class="social-btn" type="button" onclick="toggleComments(this)">💬 Comment (${cCount})</button>
         <button class="social-btn" type="button" onclick="shareItem('${id}','${escapeHtml(title)}')">🔗 Share</button>
       </div>
       <div class="social-comments hidden">
         <div class="social-comment-list"><div class="sub">Loading comments...</div></div>
         <form class="social-form" onsubmit="postComment(event,'${kind}','${id}')">
-          <input type="text" placeholder="Write a comment..." required maxlength="300">
+          <input type="text" placeholder="${currentUser ? 'Write a comment...' : 'Login to write a comment...'}" required maxlength="300" ${!currentUser ? 'onclick="requireLogin()"' : ''}>
           <button class="social-btn" type="submit">Post</button>
         </form>
       </div>
@@ -644,13 +658,22 @@
   }
 
   window.toggleLike = async (kind, id, btn) => {
+    if (!currentUser) {
+      requireLogin();
+      return;
+    }
     let likes = {};
     try { likes = JSON.parse(localStorage.getItem('corosss_likes') || '{}'); } catch (_) {}
     const key = `${kind}_${id}`;
     likes[key] = !likes[key];
     localStorage.setItem('corosss_likes', JSON.stringify(likes));
+    
+    // Update count state
+    globalLikes[key] = (globalLikes[key] || 0) + (likes[key] ? 1 : -1);
+    if (globalLikes[key] < 0) globalLikes[key] = 0;
+
     btn.classList.toggle('is-liked', likes[key]);
-    btn.textContent = likes[key] ? '♥ Liked' : '♡ Like';
+    btn.textContent = `${likes[key] ? '♥ Liked' : '♡ Like'} (${globalLikes[key]})`;
     renderLikedPlaylist();
   };
 
@@ -663,21 +686,33 @@
 
   async function loadComments(panel) {
     const kind = panel.dataset.socialKind, id = panel.dataset.socialId;
-    const { data } = await client.from('dj_comments').select('*').eq('item_kind', kind).eq('item_id', id).order('created_at', {ascending:false});
     const list = panel.querySelector('.social-comment-list');
-    if (!data || !data.length) { list.innerHTML = '<div class="sub">No comments yet.</div>'; return; }
+    if (!client) return;
+    const { data } = await client.from('dj_comments').select('*').eq('item_kind', kind).eq('item_id', id).order('created_at', {ascending:false});
+    if (!data || !data.length) { list.innerHTML = '<div class="sub">No comments yet. Be the first to comment!</div>'; return; }
     list.innerHTML = data.map(c => `<div class="social-comment"><b>${escapeHtml(c.username || 'User')}</b>: ${escapeHtml(c.text)}<time>${new Date(c.created_at).toLocaleTimeString()}</time></div>`).join('');
   }
 
   window.postComment = async (e, kind, id) => {
     e.preventDefault();
+    if (!currentUser) {
+      requireLogin();
+      return;
+    }
     const input = e.target.querySelector('input');
     const text = input.value.trim();
     if (!text) return;
-    const username = currentUser ? (currentUser.user_metadata?.display_name || currentUser.email.split('@')[0]) : 'Guest';
+    const username = currentUser.user_metadata?.display_name || currentUser.email.split('@')[0];
     await client.from('dj_comments').insert({ item_kind: kind, item_id: id, username, text });
     input.value = '';
-    loadComments(e.target.closest('.social-panel'));
+    
+    // Update Comment Count
+    globalCommentsCount[`${kind}_${id}`] = (globalCommentsCount[`${kind}_${id}`] || 0) + 1;
+    const panel = e.target.closest('.social-panel');
+    const commentBtn = panel.querySelectorAll('.social-btn')[1];
+    if (commentBtn) commentBtn.textContent = `💬 Comment (${globalCommentsCount[`${kind}_${id}`]})`;
+
+    loadComments(panel);
   };
 
   function updateStats() {
@@ -687,9 +722,24 @@
     if ($('statViews')) $('statViews').textContent = views.toLocaleString();
   }
 
+  async function loadSocialCounts() {
+    if (!client) return;
+    try {
+      const { data } = await client.from('dj_comments').select('item_kind, item_id');
+      if (data) {
+        globalCommentsCount = {};
+        data.forEach(c => {
+          const key = `${c.item_kind}_${c.item_id}`;
+          globalCommentsCount[key] = (globalCommentsCount[key] || 0) + 1;
+        });
+      }
+    } catch (_) {}
+  }
+
   async function loadLibrary() {
     if (!client) return;
     try {
+      await loadSocialCounts();
       const [audioRes, videoRes] = await Promise.all([
         client.from(AUDIO_TABLE).select('*').order('created_at', {ascending:false}),
         client.from(VIDEO_TABLE).select('*').order('created_at', {ascending:false})
@@ -866,6 +916,7 @@
           alert('Signed in successfully!');
         }
         updatePublicAuthUI();
+        loadLibrary();
       } catch (err) {
         alert(err.message);
       }
@@ -877,6 +928,7 @@
       await client.auth.signOut();
       currentUser = null;
       updatePublicAuthUI();
+      loadLibrary();
     });
   }
 
