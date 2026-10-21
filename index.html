@@ -443,6 +443,18 @@
     return `${currentUser ? currentUser.id : 'pub'}/${folder}/${Date.now()}-${safeFileName(file.name)}`;
   }
 
+  window.shareItem = (url, title) => {
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard!');
+      }).catch(() => {
+        prompt('Copy link:', url);
+      });
+    }
+  };
+
   function getLikedItems() {
     let saved = {};
     try { saved = JSON.parse(localStorage.getItem('corosss_likes') || '{}'); } catch (_) {}
@@ -514,7 +526,7 @@
         <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} plays</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
         <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
         <audio controls preload="none" data-kind="audio" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></audio>
-        ${socialSection('audio', item.id)}
+        ${socialSection('audio', item.id, src, item.title)}
         ${isAdmin ? `<div class="card-actions"><button class="btn btn-dark" type="button" onclick="renameItem('audio','${item.id}','${escapeHtml(item.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteItem('audio','${item.id}')">Delete</button></div>` : ''}
       </div>
     </article>`;
@@ -530,7 +542,7 @@
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
         <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} views</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
-        ${socialSection('video', item.id)}
+        ${socialSection('video', item.id, src, item.title)}
         ${isAdmin ? `<div class="card-actions"><button class="btn btn-dark" type="button" onclick="renameItem('video','${item.id}','${escapeHtml(item.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteItem('video','${item.id}')">Delete</button></div>` : ''}
       </div>
     </article>`;
@@ -595,11 +607,12 @@
     } catch (_) {}
   }
 
-  function socialSection(kind, id) {
+  function socialSection(kind, id, mediaUrl, title) {
     return `<div class="social-panel" data-social-kind="${kind}" data-social-id="${id}">
       <div class="social-buttons">
         <button class="social-btn" type="button" onclick="toggleLike('${kind}','${id}',this)">♡ Like</button>
         <button class="social-btn" type="button" onclick="toggleComments(this)">💬 Comment</button>
+        <button class="social-btn" type="button" onclick="shareItem('${escapeHtml(mediaUrl)}','${escapeHtml(title)}')">🔗 Share</button>
       </div>
       <div class="social-comments hidden">
         <div class="social-comment-list"><div class="sub">Loading comments...</div></div>
@@ -709,7 +722,8 @@
             <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
             <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
             <div class="card-actions" style="margin-top:10px">
-              <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ Get via Telegram</a>
+              <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="flex:1;text-align:center">✈️ Get via Telegram</a>
+              <button class="btn btn-dark" type="button" onclick="shareItem('${escapeHtml(demo)}','${escapeHtml(mix.title)}')">🔗 Share</button>
               ${isAdmin ? `<button class="btn btn-dark" type="button" onclick="renameItem('premium','${mix.id}','${escapeHtml(mix.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteMix('${mix.id}')">Delete</button>` : ''}
             </div>
           </div>
