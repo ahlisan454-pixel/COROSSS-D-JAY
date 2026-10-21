@@ -18,9 +18,30 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:80px}
-    body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20152b 0,transparent 32%),radial-gradient(ellipse at 95% 25%,#10242d 0,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+    
+    /* THEME DYNAMIC GLOW ANIMATION */
+    body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20152b 0,transparent 32%),radial-gradient(ellipse at 95% 25%,#10242d 0,transparent 30%),var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;min-height:100vh;overflow-x:hidden;animation:bgGlow 10s ease-in-out infinite alternate}
+    @keyframes bgGlow{
+      0%{filter:brightness(1)}
+      50%{filter:brightness(1.12)}
+      100%{filter:brightness(1)}
+    }
+
     body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;z-index:-1}
-    header,main,footer{position:relative;z-index:1}
+    
+    /* FLOATING BACKGROUND TEXT ANIMATION (DJ VIBES) */
+    .bg-text-animation{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;opacity:.07}
+    .floating-txt{position:absolute;font-family:Orbitron,sans-serif;font-weight:900;text-transform:uppercase;white-space:nowrap;animation:floatText 18s linear infinite}
+    .floating-txt:nth-child(1){top:10%;left:-20%;font-size:8vw;color:var(--gold);animation-duration:24s}
+    .floating-txt:nth-child(2){top:40%;right:-20%;font-size:7vw;color:var(--blue);animation-duration:20s;animation-direction:reverse}
+    .floating-txt:nth-child(3){top:75%;left:-10%;font-size:9vw;color:var(--pink);animation-duration:28s}
+    @keyframes floatText{
+      0%{transform:translateX(0) rotate(0deg)}
+      50%{transform:translateX(60vw) rotate(3deg)}
+      100%{transform:translateX(120vw) rotate(0deg)}
+    }
+
+    header,main,footer{position:relative;z-index:2}
     a{color:inherit;text-decoration:none}
     button,input,select,textarea{font:inherit}
     button{cursor:pointer}
@@ -88,12 +109,10 @@
     .is-playing .track-wave span,.is-premium-playing .track-wave span{animation-play-state:running}
     @keyframes waveDance{from{transform:scaleY(.2)}to{transform:scaleY(1.6)}}
 
-    /* AUDIO CARD LAYOUT */
     .card[data-kind="audio"]{display:flex;align-items:flex-start;gap:0;position:relative}
     .cover{height:80px;width:80px;flex:0 0 80px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:10px;margin:10px 0 10px 10px;transition:all .3s ease}
     .cover img{width:100%;height:100%;object-fit:cover;display:block}
     
-    /* VIDEO CARD UPDATED DESIGN (YOUTUBE STYLE) */
     .card[data-kind="video"]{display:flex;flex-direction:column;position:relative}
     .video-wrapper{position:relative;width:100%;background:#000;border-radius:14px 14px 0 0;overflow:hidden;aspect-ratio:16/9;max-height:360px}
     .video-wrapper video{width:100%;height:100%;object-fit:contain;display:block;outline:none}
@@ -162,6 +181,13 @@
   </style>
 </head>
 <body>
+  <!-- FLOATING BACKGROUND ANIMATED TEXTS -->
+  <div class="bg-text-animation" aria-hidden="true">
+    <div class="floating-txt">COROSSS CLOUD</div>
+    <div class="floating-txt">DJ LISAN</div>
+    <div class="floating-txt">OFFBEAT MIXES</div>
+  </div>
+
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="COROSSS CLOUD home">
@@ -356,6 +382,8 @@
       <span>CÖRÖSSS ÖFFB3AT · Built for music lovers ✦</span>
     </div>
   </footer>
+  
+<script>
 <script>
 (() => {
   'use strict';
