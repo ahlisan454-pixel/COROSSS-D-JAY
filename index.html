@@ -74,7 +74,7 @@
     .field:focus,.select:focus{border-color:#f4c95d99}
     .search{flex:1;min-width:170px}
     .select option{background:#111119}
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:920px;margin-inline:auto}
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:920px;margin-inline:auto}
     
     .card{background:linear-gradient(160deg,#171722,#0e0e15);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-width:0;transition:all .3s ease}
     .card:hover{border-color:#f4c95d50}
@@ -88,28 +88,23 @@
     .is-playing .track-wave span,.is-premium-playing .track-wave span{animation-play-state:running}
     @keyframes waveDance{from{transform:scaleY(.2)}to{transform:scaleY(1.6)}}
 
+    /* AUDIO CARD LAYOUT */
+    .card[data-kind="audio"]{display:flex;align-items:flex-start;gap:0;position:relative}
     .cover{height:80px;width:80px;flex:0 0 80px;background:radial-gradient(circle at 50% 40%,#43304f,#12121b 65%);position:relative;display:grid;place-items:center;overflow:hidden;border-radius:10px;margin:10px 0 10px 10px;transition:all .3s ease}
     .cover img{width:100%;height:100%;object-fit:cover;display:block}
-    .card[data-kind="audio"],.card[data-kind="video"]{display:flex;align-items:flex-start;gap:0;position:relative}
-    .card-body{padding:10px 12px;flex:1;min-width:0}
     
-    /* YOUTUBE STYLE VIDEO EXPANSION & CONTAINER */
-    .card[data-kind="video"] .cover{width:160px;height:100px;flex-basis:160px;background:#000;margin:10px}
-    .card[data-kind="video"].is-playing{flex-direction:column}
-    .card[data-kind="video"].is-playing .cover{width:100%;height:230px;flex-basis:auto;margin:0;border-radius:0}
-    .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover;display:block;outline:none}
+    /* VIDEO CARD UPDATED DESIGN (YOUTUBE STYLE) */
+    .card[data-kind="video"]{display:flex;flex-direction:column;position:relative}
+    .video-wrapper{position:relative;width:100%;background:#000;border-radius:14px 14px 0 0;overflow:hidden;aspect-ratio:16/9;max-height:360px}
+    .video-wrapper video{width:100%;height:100%;object-fit:contain;display:block;outline:none}
 
-    /* CENTERED BIG PLAY BUTTON OVERLAY */
-    .video-overlay-btn{position:absolute;inset:0;background:rgba(0,0,0,0.35);display:grid;place-items:center;cursor:pointer;transition:background .2s;z-index:3}
-    .video-overlay-btn span{width:46px;height:46px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:900;box-shadow:0 4px 15px #f4c95d40;transition:transform .2s}
-    .video-overlay-btn:hover span{transform:scale(1.1)}
-    .card.is-playing .video-overlay-btn{display:none}
+    .card-body{padding:12px 14px;flex:1;min-width:0}
 
-    .badge{position:absolute;top:6px;left:6px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:2px 6px;font-size:8px;color:var(--gold2);letter-spacing:1px;pointer-events:none;z-index:4}
+    .badge{position:absolute;top:10px;left:10px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:3px 8px;font-size:9px;color:var(--gold2);letter-spacing:1px;pointer-events:none;z-index:2;font-weight:700}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
     .card-title{font-weight:700;font-size:14px;line-height:1.35;overflow-wrap:anywhere;margin:0 0 5px}
     .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-bottom:8px}
-    audio{width:100%;height:32px;display:block}
+    audio{width:100%;height:36px;display:block}
     .card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
     .card-actions .btn{font-size:10px;padding:6px 9px}
     .empty{grid-column:1/-1;text-align:center;padding:28px 14px;border:1px dashed #ffffff25;border-radius:14px;color:var(--muted);font-size:12px}
@@ -487,10 +482,9 @@
   function videoCard(item) {
     const src = publicUrl(VIDEO_BUCKET, item.storage_path);
     return `<article class="card" data-kind="video" data-card="${escapeHtml(item.id)}">
-      <div class="cover">
+      <div class="video-wrapper">
         <span class="badge">VIDEO</span>
-        <video controls controlsList="nodownload" preload="metadata" data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></video>
-        <div class="video-overlay-btn" onclick="playVideoCard(this)"><span>▶</span></div>
+        <video controls preload="metadata" data-kind="video" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></video>
       </div>
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(item.title)}</h3>
@@ -500,14 +494,6 @@
       </div>
     </article>`;
   }
-
-  window.playVideoCard = (overlayEl) => {
-    const card = overlayEl.closest('.card');
-    const vid = card.querySelector('video');
-    if (vid) {
-      vid.play();
-    }
-  };
 
   function pauseAllOthers(currentMedia) {
     document.querySelectorAll('audio, video').forEach(media => {
