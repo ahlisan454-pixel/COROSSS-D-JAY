@@ -44,6 +44,7 @@
     .btn-danger{color:#fff;background:#d83c58}
     .btn-blue{color:#071116;background:linear-gradient(135deg,#a0f2ff,var(--blue))}
     .btn-pink{color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple))}
+    .btn-telegram{color:#fff;background:linear-gradient(135deg,#24a1de,#229ed9);box-shadow:0 8px 24px #24a1de30}
     .hero{padding:78px 0 56px;position:relative;overflow:hidden}
     .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:42px}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #f4c95d55;color:var(--gold2);background:#f4c95d0c;border-radius:99px;padding:8px 13px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
@@ -61,7 +62,7 @@
     .bars{position:absolute;bottom:5px;display:flex;gap:5px;align-items:center;height:44px}
     .bars span{width:5px;border-radius:9px;background:linear-gradient(var(--blue),var(--pink));animation:bars 1s ease-in-out infinite alternate}
     .bars span:nth-child(3n){animation-delay:.2s}.bars span:nth-child(2n){animation-delay:.4s}
-    @keyframes bars{from{height:8px}to{height:38px}} @keyframes vinylSpin{to{transform:rotate(360deg)}} @keyframes float{50%{transform:translateY(-9px)}}
+    @keyframes bars{from{height:8px}to{height:38px}} @keyframes vinylSpin{to{transform:rotate(360deg)}}
     .section{padding:44px 0 64px}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:24px}
     .kicker{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:9px}
@@ -86,18 +87,12 @@
     .card-body{padding:14px 16px;flex:1;min-width:0}
     .card[data-kind="video"] .cover{width:176px;height:99px;flex-basis:176px}
     .card[data-kind="video"] video{width:100%;height:100%;object-fit:cover}
-    .card.is-expanded{display:block;animation:expandCard .24s ease-out}
-    .card.is-expanded[data-kind="video"]{max-width:640px;width:100%;margin-inline:auto}
-    .card.is-expanded[data-kind="video"] .cover{width:100%;height:auto;aspect-ratio:16/9;max-height:360px;margin:0 auto;border-radius:12px 12px 0 0;flex-basis:auto;background:#000}
-    @keyframes expandCard{from{opacity:.8;transform:translateY(5px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
-    .cover-fallback{font:900 36px Orbitron,sans-serif;color:var(--gold);text-shadow:0 0 24px #f4c95d44}
     .badge{position:absolute;top:12px;left:12px;border:1px solid #ffffff30;background:#08080dcc;border-radius:99px;padding:5px 9px;font-size:10px;color:var(--gold2);letter-spacing:1px}
     .badge-premium{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none}
     .card-title{font-weight:700;font-size:16px;line-height:1.45;overflow-wrap:anywhere;margin:0 0 7px}
     .meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:14px}
     audio{width:100%;height:38px;display:block;filter:drop-shadow(0 0 8px #f4c95d12)}
     video{width:100%;max-height:280px;display:block;background:#000}
-    .player-hint{font-size:10px;color:var(--muted);margin-top:5px}
     .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
     .card-actions .btn{font-size:11px;padding:8px 10px}
     .empty{grid-column:1/-1;text-align:center;padding:40px 18px;border:1px dashed #ffffff25;border-radius:18px;color:var(--muted)}
@@ -122,6 +117,19 @@
     .stat b{display:block;font:800 23px Orbitron,sans-serif;color:var(--gold)}
     .stat span{font-size:11px;color:var(--muted)}
 
+    /* SoundCloud Style Playlist & Profile Styling */
+    .soundcloud-playlist{margin:28px 0;border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:linear-gradient(135deg,#14141d,#0a0a0f);box-shadow:var(--shadow)}
+    .soundcloud-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:12px}
+    .soundcloud-playlist-head h3{font:800 18px Orbitron,sans-serif;color:var(--gold2);margin:0;display:flex;align-items:center;gap:8px}
+    .soundcloud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+    .sc-card{background:#181824;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;position:relative}
+    .sc-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:#000}
+    .sc-card-title{font-size:13px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sc-card-type{font-size:10px;color:var(--gold);text-transform:uppercase;font-weight:700}
+
+    .user-profile-card{display:flex;align-items:center;gap:18px;background:#171722;border:1px solid var(--gold);padding:20px;border-radius:var(--radius);margin-top:15px}
+    .user-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#222;display:grid;place-items:center;font-size:28px;color:var(--gold)}
+
     .social-panel{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);min-width:0}
     .social-buttons{display:flex;gap:8px;flex-wrap:wrap}
     .social-btn{border:1px solid #ffffff22;background:#ffffff09;color:var(--text);border-radius:10px;padding:8px 11px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
@@ -133,32 +141,12 @@
     .social-comment time{display:block;color:var(--muted);font-size:10px;margin-top:4px}
     .social-form{display:flex;gap:7px;align-items:stretch}
     .social-form input{flex:1;min-width:0;background:#111119;border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text);outline:none;font-size:12px}
-    .social-note{color:var(--muted);font-size:11px;margin:6px 0 0}
-    .liked-playlist{margin:18px 0 22px;border:1px solid #f4c95d40;border-radius:16px;padding:16px;background:linear-gradient(135deg,#f4c95d0b,#ffffff03)}
-    .liked-playlist-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-    .liked-playlist h3{font:700 15px Orbitron,sans-serif;color:var(--gold2);margin:0}
-    .liked-playlist-note{font-size:11px;color:var(--muted);margin:5px 0 12px}
-    .liked-playlist-list{display:grid;gap:8px}
-    .liked-playlist-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#ffffff05}
-    .liked-playlist-item strong{display:block;font-size:12px;overflow-wrap:anywhere}
-    .liked-playlist-item small{color:var(--muted);font-size:10px}
-    .liked-playlist-empty{font-size:12px;color:var(--muted);padding:8px 0}
     .hidden{display:none!important}
     footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
     .footer-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:250px}.disc{width:220px}.orbit{width:270px}.admin-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="ambient-bg" aria-hidden="true">
-    <span class="ambient-logo" style="--x:8%;--y:74%;--size:28px;--duration:24s;--delay:-8s;--color:#f4c95d">♫</span>
-    <span class="ambient-logo" style="--x:83%;--y:79%;--size:21px;--duration:27s;--delay:-15s;--color:#38d9ff">DJ</span>
-    <span class="ambient-logo" style="--x:72%;--y:35%;--size:25px;--duration:22s;--delay:-4s;--color:#9b65ff">♪</span>
-    <span class="ambient-logo" style="--x:24%;--y:42%;--size:16px;--duration:29s;--delay:-20s;--color:#ff3cc7">BASS</span>
-    <span class="ambient-logo" style="--x:48%;--y:86%;--size:19px;--duration:25s;--delay:-11s;--color:#f4c95d">COROSSS</span>
-    <span class="ambient-logo" style="--x:91%;--y:17%;--size:23px;--duration:31s;--delay:-22s;--color:#38d9ff">♫</span>
-  </div>
-
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="COROSSS CLOUD home">
@@ -166,10 +154,9 @@
       </a>
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#library">Music & Videos</a>
+        <a href="#liked-section">♥ Liked Playlist</a>
         <a href="#premium-section">Premium Mixes</a>
-        <a href="#community">Community</a>
-        <a href="#admin">Admin</a>
-        <button id="navLoginBtn" class="btn btn-gold" type="button" onclick="document.getElementById('admin').scrollIntoView({behavior:'smooth'})">ADMIN LOGIN</button>
+        <a href="#community">Profile & Community</a>
       </nav>
     </div>
   </header>
@@ -183,8 +170,9 @@
           <h1>FEEL THE BASS.<br><span class="gradient-text">OWN THE VIBE.</span></h1>
           <p>Welcome to COROSSS CLOUD — your place for DJ mixes, music drops and video sessions. Press play, turn up the energy, and enjoy the sound.</p>
           <div class="hero-actions">
-            <a class="btn btn-gold" href="#library">▶ Explore the Library</a>
+            <a class="btn btn-gold" href="#library">▶ Explore Library</a>
             <a class="btn btn-pink" href="#premium-section">🔥 Premium Mixes</a>
+            <a class="btn btn-telegram" href="https://t.me/corossscloud" target="_blank">✈️ Telegram Chat</a>
           </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
@@ -199,29 +187,38 @@
     <section class="section" id="library">
       <div class="wrap">
         <div class="section-head">
-          <div><div class="kicker">The collection</div><h2>Music & Videos</h2><div class="sub">Play music and watch videos with wave animations & interactive features.</div></div>
+          <div><div class="kicker">The collection</div><h2>Music & Videos</h2><div class="sub">Play music and watch videos.</div></div>
         </div>
         <div id="globalStatus" class="status" role="status"></div>
         <div class="library-tools">
-          <input class="field search" id="searchInput" type="search" placeholder="Search music or videos..." aria-label="Search music or videos">
-          <select class="select" id="typeFilter" aria-label="Filter content type">
+          <input class="field search" id="searchInput" type="search" placeholder="Search music or videos...">
+          <select class="select" id="typeFilter">
             <option value="all">All content</option>
             <option value="audio">Music only</option>
             <option value="video">Videos only</option>
           </select>
-          <select class="select" id="sortFilter" aria-label="Sort content">
+          <select class="select" id="sortFilter">
             <option value="newest">Newest first</option>
             <option value="popular">Most played</option>
             <option value="az">Title A–Z</option>
           </select>
         </div>
-        <section class="liked-playlist" id="likedPlaylist" aria-label="Your liked playlist">
-          <div class="liked-playlist-head"><h3>♥ YOUR LIKED PLAYLIST</h3><span class="sub" id="likedPlaylistCount">0 items</span></div>
-          <p class="liked-playlist-note">Audio and videos you like appear here on this browser. Tap “Open” to play them from the library.</p>
-          <div class="liked-playlist-list" id="likedPlaylistList"><div class="liked-playlist-empty">Like a track or video to start your playlist.</div></div>
-        </section>
-        <div id="libraryGrid" class="grid">
-          <div class="empty">Loading the DJ library…</div>
+        <div id="libraryGrid" class="grid"><div class="empty">Loading the DJ library…</div></div>
+      </div>
+    </section>
+
+    <!-- SOUNDCLOUD STYLE LIKED PLAYLIST SECTION -->
+    <section class="section" id="liked-section">
+      <div class="wrap">
+        <div class="soundcloud-playlist">
+          <div class="soundcloud-playlist-head">
+            <h3><span>🧡</span> SOUNDCLOUD-STYLE LIKED PLAYLIST</h3>
+            <span class="sub" id="likedCount">0 items saved</span>
+          </div>
+          <p class="sub" style="margin-bottom:18px">Your liked tracks and videos are saved in your personal browser library below:</p>
+          <div class="soundcloud-grid" id="likedPlaylistGrid">
+            <div class="empty">No liked tracks yet. Like any song or video to build your playlist!</div>
+          </div>
         </div>
       </div>
     </section>
@@ -230,69 +227,54 @@
     <section class="section" id="premium-section">
       <div class="wrap">
         <div class="section-head">
-          <div><div class="kicker">Exclusive DJ Collection</div><h2>Premium Mixes</h2><div class="sub">Listen to demos and chat directly with DJ Lisan.</div></div>
+          <div><div class="kicker">Exclusive DJ Collection</div><h2>Premium Mixes</h2><div class="sub">Listen to demos and buy instantly via Telegram.</div></div>
         </div>
         <div id="pmStatus" class="status" role="status"></div>
         <div id="pmGrid" class="grid-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
           <div class="empty">Loading premium mixes…</div>
         </div>
-
-        <!-- CUSTOMER CHAT & INBOX SECTION -->
-        <div class="admin-shell" style="margin-top:28px">
-          <h3 style="font-family:Orbitron">💬 Customer Inbox & Private Chat</h3>
-          <p class="sub">Verify your email to view your purchase requests and chat with DJ Lisan.</p>
-          <form id="pmEmailForm" class="stack">
-            <label>Your Email Address<input class="field" id="pmEmail" type="email" autocomplete="email" required placeholder="Enter your email"></label>
-            <button class="btn btn-gold" type="submit">Send Verification Code</button>
-          </form>
-          <form id="pmOtpForm" class="stack hidden" style="margin-top:12px">
-            <label>Verification Code (OTP)<input class="field" id="pmOtp" inputmode="numeric" autocomplete="one-time-code" required placeholder="Enter code"></label>
-            <button class="btn btn-gold" type="submit">Verify Code & Open Inbox</button>
-          </form>
-          <div id="pmConversations" class="stack" style="margin-top:18px"></div>
-          <div id="pmChat" class="hidden" style="margin-top:18px">
-            <h4 id="pmChatTitle" style="color:var(--gold)">Conversation</h4>
-            <div id="pmMessages" class="stack" style="max-height:300px;overflow-y:auto;margin:12px 0;background:#08080d;padding:12px;border-radius:12px"></div>
-            <form id="pmMessageForm" class="stack">
-              <label>Message<textarea class="field" name="body" rows="3" maxlength="3000" required placeholder="Type your message..."></textarea></label>
-              <button class="btn btn-gold" type="submit">Send Message</button>
-            </form>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- COMMUNITY & PROFILE SECTION -->
+    <!-- COMMUNITY & LISTENER PROFILE SECTION -->
     <section class="section" id="community">
       <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Stay connected</div><h2>Join the Community & Profile</h2><div class="sub">Follow the latest mixes and manage your listener account.</div></div></div>
+        <div class="section-head"><div><div class="kicker">Listener Hub</div><h2>User Profile & Community</h2><div class="sub">Manage your account profile and connect with us.</div></div></div>
         <div class="community">
           <div class="community-box">
-            <div class="kicker">New drops</div>
-            <h3>Fresh sound, fresh energy.</h3>
-            <p>Check back for new DJ mixes, video uploads and music releases from COROSSS CLOUD.</p>
-            <a class="btn btn-gold" href="#library">Listen now →</a>
+            <div class="kicker">Direct Contact</div>
+            <h3>Chat on Telegram</h3>
+            <p>Have questions about mixes or custom bookings? Reach out to DJ Lisan directly on Telegram.</p>
+            <a class="btn btn-telegram" href="https://t.me/corossscloud" target="_blank" style="margin-top:12px">✈️ Open Telegram</a>
           </div>
-          <div class="community-box">
-            <div class="kicker">Social links</div>
-            <h3>Find your next vibe.</h3>
-            <p>Add your official YouTube, Facebook, Instagram or other social profile links here when you are ready.</p>
-            <div class="hero-actions"><a class="btn btn-dark" href="#admin">Manage website</a></div>
-          </div>
+
+          <!-- USER LISTENER PROFILE PANEL -->
           <div class="community-box public-auth-box" id="publicAccount">
-            <div class="kicker">Listener profile</div>
-            <h3 id="publicAuthHeading">Public Login / Sign Up</h3>
-            <p class="sub">Create a listener account or sign in to save preferences and interact.</p>
+            <div class="kicker">Listener Account</div>
+            <h3 id="publicAuthHeading">Listener Sign In / Sign Up</h3>
             <div id="publicAuthStatus" class="status" role="status"></div>
+            
             <form id="publicAuthForm" class="stack">
               <label>Email<input id="publicAuthEmail" class="field" type="email" autocomplete="email" required placeholder="Your email address"></label>
               <label>Password<input id="publicAuthPassword" class="field" type="password" autocomplete="new-password" minlength="6" required placeholder="At least 6 characters"></label>
               <button class="btn btn-gold" type="submit" id="publicAuthSubmit">Create account</button>
               <button class="btn btn-dark" type="button" id="publicAuthToggle">Already have an account? Sign in</button>
             </form>
+
             <div id="publicAccountSignedIn" class="hidden">
-              <p id="publicSignedInText" class="sub"></p>
-              <button class="btn btn-dark" type="button" id="publicLogoutBtn">Sign out</button>
+              <div class="user-profile-card">
+                <img id="userAvatarImg" class="user-avatar" src="" alt="Avatar" onerror="this.src='https://via.placeholder.com/70/f4c95d/000000?text=USER'">
+                <div style="flex:1">
+                  <h4 id="userDisplayName" style="margin:0;color:var(--gold2)">Listener</h4>
+                  <p id="publicSignedInText" class="sub" style="margin:4px 0 10px"></p>
+                </div>
+              </div>
+              <form id="profileUpdateForm" class="stack" style="margin-top:15px">
+                <label>Display Name<input id="profileNameInput" class="field" type="text" placeholder="Enter your name"></label>
+                <label>Profile Picture (Image)<input id="profileAvatarInput" class="field" type="file" accept="image/*"></label>
+                <button class="btn btn-gold" type="submit">Update Profile</button>
+              </form>
+              <button class="btn btn-dark" type="button" id="publicLogoutBtn" style="margin-top:12px;width:100%">Sign out</button>
             </div>
           </div>
         </div>
@@ -300,18 +282,17 @@
     </section>
 
     <!-- ADMIN STUDIO SECTION -->
-    <section class="section" id="admin">
+    <section class="section" id="admin" style="border-top:1px dashed var(--line);margin-top:40px">
       <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Restricted access</div><h2>Admin Studio</h2><div class="sub">Only authorized admin account can manage uploads and mixes.</div></div></div>
+        <div class="section-head"><div><div class="kicker">Restricted Access</div><h2>Admin Studio</h2><div class="sub">Website owner dashboard for uploads and content management.</div></div></div>
+        
         <div id="loginPanel" class="admin-shell admin-login">
           <h3 style="font-family:Orbitron;margin-top:0">Admin Login</h3>
-          <p class="sub">Sign in with the admin account configured for this website.</p>
           <div id="loginStatus" class="status" role="status"></div>
           <form id="loginForm" class="stack">
-            <label>Email<input id="loginEmail" class="field" type="email" autocomplete="username" required placeholder="Admin email"></label>
-            <label>Password<input id="loginPassword" class="field" type="password" autocomplete="current-password" required placeholder="Password"></label>
-            <button class="btn btn-gold" type="submit">Sign in</button>
-            <button class="btn btn-dark" type="button" id="resetPasswordBtn">Send password reset email</button>
+            <label>Admin Email<input id="loginEmail" class="field" type="email" required placeholder="Admin email"></label>
+            <label>Password<input id="loginPassword" class="field" type="password" required placeholder="Password"></label>
+            <button class="btn btn-gold" type="submit">Sign in as Admin</button>
           </form>
         </div>
 
@@ -329,7 +310,7 @@
             <h4>🔥 Upload Premium Mix</h4>
             <form id="pmUpload" class="stack">
               <label>Mix Title<input class="field" name="title" maxlength="150" required placeholder="Enter mix title"></label>
-              <label>Price ($)<input class="field" name="price" type="number" min="0" step="0.01" required placeholder="10.00"></label>
+              <label>Price (৳)<input class="field" name="price" type="number" min="0" step="1" required placeholder="500"></label>
               <label>Thumbnail Image<input class="field" name="cover" type="file" accept="image/*" required></label>
               <label>Demo Audio (Public)<input class="field" name="demo" type="file" accept="audio/*" required></label>
               <label>Full Mix File (Private)<input class="field" name="full" type="file" accept="audio/*" required></label>
@@ -341,14 +322,14 @@
             <form id="audioUploadForm" class="admin-box stack">
               <h4>🎵 Upload a music track</h4>
               <label>Track title<input id="audioTitle" class="field" type="text" maxlength="150" required placeholder="Enter track title"></label>
-              <label>Audio file<input id="audioFile" class="field" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" required></label>
-              <label>Track thumbnail (separate image)<input id="audioCover" class="field" type="file" accept="image/*" required></label>
-              <button class="btn btn-gold" type="submit">Upload music + thumbnail</button>
+              <label>Audio file<input id="audioFile" class="field" type="file" accept="audio/*" required></label>
+              <label>Track thumbnail<input id="audioCover" class="field" type="file" accept="image/*" required></label>
+              <button class="btn btn-gold" type="submit">Upload music</button>
             </form>
             <form id="videoUploadForm" class="admin-box stack">
               <h4>🎬 Upload a video</h4>
               <label>Video title<input id="videoTitle" class="field" type="text" maxlength="150" required placeholder="Enter video title"></label>
-              <label>Video file<input id="videoFile" class="field" type="file" accept="video/*,.mp4,.webm,.mov,.m4v" required></label>
+              <label>Video file<input id="videoFile" class="field" type="file" accept="video/*" required></label>
               <button class="btn btn-blue" type="submit">Upload video</button>
             </form>
           </div>
@@ -371,6 +352,8 @@
   const SUPABASE_URL = 'https://odwyrnncykhjlqgkwnjk.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_Fh4SjWXiHWdZXNbfgojXBg_y1CA4guJ';
   const ADMIN_USER_ID = '61187c1a-8f1b-48b0-893c-77136be5422a';
+  const TELEGRAM_LINK = 'https://t.me/corossscloud';
+  
   const AUDIO_BUCKET = 'dj-audio';
   const VIDEO_BUCKET = 'dj-videos';
   const AUDIO_TABLE = 'dj_audio';
@@ -386,8 +369,6 @@
   let audioItems = [];
   let videoItems = [];
   let combinedItems = [];
-  let activeConversation = null;
-  let liveChannel = null;
 
   $('year').textContent = new Date().getFullYear();
 
@@ -395,16 +376,6 @@
     if (!el) return;
     el.textContent = message;
     el.className = 'status show ' + kind;
-  }
-  function hideStatus(el) { if (el) { el.textContent = ''; el.className = 'status'; } }
-  function globalMessage(message, kind = 'info') { showStatus($('globalStatus'), message, kind); }
-  function adminMessage(message, kind = 'info') { showStatus($('adminStatus'), message, kind); }
-  function loginMessage(message, kind = 'info') { showStatus($('loginStatus'), message, kind); }
-  
-  function friendlyError(error) {
-    const msg = error && (error.message || error.error_description) ? (error.message || error.error_description) : String(error || 'Unknown error');
-    if (/Invalid login credentials/i.test(msg)) return 'Login failed. Check the admin email and password.';
-    return msg;
   }
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -428,21 +399,31 @@
 
   function getLikedItems() {
     let saved = {};
-    try { saved = JSON.parse(localStorage.getItem('corosssCloudLikedItems') || '{}'); } catch (_) {}
-    return combinedItems.filter(item => !!saved[`${item.kind}:${item.id}`]);
+    try { saved = JSON.parse(localStorage.getItem('corosss_likes') || '{}'); } catch (_) {}
+    return combinedItems.filter(item => !!saved[`${item.kind}_${item.id}`]);
   }
 
   function renderLikedPlaylist() {
-    const list = $('likedPlaylistList');
-    const count = $('likedPlaylistCount');
-    if (!list || !count) return;
+    const grid = $('likedPlaylistGrid');
+    const count = $('likedCount');
+    if (!grid || !count) return;
     const liked = getLikedItems();
-    count.textContent = `${liked.length} items`;
+    count.textContent = `${liked.length} saved`;
     if (!liked.length) {
-      list.innerHTML = '<div class="liked-playlist-empty">Like a track or video to start your playlist.</div>';
+      grid.innerHTML = '<div class="empty">No liked tracks yet. Like any song or video to build your playlist!</div>';
       return;
     }
-    list.innerHTML = liked.map(item => `<div class="liked-playlist-item"><div><strong>${item.kind === 'audio' ? '♫' : '▶'} ${escapeHtml(item.title || 'Untitled')}</strong><small>${item.kind.toUpperCase()}</small></div><button class="btn btn-dark" type="button" onclick="document.querySelector('[data-card=\\'${item.id}\\']')?.scrollIntoView({behavior:'smooth'})">Open</button></div>`).join('');
+    grid.innerHTML = liked.map(item => {
+      const cover = item.kind === 'audio' 
+        ? publicUrl(AUDIO_BUCKET, item.thumbnail_path)
+        : 'https://via.placeholder.com/150/171722/38d9ff?text=VIDEO';
+      return `<div class="sc-card">
+        <img src="${escapeHtml(cover)}" alt="">
+        <div class="sc-card-type">${item.kind}</div>
+        <div class="sc-card-title">${escapeHtml(item.title)}</div>
+        <button class="btn btn-gold" style="font-size:10px;padding:6px 8px;margin-top:auto" onclick="document.querySelector('[data-card=\\'${item.id}\\']')?.scrollIntoView({behavior:'smooth'})">▶ Play</button>
+      </div>`;
+    }).join('');
   }
 
   function render() {
@@ -504,7 +485,6 @@
       <div class="social-buttons">
         <button class="social-btn" type="button" onclick="toggleLike('${kind}','${id}',this)">♡ Like</button>
         <button class="social-btn" type="button" onclick="toggleComments(this)">💬 Comment</button>
-        <button class="social-btn" type="button" onclick="shareItem('${kind}','${id}')">↗ Share</button>
       </div>
       <div class="social-comments hidden">
         <div class="social-comment-list"><div class="sub">Loading comments...</div></div>
@@ -536,8 +516,8 @@
 
   async function loadComments(panel) {
     const kind = panel.dataset.socialKind, id = panel.dataset.socialId;
-    const list = panel.querySelector('.social-comment-list');
     const { data } = await client.from('dj_comments').select('*').eq('item_kind', kind).eq('item_id', id).order('created_at', {ascending:false});
+    const list = panel.querySelector('.social-comment-list');
     if (!data || !data.length) { list.innerHTML = '<div class="sub">No comments yet.</div>'; return; }
     list.innerHTML = data.map(c => `<div class="social-comment"><b>${escapeHtml(c.username || 'User')}</b>: ${escapeHtml(c.text)}<time>${new Date(c.created_at).toLocaleTimeString()}</time></div>`).join('');
   }
@@ -547,16 +527,10 @@
     const input = e.target.querySelector('input');
     const text = input.value.trim();
     if (!text) return;
-    const username = currentUser ? (currentUser.user_metadata?.username || currentUser.email.split('@')[0]) : 'Guest';
+    const username = currentUser ? (currentUser.user_metadata?.display_name || currentUser.email.split('@')[0]) : 'Guest';
     await client.from('dj_comments').insert({ item_kind: kind, item_id: id, username, text });
     input.value = '';
     loadComments(e.target.closest('.social-panel'));
-  };
-
-  window.shareItem = (kind, id) => {
-    const url = window.location.href.split('#')[0] + `#${kind}-${id}`;
-    navigator.clipboard?.writeText(url);
-    alert('Link copied to clipboard!');
   };
 
   function bindCardActions() {
@@ -569,19 +543,6 @@
         btn.classList.add('is-liked');
         btn.textContent = '♥ Liked';
       }
-    });
-    document.querySelectorAll('audio[data-kind="audio"]').forEach(el => {
-      el.addEventListener('play', () => {
-        document.querySelectorAll('audio[data-kind="audio"]').forEach(other => { if (other !== el) { other.pause(); other.closest('.card')?.classList.remove('is-playing'); } });
-        el.closest('.card')?.classList.add('is-playing', 'is-expanded');
-        recordPlay('audio', el.dataset.id);
-      }, {once:true});
-    });
-    document.querySelectorAll('video[data-kind="video"]').forEach(el => {
-      el.addEventListener('play', () => {
-        el.closest('.card')?.classList.add('is-playing', 'is-expanded');
-        recordPlay('video', el.dataset.id);
-      }, {once:true});
     });
   }
 
@@ -607,19 +568,7 @@
     render();
   }
 
-  async function recordPlay(kind, id) {
-    if (!client) return;
-    const table = kind === 'audio' ? AUDIO_TABLE : VIDEO_TABLE;
-    const item = (kind === 'audio' ? audioItems : videoItems).find(x => String(x.id) === String(id));
-    if (item) {
-      const views = Number(item.views || 0) + 1;
-      await client.from(table).update({ views }).eq('id', id);
-      item.views = views;
-      updateStats();
-    }
-  }
-
-  // --- PREMIUM MIXES & INBOX CHAT SYSTEM ---
+  // --- PREMIUM MIXES ---
   async function loadMixes() {
     const { data, error } = await client.from('premium_mixes').select('*').order('created_at', { ascending: false });
     const grid = $('pmGrid');
@@ -634,105 +583,16 @@
         <div style="position:relative;height:160px;background:#000"><img src="${escapeHtml(cover)}" style="width:100%;height:100%;object-fit:cover"><span class="badge badge-premium">PREMIUM MIX</span></div>
         <div class="card-body">
           <h3 class="card-title">${escapeHtml(mix.title)}</h3>
-          <p style="color:var(--gold);font-weight:700">Price: $${escapeHtml(mix.price || '0.00')}</p>
+          <p style="color:var(--gold);font-weight:700">Price: ৳${escapeHtml(mix.price || '0')}</p>
           <audio controls preload="none" src="${escapeHtml(demo)}" style="width:100%"></audio>
           <div class="card-actions" style="margin-top:12px">
-            <button class="btn btn-gold" type="button" style="width:100%" onclick="startMixChat('${mix.id}')">🛒 BUY NOW / Chat</button>
+            <a class="btn btn-telegram" href="${TELEGRAM_LINK}" target="_blank" style="width:100%;text-align:center">✈️ BUY NOW via Telegram</a>
             ${isAdmin ? `<button class="btn btn-danger" type="button" onclick="deleteMix('${mix.id}')" style="width:100%;margin-top:6px">Delete Mix</button>` : ''}
           </div>
         </div>
       </article>`;
     }).join('');
   }
-
-  window.startMixChat = async (mixId) => {
-    if (!currentUser) {
-      $('pmEmail').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      $('pmEmail').focus();
-      showStatus($('pmStatus'), 'Age uporer email box-e email verify koro, tarpor BUY NOW click koro.', 'info');
-      return;
-    }
-    try {
-      let { data: conv } = await client.from('premium_conversations').select('*').eq('customer_id', currentUser.id).eq('mix_id', mixId).maybeSingle();
-      if (!conv) {
-        const res = await client.from('premium_conversations').insert({ customer_id: currentUser.id, mix_id: mixId }).select().single();
-        conv = res.data;
-      }
-      await openChat(conv);
-      showStatus($('pmStatus'), 'Chat opened successfully.', 'ok');
-    } catch (e) {
-      showStatus($('pmStatus'), 'Could not open chat: ' + e.message, 'error');
-    }
-  };
-
-  $('pmEmailForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const email = $('pmEmail').value.trim();
-    const { error } = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
-    if (error) showStatus($('pmStatus'), error.message, 'error');
-    else {
-      $('pmOtpForm').classList.remove('hidden');
-      showStatus($('pmStatus'), 'Verification code sent to your email. Enter it below.', 'ok');
-    }
-  });
-
-  $('pmOtpForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const email = $('pmEmail').value.trim();
-    const token = $('pmOtp').value.trim();
-    const { data, error } = await client.auth.verifyOtp({ email, token, type: 'email' });
-    if (error) showStatus($('pmStatus'), error.message, 'error');
-    else {
-      currentUser = data.user;
-      showStatus($('pmStatus'), 'Email verified successfully!', 'ok');
-      loadConversations();
-    }
-  });
-
-  async function loadConversations() {
-    if (!currentUser) return;
-    const { data } = await client.from('premium_conversations').select('*').order('created_at', { ascending: false });
-    const rows = data || [];
-    $('pmConversations').innerHTML = rows.length ? rows.map(c => `
-      <button class="btn btn-dark" type="button" onclick='openChat(${JSON.stringify(c)})'>
-        ${isAdmin ? 'Customer: ' + c.customer_id.substring(0,8) + ' · ' : ''} Mix Chat (${c.id.substring(0,6)})
-      </button>`).join('') : '<p class="sub">No active conversations. Click "BUY NOW / Chat" on any mix.</p>';
-  }
-
-  async function openChat(conv) {
-    activeConversation = conv;
-    $('pmChat').classList.remove('hidden');
-    $('pmChatTitle').textContent = `Conversation (${conv.id.substring(0,6)})`;
-    if (liveChannel) client.removeChannel(liveChannel);
-    await loadMessages();
-
-    liveChannel = client.channel('chat-' + conv.id)
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'premium_messages', filter: 'conversation_id=eq.' + conv.id }, loadMessages)
-      .subscribe();
-
-    $('pmChat').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  async function loadMessages() {
-    if (!activeConversation) return;
-    const { data } = await client.from('premium_messages').select('*').eq('conversation_id', activeConversation.id).order('created_at', { ascending: true });
-    $('pmMessages').innerHTML = (data || []).map(m => `
-      <div style="margin-bottom:8px">
-        <b style="color:${m.sender_id === ADMIN_USER_ID ? 'var(--gold)' : 'var(--blue)'}">${m.sender_id === ADMIN_USER_ID ? 'DJ Lisan (Admin)' : 'You'}:</b>
-        <span style="display:block;white-space:pre-wrap">${escapeHtml(m.body)}</span>
-      </div>`).join('') || '<p class="sub">No messages yet.</p>';
-    $('pmMessages').scrollTop = $('pmMessages').scrollHeight;
-  }
-
-  $('pmMessageForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!currentUser || !activeConversation) return;
-    const body = $('pmMessageForm').elements.body.value.trim();
-    if (!body) return;
-    await client.from('premium_messages').insert({ conversation_id: activeConversation.id, sender_id: currentUser.id, body });
-    $('pmMessageForm').reset();
-    loadMessages();
-  });
 
   $('pmUpload').addEventListener('submit', async e => {
     e.preventDefault();
@@ -770,19 +630,49 @@
     loadMixes();
   };
 
-  // --- PUBLIC PROFILE AUTH ---
+  // --- PUBLIC PROFILE & AVATAR UPDATES ---
   function updatePublicAuthUI() {
     const signedIn = !!(currentUser && !isAdmin);
     $('publicAuthForm').classList.toggle('hidden', signedIn);
     $('publicAccountSignedIn').classList.toggle('hidden', !signedIn);
     if (signedIn) {
-      $('publicSignedInText').textContent = 'Signed in as ' + (currentUser.email || 'listener');
+      const name = currentUser.user_metadata?.display_name || currentUser.email.split('@')[0];
+      const avatar = currentUser.user_metadata?.avatar_url || '';
+      $('userDisplayName').textContent = name;
+      $('publicSignedInText').textContent = currentUser.email;
+      if (avatar) $('userAvatarImg').src = avatar;
+      $('profileNameInput').value = name;
     }
   }
 
+  $('profileUpdateForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!currentUser) return;
+    const displayName = $('profileNameInput').value.trim();
+    const file = $('profileAvatarInput').files[0];
+    let avatar_url = currentUser.user_metadata?.avatar_url || '';
+
+    if (file) {
+      const path = `avatars/${currentUser.id}-${Date.now()}-${safeFileName(file.name)}`;
+      await client.storage.from(AUDIO_BUCKET).upload(path, file);
+      avatar_url = publicUrl(AUDIO_BUCKET, path);
+    }
+
+    const { data, error } = await client.auth.updateUser({
+      data: { display_name: displayName, avatar_url }
+    });
+
+    if (error) alert('Failed to update profile: ' + error.message);
+    else {
+      currentUser = data.user;
+      alert('Profile updated successfully!');
+      updatePublicAuthUI();
+    }
+  });
+
   $('publicAuthToggle').addEventListener('click', () => {
     const mode = $('publicAuthSubmit').textContent.includes('Create') ? 'signin' : 'signup';
-    $('publicAuthHeading').textContent = mode === 'signup' ? 'Public Sign Up' : 'Public Login';
+    $('publicAuthHeading').textContent = mode === 'signup' ? 'Listener Sign Up' : 'Listener Sign In';
     $('publicAuthSubmit').textContent = mode === 'signup' ? 'Create account' : 'Sign in';
     $('publicAuthToggle').textContent = mode === 'signup' ? 'Already have an account? Sign in' : 'New here? Create an account';
   });
@@ -824,8 +714,6 @@
     isAdmin = !!(currentUser && currentUser.id === ADMIN_USER_ID);
     $('loginPanel').classList.toggle('hidden', isAdmin);
     $('adminPanel').classList.toggle('hidden', !isAdmin);
-    $('navLoginBtn').textContent = isAdmin ? 'ADMIN DASHBOARD' : 'ADMIN LOGIN';
-    if (currentUser) loadConversations();
     loadLibrary();
     loadMixes();
     updatePublicAuthUI();
@@ -884,13 +772,6 @@
     alert('Video uploaded successfully!');
     loadLibrary();
   });
-
-  window.deleteItem = async (kind, id) => {
-    if (!isAdmin || !confirm('Delete item?')) return;
-    const table = kind === 'audio' ? AUDIO_TABLE : VIDEO_TABLE;
-    await client.from(table).delete().eq('id', id);
-    loadLibrary();
-  };
 
   syncAuth();
 })();
