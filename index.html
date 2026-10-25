@@ -548,6 +548,7 @@
   function audioCard(item) {
     const cover = publicUrl(AUDIO_BUCKET, item.thumbnail_path);
     const src = publicUrl(AUDIO_BUCKET, item.storage_path);
+    const downloadFilename = escapeHtml(item.title) + '.mp3';
     return `<article class="card" data-kind="audio" data-card="${escapeHtml(item.id)}">
       <div class="cover"><img loading="lazy" src="${escapeHtml(cover)}" alt="" onerror="this.remove()"><span class="cover-fallback">♫</span><span class="badge">MUSIC</span></div>
       <div class="card-body">
@@ -555,6 +556,9 @@
         <div class="meta"><span>▶ ${Number(item.views || 0).toLocaleString()} plays</span><span>${escapeHtml(prettyDate(item.created_at))}</span></div>
         <div class="track-wave" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="height:${5+((i*7+3)%15)}px"></span>`).join('')}</div>
         <audio controls preload="none" data-kind="audio" data-id="${escapeHtml(item.id)}" src="${escapeHtml(src)}"></audio>
+        <div style="margin-top:6px;">
+          <a class="btn btn-dark" style="font-size:10px;padding:5px 9px;" href="${escapeHtml(src)}" download="${downloadFilename}">📥 Download Song</a>
+        </div>
         ${socialSection('audio', item.id, item.title)}
         ${isAdmin ? `<div class="card-actions"><button class="btn btn-dark" type="button" onclick="renameItem('audio','${item.id}','${escapeHtml(item.title)}')">Rename</button><button class="btn btn-danger" type="button" onclick="deleteItem('audio','${item.id}')">Delete</button></div>` : ''}
       </div>
